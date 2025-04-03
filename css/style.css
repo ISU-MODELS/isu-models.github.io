@@ -58,3 +58,25 @@ main {
     height: 100%;
     object-fit: cover;
 }
+
+/* New button styles */
+#audio-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background: #00b4d8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3; /* Above video and letters */
+    transition: background 0.3s ease;
+}
+
+#audio-toggle:hover {
+    background: #0096b2;
+}
