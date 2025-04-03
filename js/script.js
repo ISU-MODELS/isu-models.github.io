@@ -23,12 +23,16 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Audio control
+// Audio control with toggle button
 const audio = document.getElementById('background-audio');
+const toggle = document.getElementById('audio-toggle');
 
-// Play audio only after user interaction (due to browser policies)
-document.addEventListener('click', () => {
+toggle.addEventListener('click', () => {
     if (audio.paused) {
         audio.play().catch(error => console.log('Audio play failed:', error));
+        toggle.textContent = 'Pause Audio';
+    } else {
+        audio.pause();
+        toggle.textContent = 'Play Audio';
     }
-}, { once: true }); // Runs only once on first click
+});
