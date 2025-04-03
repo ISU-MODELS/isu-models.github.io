@@ -6,7 +6,7 @@ window.addEventListener('scroll', () => {
     const backgroundMedia = document.querySelector('.background-media');
 
     // Zoom effect: scale increases with scroll (up to 200x)
-    const scale = 1 + (scrollPosition / windowHeight) * 199;
+    const scale = 1 + (scrollPosition / windowHeight) * 99;
     modelsLinks.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 100)})`;
 
     // Fade in video as you scroll
