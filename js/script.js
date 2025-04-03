@@ -30,24 +30,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('background-audio');
     const toggle = document.getElementById('audio-toggle');
 
-    if (audio && toggle) {
-        toggle.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play()
-                    .then(() => {
-                        toggle.textContent = 'Pause Audio';
-                        console.log('Audio playing');
-                    })
-                    .catch(error => {
-                        console.error('Audio play failed:', error);
-                    });
-            } else {
-                audio.pause();
-                toggle.textContent = 'Play Audio';
-                console.log('Audio paused');
-            }
-        });
-    } else {
-        console.error('Audio or toggle element not found');
+    if (!audio) {
+        console.error('Audio element not found');
+        return;
     }
+    if (!toggle) {
+        console.error('Toggle button not found');
+        return;
+    }
+
+    console.log('Audio and toggle found, setting up listener');
+
+    toggle.addEventListener('click', () => {
+        console.log('Toggle clicked');
+        if (audio.paused) {
+            console.log('Attempting to play audio');
+            audio.play()
+                .then(() => {
+                    toggle.textContent = 'Pause Audio';
+                    console.log('Audio started playing');
+                })
+                .catch(error => {
+                    console.error('Audio play failed:', error.message);
+                });
+        } else {
+            console.log('Pausing audio');
+            audio.pause();
+            toggle.textContent = 'Play Audio';
+            console.log('Audio paused');
+        }
+    });
+
+    // Test audio source
+    console.log('Audio source:', audio.src);
 });
