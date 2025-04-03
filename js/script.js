@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
 
     // Zoom effect: scale increases with scroll (up to 200x)
     const scale = 1 + (scrollPosition / windowHeight) * 199;
-    modelsLinks.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 200)})`;
+    modelsLinks.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 100)})`;
 
     // Fade in video as you scroll
     const opacity = Math.min(scrollPosition / (windowHeight * 0.5), 1);
@@ -15,7 +15,7 @@ window.addEventListener('scroll', () => {
 
     // Mask scales with text, centered on "D"
     if (scrollPosition > 0) {
-        const maskFontSize = 4 * Math.min(scale, 200);
+        const maskFontSize = 8 * Math.min(scale, 100);
         const maskXOffset = 50 - (scrollPosition / windowHeight) * 25;
         backgroundMedia.style.webkitMaskImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="${maskXOffset}%" y="50%" font-family="Montserrat" font-weight="900" font-size="${maskFontSize}rem" fill="white" text-anchor="middle" dominant-baseline="middle">MODELS</text></svg>')`;
         backgroundMedia.style.maskImage = backgroundMedia.style.webkitMaskImage;
