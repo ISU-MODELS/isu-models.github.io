@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
 
     // Zoom effect: scale increases with scroll (up to 5x)
     const scale = 1 + (scrollPosition / windowHeight) * 4;
-    modelsLinks.style.transform = `scale(${Math.min(scale, 5)})`;
+    modelsLinks.style.transform = `scale(${Math.min(scale, 20)})`;
 
     // Fade in video as you scroll
     const opacity = Math.min(scrollPosition / (windowHeight * 0.5), 1);
