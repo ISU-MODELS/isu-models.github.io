@@ -5,8 +5,9 @@ window.addEventListener('scroll', () => {
     const modelsLinks = document.querySelector('.models-links');
     const backgroundMedia = document.querySelector('.background-media');
 
-    // Zoom effect: scale increases with scroll (up to 200x)
-    const scale = 1 + (scrollPosition / windowHeight) * 99;
+    // Quadratic zoom effect: slower at start, faster at end (up to 100x)
+    const scrollRatio = scrollPosition / windowHeight; // 0 to 2 (since height is 200vh)
+    const scale = 1 + Math.pow(scrollRatio, 2) * 49.5; // Reach 100 at bottom
     modelsLinks.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 100)})`;
 
     // Fade in video as you scroll
@@ -16,7 +17,7 @@ window.addEventListener('scroll', () => {
     // Mask scales with text, centered on "D"
     if (scrollPosition > 0) {
         const maskFontSize = 8 * Math.min(scale, 100);
-        const maskXOffset = 50 - (scrollPosition / windowHeight) * 25;
+        const maskXOffset = 50 - (scrollRatio * 25);
         backgroundMedia.style.webkitMaskImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="${maskXOffset}%" y="50%" font-family="Montserrat" font-weight="900" font-size="${maskFontSize}rem" fill="white" text-anchor="middle" dominant-baseline="middle">MODELS</text></svg>')`;
         backgroundMedia.style.maskImage = backgroundMedia.style.webkitMaskImage;
     } else {
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log('Audio and toggle found, setting up listener');
+    console.log('Audio source:', audio.currentSrc || 'Not loaded yet');
 
     toggle.addEventListener('click', () => {
         console.log('Toggle clicked');
@@ -60,7 +62,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Audio paused');
         }
     });
-
-    // Test audio source
-    console.log('Audio source:', audio.src);
 });
