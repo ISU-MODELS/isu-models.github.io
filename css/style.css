@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 200vh; /* Tall page for scrolling */
+    height: 200vh;
     background: #1a1a1a;
     overflow-x: hidden;
 }
@@ -12,6 +12,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 
 .models-container {
@@ -27,6 +28,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    white-space: nowrap;
 }
 
 .letter {
@@ -36,7 +38,6 @@ main {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
-    position: relative;
 }
 
 .letter:hover {
@@ -62,7 +63,6 @@ main {
     object-fit: cover;
 }
 
-/* New button styles */
 #audio-toggle {
     position: fixed;
     top: 20px;
@@ -76,7 +76,7 @@ main {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 3; /* Above video and letters */
+    z-index: 3;
     transition: background 0.3s ease;
 }
 
