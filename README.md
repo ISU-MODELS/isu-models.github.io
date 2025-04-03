@@ -1,2 +1,3 @@
-# isu-models.github.io
-The Model Optimization Development Evaluation Libraries and Software Laboratory at Iowa State University.
+# MODELS Laboratory Website Code
+A MODELS Lab Product
+Copyright 2025 Ryan P. McGehee, Ph.D.
