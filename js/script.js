@@ -1,29 +1,15 @@
-// Scroll effect for zoom and background reveal
 window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
     const modelsLinks = document.querySelector('.models-links');
     const backgroundMedia = document.querySelector('.background-media');
 
-    // Quadratic zoom effect: slower at start, faster at end (up to 100x)
-    const scrollRatio = scrollPosition / windowHeight; // 0 to 2 (since height is 200vh)
-    const scale = 1 + Math.pow(scrollRatio, 2) * 49.5; // Reach 100 at bottom
+    const scrollRatio = scrollPosition / windowHeight;
+    const scale = 1 + Math.pow(scrollRatio, 2) * 49.5;
     modelsLinks.style.transform = `translate(-50%, -50%) scale(${Math.min(scale, 100)})`;
 
-    // Fade in video as you scroll
     const opacity = Math.min(scrollPosition / (windowHeight * 0.5), 1);
     backgroundMedia.style.opacity = opacity;
-
-    // Mask scales with text, centered on "D"
-    if (scrollPosition > 0) {
-        const maskFontSize = 8 * Math.min(scale, 100);
-        const maskXOffset = 50 - (scrollRatio * 25);
-        backgroundMedia.style.webkitMaskImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="${maskXOffset}%" y="50%" font-family="Montserrat" font-weight="900" font-size="${maskFontSize}rem" fill="white" text-anchor="middle" dominant-baseline="middle">MODELS</text></svg>')`;
-        backgroundMedia.style.maskImage = backgroundMedia.style.webkitMaskImage;
-    } else {
-        backgroundMedia.style.webkitMaskImage = 'none';
-        backgroundMedia.style.maskImage = 'none';
-    }
 });
 
 // Audio control with toggle button
