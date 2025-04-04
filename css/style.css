@@ -44,6 +44,10 @@ main {
     transition: filter 0.3s ease; /* Transition for hover effect */
 }
 
+.letter:hover {
+    filter: brightness(2); /* Brightens the video inside the text to simulate white */
+}
+
 .background-media {
     position: fixed;
     top: 0;
