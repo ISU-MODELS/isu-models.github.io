@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Scroll effect (unchanged from above)
 window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
