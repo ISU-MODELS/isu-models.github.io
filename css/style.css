@@ -29,23 +29,19 @@ main {
     transform: translate(-50%, -50%);
     z-index: 2;
     white-space: nowrap;
-    background: transparent; /* Ensure no background interferes */
 }
 
 .letter {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     font-size: 8rem;
-    color: transparent; /* Make text transparent to show video */
-    -webkit-background-clip: text; /* Clip video to text (Webkit prefix for Safari) */
-    background-clip: text; /* Standard property */
-    background-image: inherit; /* Inherit video background from parent */
+    color: #fff; /* Text is white by default */
     text-decoration: none;
-    transition: filter 0.3s ease; /* Transition for hover effect */
+    transition: filter 0.3s ease;
 }
 
 .letter:hover {
-    filter: brightness(2); /* Brightens the video inside the text to simulate white */
+    filter: brightness(2); /* Brighten on hover */
 }
 
 .background-media {
@@ -54,13 +50,37 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Keep behind text */
-    opacity: 0; /* Start faded out, controlled by scroll */
+    z-index: 0;
+    opacity: 0; /* Start faded out */
     transition: opacity 0.5s ease;
+    /* Mask the video to the text shape */
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="50%" y="50%" font-family="Montserrat" font-weight="900" font-size="8rem" fill="white" text-anchor="middle" dominant-baseline="middle">MODELS</text></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><text x="50%" y="50%" font-family="Montserrat" font-weight="900" font-size="8rem" fill="white" text-anchor="middle" dominant-baseline="middle">MODELS</text></svg>');
 }
 
 .video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+#audio-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background: #00b4d8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s ease;
+}
+
+#audio-toggle:hover {
+    background: #0096b2;
 }
