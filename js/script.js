@@ -1,4 +1,3 @@
-// Audio control with toggle button
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('background-audio');
     const video = document.querySelector('.video');
@@ -9,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Play audio by default
-    audio.play().catch(error => console.error('Audio play failed:', error));
+    // Attempt to play muted media by default
     video.play().catch(error => console.error('Video play failed:', error));
+    audio.play().catch(error => console.error('Audio play failed:', error));
 
-    // Sync button text with initial state (unmuted)
-    toggle.textContent = 'Mute';
+    // Sync button text with initial muted state
+    toggle.textContent = 'Unmute';
 
     toggle.addEventListener('click', () => {
         if (audio.muted) {
@@ -29,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Scroll effect (unchanged from above)
 window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
