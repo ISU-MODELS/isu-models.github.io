@@ -3,12 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S - ISU-MODELS</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>S - Software</title>
+    <link rel="stylesheet" href="styles/letter-page.css">
 </head>
 <body>
-    <h1>S Page</h1>
-    <p>This is the S section of ISU-MODELS.</p>
-    <a href="index.html">Back</a>
+    
+    <div id="menu-placeholder"></div>
+
+    <section class="section-A">
+        <h1>Software</h1>
+        <p>Learn the principles of software engineering.</p>
+        <a href="#" class="btn">Learn More</a>
+    </section>
+
+    <section class="section-B">
+        <h2>Placeholder</h2>
+        <p>Website under construction.</p>
+        <a href="#" class="btn">Get Started</a>
+    </section>
+
+    <script>
+        fetch('components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+    
 </body>
 </html>

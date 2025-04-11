@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+
+    <section class="team-page">
+        <h1>Meet Our Team</h1>
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <img src="headshots/eagle.jpg" alt="Person 1">
+                <h2>Jane Doe</h2>
+                <p>Jane leads our innovation team with 10 years of experience in tech development. She loves hiking and sci-fi novels.</p>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <img src="headshots/lion.jpg" alt="Person 2">
+                <h2>John Smith</h2>
+                <p>John designs our sleek interfaces. A coffee enthusiast, he’s been with us for 5 years.</p>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="team-member">
+                <img src="headshots/tiger.jpg" alt="Person 3">
+                <h2>Emily Chen</h2>
+                <p>Emily optimizes our systems. She’s a marathon runner and joined us 3 years ago.</p>
+            </div>
+            <!-- Team Member 4 -->
+            <div class="team-member">
+                <img src="headshots/eagle.jpg" alt="Person 4">
+                <h2>Michael Lee</h2>
+                <p>Michael codes our libraries. He’s a music buff with 8 years in the industry.</p>
+            </div>
+            <!-- Team Member 5 -->
+            <div class="team-member">
+                <img src="headshots/lion.jpg" alt="Person 5">
+                <h2>Sarah Kim</h2>
+                <p>Sarah manages software projects. She enjoys painting and has been here for 6 years.</p>
+            </div>
+            <!-- Team Member 6 -->
+            <div class="team-member">
+                <img src="headshots/tiger.jpg" alt="Person 6">
+                <h2>David Patel</h2>
+                <p>David drives our development efforts. A foodie, he’s been with us for 4 years.</p>
+            </div>
+            <!-- Team Member 7 -->
+            <div class="team-member">
+                <img src="headshots/eagle.jpg" alt="Person 7">
+                <h2>Lisa Nguyen</h2>
+                <p>Lisa enhances our models. She’s a yoga enthusiast with 7 years of experience.</p>
+            </div>
+            <!-- Team Member 8 -->
+            <div class="team-member">
+                <img src="headshots/lion.jpg" alt="Person 8">
+                <h2>Alex Brown</h2>
+                <p>Alex oversees operations. A car lover, he joined us 2 years ago.</p>
+            </div>
+            <!-- Team Member 9 -->
+            <div class="team-member">
+                <img src="headshots/tiger.jpg" alt="Person 9">
+                <h2>Rachel Gomez</h2>
+                <p>Rachel supports our team’s growth. She’s a travel junkie with 5 years here.</p>
+            </div>
+            <!-- Team Member 10 -->
+            <div class="team-member">
+                <img src="headshots/eagle.jpg" alt="Person 10">
+                <h2>Tom Wilson</h2>
+                <p>Tom builds our tools. A gamer, he’s been coding for us for 3 years.</p>
+            </div>
+            <!-- Team Member 11 -->
+            <div class="team-member">
+                <img src="headshots/lion.jpg" alt="Person 11">
+                <h2>Olivia Taylor</h2>
+                <p>Olivia crafts our strategy. She loves photography and joined us last year.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        fetch('components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+</body>
+</html>

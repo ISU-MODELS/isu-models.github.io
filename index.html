@@ -3,33 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODELS</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>MODELS Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        body {
+            font-family: "Helvetica", "Arial", sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #fff;
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            -webkit-mask: url(#text-mask);
+            mask: url(#text-mask);
+            z-index: 0;
+        }
+        svg {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .text-link {
+            position: fixed;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: black;
+            pointer-events: auto;
+            text-decoration: none;
+            z-index: 2;
+        }
+        .text-link:hover {
+            color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <div class="models-container">
-            <div class="models-links">
-                <a href="m-page.html" class="letter" target="_blank">M</a>
-                <a href="o-page.html" class="letter" target="_blank">O</a>
-                <a href="d-page.html" class="letter" target="_blank">D</a>
-                <a href="e-page.html" class="letter" target="_blank">E</a>
-                <a href="l-page.html" class="letter" target="_blank">L</a>
-                <a href="s-page.html" class="letter" target="_blank">S</a>
-                <a></a>
-            </div>
-            <div class="background-media">
-                <video class="video" autoplay loop playsinline muted>
-                    <source src="assets/background.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </main>
-    <button id="audio-toggle">Unmute</button>
-    <audio id="background-audio" loop>
-        <source src="assets/background-audio.mp3" type="audio/mp3">
+
+    <div id="menu-placeholder"></div>
+
+    <!-- Audio element -->
+    <audio id="audio" autoplay loop muted>
+        <source src="./assets/audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
     </audio>
-    <script src="js/script.js"></script>
+
+    <!-- SVG with mask definition -->
+    <svg x="0" y="0" width="100vw" height="100vh">
+        <a href="m-page.html" class="text-link" target="_blank">
+            <text x="12.25vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">M</text>
+        </a>
+
+        <a href="o-page.html" class="text-link" target="_blank">
+            <text x="31.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">O</text>
+        </a>
+
+        <a href="d-page.html" class="text-link" target="_blank">
+            <text x="48.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">D</text>
+        </a>
+
+        <a href="e-page.html" class="text-link" target="_blank">
+            <text x="64.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">E</text>
+        </a>
+
+        <a href="l-page.html" class="text-link" target="_blank">
+            <text x="77.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">L</text>
+        </a>
+
+        <a href="s-page.html" class="text-link" target="_blank">
+            <text x="90.80vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">S</text>
+        </a>
+
+        <defs>
+            <mask id="text-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100vw" height="100vh">
+                <!--text x="50vw" y="50vh" font-size="400" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">MODELS</text-->
+                <text x="12.25vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">M</text>
+                <text x="31.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">O</text>
+                <text x="48.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">D</text>
+                <text x="64.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">E</text>
+                <text x="77.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">L</text>
+                <text x="90.80vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">S</text>
+                <text id="lab-text-mask" x="91.00vw" y="69vh" font-size="6vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">LAB</text>
+                <text x="50.00vw" y="95vh" font-size="2vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">Click on a letter to learn more. Press 'Enter' to unmute.</text>
+            </mask>
+        </defs>
+    </svg>
+
+    <!-- Video element -->
+    <video id="background-video" autoplay loop muted>
+        <source src="./assets/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        fetch('components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('background-video');
+            const audio = document.getElementById('background-audio');
+            const labMaskText = document.getElementById('lab-text-mask');
+
+            function adjustLabPosition() {
+                const vh = window.innerHeight / 100;
+                const vw = window.innerWidth / 100;
+                const baseY = 69;
+                const offsetW = 1 * vw;
+                const offsetH = 2 * vh;
+                labMaskText.setAttribute('y', `${baseY + offsetW - offsetH}vh`);
+            }
+
+            adjustLabPosition();
+            window.addEventListener('resize', adjustLabPosition);
+
+            video.play().catch(error => console.error('Video play failed:', error));
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                audio.play().catch(error => console.error('Audio play failed:', error));
+                if (audio.muted) {
+                    audio.muted = false;
+                    audio.play().catch(err => console.log('Playback failed:', err));
+                } else {
+                    audio.muted = true;
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>
