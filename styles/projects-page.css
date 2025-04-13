@@ -38,8 +38,8 @@ body {
 }
 
 .project img {
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 180px;
     object-fit: cover;
     margin-bottom: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
