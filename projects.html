@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects</title>
+    <link rel="stylesheet" href="styles/projects-page.css">
+</head>
+<body>
+    
+    <div id="menu-placeholder"></div>
+
+    <section class="project-page">
+        <h1>Discover Our Work</h1>
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project">
+                <img src="headshots/eagle.jpg" alt="Person 1">
+                <h2>NRCS-CPF</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 2 -->
+            <div class="project">
+                <img src="headshots/lion.jpg" alt="Person 2">
+                <h2>GridOPS</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 3 -->
+            <div class="project">
+                <img src="headshots/tiger.jpg" alt="Person 3">
+                <h2>IMAgE</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 4 -->
+            <div class="project">
+                <img src="headshots/eagle.jpg" alt="Person 4">
+                <h2>Placeholder</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 5 -->
+            <div class="project">
+                <img src="headshots/lion.jpg" alt="Person 5">
+                <h2>Placeholder</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 6 -->
+            <div class="project">
+                <img src="headshots/tiger.jpg" alt="Person 6">
+                <h2>Placeholder</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 7 -->
+            <div class="project">
+                <img src="headshots/eagle.jpg" alt="Person 7">
+                <h2>Placeholder</h2>
+                <p>Placeholder text description.</p>
+            </div>
+            <!-- Project 8 -->
+            <div class="project">
+                <img src="headshots/lion.jpg" alt="Person 8">
+                <h2>Placeholder</h2>
+                <p>Placeholder text description.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        fetch('components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+</body>
+</html>
