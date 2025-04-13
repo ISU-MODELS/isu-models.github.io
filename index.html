@@ -97,7 +97,7 @@
         <defs>
             <mask id="the-text-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100vw" height="100vh">
                 <!--text x="50vw" y="50vh" font-size="400" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">MODELS</text-->
-                <text id="the-text-mask" x="12.25vw" y="41vh" font-size="6vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">THE</text>
+                <text id="the-text-mask" x="12.25vw" y="31vh" font-size="6vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">THE</text>
                 <text x="12.25vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">M</text>
                 <text x="31.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">O</text>
                 <text x="48.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">D</text>
@@ -127,19 +127,22 @@
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('background-video');
             const audio = document.getElementById('background-audio');
+            const theMaskText = document.getElementById('the-text-mask');
             const labMaskText = document.getElementById('lab-text-mask');
 
-            function adjustLabPosition() {
+            function adjustTextPosition() {
                 const vh = window.innerHeight / 100;
                 const vw = window.innerWidth / 100;
-                const baseY = 69;
+                const theBaseY = 31;
+                const labBaseY = 69;
                 const offsetW = 1 * vw;
                 const offsetH = 2 * vh;
-                labMaskText.setAttribute('y', `${baseY + offsetW - offsetH}vh`);
+                theMaskText.setAttribute('y', `${theBaseY + offsetW - offsetH}vh`);
+                labMaskText.setAttribute('y', `${labBaseY + offsetW - offsetH}vh`);
             }
 
-            adjustLabPosition();
-            window.addEventListener('resize', adjustLabPosition);
+            adjustTextPosition();
+            window.addEventListener('resize', adjustTextPosition);
 
             video.play().catch(error => console.error('Video play failed:', error));
         });
