@@ -11,7 +11,7 @@ body {
     background-color: #fff;
 }
 
-.section-A {
+.section-A, .m-section-A, .o-section-A, .d-section-A, .e-section-A, .l-section-A, .s-section-A {
     margin-top: 50px;
     height: 100vh;
     display: flex;
@@ -19,10 +19,37 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: url('../backgrounds/model.png');
     background-size: cover;
     background-position: center;
     color: #fff;
+}
+
+.section-A {
+    background-image: url('../backgrounds/model.png');
+}
+
+.m-section-A, .section-A {
+    background-image: url('../backgrounds/model.png');
+}
+
+.o-section-A {
+    background-image: url('../backgrounds/optimization.png');
+}
+
+.d-section-A {
+    background-image: url('../backgrounds/development.png');
+}
+
+.e-section-A {
+    background-image: url('../backgrounds/evaluation.png');
+}
+
+.l-section-A {
+    background-image: url('../backgrounds/libraries.png');
+}
+
+.s-section-A {
+    background-image: url('../backgrounds/software.png');
 }
 
 .section-A h1 {
