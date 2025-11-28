@@ -74,11 +74,49 @@ body {
     border-radius: 50px;
     font-size: 18px;
     font-weight: 500;
+    border: 2px solid #fff;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
     background-color: #005bb5;
+    border-color: #000;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-grid {
+    all: unset;
+    display: block !important;
+    text-align: left;
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    width: 10%;
+    font-weight: normal;
+    text-align: left; /* Explicitly set alignment on the flex container */
+}
+
+.checkbox-label span {
+    white-space: nowrap; /* Forces text to stay on a single line */
+}
+
+.checkbox-label input[type="checkbox"] {
+    flex-shrink: 0;
+}
+
+.application-form .checkbox-grid,
+.application-form .checkbox-label {
+    text-align: left !important;
 }
 
 .section-B {
