@@ -150,8 +150,6 @@ pip uninstall -r packages_to_uninstall.txt -y
 
 ```
 
-
-
 ---
 
 ## Creating Environments
@@ -170,7 +168,6 @@ python -m venv myEnv
 ```
 
 
-
 **2. Activate the Environment:**
 
 * **UNIX (Mac/Linux):**
@@ -179,19 +176,11 @@ source myEnv/bin/activate
 
 ```
 
-
-
-
-
 * **Windows:**
 ```bash
 source myEnv\scripts\activate
 
 ```
-
-
-
-
 
 
 **3. Verify Isolation:**
