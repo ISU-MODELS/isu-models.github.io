@@ -72,15 +72,22 @@ body {
 
 .team-member p {
     font-size: 16px;
-    color: #6e6e73;
+    color: #555555;
     line-height: 1.5;
     max-width: 250px;
+}
+
+.member-label {
+    font-weight: 600;
+    display: inline;
+    margin-right: 5px;
 }
 
 .team-member .social-links {
     display: flex;
     gap: 12px;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .team-member .social-links a {

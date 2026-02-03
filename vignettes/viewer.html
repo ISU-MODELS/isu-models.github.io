@@ -46,10 +46,9 @@
                 return;
             }
 
-            // Map topics to their specific md file paths
-            // This allows flexibility if folder structures change
+            // Map topics to their specific JS wrapper file paths
             const topicMap = {
-                'executing-programs': 'executing-programs/Executing-Programs-Vignette.md'
+                'executing-programs': 'executing-programs/content.js'
             };
 
             const filePath = topicMap[topic];
@@ -59,83 +58,78 @@
                 return;
             }
 
-            // Fetch and render the markdown
-            fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(markdown => {
-                    // Start rendering
-                    const renderedHTML = marked.parse(markdown);
-                    contentDiv.innerHTML = renderedHTML;
-
-                    // Post-processing: Fix relative links
-                    // If the markdown links to "demo.py", we need it to point to "executing-programs/demo.py"
-                    // NOT "vignettes/demo.py" because we are in "vignettes/viewer.html"
-
-                    const topicFolder = topic + '/'; // e.g., "executing-programs/"
-
-                    // Fix anchor tags (downloads, links)
-                    const links = contentDiv.querySelectorAll('a');
-                    links.forEach(link => {
-                        const href = link.getAttribute('href');
-                        // If it's a relative link (doesn't start with http, https, #, or /)
-                        if (href && !href.match(/^(http|#|\/)/)) {
-                            link.setAttribute('href', topicFolder + href);
-                            // If it's a file download (like .py), add download attribute if missing 
-                            // (optional, but good UX)
-                        }
-                    });
-
-                    // Generate Table of Contents
-                    const tocList = document.getElementById('toc-list');
-                    const headers = contentDiv.querySelectorAll('h2, h3');
-
-                    headers.forEach((header, index) => {
-                        // Generate ID if missing
-                        if (!header.id) {
-                            const id = header.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                            header.id = id || `section-${index}`;
-                        }
-
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.textContent = header.textContent;
-                        a.href = `#${header.id}`;
-                        a.className = header.tagName.toLowerCase(); // 'h2' or 'h3' class
-
-                        // Scroll smoothly
-                        a.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            header.scrollIntoView({ behavior: 'smooth' });
-                            // Update URL hash without jumping
-                            history.pushState(null, null, `#${header.id}`);
-                        });
-
-                        li.appendChild(a);
-                        tocList.appendChild(li);
-                    });
-
-                    // Fix images
-                    const images = contentDiv.querySelectorAll('img');
-                    images.forEach(img => {
-                        const src = img.getAttribute('src');
-                        if (src && !src.match(/^(http|\/)/)) {
-                            img.setAttribute('src', topicFolder + src);
-                        }
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching vignette:', error);
-                    contentDiv.innerHTML = `
+            // Load the content script locally (supports file://)
+            const script = document.createElement('script');
+            script.src = filePath;
+            script.onload = () => {
+                if (window.vignetteContent) {
+                    renderContent(window.vignetteContent);
+                } else {
+                    contentDiv.innerHTML = '<p>Error: Content variable not found.</p>';
+                }
+            };
+            script.onerror = () => {
+                contentDiv.innerHTML = `
                         <h2>Error Loading Content</h2>
-                        <p>Could not load the vignette. Please ensure you are running this via a local server (e.g., <code>python -m http.server</code>) and not opening the file directly.</p>
-                        <p>Technical details: ${error.message}</p>
+                        <p>Could not load the vignette content file (${filePath}).</p>
+                        <p>Ensure you are opening this file correctly.</p>
                     `;
+            };
+            document.head.appendChild(script);
+
+            function renderContent(markdown) {
+                // Start rendering
+                const renderedHTML = marked.parse(markdown);
+                contentDiv.innerHTML = renderedHTML;
+
+                // Post-processing: Fix relative links
+                const topicFolder = topic + '/';
+
+                // Fix anchor tags (downloads, links)
+                const links = contentDiv.querySelectorAll('a');
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.match(/^(http|#|\/)/)) {
+                        link.setAttribute('href', topicFolder + href);
+                    }
                 });
+
+                // Generate Table of Contents
+                const tocList = document.getElementById('toc-list');
+                const headers = contentDiv.querySelectorAll('h2, h3');
+
+                headers.forEach((header, index) => {
+                    // Generate ID if missing
+                    if (!header.id) {
+                        const id = header.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                        header.id = id || `section-${index}`;
+                    }
+
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.textContent = header.textContent;
+                    a.href = `#${header.id}`;
+                    a.className = header.tagName.toLowerCase();
+
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        header.scrollIntoView({ behavior: 'smooth' });
+                        history.pushState(null, null, `#${header.id}`);
+                    });
+
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                });
+
+                // Fix images
+                const images = contentDiv.querySelectorAll('img');
+                images.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !src.match(/^(http|\/)/)) {
+                        img.setAttribute('src', topicFolder + src);
+                    }
+                });
+            }
         });
     </script>
 </body>
