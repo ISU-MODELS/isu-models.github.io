@@ -26,12 +26,9 @@ Download the latest stable release from [python.org/downloads](https://python.or
 
 * **Windows:** During installation, you **must** check the box labeled **"Add Python to PATH"**. This allows you to run Python from any command prompt. 
 
-
 * **Mac:** While the official installer works, many developers prefer using **Homebrew** (`brew install python`) for easier management. 
 
-
 * **Linux:** Use your distribution's package manager (e.g., `sudo apt install python3` or `yum`). 
-
 
 
 **Verification:**
@@ -45,8 +42,6 @@ python --version
 python3 --version
 
 ```
-
-
 
 You can also enter an interactive Python session by simply typing `python`. To exit this session, type `exit()`. 
 
@@ -62,10 +57,7 @@ While code is just text, using a dedicated Integrated Development Environment (I
 
 1. Download VS Code from [code.visualstudio.com](https://code.visualstudio.com/).
 
-
 2. Install the **Python extension** from the marketplace to enable syntax highlighting and IntelliSense. 
-
-
 
 ---
 
@@ -77,14 +69,9 @@ A Command Line Interface (CLI) is a text-based method for interacting with your 
 
 Common syntax includes:
 
-* 
-`python script.py` (Executes a Python script) 
+* `python script.py` (Executes a Python script) 
 
-
-* 
-`./script.sh` (Executes a shell script) 
-
-
+* `./script.sh` (Executes a shell script) 
 
 ### Practice
 
@@ -92,15 +79,11 @@ Common syntax includes:
 
 1. Navigate to the folder containing the downloaded script in your terminal.
 2. Run the script:
+
 ```bash
 python demoPrintScript.py
 
 ```
-
-
-
-
-
 
 **Challenge:**
 [Download](demoPrintArgScript.py) **`demoPrintArgScript.py`**. This script uses `sys.argv` to inspect command line inputs. Try running it with your name as an argument and modify the code to print a personalized greeting. 
@@ -137,12 +120,9 @@ pip install -r requirements.txt
 
 * Check installed packages: `pip list` 
 
-
 * Get details on a package: `pip show numpy` 
 
-
 **Reset/Uninstall:** To uninstall a list of packages (useful for cleaning an environment): 
-
 
 ```bash
 pip freeze > packages_to_uninstall.txt
@@ -167,7 +147,6 @@ python -m venv myEnv
 
 ```
 
-
 **2. Activate the Environment:**
 
 * **UNIX (Mac/Linux):**
@@ -181,7 +160,6 @@ source myEnv/bin/activate
 source myEnv\scripts\activate
 
 ```
-
 
 **3. Verify Isolation:**
 Once activated, try installing a package. Then `deactivate` the environment  and check if that package is still available. You will find it is contained strictly within `myEnv`. 
@@ -211,8 +189,6 @@ python demoArgParseScript.py -v       # Check version
 python demoArgParseScript.py --name "Ryan"
 
 ```
-
-
 
 **Piping Input:**
 [Download](demoStdinScript.py) **`demoStdinScript.py`**.
