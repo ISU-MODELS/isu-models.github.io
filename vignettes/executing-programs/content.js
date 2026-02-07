@@ -61,6 +61,67 @@ While code is just text, using a dedicated Integrated Development Environment (I
 
 2. Install the **Python extension** from the marketplace to enable syntax highlighting and IntelliSense. 
 
+3. **Select Interpreter:** Press \`Cmd + Shift + P\` (Mac) or \`Ctrl + Shift + P\` (Windows) to open the Command Palette. Type "Python: Select Interpreter" and choose the version that matches the virtual environment created later in the lesson. 
+
+---
+
+## Specifying File Paths
+
+### Principle: File Systems & Paths
+
+When you open a terminal, you are always "in" a specific folder, known as your **Current Working Directory (CWD)**. You can see which directory you are in by typing \`pwd\` (Print Working Directory) on Mac/Linux or \`cd\` on Windows.
+
+When you run a command like \`python script.py\`, the computer looks for \`script.py\` *only* in your CWD. If the file is elsewhere, you must tell the computer exactly where it is using a path.
+
+*   **Absolute Path**: The full address of a file, starting from the root of the computer.
+    *   *Example:* \`/Users/username/Documents/Projects/script.py\`
+    *   *Analogy:* "Go to 123 Main Street, New York, NY" (Anyone can navigate to this address)
+
+*   **Relative Path**: The location of a file *relative* to your current folder.
+    *   *Example:* \`Projects/script.py\` (assuming you are in \`Documents\`)
+    *   *Analogy:* "Go down the street and turn left" (Only works if you are already in the vicinity)
+
+*   **Global Path:** The "Path" is a list of trusted directories stored by your operating system. When you type a command (like \`python\` or \`ls\`) without a path, the computer looks in these directories to find it. Programs stored here can be called from **anywhere** on the device.
+    *   *Example:* \`/usr/local/bin\` (Mac/Linux); \`C:\Windows\System32\` (Windows)
+    *   *Analogy:* "Go to the White House" (Everyone knows where it is already)
+
+**Tip:** You can use \`cd\` (Change Directory) to move your CWD to the folder containing your script, or you can provide the full path to the script when running it.
+
+**Adding to the Global Path:**
+To make your own program globally executable, you typically create a "symbolic link" (shortcut) in a global directory like \`/usr/local/bin\` (Mac/Linux) or \`C:\Windows\System32\` (Windows).
+
+**Mac/Linux:**
+\`\`\`bash 
+# Syntax: sudo ln -s [Absolute Path to Script] [Global Directory/NewName]
+sudo ln -s /Users/me/myscript.sh /usr/local/bin/myscript
+\`\`\`
+
+**Windows:**
+\`\`\`cmd
+# Syntax: mklink [Global Directory/NewName] [Absolute Path to Script]
+mklink "C:\Windows\System32\myscript" "C:\Users\me\myscript.sh"
+\`\`\`
+
+### Practice
+
+Let's assume you have a script located at \`/Users/student/lab1/run.py\` and your terminal is currently open in \`/Users/student\`.
+
+1.  **Execute using Relative Path:**
+    \`\`\`bash
+    python lab1/run.py
+    \`\`\`
+
+2.  **Execute using Absolute Path:**
+    \`\`\`bash
+    python /Users/student/lab1/run.py
+    \`\`\`
+
+3.  **Execute using Global Path:**
+    (If installed/linked to the path as \`run\`)
+    \`\`\`bash
+    run
+    \`\`\`
+
 ---
 
 ## Executing Programs
@@ -89,6 +150,40 @@ python demoPrintScript.py
 
 **Challenge:**
 [Download](demoPrintArgScript.py) **\`demoPrintArgScript.py\`**. This script uses \`sys.argv\` to inspect command line inputs. Try running it with your name as an argument and modify the code to print a personalized greeting. 
+
+## Tracing Errors
+
+### Principle: Traceback
+
+Errors are a normal part of programming. When a Python script crashes, it outputs a **Traceback**. This is a report that reads from bottom to top:
+
+1.  **The Error Message** (Bottom): What went wrong (e.g., \`FileNotFoundError\`, \`SyntaxError\`).
+2.  **The Location** (Top/Middle): The exact file and line number where the crash happened.
+
+### Practice
+
+**File Not Found Error:**
+If you see: \`python: can't open file 'script.py': [Errno 2] No such file or directory\`
+
+This usually means you are in the wrong folder (CWD) or made a typo in the filename.
+
+**1. Verify your location:**
+
+*   **Mac/Linux:**
+    \`\`\`bash
+    pwd  # specific command to check where you are
+    ls   # list files
+    \`\`\`
+
+*   **Windows:**
+    \`\`\`cmd
+    cd   # check where you are (cd with no arguments prints CWD)
+    dir  # list files
+    \`\`\`
+
+**2. Fix the filename:**
+
+*   **Tip:** Use the **Tab** key to auto-complete filenames. This prevents typos and confirms the file exists.
 
 ---
 
@@ -139,6 +234,8 @@ pip uninstall -r packages_to_uninstall.txt -y
 ### Principle: Isolation
 
 You should never install project-specific libraries directly into your system's global Python environment. Doing so can cause conflicts where one project needs Version 1.0 of a tool and another needs Version 2.0. **Virtual Environments** solve this by creating isolated spaces for each project. 
+
+**Note for Scientists:** While we use Python's built-in \`venv\` module in this vignette, complex scientific workflows often require non-Python dependencies (e.g., GDAL for geospatial work). For such tasks, **Conda** or **Mamba** environments are often preferred as they manage both Python and system-level libraries. 
 
 ### Practice
 
