@@ -61,7 +61,9 @@ While code is just text, using a dedicated Integrated Development Environment (I
 
 2. Install the **Python extension** from the marketplace to enable syntax highlighting and IntelliSense. 
 
-3. **Select Interpreter:** Press \`Cmd + Shift + P\` (Mac) or \`Ctrl + Shift + P\` (Windows) to open the Command Palette. Type "Python: Select Interpreter" and choose the version that matches the virtual environment created later in the lesson. 
+3. **Create Workspace:** create a folder named \`computational_bootcamp\` on your Desktop or Documents folder. Open VS Code and use \`File > Open Folder\` to select this new directory. This will be your workspace for the session.
+
+4. **Select Interpreter:** Press \`Cmd + Shift + P\` (Mac) or \`Ctrl + Shift + P\` (Windows) to open the Command Palette. Type "Python: Select Interpreter" and choose the version that matches the virtual environment created later in the lesson. 
 
 ---
 
@@ -104,7 +106,7 @@ mklink "C:\Windows\System32\myscript" "C:\Users\me\myscript.sh"
 
 ### Practice
 
-Let's assume you have a script located at \`/Users/student/lab1/run.py\` and your terminal is currently open in \`/Users/student\`.
+Let's assume you have created your \`computational_bootcamp\` folder on your Desktop.
 
 1.  **Execute using Relative Path:**
     \`\`\`bash
@@ -124,6 +126,50 @@ Let's assume you have a script located at \`/Users/student/lab1/run.py\` and you
 
 ---
 
+
+## File Permissions
+
+### Principle: Access Control
+
+Every file on your computer has a set of "permissions" that tell the operating system who is allowed to read, write, or execute it. This is a critical security feature.
+
+*   **Read (r):** View the file's contents.
+*   **Write (w):** Modify or delete the file.
+*   **Execute (x):** Run the file as a program.
+
+If you try to run a script and get a "Permission denied" error, it usually means the *Execute* permission is missing.
+
+### Practice
+
+**Checking Permissions:**
+
+To see a file's permissions, you can inspect it in your terminal:
+
+*   **Mac/Linux:** Run \`ls -l\`. You will see a string like \`-rw-r--r--\`. The presence of an \`x\` indicates executable permission. 
+*   **Windows:** Right-click the file, select **Properties**, and view the **Security** tab.
+
+**Changing Permissions:**
+
+**Mac/Linux (chmod):**
+On Unix-based systems, use the \`chmod\` (Change Mode) command to make a script executable (add \`+x\`):
+
+\`\`\`bash
+chmod +x script.sh
+\`\`\`
+
+**Windows (icacls):**
+
+Windows permissions are more complex (using ACLs), but you can modify them via the command line using \`icacls\`. To grant full access to a current user:
+
+\`\`\`cmd
+icacls script.py /grant Users:F
+\`\`\`
+*(Note: \`F\` stands for Full access)*
+
+Alternatively, you can use the GUI: Right-click file > Properties > Security > Edit > Check "Full control".
+
+---
+
 ## Executing Programs
 
 ### Principle: CLIs
@@ -138,10 +184,9 @@ Common syntax includes:
 
 ### Practice
 
-[Download](demoPrintScript.py) the example script: **\`demoPrintScript.py\`**
-
-1. Navigate to the folder containing the downloaded script in your terminal.
-2. Run the script:
+1. Download the example script: **[demoPrintScript.py](demoPrintScript.py)** and save it into your \`computational_bootcamp\` folder.
+2. In VS Code, open the terminal (\`Ctrl + \`\`) and ensure you are in the \`computational_bootcamp\` directory.
+3. Run the script:
 
 \`\`\`bash
 python demoPrintScript.py
@@ -150,6 +195,8 @@ python demoPrintScript.py
 
 **Challenge:**
 [Download](demoPrintArgScript.py) **\`demoPrintArgScript.py\`**. This script uses \`sys.argv\` to inspect command line inputs. Try running it with your name as an argument and modify the code to print a personalized greeting. 
+
+---
 
 ## Tracing Errors
 
@@ -265,20 +312,15 @@ Once activated, try installing a package. Then \`deactivate\` the environment  a
 
 ---
 
-## Handling Arguments
+## Passing Arguments
 
-### Principle: Argument Passing
+### Principle: Passing
 
 Arguments allow you to pass variables into a program at runtime without editing the code. In Python, these are accessible via \`sys.argv\` (basic) or the \`argparse\` library (robust). Standard flags like \`-h\` (help) or \`-v\` (version) are conventions you should adhere to. 
 
-### Principle: I/O Piping
-
-Piping (\`|\`) allows the output (stdout) of one command to be used immediately as the input (stdin) for another command. This chains operations together efficiently. 
-
 ### Practice
 
-**Argument Parsing:**
-[Download](demoArgParseScript.py) **\`demoArgParseScript.py\`**. Unlike the basic script, this uses the \`argparse\` library to automatically generate help menus and handle flags.
+[Download](demoArgParseScript.py) **\`demoArgParseScript.py\`** into your workspace. Unlike the basic script, this uses the \`argparse\` library to automatically generate help menus and handle flags.
 
 Try the following:
 
@@ -289,8 +331,17 @@ python demoArgParseScript.py --name "Ryan"
 
 \`\`\`
 
-**Piping Input:**
-[Download](demoStdinScript.py) **\`demoStdinScript.py\`**.
+---
+
+## Piping Input & Output
+
+### Principle: Piping
+
+Piping (\`|\`) allows the output (stdout) of one command to be used immediately as the input (stdin) for another command. This chains operations together efficiently. 
+
+### Practice
+
+[Download](demoStdinScript.py) **\`demoStdinScript.py\`** into your workspace.
 If you run this script alone (\`python demoStdinScript.py\`), it will appear to "hang." It is waiting for input that never arrives. You would need to press \`Ctrl + C\` (or \`Cmd + C\`) to abort it. 
 
 Instead, pipe data into it using the \`echo\` command:
@@ -301,6 +352,20 @@ echo "Hello World" | python demoStdinScript.py
 \`\`\`
 
 The script immediately processes "Hello World" because the output of \`echo\` was piped directly into the script's standard input.
+
+---
+
+## Conclusion
+
+Congratulations on completing your first session. You have transitioned from simply "using" software to **engineering** it. 
+
+By mastering these fundamentals, you are now equipped to:
+
+*   **Build Reproducible Science:** Using virtual environments and \`requirements.txt\` ensures your research can be verified and built upon by others (including your future self).
+*   **Automate Workflows:** passing arguments and piping inputs allows you to run hundreds of simulations without manually editing a single line of code.
+*   **Debug with Confidence:** Understanding paths, permissions, and tracebacks turns scary error messages into solvable logic puzzles.
+
+These skills are the invisible infrastructure of every advanced software project. As we move forward, we will rely on this foundation to build complex, data-driven applications.
 
 ---
 `;
