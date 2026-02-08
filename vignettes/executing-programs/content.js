@@ -4,7 +4,7 @@ window.vignetteContent = `---
 
 # Session 1: Executing Programs
 
-**© 2025 Ryan P. McGehee, Ph.D.** 
+**© 2026 Ryan P. McGehee, Ph.D.** 
 
 ## Introduction
 
