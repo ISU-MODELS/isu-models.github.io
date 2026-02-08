@@ -127,7 +127,7 @@ Let's assume you have created your \`computational_bootcamp\` folder on your Des
 ---
 
 
-## File Permissions
+## Setting File Permissions
 
 ### Principle: Access Control
 
