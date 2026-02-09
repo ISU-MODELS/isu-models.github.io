@@ -5,9 +5,9 @@ window.vignetteContent = `---
 
 **© 2026 Ryan P. McGehee, Ph.D.**
 
-## Introduction
+## I. Modularizing Logic
 
-### Principle: Modularity
+### Principle: Linearity vs. Modularity
 
 When you first start coding, you likely write "linear scripts"—a list of instructions read by the computer from top to bottom. This works for simple tasks. However, as your ideas grow, linear scripts become difficult to read, impossible to test, and cumbersome to modify. If you need to calculate an average in five different places, copying and pasting that code five times means you have five places to make a mistake...five different places to maintain. So, let's make it easy to maintain our programs by reducing the number of places where we have to maintain the code. 
 
@@ -94,7 +94,7 @@ else:
 
 ---
 
-## Functions
+## II. Defining Functions
 
 ### Principle: Functional Programming
 
@@ -126,24 +126,56 @@ This tells the programmer: "Input an integer, and I will output a float."
 
 **Example Explicit Arguments Function:**
 \`\`\`python
-<<INSERT EXPLICIT FUNCTION HERE>>
+def calculate_force(mass, acceleration):
+    """
+    Calculates force (F = m * a).
+    Arguments are explicit: we know exactly what is required.
+    """
+    return mass * acceleration
+
+# Clear and readable
+print(calculate_force(10, 9.8))
 \`\`\`
 
 **Example Positional Arguments (*Args) Function:**
 \`\`\`python
-<<INSERT *ARGS FUNCTION HERE>>
+def calculate_batch_average(*args):
+    """
+    Calculates the average of any number of scores.
+    *args allows the function to accept a variable number of inputs.
+    """
+    if len(args) == 0:
+        return 0
+    
+    total = sum(args)
+    return total / len(args)
+
+# Flexible usage
+print(calculate_batch_average(85, 90, 88))
+print(calculate_batch_average(100, 95, 98, 92, 89))
 \`\`\`
 
 **Example Keyword Arguments (**Kwargs) Function:**
 \`\`\`python
-<<INSERT **KWARGS FUNCTION HERE>>
+def create_sensor_log(**kwargs):
+    """
+    Creates a log entry for a sensor reading.
+    **kwargs allows us to attach various metadata tags.
+    """
+    print("Log Entry:")
+    for key, value in kwargs.items():
+        print(f"  - {key}: {value}")
+
+# Flexible tagging
+create_sensor_log(sensor_id=101, temp=23.5, loc="Lab_A")
+create_sensor_log(sensor_id=102, status="Offline", error_code=500)
 \`\`\`
 
 ---
 
-## Variables
+## III. Scoping Variables
 
-### Principle: Scope
+### Principle: Local vs. Global
 
 Where a variable is born determines where it can live. This concept is called **Scope**.
 
@@ -161,31 +193,33 @@ Variables created outside of any function are **Global**. They can be accessed b
 
 ### Practice
 
-**Local vs. Global Scope:**
+Let's look at an example of **Local** vs. **Global** scope.
+
+**Local Variable Example**
 \`\`\`python
-# Global Variable
-server_status = "ONLINE"
+def calculate_area(radius):
+    pi = 3.14159  # Local variable: Exists only here
+    return pi * (radius ** 2)
 
-def check_server():
-    # Local variable 'status' shadows global if not careful
-    status = "Maintenance Mode" 
-    print(f"Inside function: {status}")
+print(calculate_area(5))
+# print(pi)  # Error! 'pi' is not defined outside the function.
+\`\`\`
 
-def shutdown_server():
+**Global Variable Example**
+\`\`\`python
+server_status = "ONLINE"  # Global variable
+
+def crash_server():
     global server_status
-    server_status = "OFFLINE"
-    print("Server has been shut down.")
+    server_status = "OFFLINE"  # Global side effect!
 
-check_server()            # Prints: Inside function: Maintenance Mode
-print(server_status)      # Prints: ONLINE (Global unchanged)
-
-shutdown_server()         # Modifies global variable
-print(server_status)      # Prints: OFFLINE
+crash_server()
+print(server_status)  # "OFFLINE". The change persisted.
 \`\`\`
 
 ---
 
-## IV. The Style: Writing for Humans
+## IV. Standardizing Style
 
 ### Principle: Readability
 
@@ -205,16 +239,21 @@ Every function should have a **Docstring** immediately after the definition expl
 *   **The 50-Line Rule:** If a function is longer than 50 lines, it is likely doing too much. Break it up.
 *   **Single Responsibility:** A function should do one thing. Don't combine calculation, saving, and printing in one function.
 
+**4. Linting (Spell Check for Code)**
+Just as you use a spell checker for essays, you use a **Linter** for code. Tools like \`flake8\` or \`pylint\` automatically scan your code to catch style violations and potential errors before you even run it.
+
 ### Practice
 
-**Bad Style vs. Good Style:**
+Let's look at a 'bad' readability vs. 'good' readability example. Test your self. Which one of these functions can you understand more quickly? What if the function was 50 lines long or more?
 
+**Bad Readability**
 \`\`\`python
-# Bad Style
 def c(x,y):
     return x * y * 0.5 # What does this do?
+\`\`\`
 
-# Good Style
+**Good Readability**
+\`\`\`python
 def calculate_triangle_area(base: float, height: float) -> float:
     """
     Calculates the area of a triangle.
@@ -231,9 +270,9 @@ def calculate_triangle_area(base: float, height: float) -> float:
 
 ---
 
-## V. The Safety Net: Error Handling
+## V. Handling Errors
 
-### Principle: Anticipating Failure
+### Principle: Failing Early
 
 A well-designed program anticipates failure. We use **Exceptions** to handle errors gracefully rather than letting the program crash.
 
@@ -242,22 +281,60 @@ A well-designed program anticipates failure. We use **Exceptions** to handle err
 
 ### Practice
 
-**Handling Errors Gracefully:**
+Let's look at some examples of handling errors. We will use a function that processes a list of numbers and divides 100 by each number. The list contains a 0 which will cause an error.
+
+**1. The Slow Crash (Fails Late, No Handling)**
+This function runs for 8 seconds before crashing, wasting time and resources.
 \`\`\`python
-def divide_numbers(numerator: float, denominator: float) -> float:
-    """Divides two numbers safely."""
+import time
+
+data =[10, 2, 5, 4, 0] # 0 is the error
+
+def process_data_v1(data):
+print("Starting Process V1...")
+for num in data:
+    time.sleep(2) # Pretend this is hard work
+result = 100 / num # Crashes here when num is 0
+print(f"Processed: {result}")
+        
+# process_data_v1(data) # Uncomment to see the crash
+\`\`\`
+
+**2. The Slow Fail (Fails Late, Graceful Handling)**
+This prevents the crash, but still wastes 8 seconds before finding the error.
+\`\`\`python
+def process_data_v2(data):
+print("Starting Process V2...")
+try:
+for num in data:
+    time.sleep(2)
+result = 100 / num
+print(f"Processed: {result}")
+    except ZeroDivisionError:
+print("Error: Invalid data found! Stopping safely.")
+
+process_data_v2(data)
+\`\`\`
+
+**3. The Efficient Fail (Fails Early, Graceful Handling)**
+Check for errors *before* starting the work. Fails instantly, saving time.
+\`\`\`python
+def process_data_v3(data):
+print("Starting Process V3...")
     
-    # Fail Early
-    if denominator == 0:
-        raise ValueError("Cannot divide by zero.")
-    
-    return numerator / denominator
+    # FAIL EARLY: Check data integrity immediately
+if 0 in data:
+        raise ValueError("Data contains invalid 0. Aborting.")
+
+for num in data:
+    time.sleep(2)
+result = 100 / num
+print(f"Processed: {result}")
 
 try:
-    print(divide_numbers(10, 2))
-    print(divide_numbers(5, 0)) # This triggers the error
+process_data_v3(data)
 except ValueError as e:
-    print(f"Error caught: {e}")
+print(f"Caught error immediately: {e}")
 \`\`\`
 
 ---
@@ -269,15 +346,15 @@ except ValueError as e:
 DEFAULT_TAX_RATE = 0.05
 
 def calculate_total(price: float, tax_rate: float = DEFAULT_TAX_RATE) -> float:
-    """
+"""
     Calculates total price including tax.
-    
+
     Args:
         price (float): The base price of the item.
         tax_rate (float): The tax rate to apply. Defaults to 0.05.
-        
-    Returns:
-        float: The total calculated price.
+
+        Returns:
+float: The total calculated price.
     """
     # FAIL EARLY: Check for invalid inputs
     if price < 0:
@@ -286,20 +363,20 @@ def calculate_total(price: float, tax_rate: float = DEFAULT_TAX_RATE) -> float:
     # LOCAL VARIABLE (Snake Case)
     # This variable is not visible outside this function
     tax_amount = price * tax_rate
-    
-    total = price + tax_amount
+
+total = price + tax_amount
     
     # OUTPUT
-    return total
+return total
 
 # Demonstration
 try:
-    final_price = calculate_total(100.0)
-    print(f"Final Price: \${final_price}")
-    
-    invalid_price = calculate_total(-50.0)
+final_price = calculate_total(100.0)
+print(f"Final Price: \${final_price}")
+
+invalid_price = calculate_total(-50.0)
 except ValueError as e:
-    print(f"Transaction failed: {e}")
+print(f"Transaction failed: {e}")
 \`\`\`
 
 ---
