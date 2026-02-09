@@ -124,7 +124,7 @@ This tells the programmer: "Input an integer, and I will output a float."
 
 ### Examples
 
-**Example Explicit Arguments Function:**
+Example **Explicit Arguments** Function:
 \`\`\`python
 def calculate_force(mass, acceleration):
     """
@@ -137,7 +137,7 @@ def calculate_force(mass, acceleration):
 print(calculate_force(10, 9.8))
 \`\`\`
 
-**Example Positional Arguments (*Args) Function:**
+Example **Positional Arguments** (\`*Args\`) Function:
 \`\`\`python
 def calculate_batch_average(*args):
     """
@@ -155,7 +155,7 @@ print(calculate_batch_average(85, 90, 88))
 print(calculate_batch_average(100, 95, 98, 92, 89))
 \`\`\`
 
-**Example Keyword Arguments (**Kwargs) Function:**
+Example **Keyword Arguments** (\`**Kwargs\`) Function:
 \`\`\`python
 def create_sensor_log(**kwargs):
     """
@@ -193,7 +193,7 @@ Variables created outside of any function are **Global**. They can be accessed b
 
 ### Practice
 
-Let's look at an example of **Local** vs. **Global** scope.
+Let's look at an example of **Local** vs. **Global** scope in practice. Each variable scope has its own advantages and disadvantages. In general, global variables enable more links in a program, which is convenient for simple programs. However, as programs grow in size, the number of links can become overwhelming, making it difficult to track the flow of data and debug issues.
 
 **Local Variable Example**
 \`\`\`python
@@ -341,43 +341,13 @@ print(f"Caught error immediately: {e}")
 
 ## Example: Putting it all together
 
-\`\`\`python
-# GLOBAL CONSTANT (Screaming Snake Case)
-DEFAULT_TAX_RATE = 0.05
+By now, you have moved from writing simple, linear scripts to designing robust, modular programs. By wrapping logic in functions, you made your code reusable. By scoping variables correctly, you protected your data from accidental modification. By standardizing your style, you made your work readable and maintainable. And by handling errors gracefully, you ensured your program can survive the unexpected. These are not just rules; they are the tools of a professional developer, and you are well on your way to becoming a great one if you learn to use them well.
 
-def calculate_total(price: float, tax_rate: float = DEFAULT_TAX_RATE) -> float:
-"""
-    Calculates total price including tax.
+### Assignment
 
-    Args:
-        price (float): The base price of the item.
-        tax_rate (float): The tax rate to apply. Defaults to 0.05.
+Now let's put it all together by writing a function that uses these principles for a real MODELS Lab project. The instructor will provide you with some additional background and task information to get started. Over the remaining time in this training, you will work on this assignment independently and come back as a team for peer review.
 
-        Returns:
-float: The total calculated price.
-    """
-    # FAIL EARLY: Check for invalid inputs
-    if price < 0:
-        raise ValueError("Price cannot be negative.")
-
-    # LOCAL VARIABLE (Snake Case)
-    # This variable is not visible outside this function
-    tax_amount = price * tax_rate
-
-total = price + tax_amount
-    
-    # OUTPUT
-return total
-
-# Demonstration
-try:
-final_price = calculate_total(100.0)
-print(f"Final Price: \${final_price}")
-
-invalid_price = calculate_total(-50.0)
-except ValueError as e:
-print(f"Transaction failed: {e}")
-\`\`\`
+If it is your first time coding in an environment like this, do not get embarrassed if you forget a principle or two or three or more! The goal is to learn and improve. We all started somewhere, and we can all learn from each other. Even senior developers can forget principles and may have to look them up or have someone occasionally remind them through collaborative coding.
 
 ---
 `;
