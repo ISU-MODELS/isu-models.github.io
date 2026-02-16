@@ -173,7 +173,133 @@ create_sensor_log(sensor_id=102, status="Offline", error_code=500)
 
 ---
 
-## III. Scoping Variables
+## III. Defining Classes
+
+### Principle: Encapsulation
+
+In Section II, we treated data (lists of scores) and logic (calculating averages) as separate things. You passed data *into* a function.
+
+**Object-Oriented Programming (OOP)** changes this. It allows us to bundle the **Data** (Attributes) and the **Logic** (Methods) into a single container. This is called **Encapsulation**.
+
+**1. The Blueprint (Class)**
+Think of a **Class** as a blueprint for a house. The blueprint is not a house; you cannot live in it. It just describes how the house should be built.
+* *Syntax:* Defined using \`class Name:\` (Note the PascalCase).
+
+**2. The Object (Instance)**
+An **Object** is the actual house built from that blueprint. You can build 1,000 different houses (Objects) from one blueprint (Class). Each house has its own address and its own furniture.
+
+**3. The Setup (\`__init__\`)**
+When you build the house, you need to set the initial state (paint color, number of rooms). In Python, the \`__init__\` method runs automatically when you create a new object. It is the "Starter Kit."
+
+**4. The Identity (\`self\`)**
+This is the most confusing part for beginners.
+* Imagine you have three students. If you say "tell me your name," the program needs to know *which* student you are talking to.
+* \`self\` is a reference to the **specific object** being used right now. \`self.name\` means "MY name," not just "A name."
+
+### Practice
+
+\`\`\`python
+class Student:
+    """A blueprint for a Student object."""
+
+    # The Setup (Constructor)
+    def __init__(self, name, starting_grade):
+        self.name = name                # Attribute (Data)
+        self.scores = []                # Attribute (Empty List)
+        self.grade_level = starting_grade
+
+    # The Logic (Method)
+    def add_score(self, score):
+        """Adds a score to this specific student's record."""
+        self.scores.append(score)
+        print(f"Added {score} to {self.name}'s record.")
+
+# Creating Objects (Instantiation)
+student_1 = Student("Ryan", 12)
+student_1.add_score(95)
+\`\`\`
+
+### Principle: Inheritance
+
+One of the most powerful features of Classes is **Inheritance**. This allows us to create specialized classes based on generic ones, preventing code duplication.
+
+Think of it like biology:
+* A **Tesla** inherits traits from a **Car**.
+* A **Car** inherits traits from a **Vehicle**.
+* The **Tesla** has everything a Vehicle has, plus everything a Car has, *plus* its own unique features (like AutoPilot).
+
+**The \`super()\` Function**
+To make this work, each child class must tell its parent to set itself up first. We do this using \`super().__init__()\`. This passes the data "up the chain."
+
+### Practice
+
+**Level 1: The Generic Base (Vehicle)**
+This class handles the basics: who owns it?
+\`\`\`python
+class Vehicle:
+    def __init__(self, owner):
+        self.owner = owner  # Identity from Level 1
+        print(f"Level 1: Registered Vehicle for {owner}")
+\`\`\`
+
+**Level 2: The Specific Category (Car)**
+This class adds "Car" features (doors) but remembers it is also a Vehicle.
+\`\`\`python
+class Car(Vehicle):
+    def __init__(self, owner, doors):
+        # Pass 'owner' up to Level 1
+        super().__init__(owner)
+        self.doors = doors  # Identity from Level 2
+        print(f"Level 2: Built Car with {doors} doors")
+\`\`\`
+
+**Level 3: The Specialized Model (Tesla)**
+This class adds "Electric" features (range) but remembers it is also a Car.
+\`\`\`python
+class Tesla(Car):
+    def __init__(self, owner, doors, range_km):
+        # Pass 'owner' and 'doors' up to Level 2
+        super().__init__(owner, doors)
+        self.range_km = range_km  # Identity from Level 3
+        print(f"Level 3: Installed Battery with {range_km}km range")
+
+# --- usage ---
+# We create a Level 3 object, but it triggers the whole chain.
+print("--- Creating My Car ---")
+my_car = Tesla(owner="Ryan", doors=4, range_km=500)
+
+print("\n--- Final Object Identities ---")
+# The Tesla object has attributes from ALL three levels
+print(f"Owner: {my_car.owner}")      # From Level 1
+print(f"Doors: {my_car.doors}")      # From Level 2
+print(f"Range: {my_car.range_km}")   # From Level 3
+\`\`\`
+
+### Principle: Representation
+
+Currently, if you try to print your object with \`print(my_car)\`, Python gives you a cryptic message like \`<__main__.Tesla object at 0x7f...>\`. This is not helpful for debugging.
+
+We can fix this using **Magic Methods** (methods with double underscores). The most useful one is \`__str__\`. It tells Python: "When someone tries to print me, show them *this* string instead."
+
+**Practice: Making Objects Readable**
+\`\`\`python
+class Tesla(Car):
+    def __init__(self, owner, doors, range_km):
+        super().__init__(owner, doors)
+        self.range_km = range_km
+
+    # The Magic Method for "String Representation"
+    def __str__(self):
+        return f"[Tesla Model] Owner: {self.owner} | Range: {self.range_km}km"
+
+my_car = Tesla("Ryan", 4, 500)
+print(my_car) 
+# Output: [Tesla Model] Owner: Ryan | Range: 500km
+\`\`\`
+
+---
+
+## IV. Scoping Variables
 
 ### Principle: Local vs. Global
 
@@ -219,7 +345,7 @@ print(server_status)  # "OFFLINE". The change persisted.
 
 ---
 
-## IV. Standardizing Style
+## V. Standardizing Style
 
 ### Principle: Readability
 
@@ -270,7 +396,43 @@ def calculate_triangle_area(base: float, height: float) -> float:
 
 ---
 
-## V. Handling Errors
+## VI. Managing Mutability
+
+### Principle: Pure vs. Impure Functions
+
+A major risk in Python design involves **Mutable Data** (like Lists and Dictionaries). When you pass a list to a function, you are not passing a *copy* of that list; you are passing the *actual* list.
+
+If your function changes the list (e.g., sorts it, appends to it, or deletes items), **it changes the original list outside the function too.** This is called a **Side Effect**.
+
+**1. The Bug (Unintended Mutation)**
+\`\`\`python
+def bad_process(data):
+    # This modifies the ORIGINAL list!
+    data.append(999) 
+    return sum(data)
+
+my_scores = [10, 20, 30]
+print(bad_process(my_scores)) # Returns 1059
+print(my_scores)              # [10, 20, 30, 999] <- My original data is corrupted!
+\`\`\`
+
+**2. The Fix (Copying)**
+If you need to modify data, create a copy first.
+\`\`\`python
+def good_process(data):
+    # Create a local copy first
+    local_data = data.copy() 
+    local_data.append(999)
+    return sum(local_data)
+
+my_scores = [10, 20, 30]
+print(good_process(my_scores)) # Returns 1059
+print(my_scores)               # [10, 20, 30] <- Safe!
+\`\`\`
+
+---
+
+## VII. Handling Errors
 
 ### Principle: Failing Early
 
@@ -339,7 +501,7 @@ print(f"Caught error immediately: {e}")
 
 ---
 
-## Example: Putting it all together
+## Conclusion
 
 By now, you have moved from writing simple, linear scripts to designing robust, modular programs. By wrapping logic in functions, you made your code reusable. By scoping variables correctly, you protected your data from accidental modification. By standardizing your style, you made your work readable and maintainable. And by handling errors gracefully, you ensured your program can survive the unexpected. These are not just rules; they are the tools of a professional developer, and you are well on your way to becoming a great one if you learn to use them well.
 

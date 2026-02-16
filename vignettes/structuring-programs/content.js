@@ -1,4 +1,3 @@
-
 // Wrapper for local file access (bypassing CORS)
 window.vignetteContent = `---
 
@@ -8,121 +7,208 @@ window.vignetteContent = `---
 
 ## Introduction
 
-- Overview of why program organization matters for readability and maintainability.
-- The concept of "Code as Communication" (to humans and machines).
-- Goals: Standardizing file structure, import ordering, and execution flow.
+In **Session 2**, we designed logical units using functions and classes. Now, we must assemble those components into a standardized architecture.
+
+A well-structured program is not just a list of instructions; it is a **navigable document**. It must separate *configuration* from *logic*, and *definition* from *execution*.
+
+**Goals:**
+* Master the "Anatomy of a Module" (the standard Python file layout).
+* Protect code from accidental execution using Guards.
+* Build a Command Line Interface (CLI) to make your program dynamic.
 
 ---
 
-## I. Defining Classes
+## I. The Anatomy of a Module
 
-### Principle: Objects, Attributes, Methods
+### Principle: The Top-Down Standard
 
-Functions are great for actions, but sometimes we need to bundle data (attributes) and actions (methods) together. This is **Object-Oriented Programming (OOP)**. In Machine Learning (Session 5), models are defined as Classes (e.g., \`class Net(nn.Module):\`), so understanding this structure is vital.
+A Python file is a document that must be readable from top to bottom. Following a strict layout ensures that anyone opening your code immediately understands its dependencies and configuration.
 
-A **Class** is a blueprint (like "Student"). An **Object** is a specific instance built from that blueprint (like "Ryan").
+**The Standard Layout:**
+1.  **Shebang & Docstring:** *What* is this file?
+2.  **Imports:** *What* does it need?
+3.  **Global Constants:** *How* is it configured?
+4.  **Definitions:** The actual logic (Classes/Functions).
+5.  **Main Execution:** The entry point.
 
 ### Practice
 
-**Defining a Class:**
+**Visualizing the Skeleton:**
 \`\`\`python
-class Student:
-    def __init__(self, name, grade):
-        self.name = name        # Attribute
-        self.grade = grade      # Attribute
+#!/usr/bin/env python3
+"""
+processor.py
+Handles data ingestion and normalization for the WEPP model.
+"""
 
-    def promote(self):          # Method
-        self.grade += 1
-        print(f"{self.name} is now in grade {self.grade}")
+import os                       # Standard Library
+import sys
 
-# Creating Objects
-student1 = Student("Ryan", 12)
-student1.promote()
+import numpy as np              # Third-Party Library
+import pandas as pd
+
+from my_lib import utils        # Local Application Imports
+
+# --- Global Constants (Configuration) ---
+DEFAULT_THRESHOLD = 0.05
+MAX_ITERATIONS = 1000
+
+# --- Function Definitions ---
+def process_file(filepath):
+    """Orchestrate the reading and processing."""
+    pass
+
+# --- Entry Point ---
+if __name__ == "__main__":
+    process_file(sys.argv[1])
 \`\`\`
 
 ---
 
-## II. Tracking History
+## II. Import Etiquette
 
-### Principle: Version Control
+### Principle: Predictability
 
-If the goal is "contributing to science," Git is the primary tool for that. Organizing code includes organizing its history.
-
-- **Source of Truth:** Git tracks every change, allowing you to revert errors and collaborate without overwriting each other's work.
-- **Git as Standard:** It is the industry standard for version control.
+Imports must always live at the **top of the file** (Global Scope). Hiding imports inside functions makes code harder to debug and slower to execute. We also sort them to distinguish between built-in tools and external dependencies.
 
 ### Practice
 
-**Git Basics:**
-- **Initialize:** \`git init\` inside your project folder.
-- **Stage & Commit:**
-    - \`git add .\` (Stage all changes)
-    - \`git commit -m "Initial commit"\` (Save snapshot with message)
-- **Ignore:** Create a \`.gitignore\` file to exclude \`__pycache__\`, \`.DS_Store\`, and other temp files.
+**The PEP 8 Sort Order:**
+1.  **Standard Library** (e.g., \`os\`, \`sys\`, \`pathlib\`)
+2.  **Third-Party** (e.g., \`numpy\`, \`pandas\`)
+3.  **Local** (Modules you wrote)
 
----
-
-## III. Organizing Modules
-
-### Principle: Imports & Structure
-
-- The cost of imports (load time, memory).
-- Handling circular dependencies.
-- Namespace pollution (avoiding \`from module import *\`).
-
-### Practice
-
-**Grouping Imports:**
-1.  Standard Library (e.g., \`os\`, \`sys\`, \`json\`)
-2.  Third-Party Libraries (e.g., \`numpy\`, \`pandas\`)
-3.  Local Application/Library Imports
-
-**Usage:**
-- Use absolute imports (\`from mypackage.module import func\`) over relative imports for clarity.
-- Remove unused imports to keep the namespace clean.
-
----
-
-## IV. Configuring Globals
-
-### Principle: Constants & Environment
-
-- Difference between true globals (mutable state, bad) and constants (configuration, good).
-- Naming conventions (\`UPPER_CASE\` for constants).
-- Scope and lifetime of global variables.
-
-### Practice
-
-**Constants:**
-Define configuration constants at the top of the file:
+**Bad Practice:**
 \`\`\`python
-MAX_RETRIES = 5
-DEFAULT_TIMEOUT = 30
+def calculate_slope(dem):
+    import numpy as np  # BAD: Hides dependency; import at top instead
+    return np.gradient(dem)
 \`\`\`
 
-**Secrets:**
-Use environment variables (\`os.environ\`) for API keys and passwords instead of hardcoding them in the script.
-
 ---
 
-## V. Controlling Entry
+## III. Configuration vs. State
 
-### Principle: Entry Points
+### Principle: The Scope Danger Zone
 
-When you run a Python file, the interpreter executes everything at level 0 indentation. To prevent code from running when a file is merely *imported* by another script, we use an entry point guard.
+In **Session 2**, we discussed Local vs. Global variables. In a structured file, the Global scope is strictly for **Constants** (configuration).
+
+**Never** use global variables for mutable program state (counters, flags, data). State must be passed *into* functions as arguments.
 
 ### Practice
 
-**The Guard:**
+**Correct (Constants):**
+\`\`\`python
+# Defined at top level
+GRAVITY = 9.81  # Constant: Won't change
+
+def compute_force(mass):
+    return mass * GRAVITY
+\`\`\`
+
+**Incorrect (Mutable Global):**
+\`\`\`python
+current_count = 0  # Mutable: Changes during run
+
+def increment():
+    global current_count  # BAD: Breaks function purity
+    current_count += 1
+\`\`\`
+
+---
+
+## IV. The Execution Guard
+
+### Principle: Importability
+
+A Python file has two lives: as a **Script** (run via CLI) and as a **Library** (imported by other code). Without a guard, importing a file runs all its code immediately. We use the \`if __name__ == "__main__":\` block to isolate execution.
+
+### Practice
+
+**The Pattern:**
 \`\`\`python
 def main():
-    print("Program logic here")
+    """High-level orchestration."""
+    print("Starting analysis...")
+
+# This runs ONLY if executed via 'python script.py'
+# This does NOT run if executed via 'import script'
+if __name__ == "__main__":
+    main()
+\`\`\`
+
+---
+
+## V. The User Interface (CLI)
+
+### Principle: Hardcoding vs. Arguments
+
+A common mistake is "hardcoding" values inside your script.
+* *Bad:* \`filename = "C:/Users/Ryan/data.csv"\`
+* *Good:* Accepting the filename as an argument.
+
+This transforms your script from a single-use artifact into a reusable tool. We use the built-in library \`argparse\` to handle this.
+
+### Practice
+
+**Using Argparse:**
+\`\`\`python
+import argparse
+
+def main():
+    # 1. Setup the "Parser" (The Listener)
+    parser = argparse.ArgumentParser(description="Process WEPP Data.")
+    
+    # 2. Define expected arguments
+    parser.add_argument("input_file", type=str, help="Path to input CSV")
+    parser.add_argument("--verbose", action="store_true", help="Print detailed logs")
+
+    # 3. Read the arguments
+    args = parser.parse_args()
+
+    # 4. Use them!
+    print(f"Processing {args.input_file}...")
+    if args.verbose:
+        print("Verbose mode enabled.")
 
 if __name__ == "__main__":
     main()
 \`\`\`
 
-This ensures \`main()\` runs only when you execute \`python script.py\`, not when you do \`import script\`.
+---
+
+## VI. The Directory Layout
+
+### Principle: A Place for Everything
+
+Structuring a program extends beyond the code file. It includes the folders that hold your project. A standardized directory structure helps you separate **Source Code** from **Data** and **Documentation**.
+
+### Practice
+
+**Standard Data Science/Engineering Layout:**
+\`\`\`text
+my_project/
+│
+├── data/               # Input data (Never edit raw data!)
+│   ├── raw/
+│   └── processed/
+│
+├── src/                # Source Code (Your Python scripts)
+│   ├── __init__.py
+│   ├── processing.py
+│   └── plotting.py
+│
+├── notebooks/          # Jupyter Notebooks (For experimentation only)
+│   └── exploratory.ipynb
+│
+├── README.md           # Instructions for humans
+└── requirements.txt    # List of dependencies (numpy, pandas, etc.)
+\`\`\`
 
 ---
+
+## Conclusion
+
+By completing this session, you have elevated your work from temporary scripts to permanent software tools. You now understand that a program's structure is just as important as its logic. By adhering to a standard module anatomy, you ensured your code is readable and navigable. By isolating configuration from state, you made your programs predictable. By implementing execution guards and command-line interfaces, you transformed static files into flexible, reusable utilities. And by organizing your project directory, you prepared your work for the collaborative reality of modern science. You are no longer just writing code; you are engineering software.
+
 `;
