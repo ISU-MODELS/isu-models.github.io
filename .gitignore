@@ -26,3 +26,7 @@ venv/
 # Build directories
 dist/
 build/
+
+# macOS Custom Icons
+Icon?
+Icon\r
