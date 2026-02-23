@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +12,23 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body, html {
+
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
             background-color: #ffffff;
         }
+
         body {
             font-family: "Helvetica", "Arial", sans-serif;
             line-height: 1.6;
             color: #1d1d1f;
             background-color: #fff;
         }
+
         #background-video {
             position: fixed;
             top: 0;
@@ -35,6 +40,7 @@
             mask: url(#text-mask);
             z-index: 0;
         }
+
         svg {
             position: fixed;
             width: 100vw;
@@ -44,6 +50,7 @@
             pointer-events: none;
             z-index: 1;
         }
+
         .text-link {
             position: fixed;
             font-family: 'Montserrat', sans-serif;
@@ -53,12 +60,14 @@
             text-decoration: none;
             z-index: 2;
         }
+
         .text-link:hover {
             color: rgba(255, 255, 255, 0.3);
         }
     </style>
-    
+
 </head>
+
 <body>
 
     <div id="menu-placeholder"></div>
@@ -71,41 +80,56 @@
 
     <!-- SVG with mask definition -->
     <svg x="0" y="0" width="100vw" height="100vh">
-        <a href="m-page.html" class="text-link" target="_blank">
-            <text x="12.25vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">M</text>
+        <a href="pages/m-page.html" class="text-link" target="_blank">
+            <text x="12.25vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">M</text>
         </a>
 
-        <a href="o-page.html" class="text-link" target="_blank">
-            <text x="31.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">O</text>
+        <a href="pages/o-page.html" class="text-link" target="_blank">
+            <text x="31.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">O</text>
         </a>
 
-        <a href="d-page.html" class="text-link" target="_blank">
-            <text x="48.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">D</text>
+        <a href="pages/d-page.html" class="text-link" target="_blank">
+            <text x="48.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">D</text>
         </a>
 
-        <a href="e-page.html" class="text-link" target="_blank">
-            <text x="64.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">E</text>
+        <a href="pages/e-page.html" class="text-link" target="_blank">
+            <text x="64.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">E</text>
         </a>
 
-        <a href="l-page.html" class="text-link" target="_blank">
-            <text x="77.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">L</text>
+        <a href="pages/l-page.html" class="text-link" target="_blank">
+            <text x="77.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">L</text>
         </a>
 
-        <a href="s-page.html" class="text-link" target="_blank">
-            <text x="90.80vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">S</text>
+        <a href="pages/s-page.html" class="text-link" target="_blank">
+            <text x="90.80vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
+                dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">S</text>
         </a>
 
         <defs>
             <mask id="text-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100vw" height="100vh">
                 <!--text x="50vw" y="50vh" font-size="400" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">MODELS</text-->
-                <text x="12.25vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">M</text>
-                <text x="31.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">O</text>
-                <text x="48.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">D</text>
-                <text x="64.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">E</text>
-                <text x="77.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">L</text>
-                <text x="90.80vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">S</text>
-                <text id="lab-text-mask" x="91.00vw" y="69vh" font-size="6vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">LAB</text>
-                <text x="50.00vw" y="95vh" font-size="2vw" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">Click on a letter to learn more. Press 'Enter' to unmute.</text>
+                <text x="12.25vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">M</text>
+                <text x="31.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">O</text>
+                <text x="48.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">D</text>
+                <text x="64.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">E</text>
+                <text x="77.50vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">L</text>
+                <text x="90.80vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">S</text>
+                <text id="lab-text-mask" x="91.00vw" y="69vh" font-size="6vw" fill="white" text-anchor="middle"
+                    dominant-baseline="middle" font-family="Montserrat, sans-serif">LAB</text>
+                <text x="50.00vw" y="95vh" font-size="2vw" fill="white" text-anchor="middle" dominant-baseline="middle"
+                    font-family="Montserrat, sans-serif">Click on a letter to learn more. Press 'Enter' to
+                    unmute.</text>
             </mask>
         </defs>
     </svg>
@@ -158,4 +182,5 @@
 
     </script>
 </body>
+
 </html>

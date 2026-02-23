@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S - Software</title>
+    <link rel="stylesheet" href="../styles/letter-page.css">
+</head>
+
+<body>
+
+    <div id="menu-placeholder"></div>
+
+    <section class="section-A s-section-A">
+        <h1>Software</h1>
+        <p>Learn the principles of software engineering.</p>
+        <a href="#section-sdt" class="btn">SDT Crash Course</a>
+    </section>
+
+    <section id="section-sdt" class="section-B">
+        <h2>SDT</h2>
+        <p>Software Developer Training (SDT) is<br>a self-paced 12-hour, 6-session course designed<br>to expedite
+            practical software development.</p>
+        <p>The SDT Crash Course is under active development. The links below will take you to the experimental
+            vignettes.
+        </p>
+        <div class="button-group">
+            <a href="../vignettes/viewer.html?topic=executing-programs" class="btn">Executing Programs</a>
+            <a href="../vignettes/viewer.html?topic=designing-programs" class="btn">Designing Programs</a>
+            <a href="../vignettes/viewer.html?topic=structuring-programs" class="btn">Structuring Programs</a>
+            <a href="../vignettes/viewer.html?topic=optimizing-programs" class="btn">Optimizing Programs</a>
+            <a href="../vignettes/viewer.html?topic=teaching-programs" class="btn">Teaching Programs</a>
+            <a href="../vignettes/viewer.html?topic=releasing-programs" class="btn">Releasing Programs</a>
+        </div>
+    </section>
+
+    <script>
+        fetch('../components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
-    <link rel="stylesheet" href="styles/mission-page.css">
+    <link rel="stylesheet" href="../styles/mission-page.css">
 </head>
 <body>
     <div id="menu-placeholder"></div>
@@ -16,7 +16,7 @@
         <div class="line5">Computational Models</div>
     </div>
     <script>
-        fetch('components/menu.html')
+        fetch('../components/menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;

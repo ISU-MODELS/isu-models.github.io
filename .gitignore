@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Node modules (just in case)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python (just in case)
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+
+# Build directories
+dist/
+build/

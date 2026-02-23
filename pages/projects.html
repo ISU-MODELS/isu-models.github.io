@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects</title>
-    <link rel="stylesheet" href="styles/projects-page.css">
+    <link rel="stylesheet" href="../styles/projects-page.css">
 </head>
 <body>
     
@@ -16,14 +16,14 @@
 
             <!-- Project 1 -->
             <div class="project">
-                <img src="headshots/eagle.jpg" alt="Image Unavailable">
+                <img src="../headshots/eagle.jpg" alt="Image Unavailable">
                 <h2>NRCS-CPF</h2>
                 <p>A Cooperative Grant Agreement (CGA) titled 'Building understanding and capacity for utilizing climate projections and forecasts in conservation planning'.</p>
             </div>
 
             <!-- Project 2 -->
             <div class="project">
-                <img src="headshots/lion.jpg" alt="Image Unavailable">
+                <img src="../headshots/lion.jpg" alt="Image Unavailable">
                 <h2>NRCS-RCPP</h2>
                 <p>A Regional Conservation Planning Project (RCPP) titled 'Working Lands for Resilient People'.</p>
             </div>
@@ -32,7 +32,7 @@
     </section>
 
     <script>
-        fetch('components/menu.html')
+        fetch('../components/menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;

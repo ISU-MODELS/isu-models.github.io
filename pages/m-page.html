@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M - Model</title>
+    <link rel="stylesheet" href="../styles/letter-page.css">
+</head>
+
+<body>
+
+    <div id="menu-placeholder"></div>
+
+    <section class="section-A m-section-A">
+        <h1>Model</h1>
+        <p>Explore some of the models we work with.</p>
+        <div class="button-group">
+            <a href="#section-annagnps" class="btn">AnnAGNPS</a>
+            <a href="#section-apex" class="btn">APEX</a>
+            <a href="#section-daycent" class="btn">DayCent</a>
+            <a href="#section-rusle2" class="btn">RUSLE2</a>
+            <a href="#section-swat" class="btn">SWAT</a>
+            <a href="#section-wepp" class="btn">WEPP</a>
+        </div>
+    </section>
+
+    <section id="section-annagnps" class="section-B">
+        <h2>AnnAGNPS</h2>
+        <p>The Annualized Agricultural Non-Point Source (AnnAGNPS) model is a continuous simulation watershed-scale
+            program designed to simulate daily runoff, sediment, nutrients, and pesticides in agricultural watersheds.
+        </p>
+        <div class="button-group">
+            <a href="https://www.ars.usda.gov/research/software/download/?softwareid=352" class="btn">Download</a>
+            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/docs/agnps-net/"
+                class="btn">Documentation</a>
+            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/docs/agnps-net/"
+                class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <section id="section-apex" class="section-B">
+        <h2>APEX</h2>
+        <p>The Agricultural Policy/Environmental eXtender (APEX) model extends the EPIC model to simulate land
+            management impacts on whole farms and small watersheds, including sustainability, erosion, and economics.
+        </p>
+        <div class="button-group">
+            <a href="https://epicapex.tamu.edu/" class="btn">Download</a>
+            <a href="https://epicapex.tamu.edu/manuals-and-publications/" class="btn">Documentation</a>
+            <a href="https://epicapex.tamu.edu/" class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <section id="section-daycent" class="section-B">
+        <h2>DayCent</h2>
+        <p>The Daily Century (DayCent) model simulates fluxes of carbon and nitrogen among the atmosphere,
+            vegetation, and soil, enabling the assessment of soil carbon dynamics and greenhouse gas fluxes.</p>
+        <div class="button-group">
+            <a href="https://soilcarbonsolutionscenter.colostate.edu/daycent/" class="btn">Download</a>
+            <a href="https://soilcarbonsolutionscenter.colostate.edu/daycent/" class="btn">Documentation</a>
+            <a href="https://soilcarbonsolutionscenter.colostate.edu/daycent/" class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <section id="section-rusle2" class="section-B">
+        <h2>RUSLE2</h2>
+        <p>The Revised Universal Soil Loss Equation (RUSLE2) model estimates long-term average annual soil erosion
+            caused by rainfall and overland flow, guiding conservation planning with long-established empirical
+            relationships.</p>
+        <div class="button-group">
+            <a href="https://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm" class="btn">Download</a>
+            <a href="http://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm" class="btn">Documentation</a>
+            <a href="http://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm" class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <section id="section-swat" class="section-B">
+        <h2>SWAT</h2>
+        <p>The Soil and Water Assessment Tool (SWAT) model is a river basin-scale model that predicts the impact of
+            land management practices on water, sediment, and agricultural chemical yields in large, complex watersheds.
+        </p>
+        <div class="button-group">
+            <a href="https://swat.tamu.edu/software/" class="btn">Download</a>
+            <a href="https://swat.tamu.edu/docs/" class="btn">Documentation</a>
+            <a href="https://swat.tamu.edu/training/" class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <section id="section-wepp" class="section-B">
+        <h2>WEPP</h2>
+        <p>The Water Erosion Prediction Project (WEPP) allows for the continuous simulation of physical processes
+            like infiltration, runoff, and sediment transport to predict soil loss and deposition on hillslopes.</p>
+        <div class="button-group">
+            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/"
+                class="btn">Download</a>
+            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-model-documentation/"
+                class="btn">Documentation</a>
+            <a href="https://wepp.cloud/" class="btn">Tutorial</a>
+        </div>
+    </section>
+
+    <script>
+        fetch('../components/menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
+
+</body>
+
+</html>
