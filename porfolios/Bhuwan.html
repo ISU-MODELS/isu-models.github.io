@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects</title>
     <link rel="stylesheet" href="styles/projects-page.css">
 </head>
+
 <body>
-    
+
     <div id="menu-placeholder"></div>
 
     <section class="project-page">
@@ -39,7 +41,8 @@
             <div class="project">
                 <img src="headshots/eagle.jpg" alt="Person 1">
                 <h2>NRCS-CPF</h2>
-                <p>Building understanding and capacity for utilizing climate projections and forecasts in conservation planning.</p>
+                <p>Building understanding and capacity for utilizing climate projections and forecasts in conservation
+                    planning.</p>
             </div>
 
             <!-- Project 5 -->
@@ -59,7 +62,7 @@
     </section>
 
     <script>
-        fetch('components/menu.html')
+        fetch('../components/menu.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-placeholder').innerHTML = data;
@@ -67,4 +70,5 @@
             .catch(error => console.error('Error loading menu:', error));
     </script>
 </body>
+
 </html>

@@ -76,42 +76,19 @@
 
 <nav class="menu-bar">
     <div class="menu-left">
-        <a href="../pages/m-page.html" class="collapsible"><span>M</span><span class="full-text">odel</span></a>
-        <a href="../pages/o-page.html" class="collapsible"><span>O</span><span class="full-text">ptimization</span></a>
-        <a href="../pages/d-page.html" class="collapsible"><span>D</span><span class="full-text">evelopment</span></a>
-        <a href="../pages/e-page.html" class="collapsible"><span>E</span><span class="full-text">valuation</span></a>
-        <a href="../pages/l-page.html" class="collapsible"><span>L</span><span class="full-text">ibraries</span></a>
-        <a href="../pages/s-page.html" class="collapsible"><span>S</span><span class="full-text">oftware</span></a>
+        <a href="/pages/m-page.html" class="collapsible"><span>M</span><span class="full-text">odel</span></a>
+        <a href="/pages/o-page.html" class="collapsible"><span>O</span><span class="full-text">ptimization</span></a>
+        <a href="/pages/d-page.html" class="collapsible"><span>D</span><span class="full-text">evelopment</span></a>
+        <a href="/pages/e-page.html" class="collapsible"><span>E</span><span class="full-text">valuation</span></a>
+        <a href="/pages/l-page.html" class="collapsible"><span>L</span><span class="full-text">ibraries</span></a>
+        <a href="/pages/s-page.html" class="collapsible"><span>S</span><span class="full-text">oftware</span></a>
     </div>
     <div class="menu-right">
         <span class="separator"></span>
-        <a href="https://isu-models.github.io">Home</a>
+        <a href="/">Home</a>
         <a href="https://www.engineering.iastate.edu/people/profile/rmcgehee/">Director</a>
-        <a href="../pages/mission.html">Mission</a>
-        <a href="../pages/team.html">Team</a>
-        <a href="../pages/projects.html">Projects</a>
+        <a href="/pages/mission.html">Mission</a>
+        <a href="/pages/team.html">Team</a>
+        <a href="/pages/projects.html">Projects</a>
     </div>
 </nav>
-
-<script>
-    (function () {
-        const isRoot = !window.location.pathname.includes('/pages/');
-        const menuLinks = document.querySelectorAll('.menu-bar a');
-        menuLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (!href || href.startsWith('http')) return;
-
-            if (href === 'isu-models.github.io') {
-                link.setAttribute('href', isRoot ? 'index.html' : '../index.html');
-                return;
-            }
-
-            // Since all other local HTML links point to files inside pages/
-            if (isRoot) {
-                link.setAttribute('href', 'pages/' + href);
-            } else {
-                link.setAttribute('href', href);
-            }
-        });
-    })();
-</script>
