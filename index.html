@@ -64,6 +64,35 @@
         .text-link:hover {
             color: rgba(255, 255, 255, 0.3);
         }
+
+        .sound-toggle {
+            position: fixed;
+            left: 24px;
+            bottom: 24px;
+            z-index: 5;
+            font-family: Montserrat, Helvetica, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            padding: 10px 16px;
+            border: 1px solid #1d1d1f;
+            background: rgba(255, 255, 255, 0.92);
+            color: #1d1d1f;
+            cursor: pointer;
+            border-radius: 999px;
+        }
+
+        .sound-toggle:hover,
+        .sound-toggle:focus-visible {
+            background: #1d1d1f;
+            color: #fff;
+            outline: none;
+        }
+
+        .sound-toggle.is-on {
+            background: #1d1d1f;
+            color: #fff;
+        }
     </style>
 
     <!-- PostHog Analytics -->
@@ -75,47 +104,45 @@
 
     <div id="menu-placeholder"></div>
 
-    <!-- Audio element -->
-    <audio id="audio" autoplay loop muted>
+    <!-- No autoplay: browsers block audible playback without a user gesture. -->
+    <audio id="background-audio" loop preload="none" playsinline>
         <source src="./assets/audio.mp3" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
 
-    <!-- SVG with mask definition -->
     <svg x="0" y="0" width="100vw" height="100vh">
-        <a href="pages/m-page.html" class="text-link" target="_blank">
+        <a href="pages/m-page.html" class="text-link">
             <text x="12.25vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">M</text>
         </a>
 
-        <a href="pages/o-page.html" class="text-link" target="_blank">
+        <a href="pages/o-page.html" class="text-link">
             <text x="31.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">O</text>
         </a>
 
-        <a href="pages/d-page.html" class="text-link" target="_blank">
+        <a href="pages/d-page.html" class="text-link">
             <text x="48.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">D</text>
         </a>
 
-        <a href="pages/e-page.html" class="text-link" target="_blank">
+        <a href="pages/e-page.html" class="text-link">
             <text x="64.10vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">E</text>
         </a>
 
-        <a href="pages/l-page.html" class="text-link" target="_blank">
+        <a href="pages/l-page.html" class="text-link">
             <text x="77.50vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">L</text>
         </a>
 
-        <a href="pages/s-page.html" class="text-link" target="_blank">
+        <a href="pages/s-page.html" class="text-link">
             <text x="90.80vw" y="50vh" font-size="21vw" fill="transparent" text-anchor="middle"
                 dominant-baseline="middle" font-family="Montserrat, sans-serif" font-weight="900">S</text>
         </a>
 
         <defs>
             <mask id="text-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100vw" height="100vh">
-                <!--text x="50vw" y="50vh" font-size="400" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif">MODELS</text-->
                 <text x="12.25vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
                     font-family="Montserrat, sans-serif">M</text>
                 <text x="31.10vw" y="50vh" font-size="21vw" fill="white" text-anchor="middle" dominant-baseline="middle"
@@ -131,17 +158,19 @@
                 <text id="lab-text-mask" x="91.00vw" y="69vh" font-size="6vw" fill="white" text-anchor="middle"
                     dominant-baseline="middle" font-family="Montserrat, sans-serif">LAB</text>
                 <text x="50.00vw" y="95vh" font-size="2vw" fill="white" text-anchor="middle" dominant-baseline="middle"
-                    font-family="Montserrat, sans-serif">Click on a letter to learn more. Press 'Enter' to
-                    unmute.</text>
+                    font-family="Montserrat, sans-serif">Click a letter to learn more.</text>
             </mask>
         </defs>
     </svg>
 
-    <!-- Video element -->
-    <video id="background-video" autoplay loop muted>
+    <video id="background-video" autoplay loop muted playsinline webkit-playsinline>
         <source src="./assets/background.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
+    <button type="button" id="sound-toggle" class="sound-toggle" aria-pressed="false" aria-label="Turn sound on">
+        Sound off
+    </button>
 
     <script>
         fetch('components/menu.html')
@@ -151,10 +180,12 @@
             })
             .catch(error => console.error('Error loading menu:', error));
 
-        document.addEventListener('DOMContentLoaded', () => {
+        (function () {
             const video = document.getElementById('background-video');
             const audio = document.getElementById('background-audio');
+            const btn = document.getElementById('sound-toggle');
             const labMaskText = document.getElementById('lab-text-mask');
+            let soundOn = false;
 
             function adjustTextPosition() {
                 const vh = window.innerHeight / 100;
@@ -165,24 +196,80 @@
                 labMaskText.setAttribute('y', `${labBaseY + offsetW - offsetH}vh`);
             }
 
-            adjustTextPosition();
-            window.addEventListener('resize', adjustTextPosition);
+            function setSoundUi(on) {
+                soundOn = on;
+                btn.classList.toggle('is-on', on);
+                btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                btn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
+                btn.textContent = on ? 'Sound on' : 'Sound off';
+            }
 
-            video.play().catch(error => console.error('Video play failed:', error));
-        });
+            function disableSound() {
+                audio.pause();
+                audio.muted = true;
+                setSoundUi(false);
+            }
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                audio.play().catch(error => console.error('Audio play failed:', error));
-                if (audio.muted) {
-                    audio.muted = false;
-                    audio.play().catch(err => console.log('Playback failed:', err));
+            function enableSound() {
+                // Must run in the same turn as a trusted user gesture (click / button key).
+                // Do not autoplay. Do not await anything before play().
+                audio.muted = false;
+                const playPromise = audio.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(function () {
+                        setSoundUi(true);
+                    }).catch(function () {
+                        disableSound();
+                    });
                 } else {
-                    audio.muted = true;
+                    setSoundUi(!audio.paused && !audio.muted);
                 }
             }
-        });
 
+            function toggleSound() {
+                if (soundOn && !audio.paused && !audio.muted) {
+                    disableSound();
+                } else {
+                    enableSound();
+                }
+            }
+
+            btn.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleSound();
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key !== 'Enter') return;
+                const tag = event.target && event.target.tagName;
+                if (tag === 'A' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON') return;
+                const activated = navigator.userActivation ? navigator.userActivation.isActive : false;
+                if (!activated) {
+                    btn.focus();
+                    return;
+                }
+                toggleSound();
+            });
+
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    if (soundOn) audio.pause();
+                    return;
+                }
+                if (soundOn) {
+                    audio.play().catch(function () {
+                        disableSound();
+                    });
+                }
+            });
+
+            video.muted = true;
+            video.playsInline = true;
+            video.play().catch(function () { });
+            adjustTextPosition();
+            window.addEventListener('resize', adjustTextPosition);
+        })();
     </script>
 </body>
 
