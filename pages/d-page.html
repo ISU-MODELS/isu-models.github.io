@@ -6,7 +6,7 @@
     <title>D - Development</title>
     <link rel="stylesheet" href="../styles/letter-page.css">
     <style>
-        .application-form { max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+        .application-form { max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; position: relative; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
         input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
@@ -14,6 +14,8 @@
         .error { color: red; font-size: 0.9em; }
         button { padding: 12px 24px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
         button:disabled { background: #999; cursor: not-allowed; }
+        .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+        #status { margin-top: 12px; }
     </style>
     <!-- PostHog Analytics -->
     <script src="/scripts/posthog.js"></script>
@@ -31,6 +33,10 @@
     <section id="application" class="application-form">
         <h2>Application Portal</h2>
         <form id="applyForm" enctype="multipart/form-data">
+            <div class="hp" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
                 <label>Name *</label>
                 <input type="text" name="name" required>
@@ -49,22 +55,22 @@
             </div>
             <div class="form-group">
                 <label>Curriculum Vitae (PDF, max 5MB) *</label>
-                <input type="file" name="cv" accept=".pdf" required class="file-input">
+                <input type="file" name="cv" accept=".pdf,application/pdf" required class="file-input">
                 <span class="error" id="cvError"></span>
             </div>
             <div class="form-group">
                 <label>Transcript (PDF, max 5MB) *</label>
-                <input type="file" name="ts" accept=".pdf" required class="file-input">
+                <input type="file" name="ts" accept=".pdf,application/pdf" required class="file-input">
                 <span class="error" id="tsError"></span>
             </div>
             <div class="form-group">
                 <label>Statement of Interest (PDF, max 5MB) *</label>
-                <input type="file" name="soi" accept=".pdf" required class="file-input">
+                <input type="file" name="soi" accept=".pdf,application/pdf" required class="file-input">
                 <span class="error" id="soiError"></span>
             </div>
             <div class="form-group">
                 <label>Other Documents (PDF, max 5MB total)</label>
-                <input type="file" name="other" accept=".pdf" multiple class="file-input">
+                <input type="file" name="other" accept=".pdf,application/pdf" multiple class="file-input">
                 <span class="error" id="otherError"></span>
             </div>
             <div class="form-group">
@@ -142,91 +148,7 @@
         fetch('../components/menu.html')
             .then(r => r.text())
             .then(d => document.getElementById('menu-placeholder').innerHTML = d);
-
-        const form = document.getElementById('applyForm');
-        const cvInput = form.cv;
-        const tsInput = form.ts;
-        const soiInput = form.soi;
-        const otherInput = form.other;
-        const cvError = document.getElementById('cvError');
-        const tsError = document.getElementById('tsError');
-        const soiError = document.getElementById('soiError');
-        const otherError = document.getElementById('otherError');
-        const status = document.getElementById('status');
-        const submitBtn = document.getElementById('submitBtn');
-
-        const MAX_CV = 5 * 1024 * 1024;
-        const MAX_TS = 5 * 1024 * 1024;
-        const MAX_SOI = 5 * 1024 * 1024;
-        const MAX_OTHER = 5 * 1024 * 1024;
-
-        function validateFile(file, isCV = false, isTS = false, isSOI = false) {
-            if (!file.name.toLowerCase().endsWith('.pdf')) {
-                return 'Only PDF files are allowed.';
-            }
-            if (isCV && file.size > MAX_CV) {
-                return 'CV must be ≤ 5MB.';
-            }
-            if (isTS && file.size > MAX_TS) {
-                return 'TS must be ≤ 5MB.';
-            }
-            if (isSOI && file.size > MAX_SOI) {
-                return 'SOI must be ≤ 5MB.';
-            }
-            return '';
-        }
-
-        cvInput.addEventListener('change', () => {
-            cvError.textContent = cvInput.files[0] ? validateFile(cvInput.files[0], true, false, false) : '';
-        });
-
-        tsInput.addEventListener('change', () => {
-            tsError.textContent = tsInput.files[0] ? validateFile(tsInput.files[0], false, true, false) : '';
-        });
-
-        soiInput.addEventListener('change', () => {
-            soiError.textContent = soiInput.files[0] ? validateFile(soiInput.files[0], false, false, true) : '';
-        });
-
-        otherInput.addEventListener('change', () => {
-            let total = 0;
-            let err = '';
-            for (let f of otherInput.files) {
-                err = validateFile(f);
-                if (err) break;
-                total += f.size;
-            }
-            if (!err && total > MAX_OTHER) err = 'Other documents total must be ≤ 5MB.';
-            otherError.textContent = err;
-        });
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (cvError.textContent || tsError.textContent || soiError.textContent || otherError.textContent) return;
-
-            submitBtn.disabled = true;
-            status.textContent = 'Sending...';
-
-            const data = new FormData(form);
-            data.append('to', 'rmcgehee@iastate.edu');
-
-            try {
-                const res = await fetch('https://formspree.io/f/your-form-id', { // ← REPLACE WITH YOUR FORMSPREE ID
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (res.ok) {
-                    status.textContent = 'Application sent successfully!';
-                    form.reset();
-                } else {
-                    status.textContent = 'Error sending application.';
-                }
-            } catch (err) {
-                status.textContent = 'Network error.';
-            }
-            submitBtn.disabled = false;
-        });
     </script>
+    <script src="/scripts/apply.js"></script>
 </body>
 </html>
