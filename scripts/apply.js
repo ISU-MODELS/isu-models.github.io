@@ -1,14 +1,31 @@
 /**
- * Browser client for the MODELS Lab application form.
- * Copied to isu-models.github.io/scripts/apply.js on deploy.
+ * MODELS Lab application form client.
+ *
+ * GitHub Pages cannot run an API or keep a secret. A Cloudflare Worker
+ * would need a Cloudflare account; this lab does not use one.
+ *
+ * Production (modelslab.org): FormSubmit emails rmcgehee@iastate.edu with
+ * the PDF attachments. No extra account. Combined files must be ≤ 10MB
+ * (FormSubmit's free limit).
+ *
+ * Local GitHub filing: in ryanpmcg/MODELS-Lab-Applications run
+ * `python api/server.py` with GITHUB_TOKEN from `gh auth token`. This
+ * script posts JSON to http://127.0.0.1:8787/api/apply only when the page
+ * itself is served from localhost.
  */
 (function () {
   const MAX_EACH = 5 * 1024 * 1024;
+  const MAX_TOTAL = 10 * 1024 * 1024;
   const FORMSUBMIT = "https://formsubmit.co/ajax/rmcgehee@iastate.edu";
-  const APPLY_API = "/api/apply";
+  const LOCAL_API = "http://127.0.0.1:8787/api/apply";
 
   function $(id) {
     return document.getElementById(id);
+  }
+
+  function isLocalHost() {
+    const host = window.location.hostname;
+    return host === "localhost" || host === "127.0.0.1";
   }
 
   function validatePdf(file, label, maxBytes) {
@@ -33,34 +50,71 @@
     });
   }
 
-  async function postJson(url, payload) {
-    const res = await fetch(url, {
+  function collectFiles(form) {
+    const files = [form.cv.files[0], form.ts.files[0], form.soi.files[0]];
+    for (let i = 0; i < form.other.files.length; i += 1) files.push(form.other.files[i]);
+    return files.filter(Boolean);
+  }
+
+  function totalSizeError(form) {
+    const files = collectFiles(form);
+    let total = 0;
+    for (let i = 0; i < files.length; i += 1) total += files[i].size;
+    if (total > MAX_TOTAL) {
+      return "Combined PDFs must be ≤ 10MB so they can be emailed. Compress and retry.";
+    }
+    return "";
+  }
+
+  async function submitToLocalApi(form, courses) {
+    const otherFiles = [];
+    for (let i = 0; i < form.other.files.length; i += 1) otherFiles.push(form.other.files[i]);
+    const payload = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      message: form.message.value.trim(),
+      courses: courses,
+      honeypot: form.website ? form.website.value : "",
+      files: {
+        cv: {
+          filename: form.cv.files[0].name,
+          content_base64: await fileToBase64(form.cv.files[0]),
+        },
+        ts: {
+          filename: form.ts.files[0].name,
+          content_base64: await fileToBase64(form.ts.files[0]),
+        },
+        soi: {
+          filename: form.soi.files[0].name,
+          content_base64: await fileToBase64(form.soi.files[0]),
+        },
+        other: await Promise.all(
+          otherFiles.map(async function (file) {
+            return { filename: file.name, content_base64: await fileToBase64(file) };
+          })
+        ),
+      },
+    };
+    const res = await fetch(LOCAL_API, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
     });
     const type = (res.headers.get("content-type") || "").toLowerCase();
     const json = type.indexOf("application/json") >= 0 ? await res.json() : null;
-    return { res: res, json: json, type: type };
+    if (json && json.ok) return { ok: true };
+    throw new Error((json && json.error) || "Local apply API is not running.");
   }
 
-  async function submitToApi(payload) {
-    const result = await postJson(APPLY_API, payload);
-    if (result.json && result.json.ok) return { ok: true };
-    const err = new Error((result.json && result.json.error) || "not-json");
-    err.status = result.res.status;
-    err.fallback =
-      !result.json || [404, 405, 502, 503].indexOf(result.res.status) >= 0;
-    throw err;
-  }
-
-  async function submitToFormSubmit(form) {
+  async function submitToFormSubmit(form, courses) {
     const data = new FormData(form);
     data.delete("website");
     data.append("_subject", "MODELS Lab application: " + (form.name.value || "").trim());
     data.append("_template", "table");
     data.append("_captcha", "false");
     data.append("_honey", form.website ? form.website.value : "");
+    data.append("coursework", courses.join(", "));
     const res = await fetch(FORMSUBMIT, {
       method: "POST",
       body: data,
@@ -97,14 +151,11 @@
     bindFile(form.ts, $("tsError"), "Transcript");
     bindFile(form.soi, $("soiError"), "Statement of Interest");
     form.other.addEventListener("change", function () {
-      let total = 0;
       let err = "";
       for (let i = 0; i < form.other.files.length; i += 1) {
         err = validatePdf(form.other.files[i], "Other document", MAX_EACH);
         if (err) break;
-        total += form.other.files[i].size;
       }
-      if (!err && total > MAX_EACH) err = "Other documents total must be ≤ 5MB.";
       $("otherError").textContent = err;
     });
 
@@ -115,6 +166,8 @@
       $("soiError").textContent = validatePdf(form.soi.files[0], "Statement of Interest", MAX_EACH);
       const checked = form.querySelectorAll('input[name="courses"]:checked');
       coursesError.textContent = checked.length ? "" : "Select at least one coursework item.";
+      const combined = totalSizeError(form);
+      if (combined) $("otherError").textContent = combined;
       if (
         $("cvError").textContent ||
         $("tsError").textContent ||
@@ -133,48 +186,16 @@
       checked.forEach(function (box) {
         courses.push(box.value);
       });
-      const otherFiles = [];
-      for (let i = 0; i < form.other.files.length; i += 1) otherFiles.push(form.other.files[i]);
 
       try {
-        const payload = {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          phone: form.phone.value.trim(),
-          message: form.message.value.trim(),
-          courses: courses,
-          honeypot: form.website ? form.website.value : "",
-          files: {
-            cv: {
-              filename: form.cv.files[0].name,
-              content_base64: await fileToBase64(form.cv.files[0]),
-            },
-            ts: {
-              filename: form.ts.files[0].name,
-              content_base64: await fileToBase64(form.ts.files[0]),
-            },
-            soi: {
-              filename: form.soi.files[0].name,
-              content_base64: await fileToBase64(form.soi.files[0]),
-            },
-            other: await Promise.all(
-              otherFiles.map(async function (file) {
-                return { filename: file.name, content_base64: await fileToBase64(file) };
-              })
-            ),
-          },
-        };
-
-        try {
-          await submitToApi(payload);
-          status.textContent = "Application received. Thank you.";
-          form.reset();
-        } catch (apiErr) {
-          if (apiErr.fallback === false) throw apiErr;
-          const fallback = await submitToFormSubmit(form);
-          status.textContent = fallback.message || "Application sent. Thank you.";
-          form.reset();
+        if (isLocalHost()) {
+          await submitToLocalApi(form, courses);
+          status.textContent = "Application filed in the private GitHub intake repo.";
+        } else {
+          const sent = await submitToFormSubmit(form, courses);
+          status.textContent = sent.message || "Application sent. Thank you.";
         }
+        form.reset();
       } catch (err) {
         status.style.color = "red";
         status.textContent = err.message || "Network error.";
