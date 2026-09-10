@@ -1,28 +1,36 @@
 /**
- * Probe a loopback SDT host. Lessons always load from GitHub Pages.
- * The Python console is optional and only appears when the host answers.
+ * Optional local Python console. Lessons always load from GitHub Pages.
+ * Launch uses HTTPS on loopback so the public site never embeds HTTP.
  */
 (function () {
-  const ENDPOINTS = [
-    "http://127.0.0.1:8788",
-    "http://127.0.0.1:8789",
-    "https://127.0.0.1:8788",
-    "https://127.0.0.1:8789",
-  ];
+  const HTTPS = "https://127.0.0.1:8789";
+  const HTTP = "http://127.0.0.1:8788";
 
-  function el(id) {
-    return document.getElementById(id);
+  function btn() {
+    return document.getElementById("sdt-console-btn");
   }
 
-  function setStatus(html, ok) {
-    const bar = el("sdt-host-status");
-    if (!bar) return;
-    bar.classList.toggle("is-on", !!ok);
-    bar.classList.toggle("is-off", !ok);
-    bar.innerHTML = html;
+  function setOffline() {
+    const el = btn();
+    if (!el) return;
+    el.classList.add("is-off");
+    el.setAttribute("aria-disabled", "true");
+    el.removeAttribute("href");
+    el.title = "Host offline. Copy the lesson commands into a terminal on your computer.";
   }
 
-  async function probeOne(base) {
+  function setOnline(openUrl) {
+    const el = btn();
+    if (!el) return;
+    el.classList.remove("is-off");
+    el.setAttribute("aria-disabled", "false");
+    el.href = openUrl;
+    el.target = "sdt-console";
+    el.rel = "noopener";
+    el.title = "Opens the Python console on the lab host (HTTPS).";
+  }
+
+  async function probe(base) {
     const ctrl = new AbortController();
     const timer = setTimeout(function () {
       ctrl.abort();
@@ -35,60 +43,31 @@
         signal: ctrl.signal,
       });
       clearTimeout(timer);
-      if (!res.ok) return null;
+      if (!res.ok) return false;
       const data = await res.json();
-      if (data && data.connected) return base;
+      return !!(data && data.connected);
     } catch (err) {
       clearTimeout(timer);
-    }
-    return null;
-  }
-
-  async function probe() {
-    for (let i = 0; i < ENDPOINTS.length; i += 1) {
-      const hit = await probeOne(ENDPOINTS[i]);
-      if (hit) return hit;
-    }
-    return null;
-  }
-
-  function showOffline() {
-    setStatus(
-      "<strong>Python console: host offline.</strong> This lesson still works. Copy the commands into a terminal on your own computer.",
-      false
-    );
-    const frame = el("sdt-console");
-    if (frame) {
-      frame.hidden = true;
-      frame.removeAttribute("src");
-    }
-  }
-
-  function showOnline(base) {
-    const open = base + "/console";
-    setStatus(
-      "<strong>Python console: available.</strong> Numbered runs can execute on the lab host. <a href=\"" +
-        open +
-        "\" target=\"sdt-console-win\" rel=\"noopener\">Open console</a>",
-      true
-    );
-    const frame = el("sdt-console");
-    if (frame) {
-      frame.hidden = false;
-      frame.src = open;
+      return false;
     }
   }
 
   function tick() {
-    probe().then(function (base) {
-      if (base) showOnline(base);
-      else showOffline();
+    probe(HTTPS).then(function (okHttps) {
+      if (okHttps) {
+        setOnline(HTTPS + "/console");
+        return;
+      }
+      probe(HTTP).then(function (okHttp) {
+        if (okHttp) setOnline(HTTPS + "/console");
+        else setOffline();
+      });
     });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    if (!el("sdt-host-status")) return;
-    showOffline();
+    if (!btn()) return;
+    setOffline();
     tick();
     setInterval(tick, 10000);
   });

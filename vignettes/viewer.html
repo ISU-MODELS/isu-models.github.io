@@ -5,42 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MODELS Lab Vignette</title>
-    <!-- Common Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- Vignette Specific Styles -->
     <link rel="stylesheet" href="../styles/vignette.css">
-    <!-- Marked.js for Markdown Rendering -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- PostHog Analytics -->
     <script src="/scripts/posthog.js"></script>
 </head>
 
 <body>
 
-    <!-- Back Navigation -->
     <div class="back-nav">
-        <a href="../pages/s-page.html" class="back-btn">&larr; SDT Home</a>
-        <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        <div class="back-nav-left">
+            <a href="../pages/s-page.html" class="back-btn">SDT Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+        <a id="sdt-console-btn" class="console-btn is-off" role="link" aria-disabled="true" title="Python console host is offline">Launch Python Console</a>
     </div>
 
-    <div id="sdt-host-status" class="sdt-host-status is-off" role="status">Checking Python console…</div>
-    <iframe id="sdt-console" class="sdt-console" title="Python console" hidden></iframe>
-
-    <!-- Main Layout -->
     <div class="main-layout">
-        <!-- Table of Contents Sidebar -->
-        <nav id="toc" class="vignette-toc">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
             <h3>Contents</h3>
             <ul id="toc-list"></ul>
         </nav>
 
-        <!-- Content Container -->
         <main id="content" class="vignette-container">
             <div id="loading">Loading vignette...</div>
         </main>
     </div>
 
-    <!-- Vignette Loader Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -52,7 +43,6 @@
                 return;
             }
 
-            // Map topics to their specific JS wrapper file paths
             const topicMap = {
                 'executing-programs': 'executing-programs/content.js',
                 'designing-programs': 'designing-programs/content.js',
@@ -63,13 +53,11 @@
             };
 
             const filePath = topicMap[topic];
-
             if (!filePath) {
                 contentDiv.innerHTML = '<p>Error: Vignette not found for topic "' + topic + '".</p>';
                 return;
             }
 
-            // Load the content script locally (supports file://)
             const script = document.createElement('script');
             script.src = filePath;
             script.onload = () => {
@@ -80,61 +68,66 @@
                 }
             };
             script.onerror = () => {
-                contentDiv.innerHTML = `
-                        <h2>Error Loading Content</h2>
-                        <p>Could not load the vignette content file (${filePath}).</p>
-                        <p>Ensure you are opening this file correctly.</p>
-                    `;
+                contentDiv.innerHTML = '<h2>Error Loading Content</h2><p>Could not load ' + filePath + '.</p>';
             };
             document.head.appendChild(script);
 
-            function renderContent(markdown) {
-                // Start rendering
-                const renderedHTML = marked.parse(markdown);
-                contentDiv.innerHTML = renderedHTML;
+            function slugify(text, used) {
+                const base = String(text || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+                let id = base;
+                let n = 2;
+                while (used.has(id)) {
+                    id = base + '-' + n;
+                    n += 1;
+                }
+                used.add(id);
+                return id;
+            }
 
-                // Post-processing: Fix relative links
+            function renderContent(markdown) {
+                contentDiv.innerHTML = marked.parse(markdown);
                 const topicFolder = topic + '/';
 
-                // Fix anchor tags (downloads, links)
-                const links = contentDiv.querySelectorAll('a');
-                links.forEach(link => {
+                contentDiv.querySelectorAll('a').forEach(link => {
                     const href = link.getAttribute('href');
                     if (href && !href.match(/^(http|#|\/)/)) {
                         link.setAttribute('href', topicFolder + href);
                     }
                 });
 
-                // Generate Table of Contents
                 const tocList = document.getElementById('toc-list');
+                tocList.innerHTML = '';
+                const used = new Set();
                 const headers = contentDiv.querySelectorAll('h2, h3');
+                let subList = null;
 
-                headers.forEach((header, index) => {
-                    // Generate ID if missing
-                    if (!header.id) {
-                        const id = header.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-                        header.id = id || `section-${index}`;
-                    }
-
-                    const li = document.createElement('li');
+                headers.forEach((header) => {
+                    header.id = slugify(header.textContent, used);
                     const a = document.createElement('a');
                     a.textContent = header.textContent;
-                    a.href = `#${header.id}`;
-                    a.className = header.tagName.toLowerCase();
-
+                    a.href = '#' + header.id;
                     a.addEventListener('click', (e) => {
                         e.preventDefault();
-                        header.scrollIntoView({ behavior: 'smooth' });
-                        history.pushState(null, null, `#${header.id}`);
+                        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        history.replaceState(null, '', '#' + header.id);
                     });
-
+                    if (header.tagName === 'H2') {
+                        const wrap = document.createElement('li');
+                        wrap.className = 'h2';
+                        wrap.appendChild(a);
+                        subList = document.createElement('ul');
+                        wrap.appendChild(subList);
+                        tocList.appendChild(wrap);
+                        return;
+                    }
+                    const li = document.createElement('li');
+                    li.className = 'h3';
                     li.appendChild(a);
-                    tocList.appendChild(li);
+                    if (subList) subList.appendChild(li);
+                    else tocList.appendChild(li);
                 });
 
-                // Fix images
-                const images = contentDiv.querySelectorAll('img');
-                images.forEach(img => {
+                contentDiv.querySelectorAll('img').forEach(img => {
                     const src = img.getAttribute('src');
                     if (src && !src.match(/^(http|\/)/)) {
                         img.setAttribute('src', topicFolder + src);
