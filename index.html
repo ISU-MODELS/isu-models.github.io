@@ -69,7 +69,8 @@
             position: fixed;
             left: 24px;
             bottom: 24px;
-            z-index: 5;
+            z-index: 50;
+            pointer-events: auto;
             font-family: Montserrat, Helvetica, Arial, sans-serif;
             font-weight: 700;
             font-size: 14px;
@@ -105,8 +106,8 @@
     <div id="menu-placeholder"></div>
 
     <!-- No autoplay: browsers block audible playback without a user gesture. -->
-    <audio id="background-audio" loop preload="none" playsinline>
-        <source src="./assets/audio.mp3" type="audio/mpeg">
+    <audio id="background-audio" src="/assets/audio.mp3" loop preload="auto" playsinline>
+        <source src="/assets/audio.mp3" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
 
@@ -211,15 +212,19 @@
             }
 
             function enableSound() {
-                // Must run in the same turn as a trusted user gesture (click / button key).
-                // Do not autoplay. Do not await anything before play().
                 audio.muted = false;
+                audio.volume = 1;
+                if (!audio.getAttribute('src')) {
+                    audio.src = '/assets/audio.mp3';
+                }
                 const playPromise = audio.play();
                 if (playPromise && typeof playPromise.then === 'function') {
                     playPromise.then(function () {
                         setSoundUi(true);
-                    }).catch(function () {
-                        disableSound();
+                    }).catch(function (err) {
+                        if (err && err.name === 'AbortError') return;
+                        btn.textContent = 'Sound blocked';
+                        setSoundUi(false);
                     });
                 } else {
                     setSoundUi(!audio.paused && !audio.muted);

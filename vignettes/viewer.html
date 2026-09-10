@@ -19,8 +19,12 @@
 
     <!-- Back Navigation -->
     <div class="back-nav">
-        <a href="../pages/s-page.html" class="back-btn">&larr; Back to Software</a>
+        <a href="../pages/s-page.html" class="back-btn">&larr; SDT Home</a>
+        <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
     </div>
+
+    <div id="sdt-host-status" class="sdt-host-status is-off" role="status">Checking Python console…</div>
+    <iframe id="sdt-console" class="sdt-console" title="Python console" hidden></iframe>
 
     <!-- Main Layout -->
     <div class="main-layout">
@@ -139,6 +143,7 @@
             }
         });
     </script>
+    <script src="host-status.js"></script>
 </body>
 
 </html>

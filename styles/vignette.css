@@ -5,6 +5,38 @@ body {
     margin: 0;
 }
 
+.sdt-host-status {
+    max-width: 1200px;
+    margin: 64px auto 0;
+    padding: 10px 16px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #d2d2d7;
+    background: #f5f5f7;
+    color: #1d1d1f;
+}
+.sdt-host-status.is-on {
+    background: #e8f6ee;
+    border-color: #0b6e4f;
+}
+.sdt-host-status.is-off {
+    background: #f5f5f7;
+}
+.sdt-host-status a { color: #0071e3; }
+.sdt-console {
+    display: block;
+    width: min(420px, calc(100% - 40px));
+    height: 420px;
+    max-width: 1200px;
+    margin: 12px auto 0;
+    border: 1px solid #0b3d2e;
+    border-radius: 8px;
+    background: #0b3d2e;
+}
+.sdt-console[hidden] { display: none; }
+.back-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+
 /* Layout Wrapper */
 .main-layout {
     display: flex;

@@ -24,14 +24,12 @@
         <h2>SDT</h2>
         <p>Software Developer Training (SDT) is<br>a self-paced 12-hour, 6-session course designed<br>to expedite
             practical software development.</p>
-        <p>The SDT Crash Course is under active development. The links below will take you to the experimental
-            vignettes.
+        <p>The SDT Crash Course is under active development. Lessons always load from this site.
+            If a lab host is running, each lesson will show a Python console; otherwise copy the
+            commands into a terminal on your own computer.
         </p>
-        <p>Session 1 can run on this computer when the MODELS SDT lab is started on EL4352-WS
-            (<code>C:\Grok\MODELS-SDT\start.bat</code>). That uses the workstation Python, not Cylo
-            and not a browser interpreter.</p>
+        <div id="sdt-host-status" class="sdt-host-status is-off" role="status">Checking Python console…</div>
         <div class="button-group">
-            <a href="https://127.0.0.1:8788/" class="btn">Session 1 live lab (this device)</a>
             <a href="../vignettes/viewer.html?topic=executing-programs" class="btn">Executing Programs</a>
             <a href="../vignettes/viewer.html?topic=designing-programs" class="btn">Designing Programs</a>
             <a href="../vignettes/viewer.html?topic=structuring-programs" class="btn">Structuring Programs</a>
@@ -49,6 +47,7 @@
             })
             .catch(error => console.error('Error loading menu:', error));
     </script>
+    <script src="../vignettes/host-status.js"></script>
 
 </body>
 
