@@ -3,35 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Projects</title>
+    <title>Projects · MODELS Lab</title>
+    <meta name="description" content="Current and completed research awards at the MODELS Lab, Iowa State University Agricultural and Biosystems Engineering.">
     <link rel="stylesheet" href="../styles/projects-page.css">
-    <!-- PostHog Analytics -->
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    
     <div id="menu-placeholder"></div>
 
-    <section class="project-page">
-        <h1>Discover Our Work</h1>
-        <div class="project-grid">
+    <main class="project-page">
+        <header class="project-header">
+            <h1>Projects</h1>
+            <p class="project-lede">Awards the lab is delivering now, and cycles that have closed. Listings follow the lab’s current and completed proposal archive.</p>
+        </header>
 
-            <!-- Project 1 -->
-            <div class="project">
-                <img src="../headshots/eagle.jpg" alt="Image Unavailable">
-                <h2>NRCS-CPF</h2>
-                <p>A Cooperative Grant Agreement (CGA) titled 'Building understanding and capacity for utilizing climate projections and forecasts in conservation planning'.</p>
+        <section id="current" aria-labelledby="current-heading">
+            <h2 id="current-heading">Current</h2>
+            <div class="project-grid">
+
+                <article class="project-card">
+                    <p class="project-kicker">NASA Earth Science</p>
+                    <h3>XWEPPCloud</h3>
+                    <p class="project-meta">ROSES 2025 A.7 WATERQ · 25-WATERQ25-0061 · three-year Type 1 award</p>
+                    <p>University of Idaho leads this NASA application; Iowa State is the GPU modeling subcontract. The work builds a web decision-support layer on GPU-accelerated XWEPP, WEPP-WQ, and WEPPCloud, using NASA Earth observations to simulate hydrology, sediment, and nutrients in fire-susceptible forested lakesheds around Coeur d’Alene and Hayden, Idaho.</p>
+                    <p class="project-role">ISU role: GPU XWEPP / XWEPPCloud development and validation (McGehee). Lead PI: Anurag Srivastava, University of Idaho.</p>
+                    <p class="project-full-title">Leveraging NASA Earth Observations for High-Resolution, GPU-Accelerated Modeling of Water Quality Dynamics in Fire-Susceptible Forested Watersheds.</p>
+                    <div class="project-links">
+                        <a href="https://science.nasa.gov/researchers/solicitations/roses-2025/" rel="noopener noreferrer" target="_blank">NASA ROSES 2025</a>
+                        <a href="https://wepp.cloud/" rel="noopener noreferrer" target="_blank">WEPPCloud</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <p class="project-kicker">USDA-NRCS</p>
+                    <h3>Climate Projections and Forecasts</h3>
+                    <p class="project-meta">Cooperative agreement NR243A750008C001 · 2023–2026</p>
+                    <p>Building Understanding and Capacity for the Use of Climate Projections in Conservation Planning and Implementation. The agreement gives NRCS a working basis for climate forecasts and projections in conservation design: cover-crop timing, ENSO-informed snow and streamflow analogs, climate-enhanced topographic wetness, and agricultural waste-management climate inputs.</p>
+                    <p class="project-role">ISU role: PI (McGehee), with NRCS Science &amp; Technology.</p>
+                </article>
+
+                <article class="project-card">
+                    <p class="project-kicker">USDA-NRCS · University of Missouri</p>
+                    <h3>Soil Vulnerability Index</h3>
+                    <p class="project-meta">ISU subcontract · through 31 August 2026</p>
+                    <p>Iowa State is the modeling and software subrecipient on Missouri’s NRCS project to improve SVI runoff classification. The lab runs WEPP sediment-loss simulations across CEAP and additional watersheds, refines rainfall-aware SVI rules, and folds those rules into the Agricultural Conservation Planning Framework.</p>
+                    <p class="project-role">ISU role: WEPP modeling and ACPF software (McGehee). Prime: University of Missouri.</p>
+                    <div class="project-links">
+                        <a href="https://doi.org/10.1016/j.catena.2026.110200" rel="noopener noreferrer" target="_blank">Catena paper</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <p class="project-kicker">USDA-NRCS · Ducks Unlimited</p>
+                    <h3>Working Lands for Resilient Communities</h3>
+                    <p class="project-meta">Regional Conservation Partnership Program · Scott County, Iowa · 2024–2029</p>
+                    <p>Ducks Unlimited leads this RCPP Alternative Funding Arrangement for targeted conservation in Scott County watersheds (Upper Duck Creek, Lost Creek, and Hickory Creek). Iowa State assesses environmental outcomes of stacked in-field, edge-of-field, and wetland practices: monitoring, nested process models, and practice-to-watershed scaling.</p>
+                    <p class="project-role">ISU role: McMillan leads the ISU team; McGehee leads model development and implementation.</p>
+                    <div class="project-links">
+                        <a href="https://www.nrcs.usda.gov/programs-initiatives/rcpp-regional-conservation-partnership-program" rel="noopener noreferrer" target="_blank">NRCS RCPP</a>
+                    </div>
+                </article>
+
             </div>
+        </section>
 
-            <!-- Project 2 -->
-            <div class="project">
-                <img src="../headshots/lion.jpg" alt="Image Unavailable">
-                <h2>NRCS-RCPP</h2>
-                <p>A Regional Conservation Planning Project (RCPP) titled 'Working Lands for Resilient People'.</p>
-            </div>
-
-        </div>
-    </section>
+        <section id="completed" aria-labelledby="completed-heading">
+            <h2 id="completed-heading">Completed</h2>
+            <p class="project-empty">No closed awards are in the completed archive yet. When a current cycle ends, it will be listed here.</p>
+        </section>
+    </main>
 
     <script>
         fetch('../components/menu.html')
