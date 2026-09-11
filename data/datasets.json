@@ -1,0 +1,134 @@
+[
+  {
+    "title": "CONUS rainfall erosivity — all storms (1 km)",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P.", "Engel, B. A.", "Huang, C. H.", "Nearing, M. A."],
+    "year": 2022,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Raster",
+    "topics": ["Erosivity", "Validation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/j.iswcr.2021.06.004",
+    "note": "GeoTIFF export of ALL STORMS MICE-fill EI / ED / PCP. Download pending."
+  },
+  {
+    "title": "CONUS rainfall erosivity — omit-storm / subset storms (1 km)",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P.", "Engel, B. A.", "Huang, C. H.", "Nearing, M. A."],
+    "year": 2022,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Raster",
+    "topics": ["Erosivity", "Validation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/j.iswcr.2021.06.004",
+    "note": "GeoTIFF export of SUBSET STORMS MICE-fill EI / ED / PCP. Download pending."
+  },
+  {
+    "title": "Official RUSLE2 CONUS EI grid (EIGRID)",
+    "authors": ["USDA-ARS"],
+    "year": 2022,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Raster",
+    "topics": ["Erosivity", "RUSLE2"],
+    "projects": ["RUSLE2", "Erosivity"],
+    "url": "https://doi.org/10.1016/j.iswcr.2021.06.004",
+    "note": "Comparison surface used with the all-storm / omit-storm maps. Download pending."
+  },
+  {
+    "title": "EI–ENSO 1 km GeoTIFFs (LN, EN, p; monthly and annual)",
+    "authors": ["McGehee, R. P.", "Shah, B."],
+    "year": 2026,
+    "journal": "NRCS CPF / in-review erosivity",
+    "type": "Raster",
+    "topics": ["Erosivity", "Climate"],
+    "projects": ["CPF", "Erosivity"],
+    "url": "",
+    "note": "52 GeoTIFFs. Download pending."
+  },
+  {
+    "title": "GloRESatE global rainfall erosivity dataset",
+    "authors": ["Das, S.", "Jain, M. K.", "Gupta, V.", "McGehee, R. P.", "Yin, S.", "de Mello, C. R.", "Azari, M.", "Borrelli, P.", "Panagos, P."],
+    "year": 2024,
+    "journal": "Scientific Data",
+    "type": "Raster",
+    "topics": ["Erosivity", "Remote sensing"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1038/s41597-024-03756-5",
+    "note": "Published data paper. Use the journal dataset, not a lab mirror."
+  },
+  {
+    "title": "WEPP-WQ hillslope validation series",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Engel, B. A.", "Gilley, J. E."],
+    "year": 2024,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Station series",
+    "topics": ["WEPP", "Water quality", "Validation"],
+    "projects": ["WEPP-WQ"],
+    "url": "https://doi.org/10.1016/j.iswcr.2023.11.005",
+    "note": "Observed/model pairs from the WEPP-WQ validation paper. Download pending."
+  },
+  {
+    "title": "WEPP natural-runoff plot evaluation package",
+    "authors": ["Wang, S.", "McGehee, R. P.", "Guo, T.", "Flanagan, D. C.", "Engel, B. A."],
+    "year": 2023,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Station series",
+    "topics": ["WEPP", "Validation"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.1016/j.iswcr.2022.10.004",
+    "note": "Plot data used to calibrate and evaluate WEPP hillslopes. Download pending."
+  },
+  {
+    "title": "WEPPCLIFF ampute–impute experiment tables",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P."],
+    "year": 2020,
+    "journal": "Journal of Open Source Software",
+    "type": "Table",
+    "topics": ["Climate", "Validation"],
+    "projects": ["WEPPCLIFF"],
+    "url": "https://doi.org/10.21105/joss.02029",
+    "note": "JOSS verify-matrix tables, not the NCDC archive."
+  },
+  {
+    "title": "RIESEL, TX climate, runoff, and sediment series",
+    "authors": ["USDA-ARS"],
+    "year": 2024,
+    "journal": "WEPP validation package",
+    "type": "Station series",
+    "topics": ["WEPP", "Validation"],
+    "projects": ["WEPP"],
+    "url": "",
+    "note": "Watershed reference zips for WEPP benchmarking. Download pending."
+  },
+  {
+    "title": "SVI precip-factor watershed table (79 watersheds)",
+    "authors": ["Phung, Q.", "Thompson, A. L.", "Baffaut, C.", "McGehee, R. P.", "White, M."],
+    "year": 2026,
+    "journal": "Catena",
+    "type": "Table",
+    "topics": ["SVI", "Validation"],
+    "projects": ["SVI"],
+    "url": "https://doi.org/10.1016/j.catena.2026.107800",
+    "note": "Watershed-level sediment and rainfall/EI table from Catena 2026. Download pending."
+  },
+  {
+    "title": "Southeast US EI benchmark station series",
+    "authors": ["McGehee, R. P.", "Srivastava, P."],
+    "year": 2018,
+    "journal": "Journal of Soil and Water Conservation",
+    "type": "Station series",
+    "topics": ["Erosivity", "Validation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.2489/jswc.73.4.363",
+    "note": "Quarter-hour station EI used to benchmark the 2018 JSWC paper. Download pending."
+  },
+  {
+    "title": "CLIGEN gridded parameterization (Africa, South America, global)",
+    "authors": ["Fullhart, A. T.", "McGehee, R. P.", "Goodrich, D. C."],
+    "year": 2024,
+    "journal": "Big Earth Data",
+    "type": "Raster",
+    "topics": ["CLIGEN", "Climate"],
+    "projects": ["CLIGEN"],
+    "url": "https://doi.org/10.1080/20964471.2023.2291215",
+    "note": "Follow the journal data statements for the 2023 and 2024 CLIGEN papers."
+  }
+]

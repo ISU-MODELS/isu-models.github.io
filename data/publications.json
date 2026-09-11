@@ -1,0 +1,312 @@
+[
+  {
+    "title": "Incorporating a precipitation factor into the Soil Vulnerability Index",
+    "authors": ["Phung, Q.", "Thompson, A. L.", "Baffaut, C.", "McGehee, R. P.", "White, M."],
+    "year": 2026,
+    "journal": "Catena",
+    "type": "Journal article",
+    "topics": ["SVI", "Erosivity", "Validation"],
+    "projects": ["SVI"],
+    "url": "https://doi.org/10.1016/j.catena.2026.107800"
+  },
+  {
+    "title": "Development and evaluation of a rare earth element tracer under natural rainfall in the Brazilian Cerrado biome",
+    "authors": ["Watanabe, A. M.", "McGehee, R. P.", "Das, S.", "Anache, J. A. A.", "Villela, J. M.", "Flanagan, D. C.", "Wendland, E. C.", "Nogueira, A. R. A.", "Crestana, S."],
+    "year": 2026,
+    "journal": "Catena",
+    "type": "Journal article",
+    "topics": ["Erosivity", "Validation"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.1016/j.catena.2026.107801"
+  },
+  {
+    "title": "Effectiveness of Multivariate Bias Correction in Hydrology and Agriculture: A Systematic Review",
+    "authors": ["Shah, B.", "McGehee, R. P.", "Gutowski, W."],
+    "year": 2026,
+    "journal": "Hydrology and Earth System Sciences",
+    "type": "In review",
+    "topics": ["Climate", "Hydrology"],
+    "projects": ["CPF"],
+    "url": ""
+  },
+  {
+    "title": "Reconciling Statistical Fidelity and Thermodynamic Consistency in Multivariate Bias Correction: A CONUS-Scale Evaluation",
+    "authors": ["Shah, B.", "McGehee, R. P."],
+    "year": 2026,
+    "journal": "Journal of Hydrology",
+    "type": "In review",
+    "topics": ["Climate", "Validation"],
+    "projects": ["CPF"],
+    "url": ""
+  },
+  {
+    "title": "Improving Global Rainfall Erosivity Estimates from IMERG Using Machine Learning-Based Error Correction",
+    "authors": ["Zou, A.", "Fullhart, A.", "Zhu, S.", "McGehee, R. P.", "Gao, S."],
+    "year": 2026,
+    "journal": "Catena",
+    "type": "In review",
+    "topics": ["Erosivity", "Remote sensing"],
+    "projects": ["Erosivity"],
+    "url": ""
+  },
+  {
+    "title": "Modeling Archaeological Excavation-Induced Soil Erosion in Cultural Heritage Landscapes: A QGeoWEPP-Based Assessment at the Resuloğlu Mound, Türkiye",
+    "authors": ["Kocakli, K.", "Renschler, C. S.", "Flanagan, D. C.", "McGehee, R. P.", "Harbor, J. M.", "Arıkan, B.", "Özcan, O."],
+    "year": 2025,
+    "journal": "Geoderma Regional",
+    "type": "Journal article",
+    "topics": ["WEPP", "Validation"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.1016/j.geodrs.2025.e01018"
+  },
+  {
+    "title": "Legacy Nutrient Transport by Overland Sheet Flow",
+    "authors": ["Gilley, J. E.", "McGehee, R. P.", "Wacha, K. M."],
+    "year": 2025,
+    "journal": "Journal of Environmental Engineering",
+    "type": "Journal article",
+    "topics": ["Water quality", "Validation"],
+    "projects": ["WEPP-WQ"],
+    "url": "https://doi.org/10.1061/JOEEDU.EEENG-8077"
+  },
+  {
+    "title": "Isoerodent surfaces of the continental US for conservation planning with the RUSLE2 water erosion model",
+    "authors": ["Momm, H. G.", "Wells, R. R.", "ElKadiri, R.", "Seever, T.", "Yoder, D.", "McGehee, R. P.", "Bingner, R. L.", "Darnault, C. J. G."],
+    "year": 2025,
+    "journal": "Catena",
+    "type": "Journal article",
+    "topics": ["Erosivity", "RUSLE2"],
+    "projects": ["Erosivity", "RUSLE2"],
+    "url": "https://doi.org/10.1016/j.catena.2025.108879"
+  },
+  {
+    "title": "Transport of Nutrients by Overland Flow on Sites Containing Beef Cattle Manure",
+    "authors": ["Gilley, J. E.", "McGehee, R. P.", "Wacha, K. M."],
+    "year": 2025,
+    "journal": "Journal of Environmental Engineering",
+    "type": "Journal article",
+    "topics": ["Water quality", "Validation"],
+    "projects": ["WEPP-WQ"],
+    "url": "https://doi.org/10.1061/JOEEDU.EEENG-7838"
+  },
+  {
+    "title": "Cropland water erosion estimates simulated by RUSLE2 and WEPP: Results from two initial studies",
+    "authors": ["Wells, R.", "Flanagan, D. C.", "Langendoen, E. J.", "McGehee, R. P.", "Bingner, R. L.", "Frankenberger, J. R.", "Locke, M. A.", "Momm, H. G.", "Renschler, C. S.", "Srivastava, A.", "Vieira, D.", "Tsegaye, T."],
+    "year": 2024,
+    "journal": "Journal of Soil and Water Conservation",
+    "type": "Journal article",
+    "topics": ["WEPP", "RUSLE2", "Validation"],
+    "projects": ["WEPP", "RUSLE2"],
+    "url": "https://doi.org/10.2489/jswc.2024.00072"
+  },
+  {
+    "title": "GloRESatE: A dataset for global rainfall erosivity derived from multi-source data",
+    "authors": ["Das, S.", "Jain, M. K.", "Gupta, V.", "McGehee, R. P.", "Yin, S.", "de Mello, C. R.", "Azari, M.", "Borrelli, P.", "Panagos, P."],
+    "year": 2024,
+    "journal": "Scientific Data",
+    "type": "Journal article",
+    "topics": ["Erosivity", "Remote sensing"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1038/s41597-024-03756-5"
+  },
+  {
+    "title": "A validation of WEPP water quality routines in uniform and nonuniform agricultural hillslopes",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Engel, B. A.", "Gilley, J. E."],
+    "year": 2024,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Journal article",
+    "topics": ["WEPP", "Water quality", "Validation"],
+    "projects": ["WEPP-WQ"],
+    "url": "https://doi.org/10.1016/j.iswcr.2023.11.005"
+  },
+  {
+    "title": "Towards global coverage of gridded parameterization for CLImate GENerator (CLIGEN)",
+    "authors": ["Fullhart, A. T.", "Ponce-Campos, G. E.", "Meles, M. B.", "McGehee, R. P.", "Wei, H.", "Armendariz, G.", "Burns, S.", "Goodrich, D. C."],
+    "year": 2024,
+    "journal": "Big Earth Data",
+    "type": "Journal article",
+    "topics": ["CLIGEN", "Climate"],
+    "projects": ["CLIGEN"],
+    "url": "https://doi.org/10.1080/20964471.2023.2291215"
+  },
+  {
+    "title": "WEPP Model 2024 Status",
+    "authors": ["Flanagan, D. C.", "Frankenberger, J. R.", "Renschler, C. S.", "Coreil, C. B.", "David, O.", "Srivastava, A.", "Jame, S. A.", "McGehee, R. P."],
+    "year": 2024,
+    "journal": "ASABE Annual International Meeting",
+    "type": "Conference paper",
+    "topics": ["WEPP"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.13031/aim.202400678"
+  },
+  {
+    "title": "Calibration, Validation, and Evaluation of the Water Erosion Prediction Project (WEPP) Model for Hillslopes with Natural Runoff Plot Data",
+    "authors": ["Wang, S.", "McGehee, R. P.", "Guo, T.", "Flanagan, D. C.", "Engel, B. A."],
+    "year": 2023,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Journal article",
+    "topics": ["WEPP", "Validation"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.1016/j.iswcr.2022.10.004"
+  },
+  {
+    "title": "A WEPP-Water Quality model for simulating non-point source pollutants in nonuniform agricultural hillslopes: Model development and sensitivity",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Engel, B. A."],
+    "year": 2023,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Journal article",
+    "topics": ["WEPP", "Water quality"],
+    "projects": ["WEPP-WQ"],
+    "url": "https://doi.org/10.1016/j.iswcr.2023.02.002"
+  },
+  {
+    "title": "Gridded 20-year climate parameterization of Africa and South America for a stochastic weather generator (CLIGEN)",
+    "authors": ["Fullhart, A.", "Ponce-Campos, G. E.", "Meles, M. B.", "McGehee, R. P.", "Armendariz, G.", "Oliveira, P. T. S.", "Das Neves Almeida, C.", "de Araújo, J. C.", "Nel, W.", "Goodrich, D. C."],
+    "year": 2023,
+    "journal": "Big Earth Data",
+    "type": "Journal article",
+    "topics": ["CLIGEN", "Climate"],
+    "projects": ["CLIGEN"],
+    "url": "https://doi.org/10.1080/20964471.2022.2136610"
+  },
+  {
+    "title": "Projected mid-century rainfall erosivity under climate change over the southeastern United States",
+    "authors": ["Takhellambam, B. S.", "Srivastava, P.", "Lamba, J.", "McGehee, R. P.", "Kumar, H.", "Tian, D."],
+    "year": 2023,
+    "journal": "Science of the Total Environment",
+    "type": "Journal article",
+    "topics": ["Erosivity", "Climate"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/j.scitotenv.2022.161119"
+  },
+  {
+    "title": "Temporal disaggregation of hourly projected precipitation over the Southeast United States",
+    "authors": ["Takhellambam, B. S.", "Srivastava, P.", "Lamba, J.", "McGehee, R. P.", "Kumar, H.", "Tian, D."],
+    "year": 2022,
+    "journal": "Scientific Data",
+    "type": "Journal article",
+    "topics": ["Climate", "Precipitation"],
+    "projects": ["CLIGEN"],
+    "url": "https://doi.org/10.1038/s41597-022-01304-7"
+  },
+  {
+    "title": "An updated isoerodent map of the conterminous United States",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P.", "Engel, B. A.", "Huang, C. H.", "Nearing, M. A."],
+    "year": 2022,
+    "journal": "International Soil and Water Conservation Research",
+    "type": "Journal article",
+    "topics": ["Erosivity", "RUSLE2", "Validation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/j.iswcr.2021.06.004"
+  },
+  {
+    "title": "A global rain-driven soil erosion investigation based on simulated breakpoint precipitation",
+    "authors": ["Fullhart, A.", "McGehee, R. P.", "Nearing, M. A.", "Hernandez, M.", "Weltz, M. A.", "Goodrich, D. C."],
+    "year": 2022,
+    "journal": "Journal of the ASABE",
+    "type": "Journal article",
+    "topics": ["Erosivity", "WEPP"],
+    "projects": ["WEPP", "CLIGEN"],
+    "url": "https://doi.org/10.13031/ja.14847"
+  },
+  {
+    "title": "A framework for automated and spatially-distributed modeling with the Agricultural Policy Environmental eXtender (APEX) model",
+    "authors": ["Pan, F.", "Feng, Q.", "McGehee, R. P.", "Engel, B. A.", "Flanagan, D. C.", "Chen, J."],
+    "year": 2021,
+    "journal": "Environmental Modelling & Software",
+    "type": "Journal article",
+    "topics": ["APEX"],
+    "projects": ["APEX"],
+    "url": "https://doi.org/10.1016/j.envsoft.2021.105147"
+  },
+  {
+    "title": "Rainfall erosivity: Essential historical, conceptual, and practical perspectives for continued application",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P.", "Nearing, M. A."],
+    "year": 2021,
+    "journal": "Precipitation (Elsevier)",
+    "type": "Book chapter",
+    "topics": ["Erosivity"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/B978-0-12-822699-5.00014-8"
+  },
+  {
+    "title": "Temporally downscaling a precipitation intensity factor for soil erosion modeling using the NOAA-ASOS weather station network",
+    "authors": ["Fullhart, A. T.", "Nearing, M. A.", "McGehee, R. P.", "Weltz, M. A."],
+    "year": 2020,
+    "journal": "Catena",
+    "type": "Journal article",
+    "topics": ["Erosivity", "Precipitation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.1016/j.catena.2020.104709"
+  },
+  {
+    "title": "WEPPCLIFF: A command-line tool to process climate inputs for soil loss models",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P."],
+    "year": 2020,
+    "journal": "Journal of Open Source Software",
+    "type": "Journal article",
+    "topics": ["Climate", "WEPP"],
+    "projects": ["WEPPCLIFF"],
+    "url": "https://doi.org/10.21105/joss.02029"
+  },
+  {
+    "title": "Evaluation of different precipitation inputs to WEPP",
+    "authors": ["Flanagan, D. C.", "McGehee, R. P.", "Srivastava, A."],
+    "year": 2020,
+    "journal": "ASABE Annual International Meeting",
+    "type": "Conference paper",
+    "topics": ["WEPP", "Climate", "Validation"],
+    "projects": ["WEPP"],
+    "url": "https://doi.org/10.13031/aim.202000740"
+  },
+  {
+    "title": "A Strategic Plan for ARS Erosion Research and Model Development",
+    "authors": ["USDA-ARS"],
+    "year": 2020,
+    "journal": "USDA-ARS",
+    "type": "Technical report",
+    "topics": ["WEPP", "RUSLE2"],
+    "projects": ["WEPP", "RUSLE2"],
+    "url": ""
+  },
+  {
+    "title": "RUSLE2-WEPP Comparison Report",
+    "authors": ["Huang, C. H.", "Bingner, R.", "Flanagan, D. C.", "Wells, R.", "Srivastava, A.", "McGehee, R. P.", "Frankenberger, J.", "Langendoen, E.", "Vieira, D."],
+    "year": 2020,
+    "journal": "USDA-ARS",
+    "type": "Technical report",
+    "topics": ["WEPP", "RUSLE2", "Validation"],
+    "projects": ["WEPP", "RUSLE2"],
+    "url": ""
+  },
+  {
+    "title": "Conservation Planning Technology Comparison",
+    "authors": ["Huang, C. H.", "Locke, M.", "Flanagan, D. C.", "Wells, R.", "Srivastava, A.", "McGehee, R. P.", "Frankenberger, J.", "Bingner, R.", "Langendoen, E.", "Rigby, J.", "Vieira, D."],
+    "year": 2019,
+    "journal": "USDA-ARS",
+    "type": "Technical report",
+    "topics": ["WEPP", "RUSLE2", "Validation"],
+    "projects": ["WEPP", "RUSLE2"],
+    "url": ""
+  },
+  {
+    "title": "Benchmarking reliable erosion index (EI) values for climate studies in the southeastern United States from quarter-hour station data",
+    "authors": ["McGehee, R. P.", "Srivastava, P."],
+    "year": 2018,
+    "journal": "Journal of Soil and Water Conservation",
+    "type": "Journal article",
+    "topics": ["Erosivity", "Validation"],
+    "projects": ["Erosivity"],
+    "url": "https://doi.org/10.2489/jswc.73.4.363"
+  },
+  {
+    "title": "Chapter 5: The Modified HAND Method",
+    "authors": ["McGehee, R. P.", "Li, L.", "Poston, E."],
+    "year": 2016,
+    "journal": "CUAHSI Technical Report No. 13",
+    "type": "Book chapter",
+    "topics": ["Hydrology"],
+    "projects": ["MHAND"],
+    "url": "https://doi.org/10.4211/technical.20161019"
+  }
+]

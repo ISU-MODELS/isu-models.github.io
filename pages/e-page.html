@@ -3,35 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E - Evaluation</title>
+    <title>Evaluation · MODELS Lab</title>
+    <meta name="description" content="MODELS Lab publications and evaluation data, searchable by journal, topic, year, type, project, and author.">
     <link rel="stylesheet" href="../styles/letter-page.css">
-    <!-- PostHog Analytics -->
+    <link rel="stylesheet" href="../styles/evaluation-page.css">
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    
     <div id="menu-placeholder"></div>
 
     <section class="section-A e-section-A">
         <h1>Evaluation</h1>
-        <p>Compare to our performance benchmarks.</p>
-        <a href="#" class="btn">Learn More</a>
+        <p>Papers and data used to test our models.</p>
+        <div class="button-group">
+            <a href="#publications" class="btn">Publications</a>
+            <a href="#data" class="btn">Data</a>
+        </div>
     </section>
 
-    <section class="section-B">
-        <h2>Coming Soon</h2>
-        <p>There is a lot of data in here, <br>and we are making it available to all.</p>
-        <a href="#" class="btn">Coming in 2026</a>
+    <section id="publications" class="catalog-viewport" data-src="/data/publications.json" data-kind="publication" aria-labelledby="publications-heading">
+        <div class="catalog-inner">
+            <h2 id="publications-heading">Publications</h2>
+            <p class="catalog-lede">Articles, chapters, reports, and conference papers authored or co-authored by MODELS Lab members. Search the list, then narrow by journal, topic, year, type, project, or author.</p>
+            <div class="catalog-controls">
+                <input type="search" data-filter="search" placeholder="Search title, author, journal…" aria-label="Search publications">
+                <select data-filter="journal" aria-label="Journal"></select>
+                <select data-filter="topic" aria-label="Topic"></select>
+                <select data-filter="year" aria-label="Year"></select>
+            </div>
+            <div class="catalog-controls-row">
+                <select data-filter="type" aria-label="Type"></select>
+                <select data-filter="project" aria-label="Project"></select>
+                <select data-filter="author" aria-label="Author"></select>
+                <button type="button" class="catalog-clear" data-action="clear">Clear</button>
+            </div>
+            <p class="catalog-count"></p>
+            <div class="catalog-list"></div>
+        </div>
+    </section>
+
+    <section id="data" class="catalog-viewport" data-src="/data/datasets.json" data-kind="dataset" aria-labelledby="data-heading">
+        <div class="catalog-inner">
+            <h2 id="data-heading">Data</h2>
+            <p class="catalog-lede">Grids, tables, and station series used to reproduce or check those papers. Same filters as publications. Downloads that are not yet public stay listed with the related paper.</p>
+            <div class="catalog-controls">
+                <input type="search" data-filter="search" placeholder="Search title, author, source…" aria-label="Search data">
+                <select data-filter="journal" aria-label="Journal or source"></select>
+                <select data-filter="topic" aria-label="Topic"></select>
+                <select data-filter="year" aria-label="Year"></select>
+            </div>
+            <div class="catalog-controls-row">
+                <select data-filter="type" aria-label="Type"></select>
+                <select data-filter="project" aria-label="Project"></select>
+                <select data-filter="author" aria-label="Author"></select>
+                <button type="button" class="catalog-clear" data-action="clear">Clear</button>
+            </div>
+            <p class="catalog-count"></p>
+            <div class="catalog-list"></div>
+        </div>
     </section>
 
     <script>
         fetch('../components/menu.html')
-            .then(response => response.text())
-            .then(data => {
+            .then(function (response) { return response.text(); })
+            .then(function (data) {
                 document.getElementById('menu-placeholder').innerHTML = data;
             })
-            .catch(error => console.error('Error loading menu:', error));
+            .catch(function (error) { console.error('Error loading menu:', error); });
     </script>
-    
+    <script src="/scripts/catalog.js"></script>
 </body>
 </html>
