@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAT tutorial · MODELS Lab</title>
+    <meta name="description" content="SWAT tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>SWAT</h1>
+        <p class="lede">Classic SWAT Rev. 695. The executable reads <code>file.cio</code> from the current directory.</p>
+        <figure>
+            <img src="images/swat.jpg" alt="SWAT example folder with file.cio and output.rch">
+            <figcaption>Always run the SWAT binary from the TxtInOut / example folder, not from a tools directory.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download SWAT executables from Texas A&amp;M. Lab install: <code>C:\Grok\Models\installs\SWAT</code> (zip in <code>archive\downloads\SWAT.zip</code>).</p>
+        <div class="tutorial-nav">
+            <a href="https://swat.tamu.edu/software/">Download SWAT</a>
+            <a href="https://swat.tamu.edu/docs/">Documentation</a>
+        </div>
+        <h2>2. Stand in the input folder</h2>
+        <pre>cd C:\Grok\Models\installs\SWAT\example</pre>
+        <p><code>file.cio</code> must exist here. That file names the rest of the SWAT inputs.</p>
+        <h2>3. Run</h2>
+        <pre>.\Rev_695_64rel.exe</pre>
+        <h2>4. Confirm success</h2>
+        <p><code>output.rch</code> should be written and larger than about 1 MB. The first data row for REACH 1 reports <code>FLOW_OUT</code> (cms).</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

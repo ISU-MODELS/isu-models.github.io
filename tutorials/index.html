@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model tutorials · MODELS Lab</title>
+    <meta name="description" content="Model tutorials execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>How to run the models</h1>
+        <p class="lede">Each tutorial is the lab’s verified Windows CLI path from <code>C:\Grok\Models</code>. Download the vendor package first; then stand in the input folder and run the executable.</p>
+        <figure>
+            <img src="images/steps.jpg" alt="Four steps: download, stand in the folder, run the executable, read the output">
+            <figcaption>Same four steps for every model. The GUI is optional; the CLI is what we verify.</figcaption>
+        </figure>
+        <div class="grid-list">
+            <a href="annagnps.html">AnnAGNPS</a>
+            <a href="apex.html">APEX</a>
+            <a href="daycent.html">DayCent</a>
+            <a href="rusle2.html">RUSLE2</a>
+            <a href="swat.html">SWAT</a>
+            <a href="wepp.html">WEPP</a>
+        </div>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

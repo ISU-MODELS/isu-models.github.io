@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayCent tutorial · MODELS Lab</title>
+    <meta name="description" content="DayCent tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>DayCent</h1>
+        <p class="lede">DayCent is on the lab Model page because we use it in research, but it is <strong>not</strong> in the pinned Windows tree at <code>C:\Grok\Models\installs</code>. There is no local golden CLI on this host.</p>
+        <figure>
+            <img src="images/steps.jpg" alt="Four steps for running a model after you install it">
+            <figcaption>Install DayCent from Colorado State, then follow the vendor’s execute instructions. Do not invent a Grok\Models path.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download DayCent from the Soil Carbon Solutions Center at Colorado State University.</p>
+        <div class="tutorial-nav">
+            <a href="https://soilcarbonsolutionscenter.colostate.edu/daycent/">DayCent at CSU</a>
+        </div>
+        <h2>2–4. Execute</h2>
+        <p>Use the CSU package’s own driver and example. Until a DayCent install is pinned under <code>C:\Grok\Models\installs</code>, the lab does not claim a verified local command line.</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

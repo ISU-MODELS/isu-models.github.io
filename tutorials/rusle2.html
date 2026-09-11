@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUSLE2 tutorial · MODELS Lab</title>
+    <meta name="description" content="RUSLE2 tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>RUSLE2</h1>
+        <p class="lede">The science engine is RomeDLL. <code>Rusle2.exe</code> is GUI-only. The lab verifies a headless GETVAR through RomeCli.</p>
+        <figure>
+            <img src="images/rusle2.jpg" alt="RUSLE2 GUI versus RomeDLL command-line engine">
+            <figcaption>Use RomeCli / RomeDLL for batch work. Do not expect Rusle2.exe to run unattended.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download RUSLE2 and the NRCS database from the NSERL RUSLE2 data web. Lab install: <code>C:\Grok\Models\installs\RUSLE2</code> (installer <code>archive\downloads\RUSLE2.exe</code>, RomeDLL SDK under <code>archive\downloads\romedll-sdk</code>).</p>
+        <div class="tutorial-nav">
+            <a href="https://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm">Download RUSLE2</a>
+        </div>
+        <h2>2. Stand in the script folder</h2>
+        <pre>cd C:\Grok\Models\installs\RUSLE2\scripts</pre>
+        <h2>3. Run</h2>
+        <pre>powershell -File .\rusle2_headless.ps1</pre>
+        <p>That wrapper copies <code>RomeDLL.dll</code>, opens <code>moses.gdb</code>, and requests <code>SLOPE_SOIL_LOSS</code> for <code>profiles\default</code>.</p>
+        <h2>4. Confirm success</h2>
+        <p>The script prints <code>SLOPE_SOIL_LOSS=… ton/ac/yr</code> with a positive value.</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

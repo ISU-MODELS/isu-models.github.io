@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #1d1d1f;
+    background: #fff;
+}
+
+.tutorial {
+    max-width: 820px;
+    margin: 88px auto 64px;
+    padding: 0 20px 48px;
+}
+
+.tutorial h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tutorial h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 28px 0 10px;
+}
+
+.lede,
+.meta {
+    color: #6e6e73;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.tutorial p,
+.tutorial li {
+    font-size: 16px;
+    color: #424245;
+    margin-bottom: 10px;
+}
+
+.tutorial ol,
+.tutorial ul {
+    padding-left: 22px;
+    margin-bottom: 16px;
+}
+
+.tutorial img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #e8e8ed;
+    border-radius: 12px;
+    margin: 8px 0 20px;
+}
+
+.tutorial figcaption {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-top: -12px;
+    margin-bottom: 20px;
+}
+
+.tutorial pre {
+    background: #f5f5f7;
+    border: 1px solid #e8e8ed;
+    border-radius: 10px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+}
+
+.tutorial a {
+    color: #0071e3;
+}
+
+.tutorial-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0 8px;
+}
+
+.tutorial-nav a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #0071e3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tutorial-nav a:hover,
+.tutorial-nav a:focus-visible {
+    background: #005bb5;
+}
+
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.grid-list a {
+    display: block;
+    padding: 16px;
+    background: #f5f5f7;
+    border: 1px solid #e8e8ed;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1d1d1f;
+    font-weight: 600;
+}
+
+.grid-list a:hover {
+    border-color: #0071e3;
+}

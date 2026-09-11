@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEPP tutorial · MODELS Lab</title>
+    <meta name="description" content="WEPP tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>WEPP</h1>
+        <p class="lede">Hillslope CLI with <code>wepphillslopeserv.exe</code>. The Windows GUI (<code>weppwin</code>) is installed but is not the verified path.</p>
+        <figure>
+            <img src="images/wepp.jpg" alt="WEPP hillslope schematic and CLI">
+            <figcaption>Stand in <code>cli_verify</code>, pass the project file to the hillslope service, read SEDYIELD.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download the USDA-ARS WEPP Windows installer from the NSERL downloads page. The lab’s pinned tree is <code>C:\Grok\Models\installs\WEPP</code> (installer in <code>archive\downloads\WEPP_extract</code>).</p>
+        <div class="tutorial-nav">
+            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/">Download WEPP</a>
+            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-model-documentation/">Model documentation</a>
+        </div>
+        <h2>2. Stand in the input folder</h2>
+        <pre>cd C:\Grok\Models\installs\WEPP\cli_verify</pre>
+        <p>That folder must contain <code>wepprun.prj</code>, <code>wepp.exe</code>, and <code>wepphillslopeserv.exe</code>.</p>
+        <h2>3. Run</h2>
+        <pre>.\wepphillslopeserv.exe C:\Grok\Models\installs\WEPP\cli_verify wepprun.prj runs\weppout.txt wepp.exe 0 0</pre>
+        <h2>4. Confirm success</h2>
+        <p>Open <code>runs\weppout.txt</code> and find a positive <code>&lt;SEDYIELD&gt;</code> value (ton/ac). That is the verified hillslope sediment yield.</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

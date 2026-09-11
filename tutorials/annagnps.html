@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnnAGNPS tutorial · MODELS Lab</title>
+    <meta name="description" content="AnnAGNPS tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>AnnAGNPS</h1>
+        <p class="lede">CSV watershed run. Copy <code>AnnAGNPS.exe</code> into the CSV input folder and execute it there.</p>
+        <figure>
+            <img src="images/annagnps.jpg" alt="AnnAGNPS CSV inputs to sediment load outputs">
+            <figcaption>The executable looks for AnnAGNPS.csv in the current directory.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download the complete AGNPS package from USDA-ARS (current software id 524). The lab install is <code>C:\Grok\Models\installs\AnnAGNPS</code>.</p>
+        <div class="tutorial-nav">
+            <a href="https://www.ars.usda.gov/research/software/download/?softwareid=524&amp;modecode=60-60-05-05">Download AnnAGNPS</a>
+            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/agnps/agnps-software-download/">AGNPS documentation</a>
+        </div>
+        <h2>2. Stand in the input folder</h2>
+        <pre>cd C:\Grok\Models\installs\AnnAGNPS\test_run\AGNPS_Watershed_Studies\OH_AGNPS_Example_Watershed\4_Editor_DataSets\CSV_Input_Files
+copy C:\Grok\Models\installs\AnnAGNPS\AGNPS\PLModel\Execute\AnnAGNPS.exe .</pre>
+        <h2>3. Run</h2>
+        <pre>.\AnnAGNPS.exe</pre>
+        <h2>4. Confirm success</h2>
+        <p>The console should print <strong>Successful execution</strong>. Then open <code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code> and find reach 101 Subtotal sediment load.</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>

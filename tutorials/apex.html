@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX tutorial · MODELS Lab</title>
+    <meta name="description" content="APEX tutorial execution tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+    <main class="tutorial">
+        <h1>APEX</h1>
+        <p class="lede">Command-line <code>apex1501.exe</code> from the WinAPEX program folder. Do not start with the WinAPEX GUI for the verified run.</p>
+        <figure>
+            <img src="images/apex.jpg" alt="APEX program folder with APEXRUN.DAT and apex1501.exe">
+            <figcaption>APEX reads APEXRUN.DAT and related .DAT files from the current directory.</figcaption>
+        </figure>
+        <h2>1. Get the software</h2>
+        <p>Download WinAPEX / APEX from Texas A&amp;M AgriLife EPIC/APEX. Lab install: <code>C:\Grok\Models\installs\APEX</code> (installer <code>archive\downloads\winapex_setup.exe</code>).</p>
+        <div class="tutorial-nav">
+            <a href="https://epicapex.tamu.edu/">Download APEX</a>
+            <a href="https://epicapex.tamu.edu/manuals-and-publications/">Manuals</a>
+        </div>
+        <h2>2. Stand in the input folder</h2>
+        <pre>cd C:\Grok\Models\installs\APEX\WinApex\apexprog</pre>
+        <p>Confirm <code>APEXRUN.DAT</code>, <code>APEXCONT.DAT</code>, and <code>apex1501.exe</code> are in that folder.</p>
+        <h2>3. Run</h2>
+        <pre>.\apex1501.exe</pre>
+        <h2>4. Confirm success</h2>
+        <p>Exit code 0 and a large <code>Winapex.OUT</code> (about 1 MB or more for the 40-year example). Search the OUT file for the sediment summary line beginning with <code>YS</code>.</p>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    <script>
+        fetch('/components/menu.html')
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById('menu-placeholder').innerHTML = html;
+            })
+            .catch(function () {});
+    </script>
+</body>
+</html>
