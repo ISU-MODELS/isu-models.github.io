@@ -12,23 +12,151 @@
     <div id="menu-placeholder"></div>
     <main class="tutorial">
         <h1>RUSLE2</h1>
-        <p class="lede">The science engine is RomeDLL. <code>Rusle2.exe</code> is GUI-only. The lab verifies a headless GETVAR through RomeCli.</p>
+        <p class="lede">A first successful headless run of the Revised Universal Soil Loss Equation, Version 2, on Windows. You download the NRCS program and database from NSERL, copy <code>moses.gdb</code> into a fresh folder, call <code>RomeCli.exe</code>, and read <code>SLOPE_SOIL_LOSS</code>. <code>Rusle2.exe</code> is installed; this path uses the RomeDLL science engine.</p>
+        <nav class="toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#what">What this model does</a></li>
+                <li><a href="#get">Get the software</a></li>
+                <li><a href="#install">The lab install</a></li>
+                <li><a href="#run">Novice path: run the default moses profile</a></li>
+                <li><a href="#confirm">Confirm the run</a></li>
+                <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#next-steps">After the first success</a></li>
+            </ol>
+        </nav>
         <figure>
-            <img src="images/rusle2.jpg" alt="RUSLE2 GUI versus RomeDLL command-line engine">
-            <figcaption>Use RomeCli / RomeDLL for batch work. Do not expect Rusle2.exe to run unattended.</figcaption>
+            <img src="images/rusle2-steps.jpg" alt="Four steps: download RUSLE2, copy moses.gdb, run RomeCli, read SLOPE_SOIL_LOSS">
+            <figcaption>Same four steps as the other model tutorials. The engine lives in <code>RomeDLL.dll</code>; RomeCli is a thin command-line wrapper.</figcaption>
         </figure>
-        <h2>1. Get the software</h2>
-        <p>Download RUSLE2 and the NRCS database from the NSERL RUSLE2 data web. Lab install: <code>C:\Grok\Models\installs\RUSLE2</code> (installer <code>archive\downloads\RUSLE2.exe</code>, RomeDLL SDK under <code>archive\downloads\romedll-sdk</code>).</p>
+
+        <h2 id="what">1. What this model does</h2>
+        <p>RUSLE2 estimates long-term average annual sheet and rill erosion for a hillslope <strong>profile</strong>. Climate, soil erodibility, slope length and steepness, cover-management, and support practices all enter the calculation. The number you will read first is soil loss <strong>A</strong> in tons per acre per year. On this host that value is the RomeDLL attribute <code>SLOPE_SOIL_LOSS</code>.</p>
+        <figure>
+            <img src="images/rusle2-routing.jpg" alt="R, K, LS, C, and P factors combining into soil loss A on a hillslope">
+            <figcaption>RUSLE2 is more than a five-factor product, but those names are still the map. This tutorial changes only slope steepness and watches A move.</figcaption>
+        </figure>
+        <p>The lab’s pinned engine is <code>RomeDLL.dll</code> called from <code>RomeCli.exe</code> (32-bit .NET). <code>Rusle2.exe</code> in <code>install\NRCS</code> is the Windows GUI and does not run unattended.</p>
+
+        <h2 id="get">2. Get the software</h2>
+        <p>Download the official NRCS RUSLE2 program and the NRCS master database from the National Soil Erosion Research Laboratory data web. ARS keeps a parallel download page at Oxford. The 2022 program release is the one this lab installed. Climate files, crop-management zone templates, and soils sit on the same NSERL site.</p>
+        <figure>
+            <img src="images/rusle2-download.jpg" alt="NSERL RUSLE2 data web with program file and NRCS master database downloads">
+            <figcaption>Use the official NRCS program and database. The verified lab path still goes through RomeDLL, not through clicking Calculate in the GUI.</figcaption>
+        </figure>
         <div class="tutorial-nav">
-            <a href="https://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm">Download RUSLE2</a>
+            <a href="https://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm">NSERL RUSLE2 data web</a>
+            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/rusle2/revised-universal-soil-loss-equation-2-download-rusle2">ARS Oxford download</a>
         </div>
-        <h2>2. Stand in the script folder</h2>
-        <pre>cd C:\Grok\Models\installs\RUSLE2\scripts</pre>
-        <h2>3. Run</h2>
-        <pre>powershell -File .\rusle2_headless.ps1</pre>
-        <p>That wrapper copies <code>RomeDLL.dll</code>, opens <code>moses.gdb</code>, and requests <code>SLOPE_SOIL_LOSS</code> for <code>profiles\default</code>.</p>
-        <h2>4. Confirm success</h2>
-        <p>The script prints <code>SLOPE_SOIL_LOSS=… ton/ac/yr</code> with a positive value.</p>
+        <p>On this host the tree is already at <code>C:\Grok\Models\installs\RUSLE2</code> (installer <code>archive\downloads\RUSLE2.exe</code>, RomeDLL SDK under <code>archive\downloads\romedll-sdk</code>). If you are repeating the lab path, you can skip the download and use that folder.</p>
+
+        <h2 id="install">3. The lab install</h2>
+        <p>Three pieces matter for the first run: the GUI (optional), the science DLL, and a database that already contains a profile.</p>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>RomeCli.exe</code> + <code>RomeDLL.dll</code></td>
+                    <td><code>scripts\RomeCli\bin\Release\net48\</code></td>
+                    <td>Headless engine. RomeCli must be the 32-bit build; copy <code>RomeDLL.dll</code> beside it before the first call.</td>
+                </tr>
+                <tr>
+                    <td>RomeDLL program layout</td>
+                    <td><code>romedll\</code> (<code>Binaries</code>, <code>Users</code>, <code>Text</code>, <code>Session</code>)</td>
+                    <td>Required. RomeInit is told <code>/DirRoot=</code> this folder.</td>
+                </tr>
+                <tr>
+                    <td><code>moses.gdb</code></td>
+                    <td><code>romedll\data\moses.gdb</code></td>
+                    <td>ARS example database. Profile <code>profiles\default</code> is the verified case (6% slope).</td>
+                </tr>
+                <tr>
+                    <td><code>BASE_CMZ02.gdb</code></td>
+                    <td><code>romedll\data\</code> and <code>golden\</code></td>
+                    <td>NRCS CMZ example used in older RITA GETVAR checks. Same default soil-loss number as moses on this host.</td>
+                </tr>
+                <tr>
+                    <td><code>Rusle2.exe</code></td>
+                    <td><code>install\NRCS\</code></td>
+                    <td>Windows GUI. Useful later. Not used for the verified run.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>installs\RUSLE2\golden</code> holds prior RITA CSV output. The verification below used a <em>new</em> copy of <code>moses.gdb</code>, so that golden tree stays untouched. <code>tools\test_all_models.ps1</code> still calls <code>rusle2_headless.ps1</code> against the standing romedll tree; the tutorial wrapper below uses a disposable folder.</p>
+
+        <h2 id="run">4. Novice path: run the default moses profile</h2>
+        <p>The example profile is <code>profiles\default</code> in <code>moses.gdb</code>. Default slope steepness is 6%. You will copy the database into a fresh folder and ask RomeCli for <code>SLOPE_SOIL_LOSS</code>. RomeCli’s working directory is the <code>romedll</code> layout, even when the <code>.gdb</code> lives somewhere else.</p>
+        <pre>$root = "C:\Grok\Models\installs\RUSLE2"
+$run  = "$root\tutorial_run_20260913"
+New-Item -ItemType Directory -Force -Path $run | Out-Null
+Copy-Item "$root\romedll\data\moses.gdb" "$run\moses.gdb"
+$cli = "$root\scripts\RomeCli\bin\Release\net48\RomeCli.exe"
+Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\Utility\RITA\Execute\RomeDLL.dll" (Split-Path $cli) -Force
+& $cli "$root\romedll" "$run\moses.gdb" "profiles\default"</pre>
+        <p>On this host you can instead rerun the lab wrapper, which copies the database, asserts the default number, sweeps seven steepness values, and rewrites the figure:</p>
+        <pre>python C:\Grok\Models\tools\run_rusle2_tutorial_verify.py</pre>
+        <div class="note">
+            <p>Copy the <code>.gdb</code> before you set attributes. RomeCli can write <code>SLOPE_STEEP</code> back into the database. The tutorial wrapper always starts from a fresh copy so <code>romedll\data\moses.gdb</code> stays at 6%.</p>
+        </div>
+        <figure>
+            <img src="images/rusle2.jpg" alt="Rusle2.exe GUI on the left; RomeCli calling RomeDLL to return a soil-loss number on the right">
+            <figcaption>The GUI is optional. The verified number comes from RomeDLL through RomeCli.</figcaption>
+        </figure>
+
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>RomeCli should print two lines and exit 0. On a single-segment profile, <code>SEG_SOIL_LOSS</code> matches <code>SLOPE_SOIL_LOSS</code>.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (13 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exit code</td>
+                    <td><code>RomeCli.exe</code></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Default soil loss</td>
+                    <td><code>SLOPE_SOIL_LOSS</code> at 6%</td>
+                    <td><strong>47.2971 t/ac/yr</strong></td>
+                </tr>
+                <tr>
+                    <td>Segment soil loss</td>
+                    <td><code>SEG_SOIL_LOSS</code></td>
+                    <td>47.2971 t/ac/yr (same profile)</td>
+                </tr>
+                <tr>
+                    <td>1% steepness</td>
+                    <td><code>SLOPE_STEEP=1</code></td>
+                    <td>7.0163 t/ac/yr</td>
+                </tr>
+                <tr>
+                    <td>15% steepness</td>
+                    <td><code>SLOPE_STEEP=15</code></td>
+                    <td>164.1922 t/ac/yr</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_tutorial_run</code> inside <code>tools\run_rusle2_tutorial_verify.py</code>. It requires default A equal to 47.2971 t/ac/yr within 0.001, SEG matching SLOPE, the 6% sweep matching that default, and soil loss increasing from 1% to 3% to 6% to 15%. That is the same numeric check as <code>rusle2_headless.ps1</code> / <code>test_all_models.ps1</code>, pointed at a new working copy rather than the golden RITA folder.</p>
+
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 13 Sep 2026 run held climate, soil, cover, and support fixed, then set <code>SLOPE_STEEP</code> to 1, 2, 3, 6, 9, 12, and 15 percent. Soil loss rose from 7.02 t/ac/yr at 1% to 164.19 t/ac/yr at 15%. The default profile (6%) is 47.30 t/ac/yr, marked on both panels.</p>
+        <figure>
+            <img src="images/rusle2-run-sediment.png" alt="Line and bar charts of RUSLE2 soil loss versus slope steepness from the 13 September 2026 run">
+            <figcaption>Output of <code>installs\RUSLE2\tutorial_run_20260913</code>. Left: A versus steepness, default 6% marked. Right: the same seven settings as bars.</figcaption>
+        </figure>
+        <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
+
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once RomeCli prints that number, you can set other profile attributes the same way (<code>SLOPE_HORIZ</code> for length, management pointers, and so on) or open the same database in the GUI. Building a new NRCS field office profile is a different lesson. This one stops at a verified headless soil-loss run.</p>
+        <div class="tutorial-nav">
+            <a href="daycent.html">Back: DayCent</a>
+            <a href="index.html">All tutorials</a>
+            <a href="swat.html">Next: SWAT</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
