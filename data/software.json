@@ -1,0 +1,128 @@
+[
+  {
+    "title": "PyMICE",
+    "authors": ["McGehee, R. P."],
+    "year": 2026,
+    "journal": "GitHub / PyPI",
+    "type": "Open source",
+    "topics": ["Missing data", "Statistics"],
+    "projects": ["PyMICE", "WEPPCLIFF"],
+    "url": "https://github.com/ryanpmcg/PyMICE",
+    "linkLabel": "GitHub",
+    "note": "Python MICE/FCS aligned with R mice. v0.1.0. Docs at ryanpmcg.github.io/PyMICE. PyPI package pymice-fcs."
+  },
+  {
+    "title": "WEPPCLIFF (Python)",
+    "authors": ["McGehee, R. P."],
+    "year": 2026,
+    "journal": "GitHub",
+    "type": "Open source",
+    "topics": ["Climate", "WEPP"],
+    "projects": ["WEPPCLIFF", "PyMICE"],
+    "url": "https://github.com/ryanpmcg/WEPPCLIFF-Python",
+    "linkLabel": "GitHub",
+    "note": "Python port of WEPPCLIFF climate processing (QC, gap fill, EI, breakpoint .cli)."
+  },
+  {
+    "title": "XWEPP",
+    "authors": ["McGehee, R. P.", "Ateeq, M.", "Zimmerly, E."],
+    "year": 2026,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["WEPP", "GPU", "Hydrology"],
+    "projects": ["XWEPP"],
+    "url": "",
+    "note": "Accelerated WEPP. Concurrent / GPU hillslope–watershed implementation. Not yet public."
+  },
+  {
+    "title": "IMAgE",
+    "authors": ["McGehee, R. P.", "Good, A.", "Jakoblich, T."],
+    "year": 2025,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["Remote sensing", "Agriculture"],
+    "projects": ["IMAgE"],
+    "url": "",
+    "note": "Inferred Management for Agriculture and the Environment. Library and matching database. Not yet public."
+  },
+  {
+    "title": "GridOPS",
+    "authors": ["McGehee, R. P."],
+    "year": 2025,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["Geospatial", "Computing"],
+    "projects": ["GridOPS"],
+    "url": "",
+    "note": "Grid Operations and Processing Software. Not yet public."
+  },
+  {
+    "title": "WEPP",
+    "authors": ["Flanagan, D. C.", "McGehee, R. P.", "USDA-ARS"],
+    "year": 2024,
+    "journal": "USDA-ARS",
+    "type": "Free-access",
+    "topics": ["WEPP", "Hydrology"],
+    "projects": ["WEPP"],
+    "url": "https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/",
+    "linkLabel": "Download",
+    "note": "Water Erosion Prediction Project. Lab contributions to the USDA-ARS distribution."
+  },
+  {
+    "title": "CaliTron",
+    "authors": ["McGehee, R. P."],
+    "year": 2024,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["Optimization", "Calibration"],
+    "projects": ["CaliTron"],
+    "url": "",
+    "note": "Concurrent model calibration tool. Closed-source beta."
+  },
+  {
+    "title": "MHAND",
+    "authors": ["McGehee, R. P.", "Li, L.", "Poston, E."],
+    "year": 2024,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["Hydrology"],
+    "projects": ["MHAND"],
+    "url": "",
+    "note": "Modified Height Above Nearest Drainage command-line tool. Proprietary."
+  },
+  {
+    "title": "APEXMP",
+    "authors": ["Pan, F.", "Feng, Q.", "McGehee, R. P.", "Engel, B. A.", "Flanagan, D. C.", "Chen, J."],
+    "year": 2021,
+    "journal": "GitHub",
+    "type": "Open source",
+    "topics": ["APEX", "Computing"],
+    "projects": ["APEX"],
+    "url": "https://github.com/ryanpmcg/APEXMP",
+    "linkLabel": "GitHub",
+    "note": "APEX multiprocessing wrapper for spatially distributed runs."
+  },
+  {
+    "title": "WEPPCLIFF",
+    "authors": ["McGehee, R. P.", "Flanagan, D. C.", "Srivastava, P."],
+    "year": 2020,
+    "journal": "Journal of Open Source Software",
+    "type": "Open source",
+    "topics": ["Climate", "WEPP"],
+    "projects": ["WEPPCLIFF"],
+    "url": "https://github.com/ryanpmcg/WEPPCLIFF",
+    "linkLabel": "GitHub",
+    "note": "R command-line climate file formatter for WEPP. JOSS 10.21105/joss.02029."
+  },
+  {
+    "title": "WEPPMP",
+    "authors": ["McGehee, R. P."],
+    "year": 2019,
+    "journal": "Unreleased",
+    "type": "Closed source",
+    "topics": ["WEPP", "Computing"],
+    "projects": ["WEPP"],
+    "url": "",
+    "note": "WEPP multiprocessing program. Proprietary; not public."
+  }
+]

@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S - Software</title>
+    <title>Software · MODELS Lab</title>
+    <meta name="description" content="Software produced by the MODELS Lab: PyMICE, WEPPCLIFF, APEXMP, XWEPP, and related tools.">
     <link rel="stylesheet" href="../styles/letter-page.css">
-    <!-- PostHog Analytics -->
+    <link rel="stylesheet" href="../styles/evaluation-page.css">
     <script src="/scripts/posthog.js"></script>
 </head>
-
 <body>
-
     <div id="menu-placeholder"></div>
 
     <section class="section-A s-section-A">
         <h1>Software</h1>
-        <p>Learn the principles of software engineering.</p>
-        <a href="#section-sdt" class="btn">SDT Crash Course</a>
+        <p>Tools we write for climate, hydrology, and scientific computing.</p>
+        <a href="#software" class="btn">Browse software</a>
     </section>
 
-    <section id="section-sdt" class="section-B">
-        <h2>SDT</h2>
-        <p>Software Developer Training (SDT) is<br>a self-paced 12-hour, 6-session course designed<br>to expedite
-            practical software development.</p>
-        <p>The SDT Crash Course is under active development. Lessons always load from this site.
-            Each vignette has Launch Python Console when the lab host is running; otherwise copy
-            the commands into a terminal on your own computer.
-        </p>
-        <div class="button-group">
-            <a href="../vignettes/viewer.html?topic=executing-programs" class="btn">Executing Programs</a>
-            <a href="../vignettes/viewer.html?topic=designing-programs" class="btn">Designing Programs</a>
-            <a href="../vignettes/viewer.html?topic=structuring-programs" class="btn">Structuring Programs</a>
-            <a href="../vignettes/viewer.html?topic=optimizing-programs" class="btn">Optimizing Programs</a>
-            <a href="../vignettes/viewer.html?topic=teaching-programs" class="btn">Teaching Programs</a>
-            <a href="../vignettes/viewer.html?topic=releasing-programs" class="btn">Releasing Programs</a>
+    <section id="software" class="catalog-viewport" data-src="/data/software.json" data-kind="product" aria-labelledby="software-heading">
+        <div class="catalog-inner">
+            <h2 id="software-heading">Products</h2>
+            <p class="catalog-lede">Open-source, free-access, and in-progress tools from the lab. Search, then filter by venue, topic, year, type, project, or author. Unreleased products stay listed without a download.</p>
+            <div class="catalog-controls">
+                <input type="search" data-filter="search" placeholder="Search title, author, product…" aria-label="Search software">
+                <select data-filter="journal" data-all="All venues" aria-label="Venue"></select>
+                <select data-filter="topic" aria-label="Topic"></select>
+                <select data-filter="year" aria-label="Year"></select>
+            </div>
+            <div class="catalog-controls-row">
+                <select data-filter="type" aria-label="Type"></select>
+                <select data-filter="project" aria-label="Project"></select>
+                <select data-filter="author" aria-label="Author"></select>
+                <button type="button" class="catalog-clear" data-action="clear">Clear</button>
+            </div>
+            <p class="catalog-count"></p>
+            <div class="catalog-list"></div>
         </div>
     </section>
 
     <script>
         fetch('../components/menu.html')
-            .then(response => response.text())
-            .then(data => {
+            .then(function (response) { return response.text(); })
+            .then(function (data) {
                 document.getElementById('menu-placeholder').innerHTML = data;
             })
-            .catch(error => console.error('Error loading menu:', error));
+            .catch(function (error) { console.error('Error loading menu:', error); });
     </script>
-
-
+    <script src="/scripts/catalog.js"></script>
 </body>
-
 </html>

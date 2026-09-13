@@ -52,7 +52,9 @@
       })
       .join("");
     const link = item.url
-      ? '<a href="' + item.url + '" rel="noopener noreferrer" target="_blank">Open source</a>'
+      ? '<a href="' + item.url + '" rel="noopener noreferrer" target="_blank">' +
+        (item.linkLabel || "Open") +
+        "</a>"
       : "";
     const note = item.note ? '<p class="catalog-note">' + item.note + "</p>" : "";
     el.innerHTML =
@@ -98,12 +100,15 @@
         items.sort(function (a, b) {
           return (b.year || 0) - (a.year || 0) || a.title.localeCompare(b.title);
         });
-        fillSelect(filters.journal, unique(items.map(function (i) { return i.journal; })), "All journals");
-        fillSelect(filters.topic, unique(items.flatMap(function (i) { return i.topics || []; })), "All topics");
-        fillSelect(filters.year, unique(items.map(function (i) { return String(i.year); })).reverse(), "All years");
-        fillSelect(filters.type, unique(items.map(function (i) { return i.type; })), "All types");
-        fillSelect(filters.project, unique(items.flatMap(function (i) { return i.projects || []; })), "All projects");
-        fillSelect(filters.author, unique(items.flatMap(function (i) { return i.authors || []; })), "All authors");
+        function allLabel(el, fallback) {
+          return (el && el.getAttribute("data-all")) || fallback;
+        }
+        fillSelect(filters.journal, unique(items.map(function (i) { return i.journal; })), allLabel(filters.journal, "All journals"));
+        fillSelect(filters.topic, unique(items.flatMap(function (i) { return i.topics || []; })), allLabel(filters.topic, "All topics"));
+        fillSelect(filters.year, unique(items.map(function (i) { return String(i.year); })).reverse(), allLabel(filters.year, "All years"));
+        fillSelect(filters.type, unique(items.map(function (i) { return i.type; })), allLabel(filters.type, "All types"));
+        fillSelect(filters.project, unique(items.flatMap(function (i) { return i.projects || []; })), allLabel(filters.project, "All projects"));
+        fillSelect(filters.author, unique(items.flatMap(function (i) { return i.authors || []; })), allLabel(filters.author, "All authors"));
 
         function render() {
           const q = (search.value || "").trim().toLowerCase();
@@ -133,6 +138,7 @@
         }
 
         [search, filters.journal, filters.topic, filters.year, filters.type, filters.project, filters.author].forEach(function (el) {
+          if (!el) return;
           el.addEventListener("input", render);
           el.addEventListener("change", render);
         });
