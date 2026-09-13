@@ -12,24 +12,153 @@
     <div id="menu-placeholder"></div>
     <main class="tutorial">
         <h1>WEPP</h1>
-        <p class="lede">Hillslope CLI with <code>wepphillslopeserv.exe</code>. The Windows GUI (<code>weppwin</code>) is installed but is not the verified path.</p>
+        <p class="lede">A first successful hillslope run of the Water Erosion Prediction Project on Windows. You download WEPP from USDA-ARS NSERL, copy a 30 m project into a fresh folder, call <code>wepphillslopeserv.exe</code> with <code>wepp.exe</code>, and read <code>SEDYIELD</code> in <code>weppout.txt</code>. The Windows GUI (<code>weppwin</code>) is installed; this path uses the hillslope service.</p>
+        <nav class="toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#what">What this model does</a></li>
+                <li><a href="#get">Get the software</a></li>
+                <li><a href="#install">The lab install</a></li>
+                <li><a href="#run">Novice path: run the 30 m hillslope</a></li>
+                <li><a href="#confirm">Confirm the run</a></li>
+                <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#next-steps">After the first success</a></li>
+            </ol>
+        </nav>
         <figure>
-            <img src="images/wepp.jpg" alt="WEPP hillslope schematic and CLI">
-            <figcaption>Stand in <code>cli_verify</code>, pass the project file to the hillslope service, read SEDYIELD.</figcaption>
+            <img src="images/wepp-steps.jpg" alt="Four steps: download WEPP, copy the hillslope project, run wepphillslopeserv, read SEDYIELD">
+            <figcaption>Same four steps as the other model tutorials. The service writes <code>runs\weppout.txt</code> as XML.</figcaption>
         </figure>
-        <h2>1. Get the software</h2>
-        <p>Download the USDA-ARS WEPP Windows installer from the NSERL downloads page. The lab’s pinned tree is <code>C:\Grok\Models\installs\WEPP</code> (installer in <code>archive\downloads\WEPP_extract</code>).</p>
+
+        <h2 id="what">1. What this model does</h2>
+        <p>WEPP is a continuous, process-based erosion model. On a hillslope it tracks infiltration, runoff, and sediment along one or more <strong>overland-flow elements</strong>. Climate, soil, slope geometry, and management are four separate files. The number you will read first is average annual sediment yield, <code>SEDYIELD</code>, in tons per acre.</p>
+        <figure>
+            <img src="images/wepp-routing.jpg" alt="30 m hillslope with rain, infiltration, runoff, and sediment to the toe">
+            <figcaption>This example is one 30 m, 3.16% element. A watershed run would add channels; that is a different lesson.</figcaption>
+        </figure>
+        <p>The lab’s pinned engine is <code>wepp.exe</code> version <strong>2012.800</strong>, launched by <code>wepphillslopeserv.exe</code>. NSERL now ships a 2024 Windows package as well; this verified path stays on 2012.800.</p>
+
+        <h2 id="get">2. Get the software</h2>
+        <p>Download WEPP for Windows from the National Soil Erosion Research Laboratory. The current installer is the September 2024 package (WEPP 2024 plus 2012.8). The 30 August 2012 package is still posted and matches this lab’s CLI. Install somewhere writable; NSERL warns against <code>C:\Program Files</code>.</p>
+        <figure>
+            <img src="images/wepp-download.jpg" alt="NSERL WEPP Downloads page with 2024 and 2012.8 Windows packages">
+            <figcaption>Live URL on the ARS WEPP downloads page. The verified CLI is <code>wepp.exe</code> 2012.800 plus <code>wepphillslopeserv.exe</code>.</figcaption>
+        </figure>
         <div class="tutorial-nav">
-            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/">Download WEPP</a>
+            <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/">WEPP downloads</a>
             <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-model-documentation/">Model documentation</a>
+            <a href="https://www.ars.usda.gov/research/software/download?softwareid=436">ARS software catalog</a>
         </div>
-        <h2>2. Stand in the input folder</h2>
-        <pre>cd C:\Grok\Models\installs\WEPP\cli_verify</pre>
-        <p>That folder must contain <code>wepprun.prj</code>, <code>wepp.exe</code>, and <code>wepphillslopeserv.exe</code>.</p>
-        <h2>3. Run</h2>
-        <pre>.\wepphillslopeserv.exe C:\Grok\Models\installs\WEPP\cli_verify wepprun.prj runs\weppout.txt wepp.exe 0 0</pre>
-        <h2>4. Confirm success</h2>
-        <p>Open <code>runs\weppout.txt</code> and find a positive <code>&lt;SEDYIELD&gt;</code> value (ton/ac). That is the verified hillslope sediment yield.</p>
+        <p>On this host the tree is already at <code>C:\Grok\Models\installs\WEPP</code> (installer under <code>archive\downloads\WEPP_extract</code>). If you are repeating the lab path, you can skip the download and use that folder.</p>
+
+        <h2 id="install">3. The lab install</h2>
+        <p>The GUI lives under <code>weppwin</code>. The verified CLI lives under <code>cli_verify</code>.</p>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>wepphillslopeserv.exe</code></td>
+                    <td><code>cli_verify\</code> (also <code>wepp\</code>)</td>
+                    <td>Hillslope service. It writes a <code>runs\</code> batch and calls <code>wepp.exe</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>wepp.exe</code></td>
+                    <td>same folder, and copied into <code>runs\</code></td>
+                    <td>WEPP 2012.800. The service launches it from <code>runs\</code>; copy the exe there or it will print “not recognized.”</td>
+                </tr>
+                <tr>
+                    <td><code>wepprun.prj</code></td>
+                    <td><code>cli_verify\</code></td>
+                    <td>Project: 30 m length, metric profile, 20 simulation years, pointing at <code>wepp.slp</code>, <code>wepp.cli</code>, <code>wepp.sol</code>, <code>wepp.rot</code>.</td>
+                </tr>
+                <tr>
+                    <td>Climate / soil / slope / management</td>
+                    <td><code>wepp.cli</code>, <code>wepp.sol</code>, <code>wepp.slp</code>, <code>wepp.rot</code></td>
+                    <td>Required. Uniform 3.16% silt-loam hillslope with a crop rotation.</td>
+                </tr>
+                <tr>
+                    <td><code>weppwin</code></td>
+                    <td><code>installs\WEPP\weppwin\</code></td>
+                    <td>Windows GUI. Useful later. Not used for the verified run.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>installs\WEPP\golden</code> points at a prior <code>cli_verify</code> tree. The verification below used a <em>new</em> working copy, so that golden tree stays untouched. <code>tools\test_all_models.ps1</code> still runs in place under <code>cli_verify</code>; the tutorial wrapper below uses a disposable folder.</p>
+
+        <h2 id="run">4. Novice path: run the 30 m hillslope</h2>
+        <p>You will copy the project files into a fresh folder, copy <code>wepp.exe</code> into <code>runs\</code>, and call the hillslope service with six arguments: working directory, project file, output XML, engine name, then two zeros.</p>
+        <pre>$src = "C:\Grok\Models\installs\WEPP\cli_verify"
+$run = "C:\Grok\Models\installs\WEPP\tutorial_run_20260913"
+New-Item -ItemType Directory -Force -Path "$run\runs","$run\output" | Out-Null
+foreach ($n in "wepprun.prj","wepp.cli","wepp.rot","wepp.slp","wepp.sol","wepp.exe","wepphillslopeserv.exe") {
+  Copy-Item "$src\$n" $run -Force
+}
+Copy-Item "$run\wepp.exe" "$run\runs\wepp.exe" -Force
+Set-Location $run
+.\wepphillslopeserv.exe $run wepprun.prj "$run\runs\weppout.txt" wepp.exe 0 0</pre>
+        <p>On this host you can instead rerun the lab wrapper, which copies those files, executes the service, asserts the numbers below, and rewrites the figure:</p>
+        <pre>python C:\Grok\Models\tools\run_wepp_tutorial_verify.py</pre>
+        <div class="note">
+            <p>If <code>wepp.exe</code> is missing from <code>runs\</code>, the service still writes <code>weppout.txt</code> with zeros and <code>WEPP_VERSION UNKNOWN</code>. Copy the engine into <code>runs\</code> before you call the service.</p>
+        </div>
+        <figure>
+            <img src="images/wepp.jpg" alt="Hillslope profile next to a command prompt running wepphillslopeserv and reading SEDYIELD">
+            <figcaption>Stand in the project folder. Pass the project file to the hillslope service, then open <code>runs\weppout.txt</code>.</figcaption>
+        </figure>
+
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>Open <code>runs\weppout.txt</code>. A successful 2012.800 run lists a version and a positive sediment yield.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (13 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>WEPP version</td>
+                    <td><code>&lt;WEPP_VERSION&gt;</code></td>
+                    <td>2012.800</td>
+                </tr>
+                <tr>
+                    <td>Sediment yield</td>
+                    <td><code>&lt;SEDYIELD&gt;</code></td>
+                    <td><strong>2.464227 t/ac</strong></td>
+                </tr>
+                <tr>
+                    <td>Soil loss</td>
+                    <td><code>&lt;LOSS&gt;</code></td>
+                    <td>2.462443</td>
+                </tr>
+                <tr>
+                    <td>Runoff</td>
+                    <td><code>&lt;RUNOFF&gt;</code></td>
+                    <td>4.985827</td>
+                </tr>
+                <tr>
+                    <td>Precipitation</td>
+                    <td><code>&lt;PRECIP&gt;</code></td>
+                    <td>40.091339</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_tutorial_run</code> inside <code>tools\run_wepp_tutorial_verify.py</code>. It requires SEDYIELD equal to 2.464227 t/ac within 0.001, plus matching PRECIP, LOSS, and RUNOFF. That is the same numeric check as <code>test_all_models.ps1</code>, pointed at a new working copy rather than the golden <code>cli_verify</code> tree.</p>
+
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 13 Sep 2026 run wrote nineteen yearly rows in <code>output\avgloss_yearly.txt</code> and <code>output\precip_yearly.txt</code>. Average annual sediment yield is 2.464 t/ac. Years 5 and 13 are the soil-loss peaks (~2.47). Year 6 is near zero.</p>
+        <figure>
+            <img src="images/wepp-run-sediment.png" alt="Bar charts of yearly precipitation and soil loss from the 13 September 2026 WEPP run">
+            <figcaption>Output of <code>installs\WEPP\tutorial_run_20260913</code>. Left: yearly precipitation. Right: yearly average soil loss, with the period SEDYIELD in the title.</figcaption>
+        </figure>
+        <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
+
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once <code>weppout.txt</code> has a version and a yield, you can open the yearly files under <code>output\</code> or change slope length in <code>wepp.slp</code> and <code>wepprun.prj</code>. A channel/watershed run is a different project file. This lesson stops at a verified hillslope CLI.</p>
+        <div class="tutorial-nav">
+            <a href="swat.html">Back: SWAT</a>
+            <a href="index.html">All tutorials</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
