@@ -12,18 +12,141 @@
     <div id="menu-placeholder"></div>
     <main class="tutorial">
         <h1>DayCent</h1>
-        <p class="lede">DayCent is on the lab Model page because we use it in research, but it is <strong>not</strong> in the pinned Windows tree at <code>C:\Grok\Models\installs</code>. There is no local golden CLI on this host.</p>
+        <p class="lede">A first honest path to DayCent on this Windows host. You open the Colorado State University Soil Carbon Solutions Center page, request the inventory version (rev491), and wait for the vendor package. On 13 Sep 2026 the pinned tree at <code>C:\Grok\Models\installs</code> had seven model folders; DayCent was not among them, so this tutorial stops at the download and a recorded status check.</p>
+        <nav class="toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#what">What this model does</a></li>
+                <li><a href="#get">Get the software</a></li>
+                <li><a href="#install">The lab install</a></li>
+                <li><a href="#run">Novice path: request access, then run the vendor example</a></li>
+                <li><a href="#confirm">Confirm the status check</a></li>
+                <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#next-steps">After the package arrives</a></li>
+            </ol>
+        </nav>
         <figure>
-            <img src="images/steps.jpg" alt="Four steps for running a model after you install it">
-            <figcaption>Install DayCent from Colorado State, then follow the vendor’s execute instructions. Do not invent a Grok\Models path.</figcaption>
+            <img src="images/daycent-steps.jpg" alt="Four steps: open the CSU DayCent page, acknowledge terms, unpack the vendor package, run the vendor example">
+            <figcaption>Same four-step shape as the other tutorials. Steps 3 and 4 wait on the CSU package; this host has not received it yet.</figcaption>
         </figure>
-        <h2>1. Get the software</h2>
-        <p>Download DayCent from the Soil Carbon Solutions Center at Colorado State University.</p>
+
+        <h2 id="what">1. What this model does</h2>
+        <p>DayCent is the daily time-step version of CENTURY. It moves carbon and nitrogen among the plant, the litter, and the soil, and it writes the gases that leave along the way. The four processes you will hear about first are plant growth, organic-matter formation and decay, soil water and temperature by layer, and nitrogen cycling and loss. The CSU page in 2026 advertises the same revision used in the USA EPA greenhouse-gas inventory: <strong>rev491</strong>.</p>
+        <figure>
+            <img src="images/daycent-routing.jpg" alt="Plant growth feeding metabolic and structural litter, then active, slow, and passive soil organic matter, with N2O and leaching leaving the soil">
+            <figcaption>Litter splits into metabolic and structural pools. Soil organic matter sits in active, slow, and passive pools. N<sub>2</sub>O, NO<sub>x</sub>, N<sub>2</sub>, and nitrate leaching leave the profile.</figcaption>
+        </figure>
+        <p>Typical inputs are daily maximum and minimum temperature, precipitation, surface soil texture, and a schedule of cover and management. Typical outputs are soil organic C and N, net primary production, N<sub>2</sub>O, and nitrate leaching. The Natural Resource Ecology Laboratory page at CSU describes that science; the software itself is issued through the Soil Carbon Solutions Center.</p>
+
+        <h2 id="get">2. Get the software</h2>
+        <p>Open the Soil Carbon Solutions Center DayCent page. Downloads go to researchers at approved institutions and to members of the Ecosystem Modeling and Data Consortium. If you already have access, acknowledge the terms and download. Otherwise fill out the terms form; CSU emails instructions. There is no anonymous public zip the way there is for AGNPS or WinAPEX.</p>
+        <figure>
+            <img src="images/daycent-download.jpg" alt="Soil Carbon Solutions Center DayCent page with Acknowledge terms plus Download and the EPA inventory rev491 note">
+            <figcaption>Live URL <code>https://www.soilcarbonsolutionscenter.com/daycent/</code>. This host received HTTP 200 from that page on 13 Sep 2026.</figcaption>
+        </figure>
+        <figure>
+            <img src="images/daycent-nrel.jpg" alt="NREL DayCent page listing inputs, outputs, and the daily CENTURY time step">
+            <figcaption>The NREL project page is the science card. Software access stays on the Soil Carbon Solutions Center site.</figcaption>
+        </figure>
         <div class="tutorial-nav">
-            <a href="https://soilcarbonsolutionscenter.colostate.edu/daycent/">DayCent at CSU</a>
+            <a href="https://www.soilcarbonsolutionscenter.com/daycent/">DayCent at CSU (SCSC)</a>
+            <a href="https://www.soilcarbonsolutionscenter.com/daycent-agreement">Terms of use</a>
+            <a href="https://www.soilcarbonsolutionscenter.com/consortium">Modeling consortium</a>
+            <a href="https://www.nrel.colostate.edu/projects/daycent/">NREL DayCent page</a>
         </div>
-        <h2>2–4. Execute</h2>
-        <p>Use the CSU package’s own driver and example. Until a DayCent install is pinned under <code>C:\Grok\Models\installs</code>, the lab does not claim a verified local command line.</p>
+        <p>The older <code>soilcarbonsolutionscenter.colostate.edu/daycent</code> address redirects here. Use the <code>.com</code> page.</p>
+
+        <h2 id="install">3. The lab install</h2>
+        <p>On this host the pinned tree is <code>C:\Grok\Models\installs</code>. DayCent has no folder there, no <code>PACKAGE.md</code>, no golden CLI, and no block in <code>tools\test_all_models.ps1</code>. <code>registry.json</code> does not list it.</p>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where we would pin it</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vendor executable + list/extract utility</td>
+                    <td><code>installs\DayCent\</code> (not created)</td>
+                    <td>The engine and the tool that turns its binary into a readable table. Names change by revision; use the CSU README.</td>
+                </tr>
+                <tr>
+                    <td>Site, schedule, weather, soils</td>
+                    <td>Beside the executable, as the vendor example lays them out</td>
+                    <td>Daily weather, texture, and the management schedule. Required once the package exists.</td>
+                </tr>
+                <tr>
+                    <td>Golden CLI</td>
+                    <td><code>installs\DayCent\golden</code></td>
+                    <td>Would hold a verified example after the first successful local run.</td>
+                </tr>
+                <tr>
+                    <td>WinAPEX-style GUI</td>
+                    <td>—</td>
+                    <td>DayCent is a file-driven CLI. There is no lab GUI path to skip.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>RHEM and SWAT+ also live under <code>installs\</code>; they are outside this tutorial queue. Inventing a <code>Grok\Models\installs\DayCent</code> command would point at a folder that is not there.</p>
+
+        <h2 id="run">4. Novice path: request access, then run the vendor example</h2>
+        <p>Until CSU sends the tree, the work on this host is the status check. After the package is unpacked under <code>installs\DayCent</code>, stand in the vendor example folder, run the executable named in the README, and run the list/extract utility on the binary it writes. Public DayCent manuals describe that pair as the PC execute path; rev491 may use different file names, so copy them from the package rather than from this page.</p>
+        <pre>python C:\Grok\Models\tools\run_daycent_tutorial_verify.py</pre>
+        <p>That wrapper lists <code>installs\</code>, fetches the CSU page, asserts DayCent is still missing, and rewrites the figure. It does not call a DayCent executable.</p>
+        <div class="note">
+            <p>When the package does arrive, copy it into a <em>new</em> working folder before the first run, the same way the AnnAGNPS and APEX tutorials do. Leave any later golden junction untouched.</p>
+        </div>
+
+        <h2 id="confirm">5. Confirm the status check</h2>
+        <p>The 13 Sep 2026 run wrote a status folder and a figure. The test is named <code>test_not_installed</code>.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (13 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>installs\DayCent</code></td>
+                    <td><code>C:\Grok\Models\installs</code></td>
+                    <td><strong>absent</strong> (numeric 0)</td>
+                </tr>
+                <tr>
+                    <td>Queued models with a folder</td>
+                    <td>AnnAGNPS, APEX, RUSLE2, SWAT, WEPP</td>
+                    <td><strong>5 / 6</strong></td>
+                </tr>
+                <tr>
+                    <td>CSU DayCent page</td>
+                    <td><code>https://www.soilcarbonsolutionscenter.com/daycent/</code></td>
+                    <td>HTTP <strong>200</strong></td>
+                </tr>
+                <tr>
+                    <td>NREL DayCent page</td>
+                    <td><code>https://www.nrel.colostate.edu/projects/daycent/</code></td>
+                    <td>HTTP 200</td>
+                </tr>
+                <tr>
+                    <td><code>registry.json</code> / <code>test_all_models.ps1</code></td>
+                    <td>lab tools</td>
+                    <td>DayCent not listed</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_not_installed</code> inside <code>tools\run_daycent_tutorial_verify.py</code>. It requires DayCent absent, the other five queued models present, no DayCent key in the registry, no DayCent block in <code>test_all_models.ps1</code>, and HTTP 200 (or a redirect) from the CSU page. That is a real assertion on this host’s tree. It is not a soil-carbon number, because no engine ran.</p>
+
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 13 Sep 2026 status run counted six names in the tutorial queue. Five have folders. DayCent does not. Extra folders on disk, outside this queue, are RHEM and SWAT+.</p>
+        <figure>
+            <img src="images/daycent-run-status.png" alt="Bar chart of tutorial-queue models; DayCent is the only missing install">
+            <figcaption>Output of <code>docs\tutorials\daycent_status_20260913</code>. Blue bars are present installs. DayCent is the empty row.</figcaption>
+        </figure>
+        <p>If you rerun the wrapper after someone pins DayCent, this test is supposed to fail. That failure is the signal to replace this tutorial with a real CLI example.</p>
+
+        <h2 id="next-steps">7. After the package arrives</h2>
+        <p>Pin the CSU tree under <code>installs\DayCent</code>, add a <code>PACKAGE.md</code>, keep a golden copy of the vendor example, and run that example from a fresh folder. Then rewrite this page with the executable name, the schedule file, and a plot of soil organic carbon or N<sub>2</sub>O from that run. Until then, start at the Soil Carbon Solutions Center.</p>
+        <div class="tutorial-nav">
+            <a href="apex.html">Back: APEX</a>
+            <a href="index.html">All tutorials</a>
+            <a href="rusle2.html">Next: RUSLE2</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
