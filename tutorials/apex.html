@@ -12,24 +12,168 @@
     <div id="menu-placeholder"></div>
     <main class="tutorial">
         <h1>APEX</h1>
-        <p class="lede">Command-line <code>apex1501.exe</code> from the WinAPEX program folder. Do not start with the WinAPEX GUI for the verified run.</p>
+        <p class="lede">A first successful run of the Agricultural Policy/Environmental eXtender on Windows. You download APEX1501 from Texas A&amp;M AgriLife, copy the lab’s program-folder inputs into a fresh directory, run <code>apex1501.exe</code>, and read the annual watershed sediment file. The WinAPEX GUI is installed; this path uses the command-line engine.</p>
+        <nav class="toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#what">What this model does</a></li>
+                <li><a href="#get">Get the software</a></li>
+                <li><a href="#install">The lab install</a></li>
+                <li><a href="#run">Novice path: run the west-Illinois hillslope</a></li>
+                <li><a href="#confirm">Confirm the run</a></li>
+                <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#next-steps">After the first success</a></li>
+            </ol>
+        </nav>
         <figure>
-            <img src="images/apex.jpg" alt="APEX program folder with APEXRUN.DAT and apex1501.exe">
-            <figcaption>APEX reads APEXRUN.DAT and related .DAT files from the current directory.</figcaption>
+            <img src="images/apex-steps.jpg" alt="Four steps: download WinAPEX, copy apexprog inputs, run apex1501.exe, read Winapex.AWS">
+            <figcaption>Same four steps as the other model tutorials. The engine reads <code>APEXRUN.DAT</code> from the current directory.</figcaption>
         </figure>
-        <h2>1. Get the software</h2>
-        <p>Download WinAPEX / APEX from Texas A&amp;M AgriLife EPIC/APEX. Lab install: <code>C:\Grok\Models\installs\APEX</code> (installer <code>archive\downloads\winapex_setup.exe</code>).</p>
+
+        <h2 id="what">1. What this model does</h2>
+        <p>APEX extends the field-scale EPIC model to a farm or small watershed. The landscape is cut into <strong>subareas</strong>. Each subarea has its own soil, slope, weather, and operations file. Water, sediment, nutrients, and pesticides move from those fields into <strong>channels</strong> and then to an <strong>outlet</strong>. The daily timestep also grows crops, applies fertilizer, and can run several erosion equations at once (USLE, MUSLE family, RUSLE, RUSLE2). You will open the annual watershed table first.</p>
+        <figure>
+            <img src="images/apex-routing.jpg" alt="Three APEX subareas draining through channels to a watershed outlet">
+            <figcaption>The lab example uses a single 0.09 ha subarea. APEX can chain many subareas; the routing picture is the same.</figcaption>
+        </figure>
+        <p>The lab’s pinned engine is <code>apex1501.exe</code> (<strong>APEX1501</strong>) from the WinAPEX 1501 program folder. For this example the driving erosion equation is <strong>MUST</strong> (theoretical MUSLE).</p>
+
+        <h2 id="get">2. Get the software</h2>
+        <p>Download APEX from the Texas A&amp;M AgriLife EPIC/APEX software page. The Windows pieces you want are the APEX1501 executable and WinAPEX for APEX v.1501 (October 2016). Blackland Research and Extension Center in Temple, Texas, maintains the site. APEX-CUTE and QAPEX are later editors; you do not need them to finish this tutorial.</p>
+        <figure>
+            <img src="images/apex-download.jpg" alt="Texas A and M AgriLife EPIC/APEX software page with APEX1501 and WinAPEX downloads">
+            <figcaption>Use the Windows APEX1501 executable. The verified path is <code>apex1501.exe</code> in the program folder.</figcaption>
+        </figure>
         <div class="tutorial-nav">
-            <a href="https://epicapex.tamu.edu/">Download APEX</a>
+            <a href="https://epicapex.tamu.edu/software/">APEX software download</a>
+            <a href="https://epicapex.tamu.edu/software/winapex/">WinAPEX 1501</a>
             <a href="https://epicapex.tamu.edu/manuals-and-publications/">Manuals</a>
         </div>
-        <h2>2. Stand in the input folder</h2>
-        <pre>cd C:\Grok\Models\installs\APEX\WinApex\apexprog</pre>
-        <p>Confirm <code>APEXRUN.DAT</code>, <code>APEXCONT.DAT</code>, and <code>apex1501.exe</code> are in that folder.</p>
-        <h2>3. Run</h2>
-        <pre>.\apex1501.exe</pre>
-        <h2>4. Confirm success</h2>
-        <p>Exit code 0 and a large <code>Winapex.OUT</code> (about 1 MB or more for the 40-year example). Search the OUT file for the sediment summary line beginning with <code>YS</code>.</p>
+        <p>On this host the extracted tree is already at <code>C:\Grok\Models\installs\APEX</code> (installer <code>archive\downloads\winapex_setup.exe</code>). If you are repeating the lab path, you can skip the download and use that folder.</p>
+
+        <h2 id="install">3. The lab install</h2>
+        <p>WinAPEX drops a GUI and a program folder. Only the program folder is required here.</p>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>apex1501.exe</code></td>
+                    <td><code>WinApex\apexprog\</code></td>
+                    <td>The APEX1501 engine. Copy it into a working folder that already holds the <code>.DAT</code> files, then run it there.</td>
+                </tr>
+                <tr>
+                    <td>Run control</td>
+                    <td><code>APEXRUN.DAT</code>, <code>APEXCONT.DAT</code>, <code>APEXFILE.DAT</code></td>
+                    <td>Run name, number of years (20, starting 2001), and the map of soil, weather, crop, and print files.</td>
+                </tr>
+                <tr>
+                    <td>Site and subarea</td>
+                    <td><code>SITE.DAT</code> → <code>WINAPEX.SIT</code>; <code>SUBA.DAT</code> → <code>Winapex.sub</code></td>
+                    <td>west_il at 40.32 N, 91.33 W; 0.09 ha, 30 m slope length, 3% slope; soil 114; operations 2 (barley, dryland, no-till).</td>
+                </tr>
+                <tr>
+                    <td>Daily weather</td>
+                    <td><code>WDLST.DAT</code> plus <code>TX*.DLY</code></td>
+                    <td>Station list and daily files. The west-Illinois CLIGEN series is the one this example actually uses.</td>
+                </tr>
+                <tr>
+                    <td><code>WinAPEX.exe</code></td>
+                    <td><code>WinApex\</code></td>
+                    <td>The Windows GUI. Useful later. Not used for the verified run.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>installs\APEX\golden</code> holds a prior CLI tree. The verification below used a <em>new</em> working copy of the current <code>apexprog</code> inputs, so that golden tree stays untouched.</p>
+
+        <h2 id="run">4. Novice path: run the west-Illinois hillslope</h2>
+        <p>The example is a twenty-year continuous run (2001–2020) on a 30 m, 3% hillslope in west-central Illinois. Soil 114 is a fine sandy loam. Operations file 2 is barley, dryland, no-till. Mean precipitation in the output is 848.3 mm per year. You will copy the program-folder inputs into a fresh directory, drop the executable beside them, and run from that folder.</p>
+        <pre>$src = "C:\Grok\Models\installs\APEX\WinApex\apexprog"
+$run = "C:\Grok\Models\installs\APEX\tutorial_run_20260913"
+New-Item -ItemType Directory -Force -Path $run | Out-Null
+Get-ChildItem $src -File | Where-Object {
+  $_.Extension -notin ".OUT",".ASA",".ACY",".AWS",".SUS",".WSS",".STR",".SCX",".MDB",".SOT",".LOG"
+} | Copy-Item -Destination $run
+Set-Location $run
+.\apex1501.exe</pre>
+        <p>On this host you can instead rerun the lab wrapper, which copies those inputs, executes the engine, asserts the numbers below, and rewrites the figure:</p>
+        <pre>python C:\Grok\Models\tools\run_apex_tutorial_verify.py</pre>
+        <div class="note">
+            <p>Stand in the folder that contains <code>APEXRUN.DAT</code>. The engine does not take a project path on the command line. If you run it from a tools directory, it will not see the west-Illinois inputs.</p>
+        </div>
+        <figure>
+            <img src="images/apex.jpg" alt="APEX program folder with APEXCONT.DAT, APEXFILE.DAT, APEXRUN.DAT, and apex1501.exe writing Winapex.OUT">
+            <figcaption>Control files and the executable live together. Annual tables (<code>.AWS</code>, <code>.ASA</code>) are written beside <code>Winapex.OUT</code>.</figcaption>
+        </figure>
+
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>The process should exit 0 and write <code>Winapex.OUT</code>, <code>Winapex.AWS</code>, <code>Winapex.ASA</code>, and <code>Winapex.SUS</code> beside the executable. Open the annual watershed file first; each row is one year.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (13 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exit code</td>
+                    <td><code>apex1501.exe</code></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Years in <code>Winapex.AWS</code></td>
+                    <td><code>Winapex.AWS</code></td>
+                    <td>2001–2020 (20 rows)</td>
+                </tr>
+                <tr>
+                    <td>2001 sediment yield YS</td>
+                    <td><code>Winapex.AWS</code></td>
+                    <td><strong>0.39 t/ha</strong></td>
+                </tr>
+                <tr>
+                    <td>2001 water yield QTW</td>
+                    <td><code>Winapex.AWS</code></td>
+                    <td><strong>32.21 mm</strong></td>
+                </tr>
+                <tr>
+                    <td>2006 sediment yield YS</td>
+                    <td><code>Winapex.AWS</code></td>
+                    <td><strong>22.07 t/ha</strong> (wet year; 1,095 mm rain)</td>
+                </tr>
+                <tr>
+                    <td>Period-mean MUST</td>
+                    <td><code>Winapex.SUS</code> SA# 1</td>
+                    <td><strong>5.89 t/ha/yr</strong></td>
+                </tr>
+                <tr>
+                    <td>Period-mean MUSL</td>
+                    <td><code>Winapex.SUS</code> SA# 1</td>
+                    <td>6.73 t/ha/yr</td>
+                </tr>
+                <tr>
+                    <td>Mean precipitation / water yield</td>
+                    <td><code>Winapex.AWS</code></td>
+                    <td>848.3 mm/yr rain; 96.16 mm/yr QTW</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_tutorial_run</code> inside <code>tools\run_apex_tutorial_verify.py</code>. It requires twenty AWS years, 2001 YS equal to 0.39 t/ha within 0.05, 2001 QTW equal to 32.21 mm within 0.05, 2006 YS equal to 22.07 t/ha within 0.05, and a positive SUS MUSL and MUST. That is a numeric check on a new working copy rather than the golden tree. The older <code>tools\test_all_models.ps1</code> APEX block still runs in place under <code>apexprog</code>; use the wrapper above when you want a disposable folder.</p>
+
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 13 Sep 2026 run wrote twenty annual rows. 2006 is the sediment peak at 22.07 t/ha; several later dry years drop YS to zero. Period-mean MUST is 5.89 t/ha/yr, which matches mean AWS YS (5.90 t/ha/yr) because MUST is the driving equation. Mean precipitation is 848.3 mm/yr; mean water yield is 96.16 mm/yr.</p>
+        <figure>
+            <img src="images/apex-run-sediment.png" alt="Bar charts of annual precipitation, water yield, and sediment yield from the 13 September 2026 APEX run">
+            <figcaption>Output of <code>installs\APEX\tutorial_run_20260913</code>. Left: annual precipitation with water yield (QTW) overlaid. Right: annual sediment yield YS, with the 2006 peak labeled.</figcaption>
+        </figure>
+        <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
+
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once the engine has written those tables, you can open <code>Winapex.ACY</code> for barley yield and stress, or <code>PRINT.DAT</code> to change which variables are stored. Changing slope length or operations is an edit to <code>Winapex.sub</code> and <code>OPSC.DAT</code>; that is a different lesson. This one stops at a verified CLI run of APEX1501.</p>
+        <div class="tutorial-nav">
+            <a href="annagnps.html">Back: AnnAGNPS</a>
+            <a href="index.html">All tutorials</a>
+            <a href="daycent.html">Next: DayCent</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
