@@ -12,24 +12,139 @@
     <div id="menu-placeholder"></div>
     <main class="tutorial">
         <h1>AnnAGNPS</h1>
-        <p class="lede">CSV watershed run. Copy <code>AnnAGNPS.exe</code> into the CSV input folder and execute it there.</p>
+        <p class="lede">A first successful run of the Annualized Agricultural Non-Point Source model on Windows. You download the USDA-ARS AGNPS package, stand in a CSV watershed folder, run <code>AnnAGNPS.exe</code>, and read the average-annual sediment and water files. GIS is not required for this path.</p>
+        <nav class="toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#what">What this model does</a></li>
+                <li><a href="#get">Get the software</a></li>
+                <li><a href="#install">The lab install</a></li>
+                <li><a href="#run">Novice path: run the Ohio example</a></li>
+                <li><a href="#confirm">Confirm the run</a></li>
+                <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#next-steps">After the first success</a></li>
+            </ol>
+        </nav>
         <figure>
-            <img src="images/annagnps.jpg" alt="AnnAGNPS CSV inputs to sediment load outputs">
-            <figcaption>The executable looks for AnnAGNPS.csv in the current directory.</figcaption>
+            <img src="images/annagnps-steps.jpg" alt="Four steps: download AGNPS, stand in the CSV folder, run AnnAGNPS.exe, read the sediment CSV">
+            <figcaption>Same four steps as the other model tutorials. The engine reads <code>AnnAGNPS.csv</code> from the current directory.</figcaption>
         </figure>
-        <h2>1. Get the software</h2>
-        <p>Download the complete AGNPS package from USDA-ARS (current software id 524). The lab install is <code>C:\Grok\Models\installs\AnnAGNPS</code>.</p>
+
+        <h2 id="what">1. What this model does</h2>
+        <p>AnnAGNPS is a continuous, daily, watershed-scale pollutant loading model. Landscape <strong>cells</strong> generate runoff, sediment, nitrogen, phosphorus, and organic carbon. Those loads move into <strong>reaches</strong>, and the reaches connect to an <strong>outlet</strong>. Sheet and rill erosion on a cell follow RUSLE relationships. Gully and channel processes are separate modules. The time step is daily; the files you will open first are <em>average annual</em> summaries.</p>
+        <figure>
+            <img src="images/annagnps-routing.jpg" alt="Landscape cells draining through reaches to a watershed outlet">
+            <figcaption>You do not have to build this topology yourself for the first run. The Ohio training subset already has cells, reaches, climate, soils, and management.</figcaption>
+        </figure>
+        <p>The lab’s pinned engine is <code>AnnAGNPS.exe</code> version <strong>v6.00.a.024_2024.05.23</strong> (64-bit), from the complete AGNPS 6.0 package.</p>
+
+        <h2 id="get">2. Get the software</h2>
+        <p>Download the complete self-extracting AGNPS package from the USDA-ARS National Sedimentation Laboratory. That archive is the one that includes the pollutant-loading engine, TopAGNPS, the Input Editor, STEAD, weather tools, and the manuals. The ARS software catalog entry is software id 524.</p>
+        <figure>
+            <img src="images/annagnps-download.jpg" alt="USDA-ARS AGNPS Software Download page for AGNPS version 6.0">
+            <figcaption>Use the complete AGNPS v6.0 package, not a lone executable. Installation procedures and Version.pdf sit on the same page.</figcaption>
+        </figure>
         <div class="tutorial-nav">
-            <a href="https://www.ars.usda.gov/research/software/download/?softwareid=524&amp;modecode=60-60-05-05">Download AnnAGNPS</a>
-            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/agnps/agnps-software-download/">AGNPS documentation</a>
+            <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/agnps/agnps-software-download/">AGNPS software download</a>
+            <a href="https://www.ars.usda.gov/research/software/download/?softwareid=524&amp;modecode=60-60-05-05">ARS catalog (id 524)</a>
         </div>
-        <h2>2. Stand in the input folder</h2>
-        <pre>cd C:\Grok\Models\installs\AnnAGNPS\test_run\AGNPS_Watershed_Studies\OH_AGNPS_Example_Watershed\4_Editor_DataSets\CSV_Input_Files
-copy C:\Grok\Models\installs\AnnAGNPS\AGNPS\PLModel\Execute\AnnAGNPS.exe .</pre>
-        <h2>3. Run</h2>
-        <pre>.\AnnAGNPS.exe</pre>
-        <h2>4. Confirm success</h2>
-        <p>The console should print <strong>Successful execution</strong>. Then open <code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code> and find reach 101 Subtotal sediment load.</p>
+        <p>On this host the extracted tree is already at <code>C:\Grok\Models\installs\AnnAGNPS</code>. If you are repeating the lab path, you can skip the download and use that folder.</p>
+
+        <h2 id="install">3. The lab install</h2>
+        <p>The AGNPS tree has several programs. Only one of them is the model you run for this tutorial.</p>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>AnnAGNPS.exe</code></td>
+                    <td><code>AGNPS\PLModel\Execute\</code></td>
+                    <td>The pollutant-loading engine. Copy it into the CSV folder and run it there.</td>
+                </tr>
+                <tr>
+                    <td>CSV watershed inputs</td>
+                    <td><code>AnnAGNPS.csv</code>, <code>annagnps_master.csv</code>, plus <code>climate\</code>, <code>watershed\</code>, <code>general\</code>, <code>simulation\</code></td>
+                    <td>Required. The master file lists every CSV the engine will read.</td>
+                </tr>
+                <tr>
+                    <td>Ohio example</td>
+                    <td><code>test_run\AGNPS_Watershed_Studies\OH_AGNPS_Example_Watershed\</code></td>
+                    <td>The standing lab example (Grand Lake St. Marys / Chicago training subset). Copy from here; do not treat it as a scratch folder.</td>
+                </tr>
+                <tr>
+                    <td>TopAGNPS, Input Editor, STEAD, agGEM</td>
+                    <td><code>AGNPS\DataPrep\</code> and <code>AGNPS\OutputProcessor\</code></td>
+                    <td>Useful later. Not needed to finish this tutorial.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>installs\AnnAGNPS\golden</code> is a junction to <code>test_run</code>. The verification below used a <em>new</em> working copy, not that junction, so the golden tree stays untouched.</p>
+
+        <h2 id="run">4. Novice path: run the Ohio example</h2>
+        <p>The example is a five-year continuous run (2006–2010, two initialization years) for a small agricultural watershed near Celina, Ohio. Precipitation in the output header is 38.492 inches per year. You will copy the CSV inputs into a fresh folder, drop the executable beside them, and run from that folder.</p>
+        <pre>$src = "C:\Grok\Models\installs\AnnAGNPS\test_run\AGNPS_Watershed_Studies\OH_AGNPS_Example_Watershed\4_Editor_DataSets\CSV_Input_Files"
+$run = "C:\Grok\Models\installs\AnnAGNPS\tutorial_run_20260913"
+New-Item -ItemType Directory -Force -Path $run | Out-Null
+Copy-Item "$src\AnnAGNPS.csv","$src\annagnps_master.csv" $run
+foreach ($d in "climate","general","simulation","watershed") {
+  Copy-Item "$src\$d" "$run\$d" -Recurse -Force
+}
+Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\PLModel\Execute\AnnAGNPS.exe" $run
+Set-Location $run
+.\AnnAGNPS.exe</pre>
+        <p>On this host you can instead rerun the lab wrapper, which copies those inputs, executes the engine, asserts the numbers below, and rewrites the figure:</p>
+        <pre>python C:\Grok\Models\tools\run_annagnps_tutorial_verify.py</pre>
+        <div class="note">
+            <p>Stand in the folder that contains <code>AnnAGNPS.csv</code>. The engine does not take a project path on the command line. If you run it from <code>PLModel\Execute</code>, it will not see the Ohio inputs.</p>
+        </div>
+
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>The console should end with <strong>Successful execution and normal termination of AnnAGNPS.</strong> Then open the average-annual files written beside the executable.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (13 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Console</td>
+                    <td><code>run_stdout.txt</code></td>
+                    <td>Successful execution</td>
+                </tr>
+                <tr>
+                    <td>Cell 101 sediment subtotal</td>
+                    <td><code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code></td>
+                    <td><strong>2.2990 t/ac/yr</strong></td>
+                </tr>
+                <tr>
+                    <td>Outlet water load</td>
+                    <td><code>AnnAGNPS_AA_Water_load_(unit-area).csv</code></td>
+                    <td><strong>14.074 in/yr</strong></td>
+                </tr>
+                <tr>
+                    <td>Cell 101 nitrogen subtotal</td>
+                    <td><code>AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</code></td>
+                    <td>45.412 (unit-area file; not in the automated test)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_tutorial_run</code> inside <code>tools\run_annagnps_tutorial_verify.py</code>. It requires the console phrase, cell 101 sediment equal to 2.2990 t/ac/yr within 0.0005, and outlet water equal to 14.074 in/yr within 0.0005. That is the same numeric check as <code>tools\test_all_models.ps1</code> for AnnAGNPS, pointed at a new working copy rather than the golden junction.</p>
+
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 13 Sep 2026 run wrote 91 contributing cells. Gully load dominates several of the highest unit-area cells; sheet and rill are the rest of each bar. Cell 101, the test cell, is 2.299 t/ac/yr. Watershed precipitation is 38.492 in/yr; outlet water yield is 14.074 in/yr.</p>
+        <figure>
+            <img src="images/annagnps-run-sediment.png" alt="Bar chart of the twelve highest sediment cells and a histogram of cell water yield from the 13 September 2026 AnnAGNPS run">
+            <figcaption>Output of <code>installs\AnnAGNPS\tutorial_run_20260913</code>. Left: twelve highest unit-area sediment cells, sheet-and-rill versus gully. Right: water-yield histogram with the outlet value marked.</figcaption>
+        </figure>
+        <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
+
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once the engine has written those CSVs, you can open phosphorus and organic-carbon files the same way, or bring the average-annual tables into STEAD. Building a new watershed from a DEM is TopAGNPS plus the Input Editor; that is a different lesson. This one stops at a verified CLI run of the pollutant-loading model.</p>
+        <div class="tutorial-nav">
+            <a href="index.html">All tutorials</a>
+            <a href="apex.html">Next: APEX</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>

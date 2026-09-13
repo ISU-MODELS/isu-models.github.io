@@ -123,3 +123,56 @@ body {
 .grid-list a:hover {
     border-color: #0071e3;
 }
+
+.tutorial h2 {
+    scroll-margin-top: 88px;
+}
+
+.toc {
+    background: #f5f5f7;
+    border: 1px solid #e8e8ed;
+    border-radius: 12px;
+    padding: 16px 20px 8px;
+    margin: 8px 0 24px;
+}
+
+.toc h2 {
+    font-size: 15px;
+    margin: 0 0 8px;
+}
+
+.toc ol {
+    margin-bottom: 8px;
+}
+
+.note {
+    background: #f5f5f7;
+    border-left: 3px solid #0071e3;
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+    margin: 12px 0 20px;
+}
+
+.note p {
+    margin-bottom: 0;
+}
+
+.tutorial table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 20px;
+    font-size: 15px;
+}
+
+.tutorial th,
+.tutorial td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e8e8ed;
+    vertical-align: top;
+}
+
+.tutorial th {
+    color: #1d1d1f;
+    font-weight: 600;
+}
