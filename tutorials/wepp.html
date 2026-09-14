@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>WEPP</h1>
         <p class="lede">A first successful hillslope run of the Water Erosion Prediction Project on Windows. You download WEPP from USDA-ARS NSERL, copy a 30 m project into a fresh folder, call <code>wepphillslopeserv.exe</code> with <code>wepp.exe</code>, and read <code>SEDYIELD</code> in <code>weppout.txt</code>. The Windows GUI (<code>weppwin</code>) is installed; this path uses the hillslope service.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: run the 30 m hillslope</a></li>
-                <li><a href="#confirm">Confirm the run</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the first success</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>WEPP is a continuous, process-based erosion model. On a hillslope it tracks infiltration, runoff, and sediment along one or more <strong>overland-flow elements</strong>. Climate, soil, slope geometry, and management are four separate files. The number you will read first is average annual sediment yield, <code>SEDYIELD</code>, in tons per acre.</p>
         
         <p>The lab’s pinned engine is <code>wepp.exe</code> version <strong>2012.800</strong>, launched by <code>wepphillslopeserv.exe</code>. NSERL now ships a 2024 Windows package as well; this verified path stays on 2012.800.</p>
@@ -241,13 +236,7 @@ Set-Location $run
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

@@ -9,7 +9,17 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>How to run the models</h1>
         <p class="lede">Each tutorial is the lab’s verified Windows CLI path from <code>C:\Grok\Models</code>. Download the vendor package first; then stand in the input folder and run the executable.</p>
@@ -28,13 +38,7 @@
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

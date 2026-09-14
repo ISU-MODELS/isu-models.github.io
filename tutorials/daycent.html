@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>DayCent</h1>
         <p class="lede">A first honest path to DayCent on this Windows host. You open the Colorado State University Soil Carbon Solutions Center page, request the inventory version (rev491), and wait for the vendor package. On 13 Sep 2026 the pinned tree at <code>C:\Grok\Models\installs</code> had seven model folders; DayCent was not among them, so this tutorial stops at the download and a recorded status check.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: request access, then run the vendor example</a></li>
-                <li><a href="#confirm">Confirm the status check</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the package arrives</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>DayCent is the daily time-step version of CENTURY. It moves carbon and nitrogen among the plant, the litter, and the soil, and it writes the gases that leave along the way. The four processes you will hear about first are plant growth, organic-matter formation and decay, soil water and temperature by layer, and nitrogen cycling and loss. The CSU page in 2026 advertises the same revision used in the USA EPA greenhouse-gas inventory: <strong>rev491</strong>.</p>
         
         <p>Typical inputs are daily maximum and minimum temperature, precipitation, surface soil texture, and a schedule of cover and management. Typical outputs are soil organic C and N, net primary production, N<sub>2</sub>O, and nitrate leaching. The Natural Resource Ecology Laboratory page at CSU describes that science; the software itself is issued through the Soil Carbon Solutions Center.</p>
@@ -145,13 +140,7 @@
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

@@ -9,6 +9,151 @@ body {
     line-height: 1.6;
     color: #1d1d1f;
     background: #fff;
+    overflow-y: scroll;
+    margin: 0;
+}
+
+.back-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 24px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.back-nav-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 30px;
+}
+
+.back-btn:hover {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 88px auto 50px;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.vignette-toc {
+    flex: 0 0 280px;
+    position: sticky;
+    top: 96px;
+    height: calc(100vh - 120px);
+    overflow: auto;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.vignette-toc h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6e6e73;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.vignette-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vignette-toc li {
+    margin: 0 0 6px;
+}
+
+.vignette-toc a {
+    text-decoration: none;
+    color: #3a3a3c;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.35;
+    padding: 3px 0;
+}
+
+.vignette-toc a:hover,
+.vignette-toc a:focus-visible {
+    color: #000;
+    text-decoration: underline;
+}
+
+.vignette-toc li.h2 > a {
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.vignette-toc li.h2 > ul {
+    margin: 4px 0 10px 12px;
+}
+
+.vignette-toc li.h3 > a {
+    font-weight: 400;
+    font-size: 0.88rem;
+    color: #6e6e73;
+}
+
+.vignette-toc a.is-current {
+    font-weight: 600;
+    color: #000;
+}
+
+.main-layout .tutorial {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 48px;
+}
+
+@media (max-width: 800px) {
+    .main-layout {
+        flex-direction: column;
+        margin-top: 72px;
+        gap: 16px;
+    }
+
+    .vignette-toc {
+        flex: none;
+        position: relative;
+        top: 0;
+        height: auto;
+        max-height: 40vh;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding-right: 0;
+        padding-bottom: 12px;
+    }
 }
 
 .tutorial {

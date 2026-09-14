@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>RUSLE2</h1>
         <p class="lede">A first successful headless run of the Revised Universal Soil Loss Equation, Version 2, on Windows. You download the NRCS program and database from NSERL, copy <code>moses.gdb</code> into a fresh folder, call <code>RomeCli.exe</code>, and read <code>SLOPE_SOIL_LOSS</code>. <code>Rusle2.exe</code> is installed; this path uses the RomeDLL science engine.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: run the default moses profile</a></li>
-                <li><a href="#confirm">Confirm the run</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the first success</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>RUSLE2 estimates long-term average annual sheet and rill erosion for a hillslope <strong>profile</strong>. Climate, soil erodibility, slope length and steepness, cover-management, and support practices all enter the calculation. The number you will read first is soil loss <strong>A</strong> in tons per acre per year. On this host that value is the RomeDLL attribute <code>SLOPE_SOIL_LOSS</code>.</p>
         
         <p>The lab’s pinned engine is <code>RomeDLL.dll</code> called from <code>RomeCli.exe</code> (32-bit .NET). <code>Rusle2.exe</code> in <code>install\NRCS</code> is the Windows GUI and does not run unattended.</p>
@@ -173,13 +168,7 @@ Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\Utility\RITA\Execute\RomeDLL.d
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

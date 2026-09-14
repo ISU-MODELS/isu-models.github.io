@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>AnnAGNPS</h1>
         <p class="lede">A first successful run of the Annualized Agricultural Non-Point Source model on Windows. You download the USDA-ARS AGNPS package, stand in a CSV watershed folder, run <code>AnnAGNPS.exe</code>, and read the average-annual sediment and water files. GIS is not required for this path.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: run the Ohio example</a></li>
-                <li><a href="#confirm">Confirm the run</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the first success</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>AnnAGNPS is a continuous, daily, watershed-scale pollutant loading model. Landscape <strong>cells</strong> generate runoff, sediment, nitrogen, phosphorus, and organic carbon. Those loads move into <strong>reaches</strong>, and the reaches connect to an <strong>outlet</strong>. Sheet and rill erosion on a cell follow RUSLE relationships. Gully and channel processes are separate modules. The time step is daily; the files you will open first are <em>average annual</em> summaries.</p>
         
         <p>The lab’s pinned engine is <code>AnnAGNPS.exe</code> version <strong>v6.00.a.024_2024.05.23</strong> (64-bit), from the complete AGNPS 6.0 package.</p>
@@ -290,13 +285,7 @@ Set-Location $run
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

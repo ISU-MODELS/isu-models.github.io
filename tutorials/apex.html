@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>APEX</h1>
         <p class="lede">A first successful run of the Agricultural Policy/Environmental eXtender on Windows. You download APEX1501 from Texas A&amp;M AgriLife, copy the lab’s program-folder inputs into a fresh directory, run <code>apex1501.exe</code>, and read the annual watershed sediment file. The WinAPEX GUI is installed; this path uses the command-line engine.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: run the west-Illinois hillslope</a></li>
-                <li><a href="#confirm">Confirm the run</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the first success</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>APEX extends the field-scale EPIC model to a farm or small watershed. The landscape is cut into <strong>subareas</strong>. Each subarea has its own soil, slope, weather, and operations file. Water, sediment, nutrients, and pesticides move from those fields into <strong>channels</strong> and then to an <strong>outlet</strong>. The daily timestep also grows crops, applies fertilizer, and can run several erosion equations at once (USLE, MUSLE family, RUSLE, RUSLE2). You will open the annual watershed table first.</p>
         
         <p>The lab’s pinned engine is <code>apex1501.exe</code> (<strong>APEX1501</strong>) from the WinAPEX 1501 program folder. For this example the driving erosion equation is <strong>MUST</strong> (theoretical MUSLE).</p>
@@ -307,13 +302,7 @@ Set-Location $run
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>

@@ -9,26 +9,21 @@
     <script src="/scripts/posthog.js"></script>
 </head>
 <body>
-    <div id="menu-placeholder"></div>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
     <main class="tutorial">
         <h1>SWAT</h1>
         <p class="lede">A first successful run of classic SWAT2012, revision 695, on Windows. You download the Texas A&amp;M executable, copy the lab’s example TxtInOut folder, run <code>Rev_695_64rel.exe</code> from that folder, and read <code>FLOW_OUT</code> in <code>output.rch</code>. SWAT+ is installed elsewhere on this host; this path is the 2012 engine.</p>
-        <nav class="toc" aria-label="Contents">
-            <h2>Contents</h2>
-            <ol>
-                <li><a href="#what">What this model does</a></li>
-                <li><a href="#get">Get the software</a></li>
-                <li><a href="#install">The lab install</a></li>
-                <li><a href="#run">Novice path: run the seven-subbasin example</a></li>
-                <li><a href="#confirm">Confirm the run</a></li>
-                <li><a href="#figure">This verification’s figure</a></li>
-                <li><a href="#io">Model Input and Output</a></li>
-                <li><a href="#next-steps">After the first success</a></li>
-            </ol>
-        </nav>
-        
-
-        <h2 id="what">1. What this model does</h2>
+<h2 id="what">1. What this model does</h2>
         <p>SWAT is a continuous, daily, watershed-scale water and water-quality model. Land is grouped into <strong>HRUs</strong> (unique land use, soil, and slope). HRUs drain to <strong>subbasins</strong>. Subbasins send water, sediment, and nutrients into <strong>reaches</strong>, and the reaches connect to an <strong>outlet</strong>. You will open the reach file first.</p>
         
         <p>The lab’s pinned engine is <code>Rev_695_64rel.exe</code> (<strong>SWAT2012 Rev. 695</strong>, 64-bit, 12 Feb 2025). ArcSWAT, QSWAT, and SWAT Editor can build a new project; they are not required to finish this tutorial.</p>
@@ -323,13 +318,7 @@ Set-Location $run
 
         <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
     </main>
-    <script>
-        fetch('/components/menu.html')
-            .then(function (r) { return r.text(); })
-            .then(function (html) {
-                document.getElementById('menu-placeholder').innerHTML = html;
-            })
-            .catch(function () {});
-    </script>
+    </div>
+    <script src="tutorial-nav.js"></script>
 </body>
 </html>
