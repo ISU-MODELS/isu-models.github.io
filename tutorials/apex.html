@@ -151,145 +151,145 @@ Set-Location $run
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
         <h2 id="io">Model Input and Output</h2>
-        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <p>Each bubble is one file type. Solid bubbles are required (at least one must be present). Dashed bubbles are optional. Same-type files that only change location or ID are shown once, with how few and how many a run can hold.</p>
         <figure>
             <img src="images/apex-io.svg" alt="APEX input types on the left, apex1501.exe in the center, output types on the right">
             <figcaption>APEX keeps one DAT per role; daily weather is one .DLY file per station. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>apex1501.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>apex1501.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>apex1501.exe</code>.</p>
         <p>This is the APEX1501 engine. Start one copy in a folder that already holds APEXRUN.DAT and the tables APEXFILE.DAT names. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>APSUBLDM.exe</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>APSUBLDM.exe</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>APSUBLDM.exe</code>.</p>
         <p>This is a companion builder for subarea loads. The first-success path does not start it. At most one copy sits beside apex1501.exe. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Input files</h3>
         <h4><code>APEXRUN.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>APEXRUN.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>APEXRUN.DAT</code>.</p>
         <p>This names the run, how many years to simulate, and which weather and wind stations to use. One run file. APEX1501 reads it first. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>APEXCONT.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>APEXCONT.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>APEXCONT.DAT</code>.</p>
         <p>This is the control card: start year, number of years, and process switches including the erosion equation. One control file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>APEXDIM.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>APEXDIM.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>APEXDIM.DAT</code>.</p>
         <p>This sets array dimensions the engine was compiled to expect. One dimension file. Do not edit it on a first run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>APEXFILE.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>APEXFILE.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>APEXFILE.DAT</code>.</p>
         <p>This maps each table role (soils, crops, weather list) to one DAT file name. One map file for the whole run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>SITE.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>SITE.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>SITE.DAT</code>.</p>
         <p>This lists site files the run may use. Usually one row points at WINAPEX.SIT. Extra sites would be extra rows, not extra SITE.DAT files. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>SUBA.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>SUBA.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>SUBA.DAT</code>.</p>
         <p>This points at the subarea file. One pointer file. Many fields are rows inside Winapex.sub, not extra SUBA.DAT files. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>site file (.SIT)</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>Winapex.SIT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>Winapex.SIT</code>.</p>
         <p>This is a site record: location, elevation, and climate assignment. One file per site. Most tutorial runs use a single site. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>subarea file (.sub)</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>WINAPEX.SUB</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>WINAPEX.SUB</code>.</p>
         <p>This is the field map: area, slope, soil, and operations for each subarea. One file can hold many fields as rows. More files if you split projects.</p>
         <h4><code>WDLST.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>WDLST.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>WDLST.DAT</code>.</p>
         <p>This is the daily-weather station list. Each row names a .DLY file. One list file; the number of stations is the number of .DLY files.</p>
         <h4><code>*.DLY daily weather</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 109. Example: <code>TX0120.DLY</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 109. Example: <code>TX0120.DLY</code>.</p>
         <p>This is one daily weather station: rainfall and temperature by day. You need at least one. The library can hold as many stations as WDLST lists.</p>
         <h4><code>WPM1.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>WPM1.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>WPM1.DAT</code>.</p>
         <p>This lists monthly weather-parameter files. One list. The .WP1 files it names are the per-station monthly statistics. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.WP1 monthly weather</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>81.WP1</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>81.WP1</code>.</p>
         <p>This is monthly weather statistics for one station. Zero if unused. One file per station that needs monthly parameters. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>WIND.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>WIND.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>WIND.DAT</code>.</p>
         <p>This is the wind station list. One list file. APEXRUN.DAT selects which wind record the run uses. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.WND wind record</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>25.WND</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>25.WND</code>.</p>
         <p>This is a wind record for one station. Wind affects evapotranspiration and some erosion terms. One file per wind station. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>CROP.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>crop.dat</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>crop.dat</code>.</p>
         <p>This is the crop catalog. Every crop ID operations can plant is defined here. One catalog, many crops as rows. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>TILL.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>till.dat</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>till.dat</code>.</p>
         <p>This is the tillage catalog. Operations files look up mixing depth and residue effects here. One tillage table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>PEST.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>pest.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>pest.dat</code>.</p>
         <p>This is the pesticide catalog. One file. Even if nothing is applied, APEX still opens the table when APEXFILE names it. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>FERT.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>fert.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>fert.dat</code>.</p>
         <p>This is the fertilizer catalog: nutrient content of each product named in operations. One fertilizer table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>SOIL.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>SOIL.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>SOIL.DAT</code>.</p>
         <p>This is the soil catalog the subarea file indexes. Many soils are records inside this one file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>extra soil library DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>SOIL35K.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>SOIL35K.DAT</code>.</p>
         <p>This is a large extra soil library shipped with WinAPEX. Optional. At most one such extra catalog sits in the folder. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.sol soil</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 2. Example: <code>114.sol</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 2. Example: <code>114.sol</code>.</p>
         <p>This is one soil in compact .sol layout. Optional extras beside SOIL.DAT. One file per extra soil you keep in the folder. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>OPSC.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>OPSC.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>OPSC.DAT</code>.</p>
         <p>This is the operations-schedule catalog. One catalog file. Field calendars in .OPS files draw from this system. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.OPS operations</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 3. Example: <code>2.OPS</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 3. Example: <code>2.OPS</code>.</p>
         <p>This is one operations calendar: planting, tillage, harvest. Each unique rotation is its own .OPS file. Subareas point at the one they use. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>TR55.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>TR55.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>TR55.DAT</code>.</p>
         <p>This holds TR-55 style runoff parameters when that runoff option is on. One file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>PARMS.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>parms.dat</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>parms.dat</code>.</p>
         <p>This is coefficients that are not crop- or soil-specific. One parameter file. Leave it as shipped for the first run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>MLRN.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>MLRN.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>MLRN.DAT</code>.</p>
         <p>This is a short miscellaneous record file named in APEXFILE.DAT. One file, often tiny. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>PRINT.DAT</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>PRINT.DAT</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>PRINT.DAT</code>.</p>
         <p>This chooses which output tables APEX writes. One print file. Annual AWS numbers exist because this file asked for them. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>HERD.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>HERD.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>HERD.DAT</code>.</p>
         <p>This is livestock herd data. One file. A small file means little or no grazing in the example. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>PSOCOM.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>PSOCOM.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>PSOCOM.DAT</code>.</p>
         <p>This is a reserved communication file. It can be empty. One path, still named in APEXFILE.DAT. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>RFDTLST.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>RFDTLST.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>RFDTLST.DAT</code>.</p>
         <p>This lists optional rainfall-data files. One list. Daily rainfall for this run still comes from the selected .DLY station. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>RFDTCOM.DAT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>RFDTCOM.DAT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>RFDTCOM.DAT</code>.</p>
         <p>This is a rainfall-data communication stub. One tiny file. It is not the daily weather series. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>RAINDT.HLY</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>RAINDT.HLY</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>RAINDT.HLY</code>.</p>
         <p>This is hourly rainfall WinAPEX can store. Optional. The verified path uses daily .DLY climate, not this hourly file. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>Winapex.AWS</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.AWS</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.AWS</code>.</p>
         <p>This is the annual watershed table: precipitation, water yield, and sediment yield YS by year. One AWS file. The test reads YS here. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>Winapex.OUT</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.OUT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.OUT</code>.</p>
         <p>This is the large text listing of the whole run. One OUT file. Search it when a value is not in the short annual tables.</p>
         <h4><code>Winapex.ACY</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.ACY</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.ACY</code>.</p>
         <p>This is annual crop yield. One ACY file when print options request it. It is not the sediment check. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>Winapex.ASA</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.ASA</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.ASA</code>.</p>
         <p>This is annual subarea output, a yearly field summary. One ASA file. Watershed sediment for the tutorial is in AWS. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>Winapex.SUS</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.SUS</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.SUS</code>.</p>
         <p>This is a shorter summary than OUT. One SUS file. Confirm YS in AWS first. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>Winapex.WSS</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.WSS</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.WSS</code>.</p>
         <p>This is watershed summary output that complements AWS. One WSS file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>Winapex.SCX</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>Winapex.SCX</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>Winapex.SCX</code>.</p>
         <p>This is extra annual or scenario text beside AWS. One SCX file when print options include it. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.SOT soil output</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>00000001.SOT</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>00000001.SOT</code>.</p>
         <p>This is soil-output for one subarea. Zero if not printed. One .SOT file can appear per subarea APEX is asked to write. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>fort.* Fortran units</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 4. Example: <code>fort.108</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 4. Example: <code>fort.108</code>.</p>
         <p>These are internal Fortran unit files APEX opens during the run. Count grows with units the engine uses. Not annual sediment tables. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>run_stdout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
         <p>This is console text captured from apex1501.exe. One capture. APEX often prints little; success is the AWS file. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once the engine has written those tables, you can open <code>Winapex.ACY</code> for barley yield and stress, or <code>PRINT.DAT</code> to change which variables are stored. Changing slope length or operations is an edit to <code>Winapex.sub</code> and <code>OPSC.DAT</code>; that is a different lesson. This one stops at a verified CLI run of APEX1501.</p>

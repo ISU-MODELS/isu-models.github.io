@@ -104,31 +104,31 @@
             <figcaption>Output of <code>installs\RHEM\tutorial_run_20260914</code>. Three annual-average numbers from <code>rhem_tutorial.out</code>.</figcaption>
         </figure>
         <h2 id="io">Model Input and Output</h2>
-        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <p>Each bubble is one file type. Solid bubbles are required (at least one must be present). Dashed bubbles are optional. Same-type files that only change location or ID are shown once, with how few and how many a run can hold.</p>
         <figure>
             <img src="images/rhem-io.svg" alt="RHEM parameter and storm files on the left, rhem_v2.3.exe in the center, summary output on the right">
             <figcaption>RHEM batch mode is one .par, one .pre, one kin.fil, and one .out. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>rhem_v2.3.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>rhem_v2.3.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>rhem_v2.3.exe</code>.</p>
         <p>This is the local Fortran engine (CLIGEN version). One copy. Start it with -b kin.fil in the folder that holds the parameter and storm files.</p>
         <h3>Input files</h3>
         <h4><code>*.par hillslope parameters</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>scenario_input_cli_verify.par</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>scenario_input_cli_verify.par</code>.</p>
         <p>This is the hillslope parameter file: length, slope, erodibility, cover, and particle sizes. One .par file per scenario. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.pre storm list</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>storms_local.pre</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>storms_local.pre</code>.</p>
         <p>This is the storm list the local engine reads: one row per event after CSIP conversion. One .pre file per run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>kin.fil</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>kin.fil</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>kin.fil</code>.</p>
         <p>This is the batch control line: parameter file, storm file, output file, label, and flags. One kin.fil per batch. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>*.out annual summary</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>rhem_tutorial.out</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>rhem_tutorial.out</code>.</p>
         <p>This is the annual-average summary. One .out file. Avg-Soil-Loss is the number the tutorial checks. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>run_stdout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
         <p>This is console text captured from rhem_v2.3.exe. One capture. The science numbers live in the .out file. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once that block prints, you can lengthen the storm list, change <code>LEN</code> and <code>SL</code> in the <code>.par</code> file, or use the Web Tool for cover and soil parameter estimation. Building a new rangeland site from NRI data is a different lesson. This one stops at a verified local CLI run.</p>

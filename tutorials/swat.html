@@ -137,175 +137,175 @@ Set-Location $run
         <p>If you rerun the wrapper after deleting <code>output.rch</code> in that folder, SWAT runs again and this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
         <h2 id="io">Model Input and Output</h2>
-        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <p>Each bubble is one file type. Solid bubbles are required (at least one must be present). Dashed bubbles are optional. Same-type files that only change location or ID are shown once, with how few and how many a run can hold.</p>
         <figure>
             <img src="images/swat-io.svg" alt="SWAT input types on the left, Rev_695_64rel.exe in the center, output types on the right">
             <figcaption>SWAT uses one .hru/.mgt/.sol set per HRU and one .sub/.rte set per subbasin. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>Rev_695_64rel.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>Rev_695_64rel.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>Rev_695_64rel.exe</code>.</p>
         <p>This is the SWAT2012 revision 695 release engine. Start one copy in the TxtInOut folder. It reads file.cio and writes output.rch there. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>other SWAT*.exe</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 2. Example: <code>SWAT.exe</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 2. Example: <code>SWAT.exe</code>.</p>
         <p>Extra SWAT binaries can sit in the example folder, including debug builds. The verified path starts only Rev_695_64rel.exe. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Input files</h3>
         <h4><code>file.cio</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>file.cio</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>file.cio</code>.</p>
         <p>This is the master control file. It names weather files, databases, years, and fig.fig. One cio file per TxtInOut folder. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>fig.fig</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>fig.fig</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>fig.fig</code>.</p>
         <p>This is the watershed command file: the order of subbasins and routing so SWAT knows how land drains to the outlet. One fig file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>basins.bsn</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>basins.bsn</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>basins.bsn</code>.</p>
         <p>This is watershed-wide parameters such as runoff method and snow. One basin file for the whole project. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>basins.wwq</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>basins.wwq</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>basins.wwq</code>.</p>
         <p>This is watershed in-stream water-quality parameters not tied to a single reach file. At most one wwq file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.pcp precipitation</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>pcp1.pcp</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>pcp1.pcp</code>.</p>
         <p>This is measured daily precipitation. file.cio sets how many pcp files (NRGAGE). At least one. More files if you split gauges. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.tmp temperature</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>Tmp1.Tmp</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>Tmp1.Tmp</code>.</p>
         <p>This is measured daily maximum and minimum temperature. One or more tmp files, matching NTGAGE in file.cio. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.slr solar radiation</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>slr.slr</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>slr.slr</code>.</p>
         <p>This is daily solar radiation. Usually one file named in file.cio. Additional slr files only if you split stations. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.hmd humidity</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>hmd.hmd</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>hmd.hmd</code>.</p>
         <p>This is daily relative humidity. Usually one file. Evapotranspiration reads it. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.wnd wind</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>wnd.wnd</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>wnd.wnd</code>.</p>
         <p>This is daily wind speed. Usually one file named in file.cio. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.cst forecast</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>cst.cst</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>cst.cst</code>.</p>
         <p>This is forecast-climate input named in file.cio. Optional. One forecast file when that option is used. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>ATMO.ATM</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>ATMO.ATM</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>ATMO.ATM</code>.</p>
         <p>This is atmospheric deposition of nutrients. One deposition file when that option is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>plant.dat</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>plant.dat</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>plant.dat</code>.</p>
         <p>This is the plant-growth database. Every crop or cover ID in the .mgt files is defined here. One plant table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>till.dat</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>till.dat</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>till.dat</code>.</p>
         <p>This is the tillage database. Management operations look up mixing and residue here. One tillage table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>pest.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>pest.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>pest.dat</code>.</p>
         <p>This is the pesticide database. One file. Management files can apply products defined here. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>fert.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>fert.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>fert.dat</code>.</p>
         <p>This is the fertilizer database. Nutrient applications in .mgt files point at these products. One fertilizer table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>urban.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>urban.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>urban.dat</code>.</p>
         <p>This is urban land-use parameters. One urban table. Urban HRUs draw buildup and washoff from here. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>septwq.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>septwq.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>septwq.dat</code>.</p>
         <p>This is septic-system water-quality parameters used with the .sep HRU files. One septic-parameter file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>hru.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>hru.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>hru.dat</code>.</p>
         <p>This is an HRU index some interfaces write. Optional. Numbered .hru files remain the per-unit inputs. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>sub.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>sub.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>sub.dat</code>.</p>
         <p>This is a subbasin index some interfaces write. Optional. Numbered .sub files remain the subbasin inputs. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>rch.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>rch.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>rch.dat</code>.</p>
         <p>This is a reach index some interfaces write. Optional. Channel geometry still comes from numbered .rte files. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>rsv.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>rsv.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>rsv.dat</code>.</p>
         <p>This is reservoir input. One file. If the example has no reservoir, it can be a stub. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>lup.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>lup.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>lup.dat</code>.</p>
         <p>This is land-use update data. One file. If land use does not change during the run, SWAT may ignore the rows. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>watout.dat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>watout.dat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>watout.dat</code>.</p>
         <p>This names watershed outlet print options. One file. The outlet reach in this example is still reach 7 in output.rch. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.sub subbasin</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 7. Example: <code>000010000.sub</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 7. Example: <code>000010000.sub</code>.</p>
         <p>This is one subbasin: area, location, and which reach it feeds. One .sub file per subbasin. A watershed needs at least one. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.rte channel routing</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 7. Example: <code>000010000.rte</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 7. Example: <code>000010000.rte</code>.</p>
         <p>This is the main channel in a subbasin: length, slope, and banks. One .rte file per subbasin that routes flow. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.pnd pond</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 7. Example: <code>000010000.pnd</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 7. Example: <code>000010000.pnd</code>.</p>
         <p>This describes ponds or wetlands in a subbasin. One .pnd per subbasin. Unused ponds are zeros, not missing types. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.swq stream water quality</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 7. Example: <code>000010000.swq</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 7. Example: <code>000010000.swq</code>.</p>
         <p>This holds in-stream nutrient and algae parameters for a subbasin channel. One .swq per subbasin when water quality is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.wgn weather generator</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 7. Example: <code>000010000.wgn</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 7. Example: <code>000010000.wgn</code>.</p>
         <p>This holds monthly climate statistics for a subbasin. One .wgn per subbasin. Used to fill missing weather. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.wus water use</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 7. Example: <code>000010000.wus</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 7. Example: <code>000010000.wus</code>.</p>
         <p>This describes irrigation or withdrawals in a subbasin. One .wus per subbasin. Unused demand still leaves a small file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.hru HRU</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 31. Example: <code>000010001.hru</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 31. Example: <code>000010001.hru</code>.</p>
         <p>This is one hydrologic response unit: a unique mix of land use, soil, and slope. One .hru file per HRU. A run needs at least one.</p>
         <h4><code>*.mgt management</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 31. Example: <code>000010001.mgt</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 31. Example: <code>000010001.mgt</code>.</p>
         <p>This is the planting, tillage, and harvest calendar for one HRU. One .mgt file per HRU, matched to the .hru of the same ID. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.sol soil</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 31. Example: <code>000010001.sol</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 31. Example: <code>000010001.sol</code>.</p>
         <p>This is the soil profile for one HRU. One .sol file per HRU. Layer thickness and texture control infiltration and erosion. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.chm soil chemistry</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 31. Example: <code>000010001.chm</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 31. Example: <code>000010001.chm</code>.</p>
         <p>This holds nutrient and carbon starting values for one HRU. One .chm file per HRU when nutrient cycling is simulated. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.gw groundwater</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 31. Example: <code>000010001.gw</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 31. Example: <code>000010001.gw</code>.</p>
         <p>This sets shallow-aquifer properties for one HRU. One .gw file per HRU. It controls how water returns as baseflow. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.sdr tile drain</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 31. Example: <code>000010001.sdr</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 31. Example: <code>000010001.sdr</code>.</p>
         <p>This describes tile drainage for one HRU. One .sdr file per HRU. Unused drainage stays at defaults. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.sep septic</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 31. Example: <code>000010001.sep</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 31. Example: <code>000010001.sep</code>.</p>
         <p>This describes on-site septic wastewater for one HRU. One .sep file per HRU. Many rural units leave defaults. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>output.rch</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.rch</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.rch</code>.</p>
         <p>This is reach output. Each row is a reach and a time step. One rch file. FLOW_OUT and sediment at the outlet are what we check.</p>
         <h4><code>output.sub</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.sub</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.sub</code>.</p>
         <p>This is subbasin output: water and sediment generated on each subbasin. One sub file when that print is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output.hru</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.hru</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.hru</code>.</p>
         <p>This is HRU output: one land unit per row. One hru output file. Use it after output.rch to see which field produced the load. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output.std</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.std</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.std</code>.</p>
         <p>This is the standard summary listing, including water-balance lines. One std file. A good second check after output.rch. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output.sed</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.sed</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.sed</code>.</p>
         <p>This is extra sediment output. One sed file. Channel sediment for the tutorial is still in output.rch. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output.rsv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.rsv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.rsv</code>.</p>
         <p>This is reservoir output. One rsv file. Empty or header-only if no reservoir is simulated. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output.pes</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output.pes</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output.pes</code>.</p>
         <p>This is pesticide output. One pes file. Skip it unless management applied pesticides. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>input.std</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>input.std</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>input.std</code>.</p>
         <p>This is a listing of inputs SWAT echoes at start. One file. Use it to confirm file.cio and the databases opened. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>chan.deg</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>chan.deg</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>chan.deg</code>.</p>
         <p>This is channel-degradation output. One file. Extra geomorphology, not the first flow check. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>hyd.out</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>hyd.out</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>hyd.out</code>.</p>
         <p>This is extra hydrology output some builds write. One file. Confirm FLOW_OUT in output.rch first. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>fin.fin</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>fin.fin</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>fin.fin</code>.</p>
         <p>This is a finish flag SWAT writes at the end of a successful period. One file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>bmp-*.out</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 2. Example: <code>bmp-ri.out</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 2. Example: <code>bmp-ri.out</code>.</p>
         <p>These are best-management-practice outputs, one file per BMP report the build writes. Ignore them on a first hydrology check. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>septic.out</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>septic.out</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>septic.out</code>.</p>
         <p>This is septic-system output. One file. Use it only if septic loads matter. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>monsoon_plt.out</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>monsoon_plt.out</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>monsoon_plt.out</code>.</p>
         <p>This is a special-plot file some builds write. One file. Not required to confirm the outlet hydrograph. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>swat.qst</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>swat.qst</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>swat.qst</code>.</p>
         <p>This is a session file some interfaces leave behind. One file. It is not a science table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>run_stdout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
         <p>This is console text captured from Rev_695_64rel.exe. One capture. Success is output.rch with the expected years. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once <code>output.rch</code> is written, you can open <code>output.sub</code> and <code>output.hru</code> the same way, or bring the reach file into SWAT Check. Building a new watershed is ArcSWAT or QSWAT plus SWAT Editor; that is a different lesson. This one stops at a verified CLI run of SWAT2012 Rev. 695.</p>

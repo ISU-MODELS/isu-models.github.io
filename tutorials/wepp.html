@@ -137,94 +137,94 @@ Set-Location $run
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
         <h2 id="io">Model Input and Output</h2>
-        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <p>Each bubble is one file type. Solid bubbles are required (at least one must be present). Dashed bubbles are optional. Same-type files that only change location or ID are shown once, with how few and how many a run can hold.</p>
         <figure>
             <img src="images/wepp-io.svg" alt="WEPP input types on the left, wepphillslopeserv and wepp.exe in the center, output types on the right">
             <figcaption>WEPP names one climate, slope, soil, and management file in the project; OFE working copies repeat per element. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>wepphillslopeserv.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>wepphillslopeserv.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>wepphillslopeserv.exe</code>.</p>
         <p>This is the hillslope service. One copy. You give it the project folder, wepprun.prj, an output path, and wepp.exe. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>wepp.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>wepp.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>wepp.exe</code>.</p>
         <p>This is the WEPP 2012.800 engine. One science binary. The service launches it. A second copy is often staged under runs/. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Input files</h3>
         <h4><code>wepprun.prj</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>wepprun.prj</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>wepprun.prj</code>.</p>
         <p>This is the project file. It names slope, climate, soil, and management files, years, and output options. One project per hillslope run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.cli climate</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>wepp.cli</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>wepp.cli</code>.</p>
         <p>This is climate in WEPP breakpoint form. The project names at least one. Extra .cli files only if you point different segments at different climate.</p>
         <h4><code>*.slp slope</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>wepp.slp</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>wepp.slp</code>.</p>
         <p>This is the slope profile: length and steepness of each overland-flow element. One file can hold many elements. Extra files if segments use different profiles.</p>
         <h4><code>*.sol soil</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>wepp.sol</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>wepp.sol</code>.</p>
         <p>This is soil layers, texture, and erodibility. The project can name one file for the whole slope or a different file per element. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>*.rot / management</code></h4>
-        <p class="io-count">How many: 1 to infinite. This run: 1. Example: <code>wepp.rot</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: 1 to infinite. This run: 1. Example: <code>wepp.rot</code>.</p>
         <p>This is the management rotation: plant, tillage, and residue. One file can serve the slope, or each element can have its own. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>runs/weppout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>runs/weppout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>runs/weppout.txt</code>.</p>
         <p>This is the XML summary the service writes. One file. SEDYIELD, LOSS, RUNOFF, and PRECIP here are the numbers the test reads. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>runs/weppbat.bat</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>runs/weppbat.bat</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>runs/weppbat.bat</code>.</p>
         <p>This is a batch file the service writes to launch wepp.exe. One bat file. You do not edit it. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>runs/pN.* OFE working copies</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 6. Example: <code>runs/p0.cli</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 6. Example: <code>runs/p0.cli</code>.</p>
         <p>These are working copies the service stages per overland-flow element: climate, slope, soil, management, run, and error files. One set per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>runs/delete.me</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>runs/delete.me</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>runs/delete.me</code>.</p>
         <p>This is a placeholder the service leaves in the runs folder. One file. It is not a science table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/*yearly.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 3. Example: <code>output/avgloss_yearly.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 3. Example: <code>output/avgloss_yearly.txt</code>.</p>
         <p>These are yearly summary texts such as soil loss, sediment, and precipitation. One file per yearly product the project asked to auto-name. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/*plot*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 16. Example: <code>output/avgloss_plot_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 16. Example: <code>output/avgloss_plot_0.txt</code>.</p>
         <p>These are detailed plot series, one file per variable and overland-flow element. Another OFE adds another file of the same type. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/crop_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/crop_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/crop_0.txt</code>.</p>
         <p>This is crop output for one overland-flow element. One crop_N file per OFE when that print is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/soil_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/soil_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/soil_0.txt</code>.</p>
         <p>This is soil output for one overland-flow element. One soil_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/watr_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/watr_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/watr_0.txt</code>.</p>
         <p>This is water-balance output for one overland-flow element. One watr_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/wntr_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/wntr_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/wntr_0.txt</code>.</p>
         <p>This is winter-process output for one overland-flow element. One wntr_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/yld_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/yld_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/yld_0.txt</code>.</p>
         <p>This is yield output for one overland-flow element. One yld_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/pass_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/pass_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/pass_0.txt</code>.</p>
         <p>This is the hillslope pass file for one element, used when WEPP chains internal results. One pass_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/grph_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/grph_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/grph_0.txt</code>.</p>
         <p>This is graph-series output for one overland-flow element. One grph_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/evbe_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/evbe_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/evbe_0.txt</code>.</p>
         <p>This is event-by-event output for one overland-flow element. One evbe_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/finl_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/finl_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/finl_0.txt</code>.</p>
         <p>This is the final-summary file for one overland-flow element. One finl_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/ofe_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/ofe_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/ofe_0.txt</code>.</p>
         <p>This is element-level output for one overland-flow element. One ofe_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/loss_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/loss_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/loss_0.txt</code>.</p>
         <p>This is soil-loss detail for one overland-flow element. One loss_N file per OFE. Hillslope SEDYIELD is still in weppout.txt. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/warm_*.txt</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 1. Example: <code>output/warm_0.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 1. Example: <code>output/warm_0.txt</code>.</p>
         <p>This is warming or temperature-related output for one overland-flow element. One warm_N file per OFE. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>output/yields.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>output/yields.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>output/yields.txt</code>.</p>
         <p>This is a yield summary for the hillslope. One file when that output is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>run_stdout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
         <p>This is console text captured from the service. One capture. WEPP may print little; weppout.txt is the confirmation file. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once <code>weppout.txt</code> has a version and a yield, you can open the yearly files under <code>output\</code> or change slope length in <code>wepp.slp</code> and <code>wepprun.prj</code>. A channel/watershed run is a different project file. This lesson stops at a verified hillslope CLI.</p>

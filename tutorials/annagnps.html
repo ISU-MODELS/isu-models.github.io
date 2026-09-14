@@ -126,154 +126,154 @@ Set-Location $run
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
         <h2 id="io">Model Input and Output</h2>
-        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <p>Each bubble is one file type. Solid bubbles are required (at least one must be present). Dashed bubbles are optional. Same-type files that only change location or ID are shown once, with how few and how many a run can hold.</p>
         <figure>
             <img src="images/annagnps-io.svg" alt="AnnAGNPS input types on the left, executable in the center, output types on the right">
             <figcaption>AnnAGNPS uses one named table per data section; cells and reaches are rows, not extra files. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>AnnAGNPS.exe</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>AnnAGNPS.exe</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>AnnAGNPS.exe</code>.</p>
         <p>This is the pollutant-loading engine. Copy one copy into the watershed folder and start it there. It reads the control CSV, then every table the master file names.</p>
         <h3>Input files</h3>
         <h4><code>AnnAGNPS.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>AnnAGNPS.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>AnnAGNPS.csv</code>.</p>
         <p>This is the first file the engine looks for. It points at the master list, sets units and flags, and tells AnnAGNPS which tables to open before day one.</p>
         <h4><code>annagnps_master.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>annagnps_master.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>annagnps_master.csv</code>.</p>
         <p>This is the table of contents. Each row is one data section and the path to its CSV. One master file names every input table for the run.</p>
         <h4><code>climate_daily.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>climate/climate_daily.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>climate/climate_daily.csv</code>.</p>
         <p>This is the daily weather table for the watershed: rainfall and related climate values for each simulated day. AnnAGNPS uses one daily climate file per run.</p>
         <h4><code>climate_station.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>climate/climate_station.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>climate/climate_station.csv</code>.</p>
         <p>This names the climate station and its location. One station table belongs with the daily file so missing days and units are defined. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>soil data CSV</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/AnnAGNPS_Combined_Group_1_Soil_Data.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/AnnAGNPS_Combined_Group_1_Soil_Data.csv</code>.</p>
         <p>This is the soil map. Each soil ID used on a cell is described here. Many soils are rows in this one file, not separate files.</p>
         <h4><code>soil layers CSV</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/AnnAGNPS_Combined_Group_1_Soil_Layers_Data.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/AnnAGNPS_Combined_Group_1_Soil_Layers_Data.csv</code>.</p>
         <p>This is the layer-by-layer soil profile for each soil ID. Thickness and texture by depth sit in rows, still in a single table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>riparian buffer CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/AnnAGNPS_Riparian_Buffer_Data_Section_AgBuf.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/AnnAGNPS_Riparian_Buffer_Data_Section_AgBuf.csv</code>.</p>
         <p>This describes riparian buffers. If the watershed has none, the table can be empty, but the master file may still name one buffer table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>crop_growth.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/crop_growth.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/crop_growth.csv</code>.</p>
         <p>This is crop growth parameters: emergence, cover, and water use. One growth table serves every crop ID used in management. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>cropdata.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/cropdata.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/cropdata.csv</code>.</p>
         <p>This is the crop catalog. Each crop ID in the schedule looks up names and coefficients here. One catalog file per run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>fertapp.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/fertapp.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/fertapp.csv</code>.</p>
         <p>This is fertilizer applications by field and date. One table can be nearly empty when no fertilizer is applied, but the master may still list it.</p>
         <h4><code>fertref.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/fertref.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/fertref.csv</code>.</p>
         <p>This is the fertilizer reference list: nutrient content of each product named in the application table. One reference file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>hydgeom.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/hydgeom.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/hydgeom.csv</code>.</p>
         <p>This is hydraulic geometry for channels. One table tells how wide and deep reaches are so water and sediment can move downstream. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>manfield.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/manfield.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/manfield.csv</code>.</p>
         <p>This lists management fields, the land units that share a schedule. Cells point at these rows. One field table per run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>manoper.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/manoper.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/manoper.csv</code>.</p>
         <p>This is the operation catalog: tillage, planting, harvest. The schedule calls these operations by name from one catalog file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>mansched.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/mansched.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/mansched.csv</code>.</p>
         <p>This is the calendar of operations on each field. Dates and operation IDs live as rows in this one schedule file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>non_crop.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/non_crop.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/non_crop.csv</code>.</p>
         <p>This describes non-crop cover such as grass or forest. Crop rows stay in cropdata. One non-crop table is enough. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>rocurve.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>general/rocurve.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>general/rocurve.csv</code>.</p>
         <p>This is runoff curve numbers by cover and hydrologic condition. One curve-number table turns rainfall into runoff on every cell. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>curve number (editor format)</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/Runoff_Curve_Number_Data_Input_Editor_v5.5_Format.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/Runoff_Curve_Number_Data_Input_Editor_v5.5_Format.csv</code>.</p>
         <p>This is the same curve-number data in Input Editor v5.5 layout. The master may name it so the editor and the engine stay in sync.</p>
         <h4><code>strip_crop.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/strip_crop.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/strip_crop.csv</code>.</p>
         <p>This describes strip cropping. If the watershed has none, the file can be header-only. At most one strip-crop table is named. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>tiledat.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>general/tiledat.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>general/tiledat.csv</code>.</p>
         <p>This describes tile drains. A tiny file means little or no tile drainage. One tile table is the usual maximum. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>annaid.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>simulation/annaid.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>simulation/annaid.csv</code>.</p>
         <p>This holds identification records the other tables refer to. One ID file belongs in the simulation folder. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>globfac.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>simulation/globfac.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>simulation/globfac.csv</code>.</p>
         <p>This is global flags and factors for the whole run: units, process switches, and multipliers. One global-factor file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>outopts_aa.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>simulation/outopts_aa.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>simulation/outopts_aa.csv</code>.</p>
         <p>This turns average-annual output tables on or off. One options file decides which AA load CSVs are written. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>outopts_global.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>simulation/outopts_global.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>simulation/outopts_global.csv</code>.</p>
         <p>This is global output options for logs and summaries that are not tied to a single cell. One file. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>outopts_tbl.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>simulation/outopts_tbl.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>simulation/outopts_tbl.csv</code>.</p>
         <p>This controls table-style outputs such as gaging-station files. One options table is enough. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>sim_period.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>simulation/sim_period.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>simulation/sim_period.csv</code>.</p>
         <p>This is the start date, end date, and length of the simulation. One period file. Wrong dates here make a first run look empty. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>cell data CSV</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>watershed/AnnAGNPS_Cell_Data_Section.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>watershed/AnnAGNPS_Cell_Data_Section.csv</code>.</p>
         <p>This is the cell map: each landscape unit, area, soil, field, and the reach it drains to. Many cells are rows, not extra files. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>reach data CSV</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>watershed/AnnAGNPS_Reach_Data_Section.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>watershed/AnnAGNPS_Reach_Data_Section.csv</code>.</p>
         <p>This is the channel network: each reach and how it connects to the outlet. Many reaches are rows in this one table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>ephemeral gully CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>watershed/AnnAGNPS_Ephemeral_Gully_Data_Section.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>watershed/AnnAGNPS_Ephemeral_Gully_Data_Section.csv</code>.</p>
         <p>This describes ephemeral gullies. Gully locations are rows. One gully table, which may be unused. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>wetland CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>watershed/AnnAGNPS_Wetland_Data_Section.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>watershed/AnnAGNPS_Wetland_Data_Section.csv</code>.</p>
         <p>This describes wetlands in the network. One wetland table can be short or empty when none are simulated. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>watershed_data.csv</code></h4>
-        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>watershed/watershed_data.csv</code>.</p>
+        <p class="io-count"><span class="io-req">Required</span>. How many: exactly 1. This run: 1. Example: <code>watershed/watershed_data.csv</code>.</p>
         <p>This is watershed-level identification and area. One short header table is read with the cell and reach files. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>AnnAGNPS_AA.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA.csv</code>.</p>
         <p>This is the combined average-annual summary of water, sediment, and nutrients. One file after a successful run if that output is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA sediment load CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code>.</p>
         <p>This is the main sediment table. Each row is a cell or reach. One unit-area sediment file; the Subtotal line is what we check. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA sediment by source CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Sediment_load_by_source_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Sediment_load_by_source_(unit-area).csv</code>.</p>
         <p>This splits sediment by source, such as sheet and rill versus gully. One by-source table when that output option is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA water load CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Water_load_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Water_load_(unit-area).csv</code>.</p>
         <p>This is average-annual water yield by cell or reach. One water-load file. The outlet row is the watershed water yield. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA nitrogen load CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</code>.</p>
         <p>This is average-annual nitrogen leaving each cell or reach, per unit area. One nitrogen table when nutrient output is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA phosphorus load CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Phosphorus_load_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Phosphorus_load_(unit-area).csv</code>.</p>
         <p>This is average-annual phosphorus leaving each cell or reach, per unit area. One phosphorus table when that option is on. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AA organic carbon CSV</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Organic_Carbon_load_(unit-area).csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_AA_Organic_Carbon_load_(unit-area).csv</code>.</p>
         <p>This is average-annual organic carbon leaving each cell or reach. One carbon table, a companion to nitrogen and phosphorus. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>UA_RR outlet CSVs</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 18. Example: <code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 18. Example: <code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv</code>.</p>
         <p>These are outlet-focused unit-area tables, one file per constituent and fraction the output options request. The set can grow with more species or outlets. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AnnAGNPS.log</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.log</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.log</code>.</p>
         <p>This is the plain-language run log: start time, files opened, and whether the engine finished. One log file per run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AnnAGNPS.wrn</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.wrn</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.wrn</code>.</p>
         <p>This is the warning file. Values the engine accepted but flagged appear here. One warning file; a warning is not a failed run. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AnnAGNPS.nfm</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.nfm</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS.nfm</code>.</p>
         <p>This is a formatted notes file written while inputs are read. One notes file. It is not a load table. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AnnAGNPS_dbg.csv</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_dbg.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>AnnAGNPS_dbg.csv</code>.</p>
         <p>This is a debug dump of internal values. One debug CSV. Skip it unless someone asked you to trace a cell. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>AnnAGNPS_LOG_*.csv</code></h4>
-        <p class="io-count">How many: 0 to 4. This run: 4. Example: <code>AnnAGNPS_LOG_All.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 4. This run: 4. Example: <code>AnnAGNPS_LOG_All.csv</code>.</p>
         <p>These are machine-readable logs split by status, information, warning, and a combined file. At most this small set is written. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>gaging-station TBL CSVs</code></h4>
-        <p class="io-count">How many: 0 to infinite. This run: 2. Example: <code>AnnAGNPS_TBL_Gaging_Station_Data_Hyd.csv</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to infinite. This run: 2. Example: <code>AnnAGNPS_TBL_Gaging_Station_Data_Hyd.csv</code>.</p>
         <p>These are gaging-station tables when that output is on. One file per requested station product. Extra gauges add files of this same kind. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>run_stdout.txt</code></h4>
-        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p class="io-count"><span class="io-opt">Optional</span>. How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
         <p>This is console text we captured from AnnAGNPS.exe. One capture file. It should contain a successful-execution line. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once the engine has written those CSVs, you can open phosphorus and organic-carbon files the same way, or bring the average-annual tables into STEAD. Building a new watershed from a DEM is TopAGNPS plus the Input Editor; that is a different lesson. This one stops at a verified CLI run of the pollutant-loading model.</p>

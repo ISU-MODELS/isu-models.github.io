@@ -197,6 +197,16 @@ body {
     margin-bottom: 8px;
 }
 
+.io-req {
+    font-weight: 700;
+    color: #0b6e4f;
+}
+
+.io-opt {
+    font-weight: 700;
+    color: #6e6e73;
+}
+
 .lede,
 .meta {
     color: #6e6e73;
