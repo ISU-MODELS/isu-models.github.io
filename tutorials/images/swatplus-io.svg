@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1324" height="634" viewBox="0 0 1324 634">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0071e3"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b6e4f"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="662.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">SWAT+ file types (one example each)</text>
+  <rect x="16" y="56" width="460" height="564" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
+<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (18 types)</text>
+<text x="28" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">file.cio</text>
+<text x="28" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. file.cio</text>
+<text x="28" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">time.sim</text>
+<text x="28" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. time.sim</text>
+<text x="28" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">print.prt</text>
+<text x="28" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. print.prt</text>
+<text x="28" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">object.cnt</text>
+<text x="28" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. object.cnt</text>
+<text x="28" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">codes.bsn / parameters.bsn</text>
+<text x="28" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to 2; this run 2; e.g. codes.bsn</text>
+<text x="28" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.cli weather</text>
+<text x="28" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 2; e.g. weather-sta.cli</text>
+<text x="28" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.con connectivity</text>
+<text x="28" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 4; e.g. hru.con</text>
+<text x="28" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">hru-data.hru</text>
+<text x="28" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. hru-data.hru</text>
+<text x="28" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">rout_unit.*</text>
+<text x="28" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to 3; this run 4; e.g. rout_unit.rtu</text>
+<text x="28" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.cha channel</text>
+<text x="28" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 4; e.g. channel-lte.cha</text>
+<text x="28" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sol soils</text>
+<text x="28" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to 2; this run 2; e.g. soils.sol</text>
+<text x="28" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.hyd hydrology</text>
+<text x="28" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to 2; this run 2; e.g. hydrology.hyd</text>
+<text x="28" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.lum land use</text>
+<text x="28" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 4; e.g. landuse.lum</text>
+<text x="28" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">management.sch</text>
+<text x="28" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. management.sch</text>
+<text x="28" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.ops operations</text>
+<text x="28" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 6; e.g. harv.ops</text>
+<text x="28" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">parameter databases</text>
+<text x="28" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. plants.plt</text>
+<text x="28" y="546" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.ini initial conditions</text>
+<text x="28" y="558" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 12; e.g. plant.ini</text>
+<text x="28" y="574" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.swf weather/support</text>
+<text x="28" y="586" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 8; e.g. file_cio.swf</text>
+  <rect x="512" y="64" width="300" height="80" rx="12" fill="#1d1d1f"/>
+<text x="662.0" y="84" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
+<text x="662.0" y="104" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">SWAT+ IFO executable</text>
+<text x="662.0" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+  <rect x="848" y="56" width="460" height="172" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
+<text x="860" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (4 types)</text>
+<text x="860" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">success.fin</text>
+<text x="860" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. success.fin</text>
+<text x="860" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*_aa.txt average-annual reports</text>
+<text x="860" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 32; e.g. hru_ls_aa.txt</text>
+<text x="860" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*_yr.txt yearly reports</text>
+<text x="860" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 32; e.g. hru_ls_yr.txt</text>
+<text x="860" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">run_stdout.txt</text>
+<text x="860" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. run_stdout.txt</text>
+  <line x1="476" y1="104.0" x2="512" y2="104.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="812" y1="104.0" x2="848" y2="104.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
+</svg>

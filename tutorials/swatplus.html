@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAT+ tutorial · MODELS Lab</title>
+    <meta name="description" content="SWAT+ tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+    <main class="tutorial">
+        <h1>SWAT+</h1>
+        <p class="lede">A first successful headless run of SWAT+ revision 62 on Windows. You install the Texas A&amp;M SWAT+ package, copy an exported TxtInOut folder, start the IFO release executable from that folder, and read <code>hru_ls_aa.txt</code> after <code>success.fin</code> appears. SWAT+ Editor and QSWAT+ can build a project; they are not required to finish this tutorial.</p>
+        <h2 id="what">1. What this model does</h2>
+        <p>SWAT+ is the current, rewritten Soil and Water Assessment Tool. It is a continuous, daily, watershed-scale ecohydrological model. Land is represented as HRUs, routing units, channels, and aquifers with explicit connectivity files. Sediment on the landscape is still a MUSLE-family estimate. Texas A&amp;M steers new projects here. Classic SWAT2012 remains a separate engine on this lab’s Model page.</p>
+        <p>The lab’s pinned engine for this tutorial is <code>swatplus-62-ifo-win_amd64-Rel.exe</code> (modular Rev 2026.62). The example is the Robit demonstration watershed exported by SWAT+ Editor v4.0.0.</p>
+        <h2 id="get">2. Get the software</h2>
+        <p>Download the SWAT+ installer from Texas A&amp;M. That package includes QSWAT+, SWAT+ Editor, SWAT+ Toolbox, and the model executable. Input/output documentation lives on the SWAT+ GitBook. New projects should start with SWAT+, not SWAT2012.</p>
+        <div class="tutorial-nav">
+            <a href="https://swat.tamu.edu/software/plus/">Download SWAT+</a>
+            <a href="https://swatplus.gitbook.io/docs/">SWAT+ documentation</a>
+            <a href="https://swat.tamu.edu/docs/">SWAT docs index</a>
+        </div>
+        <p>On this host the tree is already at <code>C:\Grok\Models\installs\SWATplus</code> (installer in <code>archive\downloads\swatplus_installer.zip</code>). If you are repeating the lab path, you can skip the download and use that folder.</p>
+        <h2 id="install">3. The lab install</h2>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>swatplus-62-ifo-win_amd64-Rel.exe</code></td>
+                    <td><code>SWATPlusEditor\resources\app.asar.unpacked\static\swat_exe\</code></td>
+                    <td>Headless IFO engine. Start it in the TxtInOut folder.</td>
+                </tr>
+                <tr>
+                    <td>Robit TxtInOut</td>
+                    <td><code>robit_demo\Scenarios\Default\TxtInOut\</code></td>
+                    <td>Editor-exported inputs. <code>file.cio</code> names every table.</td>
+                </tr>
+                <tr>
+                    <td>SWAT+ Editor / QSWAT+</td>
+                    <td>installer tree</td>
+                    <td>Optional. Used to build or export a project, not to finish this run.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>tools\test_all_models.ps1</code> runs the IFO exe in the standing Robit folder. The tutorial wrapper copies inputs into a disposable folder first.</p>
+        <h2 id="run">4. Novice path: run the Robit export</h2>
+        <p>Copy the TxtInOut inputs (not the old output tables) into a fresh folder, copy the IFO executable beside <code>file.cio</code>, and start it there.</p>
+        <pre>python C:\Grok\Models\tools\run_swatplus_tutorial_verify.py</pre>
+        <p>The engine line is:</p>
+        <pre>.\swatplus-62-ifo-win_amd64-Rel.exe</pre>
+        <div class="note">
+            <p>Stand in the folder that contains <code>file.cio</code>. Do not start the Editor for this check. When the run finishes, <code>success.fin</code> should exist.</p>
+        </div>
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>Confirm <code>success.fin</code>, then open <code>hru_ls_aa.txt</code>. Each data row is one HRU. The sediment column is <code>sedyld</code> in tonnes per hectare.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (14 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Finished flag</td>
+                    <td><code>success.fin</code></td>
+                    <td>present</td>
+                </tr>
+                <tr>
+                    <td>HRU count</td>
+                    <td><code>hru_ls_aa.txt</code></td>
+                    <td>654 HRUs</td>
+                </tr>
+                <tr>
+                    <td>Highest sediment</td>
+                    <td><code>sedyld</code></td>
+                    <td><strong>hru542 = 18.232 t/ha</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is inside <code>tools\run_swatplus_tutorial_verify.py</code>. It requires <code>success.fin</code>, a parseable <code>hru_ls_aa.txt</code>, and non-negative <code>sedyld</code> on every HRU.</p>
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 14 Sep 2026 run wrote average-annual landscape sediment for 654 HRUs. The twelve highest <code>sedyld</code> values are plotted below. The peak is hru542 at 18.232 t/ha.</p>
+        <figure>
+            <img src="images/swatplus-run-sediment.png" alt="Horizontal bar chart of the twelve SWAT+ HRUs with the highest average-annual sediment yield from the 14 September 2026 run">
+            <figcaption>Output of <code>installs\SWATplus\tutorial_run_20260914</code>. Twelve highest HRU <code>sedyld</code> values from <code>hru_ls_aa.txt</code>.</figcaption>
+        </figure>
+        <h2 id="io">Model Input and Output</h2>
+        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <figure>
+            <img src="images/swatplus-io.svg" alt="SWAT+ input types on the left, IFO executable in the center, report tables on the right">
+            <figcaption>SWAT+ keeps many HRUs as rows in one hru-data.hru file; reports are one *_aa.txt per print product. Left: input types. Center: executable. Right: output types.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>SWAT+ IFO executable</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>swatplus-62-ifo-win_amd64-Rel.exe</code>.</p>
+        <p>This is the SWAT+ revision 62 IFO engine. One science binary in the TxtInOut folder. The Editor is optional and is not started here. Open the example file in the verification folder to see that layout on disk.</p>
+        <h3>Input files</h3>
+        <h4><code>file.cio</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>file.cio</code>.</p>
+        <p>This is the master control file. It names time, print, objects, climate, connectivity, HRUs, soils, and databases. One cio file. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>time.sim</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>time.sim</code>.</p>
+        <p>This is the simulation period: start date and number of years. One time file. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>print.prt</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>print.prt</code>.</p>
+        <p>This chooses which output tables SWAT+ writes. One print file. hru_ls_aa.txt exists because this file asked for it. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>object.cnt</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>object.cnt</code>.</p>
+        <p>This counts spatial objects: HRUs, routing units, channels, aquifers. One object-count file. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>codes.bsn / parameters.bsn</code></h4>
+        <p class="io-count">How many: 1 to 2. This run: 2. Example: <code>codes.bsn</code>.</p>
+        <p>These are basin codes and basin parameters for the whole watershed. One or two .bsn files. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.cli weather</code></h4>
+        <p class="io-count">How many: 1 to infinite. This run: 2. Example: <code>weather-sta.cli</code>.</p>
+        <p>These are weather-station and weather-generator files named in file.cio. At least one station file. Extra .cli files if you split climates. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.con connectivity</code></h4>
+        <p class="io-count">How many: 1 to infinite. This run: 4. Example: <code>hru.con</code>.</p>
+        <p>These are connectivity files: how HRUs, routing units, channels, and aquifers send water to one another. One .con file per object class in use. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>hru-data.hru</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>hru-data.hru</code>.</p>
+        <p>This is the HRU table. Many HRUs are rows in this one file, not separate numbered files like SWAT2012. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>rout_unit.*</code></h4>
+        <p class="io-count">How many: 1 to 3. This run: 4. Example: <code>rout_unit.rtu</code>.</p>
+        <p>These define routing units: definition, elements, and the .rtu table. A small set of files; many units are rows. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.cha channel</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 4. Example: <code>channel-lte.cha</code>.</p>
+        <p>These are channel files: initial conditions, nutrients, hydrology-sediment. One type per channel table named in file.cio. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.sol soils</code></h4>
+        <p class="io-count">How many: 1 to 2. This run: 2. Example: <code>soils.sol</code>.</p>
+        <p>These are soil tables. Many soils are rows. Usually soils.sol plus nutrients.sol. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.hyd hydrology</code></h4>
+        <p class="io-count">How many: 1 to 2. This run: 2. Example: <code>hydrology.hyd</code>.</p>
+        <p>These are hydrology and topography tables for HRUs and fields. One or two .hyd files. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.lum land use</code></h4>
+        <p class="io-count">How many: 1 to infinite. This run: 4. Example: <code>landuse.lum</code>.</p>
+        <p>These are land-use and management look-up tables. One file per lum table named in file.cio. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>management.sch</code></h4>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>management.sch</code>.</p>
+        <p>This is the management schedule. One schedule file. Operations calendars sit in the .ops files. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.ops operations</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 6. Example: <code>harv.ops</code>.</p>
+        <p>These are operation tables: harvest, graze, irrigate, chemical, fire, sweep. One file per operation type in use. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>parameter databases</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>plants.plt</code>.</p>
+        <p>This is the plant database. Fertilizer, tillage, pesticide, urban, septic, and snow tables are the same idea: one file per catalog. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.ini initial conditions</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 12. Example: <code>plant.ini</code>.</p>
+        <p>These are initial-condition files for plants, soil, water, salts, and related states. One file per initialized group. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.swf weather/support</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 8. Example: <code>file_cio.swf</code>.</p>
+        <p>These are SWAT+ weather or support files the Editor may export beside the named tables. Count grows with optional modules. Open the example file in the verification folder to see that layout on disk.</p>
+        <h3>Output files</h3>
+        <h4><code>success.fin</code></h4>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>success.fin</code>.</p>
+        <p>This is the finished flag. One file. If it is missing, the engine did not complete the period. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*_aa.txt average-annual reports</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 32. Example: <code>hru_ls_aa.txt</code>.</p>
+        <p>These are average-annual report tables, one file per print product. hru_ls_aa.txt is the landscape sediment table this tutorial reads. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*_yr.txt yearly reports</code></h4>
+        <p class="io-count">How many: 0 to infinite. This run: 32. Example: <code>hru_ls_yr.txt</code>.</p>
+        <p>These are yearly report tables, one file per print product. Same families as the average-annual set when yearly print is on. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p>This is console text captured from the IFO executable. One capture. Success is success.fin plus hru_ls_aa.txt. Open the example file in the verification folder to see that layout on disk.</p>
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once <code>success.fin</code> is there, you can open basin and channel average-annual tables the same way, or rebuild a watershed in QSWAT+. Classic SWAT2012 is a different executable and a different tutorial. This one stops at a verified IFO run of the Robit export.</p>
+        <div class="tutorial-nav">
+            <a href="index.html">All tutorials</a>
+            <a href="swat.html">SWAT 2012 tutorial</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    </div>
+    <script src="tutorial-nav.js"></script>
+</body>
+</html>

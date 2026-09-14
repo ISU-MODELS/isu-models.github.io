@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RHEM tutorial · MODELS Lab</title>
+    <meta name="description" content="RHEM tutorial from the MODELS Lab.">
+    <link rel="stylesheet" href="tutorial.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div class="back-nav">
+        <div class="back-nav-left">
+            <a href="index.html" class="back-btn">Tutorials Home</a>
+            <a href="https://modelslab.org/" class="back-btn">MODELS Lab</a>
+        </div>
+    </div>
+    <div class="main-layout">
+        <nav id="toc" class="vignette-toc" aria-label="Lesson contents">
+            <h3>Contents</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+    <main class="tutorial">
+        <h1>RHEM</h1>
+        <p class="lede">A first successful local run of the Rangeland Hydrology and Erosion Model on Windows. You obtain the ARS Tucson engine, convert a CLIGEN storm list to the local <code>.pre</code> format, write a one-line <code>kin.fil</code>, start <code>rhem_v2.3.exe -b kin.fil</code>, and read <code>Avg-Soil-Loss</code>. The RHEM Web Tool is the official public interface; this path is the same Fortran engine the web tool uses.</p>
+        <h2 id="what">1. What this model does</h2>
+        <p>RHEM is a process-based, event-scale hillslope model built for rangelands. One storm falls on one slope profile. The engine computes infiltration, runoff, interrill erosion, and concentrated-flow erosion, then reports soil loss and sediment yield for that profile. It is not a cropland watershed network model and it is not an average-annual USLE replacement unless you drive it with a long storm sequence.</p>
+        <p>The lab’s pinned engine is <code>rhem_v2.3.exe</code> (CLIGEN version). The public face of the model is the RHEM Web Tool at ARS Tucson (v2.5 in 2026). Hernandez et al. (2017) in Water Resources Research is the process paper for V2.3.</p>
+        <h2 id="get">2. Get the software</h2>
+        <p>Most users should start at the RHEM Web Tool. ARS lists that application on the software catalog; the web tool itself is not a desktop installer. This lab’s CLI binary is the Fortran engine that sits behind that site. Source for the CLIGEN engine is in the lab tree under <code>installs\RHEM\rhem_engine</code>.</p>
+        <div class="tutorial-nav">
+            <a href="https://apps.tucson.ars.ag.gov/rhem/">RHEM Web Tool</a>
+            <a href="https://www.ars.usda.gov/research/software/download/?softwareid=RHEM&amp;modecode=20-22-10-00">ARS software catalog</a>
+            <a href="https://apps.tucson.ars.ag.gov/rhem/about">About / documentation</a>
+            <a href="https://doi.org/10.1002/2017wr020651">Hernandez et al. 2017</a>
+        </div>
+        <p>On this host the tree is already at <code>C:\Grok\Models\installs\RHEM</code> (zip in <code>archive\downloads\RHEM.zip</code>, engine <code>sample\rhem_v2.3.exe</code>). If you are repeating the lab path, you can skip the download and use that folder.</p>
+        <h2 id="install">3. The lab install</h2>
+        <table>
+            <thead>
+                <tr><th>Piece</th><th>Where</th><th>First-run role</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>rhem_v2.3.exe</code></td>
+                    <td><code>sample\</code> (also copied into the run folder)</td>
+                    <td>Local CLI engine. Batch mode is <code>-b kin.fil</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>scenario_input_cli_verify.par</code></td>
+                    <td><code>api_verify\</code></td>
+                    <td>Hillslope parameters: length, slope, erodibility, cover.</td>
+                </tr>
+                <tr>
+                    <td><code>storm_input_cli_verify.pre</code></td>
+                    <td><code>api_verify\</code></td>
+                    <td>CSIP/CLIGEN storm list. Convert before the local exe will read it.</td>
+                </tr>
+                <tr>
+                    <td><code>csip_pre_to_local.py</code></td>
+                    <td><code>scripts\</code></td>
+                    <td>Converts the CSIP <code>.pre</code> to the local storm-list format.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><code>tools\test_all_models.ps1</code> calls <code>rhem_local_cli.ps1</code> against <code>cli_local</code>. The tutorial wrapper below uses a disposable folder so that standing output stays untouched.</p>
+        <h2 id="run">4. Novice path: run a 10-year storm subset</h2>
+        <p>Copy the engine and the <code>.par</code> file, convert the first ten years of storms, write <code>kin.fil</code>, then start the engine in batch mode.</p>
+        <pre>python C:\Grok\Models\tools\run_rhem_tutorial_verify.py</pre>
+        <p>That wrapper is the verified path. The engine line it runs is:</p>
+        <pre>.\rhem_v2.3.exe -b kin.fil</pre>
+        <div class="note">
+            <p>The local exe does not read the CSIP <code>.pre</code> as-is. Convert it first. <code>kin.fil</code> is one line: parameter file, storm file, output file, a label, then timestep and flags.</p>
+        </div>
+        <h2 id="confirm">5. Confirm the run</h2>
+        <p>Open <code>rhem_tutorial.out</code> and find the annual-average block.</p>
+        <table>
+            <thead>
+                <tr><th>Check</th><th>Where</th><th>This verification (14 Sep 2026)</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Average runoff</td>
+                    <td><code>Avg-Runoff(mm/year)</code></td>
+                    <td>171.54033 mm/yr</td>
+                </tr>
+                <tr>
+                    <td>Average soil loss</td>
+                    <td><code>Avg-Soil-Loss(ton/ha/year)</code></td>
+                    <td><strong>2.88282 t/ha/yr</strong></td>
+                </tr>
+                <tr>
+                    <td>Average sediment yield</td>
+                    <td><code>Avg-SY(ton/ha/year)</code></td>
+                    <td>2.81812 t/ha/yr</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The automated test is <code>test_tutorial_run</code> inside <code>tools\run_rhem_tutorial_verify.py</code>. It requires average soil loss equal to 2.88282 t/ha/yr within 0.001. That is the same number <code>test_all_models.ps1</code> reads from the standing 10-year <code>cli_local</code> output, pointed at a new folder.</p>
+        <h2 id="figure">6. This verification’s figure</h2>
+        <p>The 14 Sep 2026 run used the west-Illinois CLI verify storms, years 1–10, on a 30 m, 10% plane. Average runoff is 171.54 mm/yr. Average soil loss is 2.88 t/ha/yr. Average sediment yield is 2.82 t/ha/yr.</p>
+        <figure>
+            <img src="images/rhem-run-sediment.png" alt="Bar chart of RHEM average runoff, soil loss, and sediment yield from the 14 September 2026 run">
+            <figcaption>Output of <code>installs\RHEM\tutorial_run_20260914</code>. Three annual-average numbers from <code>rhem_tutorial.out</code>.</figcaption>
+        </figure>
+        <h2 id="io">Model Input and Output</h2>
+        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
+        <figure>
+            <img src="images/rhem-io.svg" alt="RHEM parameter and storm files on the left, rhem_v2.3.exe in the center, summary output on the right">
+            <figcaption>RHEM batch mode is one .par, one .pre, one kin.fil, and one .out. Left: input types. Center: executable. Right: output types.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>rhem_v2.3.exe</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>rhem_v2.3.exe</code>.</p>
+        <p>This is the local Fortran engine (CLIGEN version). One copy. Start it with -b kin.fil in the folder that holds the parameter and storm files.</p>
+        <h3>Input files</h3>
+        <h4><code>*.par hillslope parameters</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>scenario_input_cli_verify.par</code>.</p>
+        <p>This is the hillslope parameter file: length, slope, erodibility, cover, and particle sizes. One .par file per scenario. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>*.pre storm list</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>storms_local.pre</code>.</p>
+        <p>This is the storm list the local engine reads: one row per event after CSIP conversion. One .pre file per run. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>kin.fil</code></h4>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>kin.fil</code>.</p>
+        <p>This is the batch control line: parameter file, storm file, output file, label, and flags. One kin.fil per batch. Open the example file in the verification folder to see that layout on disk.</p>
+        <h3>Output files</h3>
+        <h4><code>*.out annual summary</code></h4>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>rhem_tutorial.out</code>.</p>
+        <p>This is the annual-average summary. One .out file. Avg-Soil-Loss is the number the tutorial checks. Open the example file in the verification folder to see that layout on disk.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p>This is console text captured from rhem_v2.3.exe. One capture. The science numbers live in the .out file. Open the example file in the verification folder to see that layout on disk.</p>
+        <h2 id="next-steps">7. After the first success</h2>
+        <p>Once that block prints, you can lengthen the storm list, change <code>LEN</code> and <code>SL</code> in the <code>.par</code> file, or use the Web Tool for cover and soil parameter estimation. Building a new rangeland site from NRI data is a different lesson. This one stops at a verified local CLI run.</p>
+        <div class="tutorial-nav">
+            <a href="index.html">All tutorials</a>
+            <a href="rusle2.html">Next: RUSLE2</a>
+            <a href="../pages/m-page.html">Model page</a>
+        </div>
+
+        <p class="meta">Lab install tree: <code>C:\Grok\Models</code>. Vendor manuals: Permanent Media/MODELS/Documentation.</p>
+    </main>
+    </div>
+    <script src="tutorial-nav.js"></script>
+</body>
+</html>
