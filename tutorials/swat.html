@@ -22,28 +22,20 @@
                 <li><a href="#run">Novice path: run the seven-subbasin example</a></li>
                 <li><a href="#confirm">Confirm the run</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the first success</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/swat-steps.jpg" alt="Four steps: download SWAT2012, copy the example folder, run Rev_695_64rel.exe, read output.rch">
-            <figcaption>Same four steps as the other model tutorials. The engine reads <code>file.cio</code> from the current directory.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>SWAT is a continuous, daily, watershed-scale water and water-quality model. Land is grouped into <strong>HRUs</strong> (unique land use, soil, and slope). HRUs drain to <strong>subbasins</strong>. Subbasins send water, sediment, and nutrients into <strong>reaches</strong>, and the reaches connect to an <strong>outlet</strong>. You will open the reach file first.</p>
-        <figure>
-            <img src="images/swat-routing.jpg" alt="HRUs draining to subbasins that route through reaches to a watershed outlet">
-            <figcaption>The lab example has seven subbasins. Reach 7 is the outlet (133.2 km²).</figcaption>
-        </figure>
+        
         <p>The lab’s pinned engine is <code>Rev_695_64rel.exe</code> (<strong>SWAT2012 Rev. 695</strong>, 64-bit, 12 Feb 2025). ArcSWAT, QSWAT, and SWAT Editor can build a new project; they are not required to finish this tutorial.</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Download SWAT2012 rev. 695 from Texas A&amp;M AgriLife. The software page also hosts ArcSWAT, QSWAT, and SWAT Editor. New projects are steered toward SWAT+; keep 2012 when you are repeating an existing TxtInOut tree, which is this lab’s case.</p>
-        <figure>
-            <img src="images/swat-download.jpg" alt="Texas A and M SWAT2012 executables page for revision 695">
-            <figcaption>Use the 64-bit release executable. The lab zip is <code>archive\downloads\SWAT.zip</code>.</figcaption>
-        </figure>
+        
         <div class="tutorial-nav">
             <a href="https://swat.tamu.edu/software/swat/">SWAT2012 executables</a>
             <a href="https://swat.tamu.edu/software/">All SWAT software</a>
@@ -103,10 +95,7 @@ Set-Location $run
         <div class="note">
             <p>Stand in the folder that contains <code>file.cio</code>. The engine does not take a project path on the command line. If you run it from a tools directory, it will not see the example watershed.</p>
         </div>
-        <figure>
-            <img src="images/swat.jpg" alt="example folder with file.cio feeding Rev_695_64rel.exe and writing output.rch">
-            <figcaption>Control file, executable, and reach output live together.</figcaption>
-        </figure>
+        
 
         <h2 id="confirm">5. Confirm the run</h2>
         <p>The console should end with <strong>Execution successfully completed</strong>. Then open <code>output.rch</code>. Reach 7 is the outlet.</p>
@@ -152,6 +141,619 @@ Set-Location $run
         </figure>
         <p>If you rerun the wrapper after deleting <code>output.rch</code> in that folder, SWAT runs again and this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <figure>
+            <img src="images/swat-io.svg" alt="SWAT inputs on the left, Rev_695_64rel.exe in the center, output files on the right">
+            <figcaption>SWAT Rev. 695 reads file.cio, weather, databases, and every numbered HRU file, then writes output.rch and related tables in the same folder. Left: inputs. Center: executable. Right: outputs.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>Rev_695_64rel.exe</code></h4>
+        <p>This is the SWAT2012 revision 695 engine, 64-bit release build. You start it in the TxtInOut folder. It reads file.cio and writes output.rch in that same folder.</p>
+        <h4><code>SWAT.exe</code></h4>
+        <p>This is another SWAT binary sitting in the example folder. The verified tutorial path starts Rev_695_64rel.exe, not this file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>SWATdebug.exe</code></h4>
+        <p>This is a debug build of SWAT in the example folder. Do not use it for the first success. The release engine is Rev_695_64rel.exe. Keep the file beside the other inputs for this run.</p>
+        <h3>Input files</h3>
+        <h4><code>000010000.pnd</code></h4>
+        <p>000010000.pnd belongs to land unit 000010000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000010000.rte</code></h4>
+        <p>000010000.rte belongs to land unit 000010000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010000.sub</code></h4>
+        <p>000010000.sub belongs to land unit 000010000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010000.swq</code></h4>
+        <p>000010000.swq belongs to land unit 000010000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010000.wgn</code></h4>
+        <p>000010000.wgn belongs to land unit 000010000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010000.wus</code></h4>
+        <p>000010000.wus belongs to land unit 000010000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010001.chm</code></h4>
+        <p>000010001.chm belongs to land unit 000010001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000010001.gw</code></h4>
+        <p>000010001.gw belongs to land unit 000010001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000010001.hru</code></h4>
+        <p>000010001.hru belongs to land unit 000010001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000010001.mgt</code></h4>
+        <p>000010001.mgt belongs to land unit 000010001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000010001.sdr</code></h4>
+        <p>000010001.sdr belongs to land unit 000010001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000010001.sep</code></h4>
+        <p>000010001.sep belongs to land unit 000010001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010001.sol</code></h4>
+        <p>000010001.sol belongs to land unit 000010001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000010002.chm</code></h4>
+        <p>000010002.chm belongs to land unit 000010002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000010002.gw</code></h4>
+        <p>000010002.gw belongs to land unit 000010002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000010002.hru</code></h4>
+        <p>000010002.hru belongs to land unit 000010002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000010002.mgt</code></h4>
+        <p>000010002.mgt belongs to land unit 000010002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000010002.sdr</code></h4>
+        <p>000010002.sdr belongs to land unit 000010002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000010002.sep</code></h4>
+        <p>000010002.sep belongs to land unit 000010002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010002.sol</code></h4>
+        <p>000010002.sol belongs to land unit 000010002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000010003.chm</code></h4>
+        <p>000010003.chm belongs to land unit 000010003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000010003.gw</code></h4>
+        <p>000010003.gw belongs to land unit 000010003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000010003.hru</code></h4>
+        <p>000010003.hru belongs to land unit 000010003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000010003.mgt</code></h4>
+        <p>000010003.mgt belongs to land unit 000010003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000010003.sdr</code></h4>
+        <p>000010003.sdr belongs to land unit 000010003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000010003.sep</code></h4>
+        <p>000010003.sep belongs to land unit 000010003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010003.sol</code></h4>
+        <p>000010003.sol belongs to land unit 000010003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000010004.chm</code></h4>
+        <p>000010004.chm belongs to land unit 000010004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000010004.gw</code></h4>
+        <p>000010004.gw belongs to land unit 000010004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000010004.hru</code></h4>
+        <p>000010004.hru belongs to land unit 000010004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000010004.mgt</code></h4>
+        <p>000010004.mgt belongs to land unit 000010004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000010004.sdr</code></h4>
+        <p>000010004.sdr belongs to land unit 000010004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000010004.sep</code></h4>
+        <p>000010004.sep belongs to land unit 000010004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010004.sol</code></h4>
+        <p>000010004.sol belongs to land unit 000010004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000010005.chm</code></h4>
+        <p>000010005.chm belongs to land unit 000010005. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000010005.gw</code></h4>
+        <p>000010005.gw belongs to land unit 000010005. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000010005.hru</code></h4>
+        <p>000010005.hru belongs to land unit 000010005. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000010005.mgt</code></h4>
+        <p>000010005.mgt belongs to land unit 000010005. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000010005.sdr</code></h4>
+        <p>000010005.sdr belongs to land unit 000010005. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000010005.sep</code></h4>
+        <p>000010005.sep belongs to land unit 000010005. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000010005.sol</code></h4>
+        <p>000010005.sol belongs to land unit 000010005. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000020000.pnd</code></h4>
+        <p>000020000.pnd belongs to land unit 000020000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000020000.rte</code></h4>
+        <p>000020000.rte belongs to land unit 000020000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020000.sub</code></h4>
+        <p>000020000.sub belongs to land unit 000020000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020000.swq</code></h4>
+        <p>000020000.swq belongs to land unit 000020000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020000.wgn</code></h4>
+        <p>000020000.wgn belongs to land unit 000020000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020000.wus</code></h4>
+        <p>000020000.wus belongs to land unit 000020000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020001.chm</code></h4>
+        <p>000020001.chm belongs to land unit 000020001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000020001.gw</code></h4>
+        <p>000020001.gw belongs to land unit 000020001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000020001.hru</code></h4>
+        <p>000020001.hru belongs to land unit 000020001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000020001.mgt</code></h4>
+        <p>000020001.mgt belongs to land unit 000020001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000020001.sdr</code></h4>
+        <p>000020001.sdr belongs to land unit 000020001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000020001.sep</code></h4>
+        <p>000020001.sep belongs to land unit 000020001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020001.sol</code></h4>
+        <p>000020001.sol belongs to land unit 000020001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000020002.chm</code></h4>
+        <p>000020002.chm belongs to land unit 000020002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000020002.gw</code></h4>
+        <p>000020002.gw belongs to land unit 000020002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000020002.hru</code></h4>
+        <p>000020002.hru belongs to land unit 000020002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000020002.mgt</code></h4>
+        <p>000020002.mgt belongs to land unit 000020002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000020002.sdr</code></h4>
+        <p>000020002.sdr belongs to land unit 000020002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000020002.sep</code></h4>
+        <p>000020002.sep belongs to land unit 000020002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020002.sol</code></h4>
+        <p>000020002.sol belongs to land unit 000020002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000020003.chm</code></h4>
+        <p>000020003.chm belongs to land unit 000020003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000020003.gw</code></h4>
+        <p>000020003.gw belongs to land unit 000020003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000020003.hru</code></h4>
+        <p>000020003.hru belongs to land unit 000020003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000020003.mgt</code></h4>
+        <p>000020003.mgt belongs to land unit 000020003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000020003.sdr</code></h4>
+        <p>000020003.sdr belongs to land unit 000020003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000020003.sep</code></h4>
+        <p>000020003.sep belongs to land unit 000020003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020003.sol</code></h4>
+        <p>000020003.sol belongs to land unit 000020003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000020004.chm</code></h4>
+        <p>000020004.chm belongs to land unit 000020004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000020004.gw</code></h4>
+        <p>000020004.gw belongs to land unit 000020004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000020004.hru</code></h4>
+        <p>000020004.hru belongs to land unit 000020004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000020004.mgt</code></h4>
+        <p>000020004.mgt belongs to land unit 000020004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000020004.sdr</code></h4>
+        <p>000020004.sdr belongs to land unit 000020004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000020004.sep</code></h4>
+        <p>000020004.sep belongs to land unit 000020004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000020004.sol</code></h4>
+        <p>000020004.sol belongs to land unit 000020004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000030000.pnd</code></h4>
+        <p>000030000.pnd belongs to land unit 000030000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000030000.rte</code></h4>
+        <p>000030000.rte belongs to land unit 000030000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030000.sub</code></h4>
+        <p>000030000.sub belongs to land unit 000030000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030000.swq</code></h4>
+        <p>000030000.swq belongs to land unit 000030000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030000.wgn</code></h4>
+        <p>000030000.wgn belongs to land unit 000030000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030000.wus</code></h4>
+        <p>000030000.wus belongs to land unit 000030000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030001.chm</code></h4>
+        <p>000030001.chm belongs to land unit 000030001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000030001.gw</code></h4>
+        <p>000030001.gw belongs to land unit 000030001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000030001.hru</code></h4>
+        <p>000030001.hru belongs to land unit 000030001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000030001.mgt</code></h4>
+        <p>000030001.mgt belongs to land unit 000030001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000030001.sdr</code></h4>
+        <p>000030001.sdr belongs to land unit 000030001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000030001.sep</code></h4>
+        <p>000030001.sep belongs to land unit 000030001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030001.sol</code></h4>
+        <p>000030001.sol belongs to land unit 000030001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000030002.chm</code></h4>
+        <p>000030002.chm belongs to land unit 000030002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000030002.gw</code></h4>
+        <p>000030002.gw belongs to land unit 000030002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000030002.hru</code></h4>
+        <p>000030002.hru belongs to land unit 000030002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000030002.mgt</code></h4>
+        <p>000030002.mgt belongs to land unit 000030002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000030002.sdr</code></h4>
+        <p>000030002.sdr belongs to land unit 000030002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000030002.sep</code></h4>
+        <p>000030002.sep belongs to land unit 000030002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030002.sol</code></h4>
+        <p>000030002.sol belongs to land unit 000030002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000030003.chm</code></h4>
+        <p>000030003.chm belongs to land unit 000030003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000030003.gw</code></h4>
+        <p>000030003.gw belongs to land unit 000030003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000030003.hru</code></h4>
+        <p>000030003.hru belongs to land unit 000030003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000030003.mgt</code></h4>
+        <p>000030003.mgt belongs to land unit 000030003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000030003.sdr</code></h4>
+        <p>000030003.sdr belongs to land unit 000030003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000030003.sep</code></h4>
+        <p>000030003.sep belongs to land unit 000030003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030003.sol</code></h4>
+        <p>000030003.sol belongs to land unit 000030003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000030004.chm</code></h4>
+        <p>000030004.chm belongs to land unit 000030004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000030004.gw</code></h4>
+        <p>000030004.gw belongs to land unit 000030004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000030004.hru</code></h4>
+        <p>000030004.hru belongs to land unit 000030004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000030004.mgt</code></h4>
+        <p>000030004.mgt belongs to land unit 000030004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000030004.sdr</code></h4>
+        <p>000030004.sdr belongs to land unit 000030004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000030004.sep</code></h4>
+        <p>000030004.sep belongs to land unit 000030004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000030004.sol</code></h4>
+        <p>000030004.sol belongs to land unit 000030004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000040000.pnd</code></h4>
+        <p>000040000.pnd belongs to land unit 000040000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000040000.rte</code></h4>
+        <p>000040000.rte belongs to land unit 000040000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040000.sub</code></h4>
+        <p>000040000.sub belongs to land unit 000040000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040000.swq</code></h4>
+        <p>000040000.swq belongs to land unit 000040000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040000.wgn</code></h4>
+        <p>000040000.wgn belongs to land unit 000040000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040000.wus</code></h4>
+        <p>000040000.wus belongs to land unit 000040000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040001.chm</code></h4>
+        <p>000040001.chm belongs to land unit 000040001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000040001.gw</code></h4>
+        <p>000040001.gw belongs to land unit 000040001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000040001.hru</code></h4>
+        <p>000040001.hru belongs to land unit 000040001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000040001.mgt</code></h4>
+        <p>000040001.mgt belongs to land unit 000040001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000040001.sdr</code></h4>
+        <p>000040001.sdr belongs to land unit 000040001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000040001.sep</code></h4>
+        <p>000040001.sep belongs to land unit 000040001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040001.sol</code></h4>
+        <p>000040001.sol belongs to land unit 000040001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000040002.chm</code></h4>
+        <p>000040002.chm belongs to land unit 000040002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000040002.gw</code></h4>
+        <p>000040002.gw belongs to land unit 000040002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000040002.hru</code></h4>
+        <p>000040002.hru belongs to land unit 000040002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000040002.mgt</code></h4>
+        <p>000040002.mgt belongs to land unit 000040002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000040002.sdr</code></h4>
+        <p>000040002.sdr belongs to land unit 000040002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000040002.sep</code></h4>
+        <p>000040002.sep belongs to land unit 000040002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040002.sol</code></h4>
+        <p>000040002.sol belongs to land unit 000040002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000040003.chm</code></h4>
+        <p>000040003.chm belongs to land unit 000040003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000040003.gw</code></h4>
+        <p>000040003.gw belongs to land unit 000040003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000040003.hru</code></h4>
+        <p>000040003.hru belongs to land unit 000040003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000040003.mgt</code></h4>
+        <p>000040003.mgt belongs to land unit 000040003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000040003.sdr</code></h4>
+        <p>000040003.sdr belongs to land unit 000040003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000040003.sep</code></h4>
+        <p>000040003.sep belongs to land unit 000040003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040003.sol</code></h4>
+        <p>000040003.sol belongs to land unit 000040003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000040004.chm</code></h4>
+        <p>000040004.chm belongs to land unit 000040004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000040004.gw</code></h4>
+        <p>000040004.gw belongs to land unit 000040004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000040004.hru</code></h4>
+        <p>000040004.hru belongs to land unit 000040004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000040004.mgt</code></h4>
+        <p>000040004.mgt belongs to land unit 000040004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000040004.sdr</code></h4>
+        <p>000040004.sdr belongs to land unit 000040004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000040004.sep</code></h4>
+        <p>000040004.sep belongs to land unit 000040004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040004.sol</code></h4>
+        <p>000040004.sol belongs to land unit 000040004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000040005.chm</code></h4>
+        <p>000040005.chm belongs to land unit 000040005. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000040005.gw</code></h4>
+        <p>000040005.gw belongs to land unit 000040005. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000040005.hru</code></h4>
+        <p>000040005.hru belongs to land unit 000040005. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000040005.mgt</code></h4>
+        <p>000040005.mgt belongs to land unit 000040005. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000040005.sdr</code></h4>
+        <p>000040005.sdr belongs to land unit 000040005. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000040005.sep</code></h4>
+        <p>000040005.sep belongs to land unit 000040005. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000040005.sol</code></h4>
+        <p>000040005.sol belongs to land unit 000040005. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050000.pnd</code></h4>
+        <p>000050000.pnd belongs to land unit 000050000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000050000.rte</code></h4>
+        <p>000050000.rte belongs to land unit 000050000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050000.sub</code></h4>
+        <p>000050000.sub belongs to land unit 000050000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050000.swq</code></h4>
+        <p>000050000.swq belongs to land unit 000050000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050000.wgn</code></h4>
+        <p>000050000.wgn belongs to land unit 000050000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050000.wus</code></h4>
+        <p>000050000.wus belongs to land unit 000050000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050001.chm</code></h4>
+        <p>000050001.chm belongs to land unit 000050001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050001.gw</code></h4>
+        <p>000050001.gw belongs to land unit 000050001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050001.hru</code></h4>
+        <p>000050001.hru belongs to land unit 000050001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050001.mgt</code></h4>
+        <p>000050001.mgt belongs to land unit 000050001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050001.sdr</code></h4>
+        <p>000050001.sdr belongs to land unit 000050001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050001.sep</code></h4>
+        <p>000050001.sep belongs to land unit 000050001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050001.sol</code></h4>
+        <p>000050001.sol belongs to land unit 000050001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050002.chm</code></h4>
+        <p>000050002.chm belongs to land unit 000050002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050002.gw</code></h4>
+        <p>000050002.gw belongs to land unit 000050002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050002.hru</code></h4>
+        <p>000050002.hru belongs to land unit 000050002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050002.mgt</code></h4>
+        <p>000050002.mgt belongs to land unit 000050002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050002.sdr</code></h4>
+        <p>000050002.sdr belongs to land unit 000050002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050002.sep</code></h4>
+        <p>000050002.sep belongs to land unit 000050002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050002.sol</code></h4>
+        <p>000050002.sol belongs to land unit 000050002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050003.chm</code></h4>
+        <p>000050003.chm belongs to land unit 000050003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050003.gw</code></h4>
+        <p>000050003.gw belongs to land unit 000050003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050003.hru</code></h4>
+        <p>000050003.hru belongs to land unit 000050003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050003.mgt</code></h4>
+        <p>000050003.mgt belongs to land unit 000050003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050003.sdr</code></h4>
+        <p>000050003.sdr belongs to land unit 000050003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050003.sep</code></h4>
+        <p>000050003.sep belongs to land unit 000050003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050003.sol</code></h4>
+        <p>000050003.sol belongs to land unit 000050003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050004.chm</code></h4>
+        <p>000050004.chm belongs to land unit 000050004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050004.gw</code></h4>
+        <p>000050004.gw belongs to land unit 000050004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050004.hru</code></h4>
+        <p>000050004.hru belongs to land unit 000050004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050004.mgt</code></h4>
+        <p>000050004.mgt belongs to land unit 000050004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050004.sdr</code></h4>
+        <p>000050004.sdr belongs to land unit 000050004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050004.sep</code></h4>
+        <p>000050004.sep belongs to land unit 000050004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050004.sol</code></h4>
+        <p>000050004.sol belongs to land unit 000050004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050005.chm</code></h4>
+        <p>000050005.chm belongs to land unit 000050005. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050005.gw</code></h4>
+        <p>000050005.gw belongs to land unit 000050005. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050005.hru</code></h4>
+        <p>000050005.hru belongs to land unit 000050005. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050005.mgt</code></h4>
+        <p>000050005.mgt belongs to land unit 000050005. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050005.sdr</code></h4>
+        <p>000050005.sdr belongs to land unit 000050005. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050005.sep</code></h4>
+        <p>000050005.sep belongs to land unit 000050005. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050005.sol</code></h4>
+        <p>000050005.sol belongs to land unit 000050005. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000050006.chm</code></h4>
+        <p>000050006.chm belongs to land unit 000050006. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000050006.gw</code></h4>
+        <p>000050006.gw belongs to land unit 000050006. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000050006.hru</code></h4>
+        <p>000050006.hru belongs to land unit 000050006. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000050006.mgt</code></h4>
+        <p>000050006.mgt belongs to land unit 000050006. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000050006.sdr</code></h4>
+        <p>000050006.sdr belongs to land unit 000050006. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000050006.sep</code></h4>
+        <p>000050006.sep belongs to land unit 000050006. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000050006.sol</code></h4>
+        <p>000050006.sol belongs to land unit 000050006. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000060000.pnd</code></h4>
+        <p>000060000.pnd belongs to land unit 000060000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000060000.rte</code></h4>
+        <p>000060000.rte belongs to land unit 000060000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060000.sub</code></h4>
+        <p>000060000.sub belongs to land unit 000060000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060000.swq</code></h4>
+        <p>000060000.swq belongs to land unit 000060000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060000.wgn</code></h4>
+        <p>000060000.wgn belongs to land unit 000060000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060000.wus</code></h4>
+        <p>000060000.wus belongs to land unit 000060000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060001.chm</code></h4>
+        <p>000060001.chm belongs to land unit 000060001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000060001.gw</code></h4>
+        <p>000060001.gw belongs to land unit 000060001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000060001.hru</code></h4>
+        <p>000060001.hru belongs to land unit 000060001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000060001.mgt</code></h4>
+        <p>000060001.mgt belongs to land unit 000060001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000060001.sdr</code></h4>
+        <p>000060001.sdr belongs to land unit 000060001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000060001.sep</code></h4>
+        <p>000060001.sep belongs to land unit 000060001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060001.sol</code></h4>
+        <p>000060001.sol belongs to land unit 000060001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000060002.chm</code></h4>
+        <p>000060002.chm belongs to land unit 000060002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000060002.gw</code></h4>
+        <p>000060002.gw belongs to land unit 000060002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000060002.hru</code></h4>
+        <p>000060002.hru belongs to land unit 000060002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000060002.mgt</code></h4>
+        <p>000060002.mgt belongs to land unit 000060002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000060002.sdr</code></h4>
+        <p>000060002.sdr belongs to land unit 000060002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000060002.sep</code></h4>
+        <p>000060002.sep belongs to land unit 000060002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060002.sol</code></h4>
+        <p>000060002.sol belongs to land unit 000060002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000060003.chm</code></h4>
+        <p>000060003.chm belongs to land unit 000060003. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000060003.gw</code></h4>
+        <p>000060003.gw belongs to land unit 000060003. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000060003.hru</code></h4>
+        <p>000060003.hru belongs to land unit 000060003. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000060003.mgt</code></h4>
+        <p>000060003.mgt belongs to land unit 000060003. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000060003.sdr</code></h4>
+        <p>000060003.sdr belongs to land unit 000060003. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000060003.sep</code></h4>
+        <p>000060003.sep belongs to land unit 000060003. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060003.sol</code></h4>
+        <p>000060003.sol belongs to land unit 000060003. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000060004.chm</code></h4>
+        <p>000060004.chm belongs to land unit 000060004. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000060004.gw</code></h4>
+        <p>000060004.gw belongs to land unit 000060004. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000060004.hru</code></h4>
+        <p>000060004.hru belongs to land unit 000060004. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000060004.mgt</code></h4>
+        <p>000060004.mgt belongs to land unit 000060004. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000060004.sdr</code></h4>
+        <p>000060004.sdr belongs to land unit 000060004. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000060004.sep</code></h4>
+        <p>000060004.sep belongs to land unit 000060004. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060004.sol</code></h4>
+        <p>000060004.sol belongs to land unit 000060004. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000060005.chm</code></h4>
+        <p>000060005.chm belongs to land unit 000060005. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000060005.gw</code></h4>
+        <p>000060005.gw belongs to land unit 000060005. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000060005.hru</code></h4>
+        <p>000060005.hru belongs to land unit 000060005. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000060005.mgt</code></h4>
+        <p>000060005.mgt belongs to land unit 000060005. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000060005.sdr</code></h4>
+        <p>000060005.sdr belongs to land unit 000060005. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000060005.sep</code></h4>
+        <p>000060005.sep belongs to land unit 000060005. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000060005.sol</code></h4>
+        <p>000060005.sol belongs to land unit 000060005. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000070000.pnd</code></h4>
+        <p>000070000.pnd belongs to land unit 000070000. It describes ponds or wetlands in that subbasin. If none are used, the file still exists with zeros or off flags.</p>
+        <h4><code>000070000.rte</code></h4>
+        <p>000070000.rte belongs to land unit 000070000. It describes the main channel: length, slope, and bank properties used to move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070000.sub</code></h4>
+        <p>000070000.sub belongs to land unit 000070000. It is the subbasin several HRUs drain to. It names area, location, and which reach that subbasin feeds. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070000.swq</code></h4>
+        <p>000070000.swq belongs to land unit 000070000. It holds in-stream nutrient and algae parameters for that subbasin channel. SWAT reads it with the routing file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070000.wgn</code></h4>
+        <p>000070000.wgn belongs to land unit 000070000. It holds monthly climate statistics for that subbasin. SWAT uses it to fill missing weather or generate climate. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070000.wus</code></h4>
+        <p>000070000.wus belongs to land unit 000070000. It describes irrigation or other withdrawals in that subbasin. Unused demand still leaves a small file SWAT opens. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070001.chm</code></h4>
+        <p>000070001.chm belongs to land unit 000070001. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000070001.gw</code></h4>
+        <p>000070001.gw belongs to land unit 000070001. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000070001.hru</code></h4>
+        <p>000070001.hru belongs to land unit 000070001. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000070001.mgt</code></h4>
+        <p>000070001.mgt belongs to land unit 000070001. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000070001.sdr</code></h4>
+        <p>000070001.sdr belongs to land unit 000070001. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000070001.sep</code></h4>
+        <p>000070001.sep belongs to land unit 000070001. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070001.sol</code></h4>
+        <p>000070001.sol belongs to land unit 000070001. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>000070002.chm</code></h4>
+        <p>000070002.chm belongs to land unit 000070002. It holds nutrient and carbon starting values for that HRU. SWAT uses it when tracking nitrogen and phosphorus, not only water.</p>
+        <h4><code>000070002.gw</code></h4>
+        <p>000070002.gw belongs to land unit 000070002. It sets shallow-aquifer properties for that HRU: how water returns as baseflow and how the water table is represented.</p>
+        <h4><code>000070002.hru</code></h4>
+        <p>000070002.hru belongs to land unit 000070002. It describes one mix of land use, soil, and slope: area, overland slope, and the IDs SWAT uses to compute runoff and erosion on that patch of land.</p>
+        <h4><code>000070002.mgt</code></h4>
+        <p>000070002.mgt belongs to land unit 000070002. It is the planting, tillage, fertilizer, and harvest calendar for that HRU. Cover and disturbance through the year come from these operations.</p>
+        <h4><code>000070002.sdr</code></h4>
+        <p>000070002.sdr belongs to land unit 000070002. It describes subsurface tile drainage for that HRU. If drainage is unused, the file is still present with default or off settings.</p>
+        <h4><code>000070002.sep</code></h4>
+        <p>000070002.sep belongs to land unit 000070002. It describes on-site septic wastewater for that HRU. Many rural units leave defaults. SWAT still opens the file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>000070002.sol</code></h4>
+        <p>000070002.sol belongs to land unit 000070002. It is the soil profile for that HRU: layer thickness, texture, and related properties that control infiltration and erosion on the land unit.</p>
+        <h4><code>ATMO.ATM</code></h4>
+        <p>This is atmospheric deposition of nutrients. SWAT adds those loads when the option is on. Keep the file beside the other inputs for this run.</p>
+        <h4><code>basins.bsn</code></h4>
+        <p>This is the basin file: watershed-wide parameters such as runoff method and snow settings that apply to every subbasin. Keep the file beside the other inputs for this run.</p>
+        <h4><code>basins.wwq</code></h4>
+        <p>This is watershed water-quality parameters for in-stream processes that are not tied to a single reach file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>cst.cst</code></h4>
+        <p>This is forecast-climate input named in file.cio. If forecasting is off, the file can be unused padding that still sits in the folder. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fert.dat</code></h4>
+        <p>This is the fertilizer database. Nutrient applications in .mgt files point at these product definitions. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fig.fig</code></h4>
+        <p>This is the watershed command file. It lists the order of subbasins and routing commands so SWAT knows how HRUs drain to the outlet. Keep the file beside the other inputs for this run.</p>
+        <h4><code>file.cio</code></h4>
+        <p>This is the master control file. It names the weather files, databases, number of years, print switches, and fig.fig. Wrong names here are the usual reason SWAT cannot start.</p>
+        <h4><code>hmd.hmd</code></h4>
+        <p>This is daily relative humidity. Evapotranspiration calculations read it. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>hru.dat</code></h4>
+        <p>This is an HRU overlay or index table used by some interfaces. The engine still relies on the numbered .hru files for each unit. Keep the file beside the other inputs for this run.</p>
+        <h4><code>lup.dat</code></h4>
+        <p>This is land-use update data. If land use does not change during the run, SWAT may ignore the rows. Keep the file beside the other inputs for this run.</p>
+        <h4><code>pcp1.pcp</code></h4>
+        <p>This is measured daily precipitation for the gauges listed in file.cio. Without it SWAT cannot compute runoff from rainfall. Keep the file beside the other inputs for this run.</p>
+        <h4><code>pest.dat</code></h4>
+        <p>This is the pesticide database. Management files can apply products defined here. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>plant.dat</code></h4>
+        <p>This is the plant-growth database. Every crop or land-cover ID in the .mgt files is defined here. Keep the file beside the other inputs for this run.</p>
+        <h4><code>rch.dat</code></h4>
+        <p>This is a reach index table. Channel geometry for routing still comes from the numbered .rte files. Keep the file beside the other inputs for this run.</p>
+        <h4><code>rsv.dat</code></h4>
+        <p>This is reservoir input. If the example has no reservoir, the file can be a stub. output.rsv is the matching output. Keep the file beside the other inputs for this run.</p>
+        <h4><code>septwq.dat</code></h4>
+        <p>This is septic-system water-quality parameters used with the .sep HRU files. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>slr.slr</code></h4>
+        <p>This is daily solar radiation. Plant growth and evaporation use it. file.cio names this file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>sub.dat</code></h4>
+        <p>This is a subbasin index table used by some interfaces. Numbered .sub files remain the subbasin inputs the engine reads. Keep the file beside the other inputs for this run.</p>
+        <h4><code>till.dat</code></h4>
+        <p>This is the tillage database. Operation codes in management files point here for mixing and residue. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Tmp1.Tmp</code></h4>
+        <p>This is measured daily maximum and minimum temperature. SWAT uses it with precipitation to drive snow, ET, and plant growth. Keep the file beside the other inputs for this run.</p>
+        <h4><code>urban.dat</code></h4>
+        <p>This is urban land-use parameters. Urban HRUs, if any, draw buildup and washoff coefficients from here. Keep the file beside the other inputs for this run.</p>
+        <h4><code>watout.dat</code></h4>
+        <p>This names watershed outlet configuration for some print options. The outlet reach in this example is still reach 7 in output.rch. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wnd.wnd</code></h4>
+        <p>This is daily wind speed. It affects evaporation and some in-stream processes. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h3>Output files</h3>
+        <h4><code>bmp-ri.out</code></h4>
+        <p>This is BMP (best management practice) output for retention or similar structures. Ignore it on a first hydrology check. Keep the file beside the other inputs for this run.</p>
+        <h4><code>bmp-sedfil.out</code></h4>
+        <p>This is BMP sediment-filter output. It is not the watershed sediment total in output.rch. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>chan.deg</code></h4>
+        <p>This is channel-degradation output. It is extra geomorphology detail, not the first flow check. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fin.fin</code></h4>
+        <p>This is a finish flag or finalization file SWAT writes at the end of a successful period. Keep the file beside the other inputs for this run.</p>
+        <h4><code>hyd.out</code></h4>
+        <p>This is a hydrology debug or extra hydrograph file. Confirm FLOW_OUT in output.rch first. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>input.std</code></h4>
+        <p>This is a listing of inputs SWAT echoes at start. Use it to confirm the engine opened file.cio and the databases. Keep the file beside the other inputs for this run.</p>
+        <h4><code>monsoon_plt.out</code></h4>
+        <p>This is a special-plot output some builds write. It is not required to confirm the outlet hydrograph. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.hru</code></h4>
+        <p>This is HRU output: one land unit per row. Use it after output.rch when you need which field produced the load. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.pes</code></h4>
+        <p>This is pesticide output. Skip it unless the management files applied pesticides. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.rch</code></h4>
+        <p>This is the reach output. Each row is a reach and a day or month. FLOW_OUT and sediment columns here are what the tutorial checks at the outlet.</p>
+        <h4><code>output.rsv</code></h4>
+        <p>This is reservoir output. If no reservoir is simulated, the file may be empty or header-only. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.sed</code></h4>
+        <p>This is extra sediment output. The main channel sediment for the tutorial is still in output.rch. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.std</code></h4>
+        <p>This is the standard summary listing, including water-balance lines. It is a good second check after output.rch. Keep the file beside the other inputs for this run.</p>
+        <h4><code>output.sub</code></h4>
+        <p>This is subbasin output: water and sediment generated on each subbasin before full channel routing detail. Keep the file beside the other inputs for this run.</p>
+        <h4><code>septic.out</code></h4>
+        <p>This is septic-system output. Use it only if septic loads matter in the example. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>swat.qst</code></h4>
+        <p>This is a SWAT question or session file some interfaces leave behind. It is not a science table. Keep the file beside the other inputs for this run.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p>This is console text captured when Rev_695_64rel.exe ran. SWAT may print little. Success is the presence of output.rch with the expected years. Keep the file beside the other inputs for this run.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once <code>output.rch</code> is written, you can open <code>output.sub</code> and <code>output.hru</code> the same way, or bring the reach file into SWAT Check. Building a new watershed is ArcSWAT or QSWAT plus SWAT Editor; that is a different lesson. This one stops at a verified CLI run of SWAT2012 Rev. 695.</p>
         <div class="tutorial-nav">

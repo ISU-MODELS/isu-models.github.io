@@ -22,28 +22,20 @@
                 <li><a href="#run">Novice path: run the default moses profile</a></li>
                 <li><a href="#confirm">Confirm the run</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the first success</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/rusle2-steps.jpg" alt="Four steps: download RUSLE2, copy moses.gdb, run RomeCli, read SLOPE_SOIL_LOSS">
-            <figcaption>Same four steps as the other model tutorials. The engine lives in <code>RomeDLL.dll</code>; RomeCli is a thin command-line wrapper.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>RUSLE2 estimates long-term average annual sheet and rill erosion for a hillslope <strong>profile</strong>. Climate, soil erodibility, slope length and steepness, cover-management, and support practices all enter the calculation. The number you will read first is soil loss <strong>A</strong> in tons per acre per year. On this host that value is the RomeDLL attribute <code>SLOPE_SOIL_LOSS</code>.</p>
-        <figure>
-            <img src="images/rusle2-routing.jpg" alt="R, K, LS, C, and P factors combining into soil loss A on a hillslope">
-            <figcaption>RUSLE2 is more than a five-factor product, but those names are still the map. This tutorial changes only slope steepness and watches A move.</figcaption>
-        </figure>
+        
         <p>The lab’s pinned engine is <code>RomeDLL.dll</code> called from <code>RomeCli.exe</code> (32-bit .NET). <code>Rusle2.exe</code> in <code>install\NRCS</code> is the Windows GUI and does not run unattended.</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Download the official NRCS RUSLE2 program and the NRCS master database from the National Soil Erosion Research Laboratory data web. ARS keeps a parallel download page at Oxford. The 2022 program release is the one this lab installed. Climate files, crop-management zone templates, and soils sit on the same NSERL site.</p>
-        <figure>
-            <img src="images/rusle2-download.jpg" alt="NSERL RUSLE2 data web with program file and NRCS master database downloads">
-            <figcaption>Use the official NRCS program and database. The verified lab path still goes through RomeDLL, not through clicking Calculate in the GUI.</figcaption>
-        </figure>
+        
         <div class="tutorial-nav">
             <a href="https://fargo.nserl.purdue.edu/rusle2_dataweb/RUSLE2_Index.htm">NSERL RUSLE2 data web</a>
             <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/rusle2/revised-universal-soil-loss-equation-2-download-rusle2">ARS Oxford download</a>
@@ -100,10 +92,7 @@ Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\Utility\RITA\Execute\RomeDLL.d
         <div class="note">
             <p>Copy the <code>.gdb</code> before you set attributes. RomeCli can write <code>SLOPE_STEEP</code> back into the database. The tutorial wrapper always starts from a fresh copy so <code>romedll\data\moses.gdb</code> stays at 6%.</p>
         </div>
-        <figure>
-            <img src="images/rusle2.jpg" alt="Rusle2.exe GUI on the left; RomeCli calling RomeDLL to return a soil-loss number on the right">
-            <figcaption>The GUI is optional. The verified number comes from RomeDLL through RomeCli.</figcaption>
-        </figure>
+        
 
         <h2 id="confirm">5. Confirm the run</h2>
         <p>RomeCli should print two lines and exit 0. On a single-segment profile, <code>SEG_SOIL_LOSS</code> matches <code>SLOPE_SOIL_LOSS</code>.</p>
@@ -149,6 +138,25 @@ Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\Utility\RITA\Execute\RomeDLL.d
         </figure>
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <figure>
+            <img src="images/rusle2-io.svg" alt="moses.gdb on the left, RomeCli and RomeDLL in the center, console logs on the right">
+            <figcaption>RomeCli loads RomeDLL, reads a copy of moses.gdb, and writes soil-loss numbers to the console logs we saved. Left: inputs. Center: executable. Right: outputs.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>RomeCli.exe</code></h4>
+        <p>This is the 32-bit command-line wrapper. You pass it the RomeDLL program folder, the path to moses.gdb, and a profile name. It prints SLOPE_SOIL_LOSS when the engine finishes.</p>
+        <h4><code>RomeDLL.dll</code></h4>
+        <p>This is the RUSLE2 science engine. Rusle2.exe is only the window. RomeCli loads this DLL. Copy it beside RomeCli.exe before the first headless call. Keep the file beside the other inputs for this run.</p>
+        <h3>Input files</h3>
+        <h4><code>moses.gdb</code></h4>
+        <p>This is the NRCS database that holds climates, soils, and profiles. The default profile used in the tutorial lives inside this file. Copy it into a fresh folder so you do not lock the lab original.</p>
+        <h3>Output files</h3>
+        <h4><code>run_stdout.txt</code></h4>
+        <p>This is the console text from the default-profile call. It must contain SLOPE_SOIL_LOSS and a number. That number is average annual soil loss A in tons per acre per year.</p>
+        <h4><code>sweep_stdout.txt</code></h4>
+        <p>This is the console text from the slope-steepness sweep. Each line set is another SLOPE_SOIL_LOSS after the profile steepness was changed. The plot is built from these numbers.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once RomeCli prints that number, you can set other profile attributes the same way (<code>SLOPE_HORIZ</code> for length, management pointers, and so on) or open the same database in the GUI. Building a new NRCS field office profile is a different lesson. This one stops at a verified headless soil-loss run.</p>
         <div class="tutorial-nav">

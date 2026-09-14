@@ -22,28 +22,20 @@
                 <li><a href="#run">Novice path: run the Ohio example</a></li>
                 <li><a href="#confirm">Confirm the run</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the first success</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/annagnps-steps.jpg" alt="Four steps: download AGNPS, stand in the CSV folder, run AnnAGNPS.exe, read the sediment CSV">
-            <figcaption>Same four steps as the other model tutorials. The engine reads <code>AnnAGNPS.csv</code> from the current directory.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>AnnAGNPS is a continuous, daily, watershed-scale pollutant loading model. Landscape <strong>cells</strong> generate runoff, sediment, nitrogen, phosphorus, and organic carbon. Those loads move into <strong>reaches</strong>, and the reaches connect to an <strong>outlet</strong>. Sheet and rill erosion on a cell follow RUSLE relationships. Gully and channel processes are separate modules. The time step is daily; the files you will open first are <em>average annual</em> summaries.</p>
-        <figure>
-            <img src="images/annagnps-routing.jpg" alt="Landscape cells draining through reaches to a watershed outlet">
-            <figcaption>You do not have to build this topology yourself for the first run. The Ohio training subset already has cells, reaches, climate, soils, and management.</figcaption>
-        </figure>
+        
         <p>The lab’s pinned engine is <code>AnnAGNPS.exe</code> version <strong>v6.00.a.024_2024.05.23</strong> (64-bit), from the complete AGNPS 6.0 package.</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Download the complete self-extracting AGNPS package from the USDA-ARS National Sedimentation Laboratory. That archive is the one that includes the pollutant-loading engine, TopAGNPS, the Input Editor, STEAD, weather tools, and the manuals. The ARS software catalog entry is software id 524.</p>
-        <figure>
-            <img src="images/annagnps-download.jpg" alt="USDA-ARS AGNPS Software Download page for AGNPS version 6.0">
-            <figcaption>Use the complete AGNPS v6.0 package, not a lone executable. Installation procedures and Version.pdf sit on the same page.</figcaption>
-        </figure>
+        
         <div class="tutorial-nav">
             <a href="https://www.ars.usda.gov/southeast-area/oxford-ms/national-sedimentation-laboratory/watershed-physical-processes-research/research/agnps/agnps-software-download/">AGNPS software download</a>
             <a href="https://www.ars.usda.gov/research/software/download/?softwareid=524&amp;modecode=60-60-05-05">ARS catalog (id 524)</a>
@@ -138,6 +130,151 @@ Set-Location $run
         </figure>
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <figure>
+            <img src="images/annagnps-io.svg" alt="AnnAGNPS inputs on the left, AnnAGNPS.exe in the center, output CSVs on the right">
+            <figcaption>AnnAGNPS reads CSV tables from the current folder and writes average-annual load files beside the executable. Left: inputs. Center: executable. Right: outputs.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>AnnAGNPS.exe</code></h4>
+        <p>This is the pollutant-loading engine. You copy it into the watershed folder and start it there. It reads AnnAGNPS.csv, then every table listed in the master file, and writes the average-annual load CSVs when the run finishes.</p>
+        <h3>Input files</h3>
+        <h4><code>AnnAGNPS.csv</code></h4>
+        <p>This is the first file the engine looks for in the current folder. It names the master table list, sets units and flags, and tells AnnAGNPS which CSV files to open before the first simulated day.</p>
+        <h4><code>annagnps_master.csv</code></h4>
+        <p>This is the table of contents for the run. Each row is one data section and the path to its CSV. If a path is wrong, the engine stops before it computes any loads.</p>
+        <h4><code>climate/climate_daily.csv</code></h4>
+        <p>This is daily weather for the watershed: rainfall and related climate values for each day of the simulation. Without this file the engine cannot compute runoff or erosion.</p>
+        <h4><code>climate/climate_station.csv</code></h4>
+        <p>This names the climate station and its location. It tells AnnAGNPS which weather record the daily file belongs to and how to treat missing days.</p>
+        <h4><code>general/AnnAGNPS_Combined_Group_1_Soil_Data.csv</code></h4>
+        <p>This is the soil map for the watershed. Each soil ID used on a cell is described here so the engine knows texture and related properties.</p>
+        <h4><code>general/AnnAGNPS_Combined_Group_1_Soil_Layers_Data.csv</code></h4>
+        <p>This is the layer-by-layer soil profile for each soil ID. Thickness, texture, and related properties by depth control how water infiltrates and how soil erodes on each cell.</p>
+        <h4><code>general/AnnAGNPS_Riparian_Buffer_Data_Section_AgBuf.csv</code></h4>
+        <p>This describes riparian buffers if any are in the watershed. Empty or placeholder rows still count as an input table the master file must name.</p>
+        <h4><code>general/crop_growth.csv</code></h4>
+        <p>This is crop growth parameters: how plants emerge, cover the ground, and use water. The engine reads it together with the management schedule so cover is not a guess.</p>
+        <h4><code>general/cropdata.csv</code></h4>
+        <p>This is the crop catalog. Each crop ID used in management points here for names and basic coefficients the engine needs before it can grow a canopy.</p>
+        <h4><code>general/fertapp.csv</code></h4>
+        <p>This is fertilizer applications tied to fields and dates. If no fertilizer is applied, the file can be nearly empty but must still exist. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/fertref.csv</code></h4>
+        <p>This is the fertilizer reference list: nutrient content of each fertilizer type named in the application table. The engine looks up those types here. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/hydgeom.csv</code></h4>
+        <p>This is hydraulic geometry for channels. It tells the engine how wide and deep reaches are so it can move water and sediment downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/manfield.csv</code></h4>
+        <p>This lists management fields, the land units that share a schedule. Cells point at these fields so cropping is not retyped on every cell. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/manoper.csv</code></h4>
+        <p>This is the operation catalog: tillage, planting, harvest, and similar actions the schedule can call by name. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/mansched.csv</code></h4>
+        <p>This is the calendar of operations on each field. Dates and operation IDs drive cover and disturbance through the year. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/non_crop.csv</code></h4>
+        <p>This describes non-crop cover such as grass or forest if those land uses appear. Crop rows live in cropdata instead. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/rocurve.csv</code></h4>
+        <p>This is runoff curve numbers by cover and hydrologic condition. The engine uses them to turn rainfall into runoff on each cell. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/Runoff_Curve_Number_Data_Input_Editor_v5.5_Format.csv</code></h4>
+        <p>This is the same curve-number data in the Input Editor v5.5 layout. The master file names it so the editor and the engine stay in sync.</p>
+        <h4><code>general/strip_crop.csv</code></h4>
+        <p>This describes strip cropping if it is used. If the watershed has none, the file is still present as an empty or header-only table. Keep the file beside the other inputs for this run.</p>
+        <h4><code>general/tiledat.csv</code></h4>
+        <p>This describes tile drains. A tiny file means little or no tile drainage in this example, but the engine still opens it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>simulation/annaid.csv</code></h4>
+        <p>This holds AnnAGNPS identification records for the simulation, including IDs the other tables refer to. Keep it with the rest of the simulation folder. Keep the file beside the other inputs for this run.</p>
+        <h4><code>simulation/globfac.csv</code></h4>
+        <p>This is global flags and factors for the whole run: unit choices, process switches, and multipliers that apply to every cell. Keep the file beside the other inputs for this run.</p>
+        <h4><code>simulation/outopts_aa.csv</code></h4>
+        <p>This turns average-annual output tables on or off. The sediment and water files you open after the run exist because this file asked for them.</p>
+        <h4><code>simulation/outopts_global.csv</code></h4>
+        <p>This is global output options. It controls logs and summary files that are not tied to a single cell. Keep the file beside the other inputs for this run.</p>
+        <h4><code>simulation/outopts_tbl.csv</code></h4>
+        <p>This controls table-style outputs such as gaging-station files. Leave it as the example set it unless you need extra tables. Keep the file beside the other inputs for this run.</p>
+        <h4><code>simulation/sim_period.csv</code></h4>
+        <p>This is the start date, end date, and length of the simulation. Wrong dates here are a common reason a first run looks empty. Keep the file beside the other inputs for this run.</p>
+        <h4><code>watershed/AnnAGNPS_Cell_Data_Section.csv</code></h4>
+        <p>This is the cell map: each landscape unit, its area, soil, field, and the reach it drains to. It is the spatial skeleton of the watershed.</p>
+        <h4><code>watershed/AnnAGNPS_Ephemeral_Gully_Data_Section.csv</code></h4>
+        <p>This describes ephemeral gullies. If the Ohio example includes gully rows, the engine can add that sediment source to the totals. Keep the file beside the other inputs for this run.</p>
+        <h4><code>watershed/AnnAGNPS_Reach_Data_Section.csv</code></h4>
+        <p>This is the channel network: each reach, how it connects, and where the outlet is. Cell loads enter here and move downstream. Keep the file beside the other inputs for this run.</p>
+        <h4><code>watershed/AnnAGNPS_Wetland_Data_Section.csv</code></h4>
+        <p>This describes wetlands in the network. Even a short file is a required table when the master list names it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>watershed/watershed_data.csv</code></h4>
+        <p>This is watershed-level identification and area. It is a short header table the engine reads with the cell and reach files. Keep the file beside the other inputs for this run.</p>
+        <h3>Output files</h3>
+        <h4><code>AnnAGNPS.log</code></h4>
+        <p>This is the plain-language run log. It records start time, files opened, and whether the engine finished. Read it first if the window closes and you are not sure the run succeeded.</p>
+        <h4><code>AnnAGNPS.nfm</code></h4>
+        <p>This is a formatted notes file the engine writes while it reads inputs. It is not a load table. Use it only if you are tracing a read error.</p>
+        <h4><code>AnnAGNPS.wrn</code></h4>
+        <p>This is the warning file. It lists values the engine accepted but flagged, such as a soil or crop record near a limit. A warning is not the same as a failed run.</p>
+        <h4><code>AnnAGNPS_AA.csv</code></h4>
+        <p>This is the combined average-annual summary. It gathers water, sediment, and nutrient totals after the full period. Start here if you want one table instead of the split load files.</p>
+        <h4><code>AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</code></h4>
+        <p>This table is average-annual nitrogen leaving each cell or reach, reported per unit area. Use it to see which parts of the watershed send the most nitrogen.</p>
+        <h4><code>AnnAGNPS_AA_Organic_Carbon_load_(unit-area).csv</code></h4>
+        <p>This table is average-annual organic carbon leaving each cell or reach, per unit area. It is a companion to the nitrogen and phosphorus files, not a substitute for sediment.</p>
+        <h4><code>AnnAGNPS_AA_Phosphorus_load_(unit-area).csv</code></h4>
+        <p>This table is average-annual phosphorus leaving each cell or reach, per unit area. Compare it with the sediment table when you care about nutrients bound to soil.</p>
+        <h4><code>AnnAGNPS_AA_Sediment_load_(unit-area).csv</code></h4>
+        <p>This is the main sediment table for this tutorial. Each row is a cell or reach. The Subtotal line for a reach is the number we check after a new run.</p>
+        <h4><code>AnnAGNPS_AA_Sediment_load_by_source_(unit-area).csv</code></h4>
+        <p>This splits sediment by source, such as sheet and rill versus gully. Use it after the total sediment table when you need to know where the soil came from.</p>
+        <h4><code>AnnAGNPS_AA_Water_load_(unit-area).csv</code></h4>
+        <p>This table is average-annual water yield by cell or reach, per unit area. The outlet row is the watershed water yield we check in the verification test.</p>
+        <h4><code>AnnAGNPS_dbg.csv</code></h4>
+        <p>This is a debug dump of internal values. It is not needed to confirm a first run. Open it only if a developer asked you to trace a specific cell.</p>
+        <h4><code>AnnAGNPS_LOG_All.csv</code></h4>
+        <p>This is the full machine-readable log in CSV form. It repeats status, information, and warning lines in one file for sorting in a spreadsheet. Keep the file beside the other inputs for this run.</p>
+        <h4><code>AnnAGNPS_LOG_Execution_Status.csv</code></h4>
+        <p>This tiny file is the run status in one or two rows. It is the fastest way to see that the engine reported a successful execution.</p>
+        <h4><code>AnnAGNPS_LOG_Information.csv</code></h4>
+        <p>This log lists informational messages, such as files opened and period length. It is not a load table. Use it to confirm the engine read the files you intended.</p>
+        <h4><code>AnnAGNPS_LOG_Warning.csv</code></h4>
+        <p>This log lists warnings in CSV rows. Scan it after a first success. Many first runs still succeed while this file is not empty. Keep the file beside the other inputs for this run.</p>
+        <h4><code>AnnAGNPS_TBL_Gaging_Station_Data_Evt.csv</code></h4>
+        <p>This table is event-scale gaging-station output the engine writes when that option is on. It is extra detail, not the average-annual sediment check. Keep the file beside the other inputs for this run.</p>
+        <h4><code>AnnAGNPS_TBL_Gaging_Station_Data_Hyd.csv</code></h4>
+        <p>This table is hydrologic gaging-station output. Use it only if you are matching a stream gauge. The tutorial check uses the average-annual water file instead.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Attached_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Nitrogen_load_UA_RR_Attached_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Soluble_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Nitrogen_load_UA_RR_Soluble_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Total_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Nitrogen_load_UA_RR_Total_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Attached_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Attached_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Soluble_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Soluble_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Total_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Total_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Inorganic_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Inorganic_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Organic_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Organic_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Soluble Inorganic_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Phosphorus_load_UA_RR_Soluble Inorganic_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Total_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Phosphorus_load_UA_RR_Total_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Clay_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_Clay_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Gully_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_Gully_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Sand_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_Sand_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Silt_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_Silt_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_Gly_Pnd_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_Gly_Pnd_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Water_load_UA_RR_Total_OUTLET.csv</code></h4>
+        <p>AnnAGNPS_AA_Water_load_UA_RR_Total_OUTLET.csv is an outlet-focused unit-area load table the engine wrote under CSV_Output_Files. It repeats a nutrient or sediment species at the watershed outlet for mapping. You do not need it to confirm the first run.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p>This is the console text we captured when AnnAGNPS.exe ran. It should contain a successful-execution line. It is our record, not a native AGNPS table.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once the engine has written those CSVs, you can open phosphorus and organic-carbon files the same way, or bring the average-annual tables into STEAD. Building a new watershed from a DEM is TopAGNPS plus the Input Editor; that is a different lesson. This one stops at a verified CLI run of the pollutant-loading model.</p>
         <div class="tutorial-nav">

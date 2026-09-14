@@ -22,32 +22,21 @@
                 <li><a href="#run">Novice path: request access, then run the vendor example</a></li>
                 <li><a href="#confirm">Confirm the status check</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the package arrives</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/daycent-steps.jpg" alt="Four steps: open the CSU DayCent page, acknowledge terms, unpack the vendor package, run the vendor example">
-            <figcaption>Same four-step shape as the other tutorials. Steps 3 and 4 wait on the CSU package; this host has not received it yet.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>DayCent is the daily time-step version of CENTURY. It moves carbon and nitrogen among the plant, the litter, and the soil, and it writes the gases that leave along the way. The four processes you will hear about first are plant growth, organic-matter formation and decay, soil water and temperature by layer, and nitrogen cycling and loss. The CSU page in 2026 advertises the same revision used in the USA EPA greenhouse-gas inventory: <strong>rev491</strong>.</p>
-        <figure>
-            <img src="images/daycent-routing.jpg" alt="Plant growth feeding metabolic and structural litter, then active, slow, and passive soil organic matter, with N2O and leaching leaving the soil">
-            <figcaption>Litter splits into metabolic and structural pools. Soil organic matter sits in active, slow, and passive pools. N<sub>2</sub>O, NO<sub>x</sub>, N<sub>2</sub>, and nitrate leaching leave the profile.</figcaption>
-        </figure>
+        
         <p>Typical inputs are daily maximum and minimum temperature, precipitation, surface soil texture, and a schedule of cover and management. Typical outputs are soil organic C and N, net primary production, N<sub>2</sub>O, and nitrate leaching. The Natural Resource Ecology Laboratory page at CSU describes that science; the software itself is issued through the Soil Carbon Solutions Center.</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Open the Soil Carbon Solutions Center DayCent page. Downloads go to researchers at approved institutions and to members of the Ecosystem Modeling and Data Consortium. If you already have access, acknowledge the terms and download. Otherwise fill out the terms form; CSU emails instructions. There is no anonymous public zip the way there is for AGNPS or WinAPEX.</p>
-        <figure>
-            <img src="images/daycent-download.jpg" alt="Soil Carbon Solutions Center DayCent page with Acknowledge terms plus Download and the EPA inventory rev491 note">
-            <figcaption>Live URL <code>https://www.soilcarbonsolutionscenter.com/daycent/</code>. This host received HTTP 200 from that page on 13 Sep 2026.</figcaption>
-        </figure>
-        <figure>
-            <img src="images/daycent-nrel.jpg" alt="NREL DayCent page listing inputs, outputs, and the daily CENTURY time step">
-            <figcaption>The NREL project page is the science card. Software access stays on the Soil Carbon Solutions Center site.</figcaption>
-        </figure>
+        
+        
         <div class="tutorial-nav">
             <a href="https://www.soilcarbonsolutionscenter.com/daycent/">DayCent at CSU (SCSC)</a>
             <a href="https://www.soilcarbonsolutionscenter.com/daycent-agreement">Terms of use</a>
@@ -139,6 +128,12 @@
         </figure>
         <p>If you rerun the wrapper after someone pins DayCent, this test is supposed to fail. That failure is the signal to replace this tutorial with a real CLI example.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>This host has no DayCent executable and no input folder under <code>C:\Grok\Models\installs</code>. A routing diagram that named files we have not opened would be a guess. We do not include that graphic.</p>
+        <h3>What we can say</h3>
+        <p>Colorado State issues DayCent rev491 to approved users through the Soil Carbon Solutions Center. After you unpack that package, use the vendor README to name the site, soil, weather, and schedule files. Until those files exist on this computer, there is no verified list to draw.</p>
+        <h3>Status check we did run</h3>
+        <p>The only local artifact we trust is the install-queue check plotted in the figure above. It is not a DayCent output file. It only records that five other models are pinned and DayCent is not.</p>
         <h2 id="next-steps">7. After the package arrives</h2>
         <p>Pin the CSU tree under <code>installs\DayCent</code>, add a <code>PACKAGE.md</code>, keep a golden copy of the vendor example, and run that example from a fresh folder. Then rewrite this page with the executable name, the schedule file, and a plot of soil organic carbon or N<sub>2</sub>O from that run. Until then, start at the Soil Carbon Solutions Center.</p>
         <div class="tutorial-nav">

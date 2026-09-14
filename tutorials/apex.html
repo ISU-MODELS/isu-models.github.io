@@ -22,28 +22,20 @@
                 <li><a href="#run">Novice path: run the west-Illinois hillslope</a></li>
                 <li><a href="#confirm">Confirm the run</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the first success</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/apex-steps.jpg" alt="Four steps: download WinAPEX, copy apexprog inputs, run apex1501.exe, read Winapex.AWS">
-            <figcaption>Same four steps as the other model tutorials. The engine reads <code>APEXRUN.DAT</code> from the current directory.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>APEX extends the field-scale EPIC model to a farm or small watershed. The landscape is cut into <strong>subareas</strong>. Each subarea has its own soil, slope, weather, and operations file. Water, sediment, nutrients, and pesticides move from those fields into <strong>channels</strong> and then to an <strong>outlet</strong>. The daily timestep also grows crops, applies fertilizer, and can run several erosion equations at once (USLE, MUSLE family, RUSLE, RUSLE2). You will open the annual watershed table first.</p>
-        <figure>
-            <img src="images/apex-routing.jpg" alt="Three APEX subareas draining through channels to a watershed outlet">
-            <figcaption>The lab example uses a single 0.09 ha subarea. APEX can chain many subareas; the routing picture is the same.</figcaption>
-        </figure>
+        
         <p>The lab’s pinned engine is <code>apex1501.exe</code> (<strong>APEX1501</strong>) from the WinAPEX 1501 program folder. For this example the driving erosion equation is <strong>MUST</strong> (theoretical MUSLE).</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Download APEX from the Texas A&amp;M AgriLife EPIC/APEX software page. The Windows pieces you want are the APEX1501 executable and WinAPEX for APEX v.1501 (October 2016). Blackland Research and Extension Center in Temple, Texas, maintains the site. APEX-CUTE and QAPEX are later editors; you do not need them to finish this tutorial.</p>
-        <figure>
-            <img src="images/apex-download.jpg" alt="Texas A and M AgriLife EPIC/APEX software page with APEX1501 and WinAPEX downloads">
-            <figcaption>Use the Windows APEX1501 executable. The verified path is <code>apex1501.exe</code> in the program folder.</figcaption>
-        </figure>
+        
         <div class="tutorial-nav">
             <a href="https://epicapex.tamu.edu/software/">APEX software download</a>
             <a href="https://epicapex.tamu.edu/software/winapex/">WinAPEX 1501</a>
@@ -102,10 +94,7 @@ Set-Location $run
         <div class="note">
             <p>Stand in the folder that contains <code>APEXRUN.DAT</code>. The engine does not take a project path on the command line. If you run it from a tools directory, it will not see the west-Illinois inputs.</p>
         </div>
-        <figure>
-            <img src="images/apex.jpg" alt="APEX program folder with APEXCONT.DAT, APEXFILE.DAT, APEXRUN.DAT, and apex1501.exe writing Winapex.OUT">
-            <figcaption>Control files and the executable live together. Annual tables (<code>.AWS</code>, <code>.ASA</code>) are written beside <code>Winapex.OUT</code>.</figcaption>
-        </figure>
+        
 
         <h2 id="confirm">5. Confirm the run</h2>
         <p>The process should exit 0 and write <code>Winapex.OUT</code>, <code>Winapex.AWS</code>, <code>Winapex.ASA</code>, and <code>Winapex.SUS</code> beside the executable. Open the annual watershed file first; each row is one year.</p>
@@ -166,6 +155,331 @@ Set-Location $run
         </figure>
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <figure>
+            <img src="images/apex-io.svg" alt="APEX inputs on the left, apex1501.exe in the center, Winapex outputs on the right">
+            <figcaption>APEX1501 reads DAT tables and daily weather from the program folder and writes Winapex annual files in that same folder. Left: inputs. Center: executable. Right: outputs.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>apex1501.exe</code></h4>
+        <p>This is the APEX1501 engine. You start it in a folder that already holds APEXRUN.DAT and the tables APEXFILE.DAT names. It writes Winapex.* files in that same folder when the years finish.</p>
+        <h4><code>APSUBLDM.exe</code></h4>
+        <p>This is a companion builder that can assemble subarea loads. The tutorial run does not start it. The engine you execute for the first success is apex1501.exe.</p>
+        <h3>Input files</h3>
+        <h4><code>114.sol</code></h4>
+        <p>This is soil 114 in the compact .sol layout. The subarea file points at this soil for texture and layer properties on the west-Illinois field.</p>
+        <h4><code>130.sol</code></h4>
+        <p>This is another soil definition in .sol format sitting in the program folder. The example subarea does not have to use it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>134.OPS</code></h4>
+        <p>This is another operations calendar shipped with the program folder. It is available if a subarea points at it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>2.OPS</code></h4>
+        <p>This is an operations calendar: planting, tillage, and harvest dates for a dryland rotation. The example subarea uses this style of file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>25.WND</code></h4>
+        <p>This is a wind record. APEXRUN.DAT can select this wind station. Wind affects evapotranspiration and some erosion calculations. Keep the file beside the other inputs for this run.</p>
+        <h4><code>5.OPS</code></h4>
+        <p>This is another operations calendar in the folder. Only the operations ID named in the subarea file is active for the run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>81.WP1</code></h4>
+        <p>This is a monthly weather-parameter file for a station in the WP1 layout. It complements daily .DLY files when APEX needs monthly statistics. Keep the file beside the other inputs for this run.</p>
+        <h4><code>A48309.DLY</code></h4>
+        <p>A48309.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>APEXCONT.DAT</code></h4>
+        <p>This is the control card: start year, number of years, and many process switches, including which erosion equation to use. MUST in this example is set here.</p>
+        <h4><code>APEXDIM.DAT</code></h4>
+        <p>This sets array dimensions the engine was compiled to expect. Do not edit it on a first run. A mismatch can stop APEX before it writes annual tables.</p>
+        <h4><code>APEXFILE.DAT</code></h4>
+        <p>This is the map of table names. Each line is a file role such as soils or crops and the DAT file that fills that role.</p>
+        <h4><code>APEXRUN.DAT</code></h4>
+        <p>This names the run, how many years to simulate, and which weather and wind stations to use. APEX1501 reads it first. Wrong IDs here point the engine at the wrong climate files.</p>
+        <h4><code>crop.dat</code></h4>
+        <p>This is the crop catalog: growth parameters for every crop ID operations files can plant. Barley in this example is defined here. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fert.dat</code></h4>
+        <p>This is the fertilizer catalog: nutrient content of each fertilizer type named in operations. Keep the file beside the other inputs for this run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>HERD.DAT</code></h4>
+        <p>This is livestock herd data. A small file means little or no grazing in this example. Keep the file beside the other inputs for this run.</p>
+        <h4><code>MLRN.DAT</code></h4>
+        <p>This is a short miscellaneous record file. It is listed in APEXFILE.DAT so the engine can open it even when it is tiny. Keep the file beside the other inputs for this run.</p>
+        <h4><code>OPSC.DAT</code></h4>
+        <p>This is the operations schedule catalog. Field operations files such as 2.OPS draw their calendars from this system. Keep the file beside the other inputs for this run.</p>
+        <h4><code>parms.dat</code></h4>
+        <p>This is the parameter file of coefficients that are not crop- or soil-specific. Leave it as shipped for the first run. Keep the file beside the other inputs for this run.</p>
+        <h4><code>pest.dat</code></h4>
+        <p>This is the pesticide catalog. Even if this example applies little or no pesticide, APEX still opens the table. Keep the file beside the other inputs for this run.</p>
+        <h4><code>PRINT.DAT</code></h4>
+        <p>This chooses which output tables APEX writes. Annual watershed numbers in Winapex.AWS exist because this file asked for them. Keep the file beside the other inputs for this run.</p>
+        <h4><code>PSOCOM.DAT</code></h4>
+        <p>This is a reserved communication file. It can be empty. APEXFILE.DAT still names it so the engine can open the path. Keep the file beside the other inputs for this run.</p>
+        <h4><code>RAINDT.HLY</code></h4>
+        <p>This is hourly rainfall data WinAPEX can store. The verified tutorial path uses daily .DLY climate, not this hourly file, as the driver. Keep the file beside the other inputs for this run.</p>
+        <h4><code>RFDTCOM.DAT</code></h4>
+        <p>This is a rainfall-data communication stub. It is tiny. Daily rainfall for this run comes from the selected .DLY file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>RFDTLST.DAT</code></h4>
+        <p>This lists optional rainfall-data files. The main daily series still come from the .DLY stations in WDLST.DAT. Keep the file beside the other inputs for this run.</p>
+        <h4><code>SITE.DAT</code></h4>
+        <p>This points at the site file, here WINAPEX.SIT. The site file holds latitude, weather assignment, and the subarea list for the farm. Keep the file beside the other inputs for this run.</p>
+        <h4><code>SOIL.DAT</code></h4>
+        <p>This is the soil catalog the subarea file indexes. Soil 114 in this example is described here by layer. Keep the file beside the other inputs for this run.</p>
+        <h4><code>SOIL35K.DAT</code></h4>
+        <p>This is a large extra soil library shipped with WinAPEX. The run may not index every soil in it. It sits in the folder because APEXFILE can point at a soil table.</p>
+        <h4><code>SUBA.DAT</code></h4>
+        <p>This points at the subarea file, here Winapex.sub. That file is the field map: area, slope, soil, and operations for each subarea. Keep the file beside the other inputs for this run.</p>
+        <h4><code>till.dat</code></h4>
+        <p>This is the tillage catalog. Each operation in an .OPS file points here for mixing depth and residue effects. Keep the file beside the other inputs for this run.</p>
+        <h4><code>TR55.DAT</code></h4>
+        <p>This holds TR-55 style runoff parameters APEX can use when that runoff option is on. Keep the file beside the other inputs for this run.</p>
+        <h4><code>TX0016.DLY</code></h4>
+        <p>TX0016.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0120.DLY</code></h4>
+        <p>TX0120.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0268.DLY</code></h4>
+        <p>TX0268.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0313.DLY</code></h4>
+        <p>TX0313.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0337.DLY</code></h4>
+        <p>TX0337.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0404.DLY</code></h4>
+        <p>TX0404.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0428.DLY</code></h4>
+        <p>TX0428.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0518.DLY</code></h4>
+        <p>TX0518.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0639.DLY</code></h4>
+        <p>TX0639.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0665.DLY</code></h4>
+        <p>TX0665.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0691.DLY</code></h4>
+        <p>TX0691.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0832.DLY</code></h4>
+        <p>TX0832.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0902.DLY</code></h4>
+        <p>TX0902.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0923.DLY</code></h4>
+        <p>TX0923.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0984.DLY</code></h4>
+        <p>TX0984.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX0996.DLY</code></h4>
+        <p>TX0996.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1017.DLY</code></h4>
+        <p>TX1017.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1042.DLY</code></h4>
+        <p>TX1042.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1043.DLY</code></h4>
+        <p>TX1043.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1048.DLY</code></h4>
+        <p>TX1048.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1063.DLY</code></h4>
+        <p>TX1063.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1138.DLY</code></h4>
+        <p>TX1138.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1246.DLY</code></h4>
+        <p>TX1246.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1250.DLY</code></h4>
+        <p>TX1250.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1348.DLY</code></h4>
+        <p>TX1348.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1429.DLY</code></h4>
+        <p>TX1429.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1596.DLY</code></h4>
+        <p>TX1596.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1772.DLY</code></h4>
+        <p>TX1772.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1800.DLY</code></h4>
+        <p>TX1800.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1875.DLY</code></h4>
+        <p>TX1875.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1889.DLY</code></h4>
+        <p>TX1889.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX1911.DLY</code></h4>
+        <p>TX1911.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2019.DLY</code></h4>
+        <p>TX2019.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2242.DLY</code></h4>
+        <p>TX2242.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2244.DLY</code></h4>
+        <p>TX2244.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2394.DLY</code></h4>
+        <p>TX2394.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2404.DLY</code></h4>
+        <p>TX2404.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2585.DLY</code></h4>
+        <p>TX2585.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2598.DLY</code></h4>
+        <p>TX2598.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2715.DLY</code></h4>
+        <p>TX2715.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2820.DLY</code></h4>
+        <p>TX2820.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX2902.DLY</code></h4>
+        <p>TX2902.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3005.DLY</code></h4>
+        <p>TX3005.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3047.DLY</code></h4>
+        <p>TX3047.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3133.DLY</code></h4>
+        <p>TX3133.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3183.DLY</code></h4>
+        <p>TX3183.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3321.DLY</code></h4>
+        <p>TX3321.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3415.DLY</code></h4>
+        <p>TX3415.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3420.DLY</code></h4>
+        <p>TX3420.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3485.DLY</code></h4>
+        <p>TX3485.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3506.DLY</code></h4>
+        <p>TX3506.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3507.DLY</code></h4>
+        <p>TX3507.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3591.DLY</code></h4>
+        <p>TX3591.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3614.DLY</code></h4>
+        <p>TX3614.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3622.DLY</code></h4>
+        <p>TX3622.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3668.DLY</code></h4>
+        <p>TX3668.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3686.DLY</code></h4>
+        <p>TX3686.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3691.DLY</code></h4>
+        <p>TX3691.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3734.DLY</code></h4>
+        <p>TX3734.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3873.DLY</code></h4>
+        <p>TX3873.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3884.DLY</code></h4>
+        <p>TX3884.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX3992.DLY</code></h4>
+        <p>TX3992.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4093.DLY</code></h4>
+        <p>TX4093.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4137.DLY</code></h4>
+        <p>TX4137.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4182.DLY</code></h4>
+        <p>TX4182.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4278.DLY</code></h4>
+        <p>TX4278.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4517.DLY</code></h4>
+        <p>TX4517.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4605.DLY</code></h4>
+        <p>TX4605.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4705.DLY</code></h4>
+        <p>TX4705.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4792.DLY</code></h4>
+        <p>TX4792.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX4903.DLY</code></h4>
+        <p>TX4903.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5018.DLY</code></h4>
+        <p>TX5018.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5094.DLY</code></h4>
+        <p>TX5094.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5193.DLY</code></h4>
+        <p>TX5193.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5429.DLY</code></h4>
+        <p>TX5429.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5477.DLY</code></h4>
+        <p>TX5477.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5611.DLY</code></h4>
+        <p>TX5611.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5650.DLY</code></h4>
+        <p>TX5650.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5757.DLY</code></h4>
+        <p>TX5757.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5766.DLY</code></h4>
+        <p>TX5766.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5869.DLY</code></h4>
+        <p>TX5869.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX5958.DLY</code></h4>
+        <p>TX5958.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX6210.DLY</code></h4>
+        <p>TX6210.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX6276.DLY</code></h4>
+        <p>TX6276.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX6368.DLY</code></h4>
+        <p>TX6368.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX6636.DLY</code></h4>
+        <p>TX6636.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX6794.DLY</code></h4>
+        <p>TX6794.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX7028.DLY</code></h4>
+        <p>TX7028.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX7300.DLY</code></h4>
+        <p>TX7300.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX7327.DLY</code></h4>
+        <p>TX7327.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX7633.DLY</code></h4>
+        <p>TX7633.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX7983.DLY</code></h4>
+        <p>TX7983.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8274.DLY</code></h4>
+        <p>TX8274.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8415.DLY</code></h4>
+        <p>TX8415.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8446.DLY</code></h4>
+        <p>TX8446.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8623.DLY</code></h4>
+        <p>TX8623.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8646.DLY</code></h4>
+        <p>TX8646.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8861.DLY</code></h4>
+        <p>TX8861.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8862.DLY</code></h4>
+        <p>TX8862.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX8910.DLY</code></h4>
+        <p>TX8910.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9014.DLY</code></h4>
+        <p>TX9014.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9016.DLY</code></h4>
+        <p>TX9016.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9417.DLY</code></h4>
+        <p>TX9417.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9419.DLY</code></h4>
+        <p>TX9419.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9491.DLY</code></h4>
+        <p>TX9491.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9522.DLY</code></h4>
+        <p>TX9522.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9532.DLY</code></h4>
+        <p>TX9532.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>TX9715.DLY</code></h4>
+        <p>TX9715.DLY is a daily weather station file in the WinAPEX library: rainfall and temperature by day. WDLST.DAT lists it. APEXRUN.DAT chooses which station this run actually reads.</p>
+        <h4><code>WDLST.DAT</code></h4>
+        <p>This is the daily-weather station list. Each row names a TX*.DLY file, its coordinates, and a station title. APEXRUN.DAT picks which row this run uses.</p>
+        <h4><code>Winapex.SIT</code></h4>
+        <p>This is the site record for west-Illinois in this example: location, elevation, and which climate station the subareas use. Keep the file beside the other inputs for this run.</p>
+        <h4><code>WINAPEX.SUB</code></h4>
+        <p>This is the subarea table. Each row is one field with area, slope length, steepness, soil ID, and the operations file that field follows. Keep the file beside the other inputs for this run.</p>
+        <h4><code>WIND.DAT</code></h4>
+        <p>This is the wind station list. APEXRUN.DAT selects which wind record the run uses with the daily weather. Keep the file beside the other inputs for this run.</p>
+        <h4><code>WPM1.DAT</code></h4>
+        <p>This lists monthly weather parameters APEX can use when it needs generated climate. Daily .DLY files still supply the measured-style series this run prefers. Keep the file beside the other inputs for this run.</p>
+        <h3>Output files</h3>
+        <h4><code>00000001.SOT</code></h4>
+        <p>This is a soil-output table APEX writes for a subarea. It is created during the run. Use annual AWS numbers first, then this file for soil detail.</p>
+        <h4><code>fort.102</code></h4>
+        <p>This is a Fortran unit file APEX opened during the run. It is an internal scratch or echo file, not a table you need for the first check.</p>
+        <h4><code>fort.108</code></h4>
+        <p>This is another Fortran unit file written while APEX ran. Treat it as an engine side file, not as the annual sediment table. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fort.112</code></h4>
+        <p>This is a small Fortran unit file from the run. You can ignore it until a developer asks for it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>fort.128</code></h4>
+        <p>This is a small Fortran unit file from the run. It is not the watershed sediment output. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.ACY</code></h4>
+        <p>This is annual crop yield output. Each year of the run can appear here with harvest numbers. It is not the sediment check. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.ASA</code></h4>
+        <p>This is annual subarea output. It is a yearly field summary. Watershed sediment for the tutorial is in Winapex.AWS instead. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.AWS</code></h4>
+        <p>This is the annual watershed table. Precipitation, water yield, and sediment yield YS by year live here. The verification test reads this file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.OUT</code></h4>
+        <p>This is the large text listing of the whole run. Search it when you need a value that is not in the short annual tables.</p>
+        <h4><code>Winapex.SCX</code></h4>
+        <p>This is additional annual or scenario text output APEX writes beside AWS. Open AWS first for the tutorial numbers. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.SUS</code></h4>
+        <p>This is a summary output table. It is shorter than Winapex.OUT. Use it after AWS if you want extra annual totals. Keep the file beside the other inputs for this run.</p>
+        <h4><code>Winapex.WSS</code></h4>
+        <p>This is watershed summary output. It complements AWS. The first confirmation still uses the YS column in AWS. Keep the file beside the other inputs for this run.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p>This is the console text captured when apex1501.exe ran. APEX often prints little here. Success is confirmed by the AWS file, not by this log alone.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once the engine has written those tables, you can open <code>Winapex.ACY</code> for barley yield and stress, or <code>PRINT.DAT</code> to change which variables are stored. Changing slope length or operations is an edit to <code>Winapex.sub</code> and <code>OPSC.DAT</code>; that is a different lesson. This one stops at a verified CLI run of APEX1501.</p>
         <div class="tutorial-nav">

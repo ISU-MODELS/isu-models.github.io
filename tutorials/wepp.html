@@ -22,28 +22,20 @@
                 <li><a href="#run">Novice path: run the 30 m hillslope</a></li>
                 <li><a href="#confirm">Confirm the run</a></li>
                 <li><a href="#figure">This verification’s figure</a></li>
+                <li><a href="#io">Model Input and Output</a></li>
                 <li><a href="#next-steps">After the first success</a></li>
             </ol>
         </nav>
-        <figure>
-            <img src="images/wepp-steps.jpg" alt="Four steps: download WEPP, copy the hillslope project, run wepphillslopeserv, read SEDYIELD">
-            <figcaption>Same four steps as the other model tutorials. The service writes <code>runs\weppout.txt</code> as XML.</figcaption>
-        </figure>
+        
 
         <h2 id="what">1. What this model does</h2>
         <p>WEPP is a continuous, process-based erosion model. On a hillslope it tracks infiltration, runoff, and sediment along one or more <strong>overland-flow elements</strong>. Climate, soil, slope geometry, and management are four separate files. The number you will read first is average annual sediment yield, <code>SEDYIELD</code>, in tons per acre.</p>
-        <figure>
-            <img src="images/wepp-routing.jpg" alt="30 m hillslope with rain, infiltration, runoff, and sediment to the toe">
-            <figcaption>This example is one 30 m, 3.16% element. A watershed run would add channels; that is a different lesson.</figcaption>
-        </figure>
+        
         <p>The lab’s pinned engine is <code>wepp.exe</code> version <strong>2012.800</strong>, launched by <code>wepphillslopeserv.exe</code>. NSERL now ships a 2024 Windows package as well; this verified path stays on 2012.800.</p>
 
         <h2 id="get">2. Get the software</h2>
         <p>Download WEPP for Windows from the National Soil Erosion Research Laboratory. The current installer is the September 2024 package (WEPP 2024 plus 2012.8). The 30 August 2012 package is still posted and matches this lab’s CLI. Install somewhere writable; NSERL warns against <code>C:\Program Files</code>.</p>
-        <figure>
-            <img src="images/wepp-download.jpg" alt="NSERL WEPP Downloads page with 2024 and 2012.8 Windows packages">
-            <figcaption>Live URL on the ARS WEPP downloads page. The verified CLI is <code>wepp.exe</code> 2012.800 plus <code>wepphillslopeserv.exe</code>.</figcaption>
-        </figure>
+        
         <div class="tutorial-nav">
             <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-downloads/">WEPP downloads</a>
             <a href="https://www.ars.usda.gov/midwest-area/west-lafayette-in/national-soil-erosion-research/docs/wepp/wepp-model-documentation/">Model documentation</a>
@@ -103,10 +95,7 @@ Set-Location $run
         <div class="note">
             <p>If <code>wepp.exe</code> is missing from <code>runs\</code>, the service still writes <code>weppout.txt</code> with zeros and <code>WEPP_VERSION UNKNOWN</code>. Copy the engine into <code>runs\</code> before you call the service.</p>
         </div>
-        <figure>
-            <img src="images/wepp.jpg" alt="Hillslope profile next to a command prompt running wepphillslopeserv and reading SEDYIELD">
-            <figcaption>Stand in the project folder. Pass the project file to the hillslope service, then open <code>runs\weppout.txt</code>.</figcaption>
-        </figure>
+        
 
         <h2 id="confirm">5. Confirm the run</h2>
         <p>Open <code>runs\weppout.txt</code>. A successful 2012.800 run lists a version and a positive sediment yield.</p>
@@ -152,6 +141,115 @@ Set-Location $run
         </figure>
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
+        <h2 id="io">Model Input and Output</h2>
+        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <figure>
+            <img src="images/wepp-io.svg" alt="WEPP inputs on the left, wepphillslopeserv and wepp.exe in the center, output files on the right">
+            <figcaption>wepphillslopeserv launches wepp.exe with the project climate, soil, slope, and management files and writes XML plus plot texts under runs and output. Left: inputs. Center: executable. Right: outputs.</figcaption>
+        </figure>
+        <h3>Executable</h3>
+        <h4><code>runs/wepp.exe</code></h4>
+        <p>This is a copy of the engine in the runs folder. The service starts WEPP from there. Keep it next to the pass files it writes.</p>
+        <h4><code>wepp.exe</code></h4>
+        <p>This is the WEPP 2012.800 hillslope engine. The service launches it. You do not type arguments to wepp.exe yourself on this path. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wepphillslopeserv.exe</code></h4>
+        <p>This is the hillslope service. You give it the project folder, wepprun.prj, an output path, and wepp.exe. It writes XML to weppout.txt when the years finish.</p>
+        <h3>Input files</h3>
+        <h4><code>wepp.cli</code></h4>
+        <p>This is the climate file in WEPP breakpoint form: storms, temperatures, and related weather for each day of the simulation. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wepp.rot</code></h4>
+        <p>This is the management rotation: plant, tillage, and residue operations along the hillslope. Cover through the year comes from this file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wepp.slp</code></h4>
+        <p>This is the slope profile: length and steepness of each overland-flow element. This example is one 30 m element. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wepp.sol</code></h4>
+        <p>This is the soil file: layers, texture, and erodibility along the hillslope. The project points the element at this file. Keep the file beside the other inputs for this run.</p>
+        <h4><code>wepprun.prj</code></h4>
+        <p>This is the project file. It names the slope, climate, soil, and management files, the number of years, and the output options the service should request.</p>
+        <h3>Output files</h3>
+        <h4><code>output/avgloss_daily_plot_0.txt</code></h4>
+        <p>avgloss_daily_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/avgloss_plot_0.txt</code></h4>
+        <p>avgloss_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/avgloss_yearly.txt</code></h4>
+        <p>avgloss_yearly.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/biomass_plot_0.txt</code></h4>
+        <p>biomass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/buriedresmass_plot_0.txt</code></h4>
+        <p>buriedresmass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/cancover_plot_0.txt</code></h4>
+        <p>cancover_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/canhgt_plot_0.txt</code></h4>
+        <p>canhgt_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/crop_0.txt</code></h4>
+        <p>crop_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/deadrootmass_plot_0.txt</code></h4>
+        <p>deadrootmass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/evbe_0.txt</code></h4>
+        <p>evbe_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/finl_0.txt</code></h4>
+        <p>finl_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/grph_0.txt</code></h4>
+        <p>grph_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/intrcover_plot_0.txt</code></h4>
+        <p>intrcover_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/loss_0.txt</code></h4>
+        <p>loss_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/ofe_0.txt</code></h4>
+        <p>ofe_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/pass_0.txt</code></h4>
+        <p>pass_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/plot_0.txt</code></h4>
+        <p>plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/precip_plot_0.txt</code></h4>
+        <p>precip_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/precip_yearly.txt</code></h4>
+        <p>precip_yearly.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/rescover_daily_plot_0.txt</code></h4>
+        <p>rescover_daily_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/resmass_plot_0.txt</code></h4>
+        <p>resmass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/resmassadded_daily_plot_0.txt</code></h4>
+        <p>resmassadded_daily_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/rootmass_plot_0.txt</code></h4>
+        <p>rootmass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/sed_daily_plot_0.txt</code></h4>
+        <p>sed_daily_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/sed_yearly.txt</code></h4>
+        <p>sed_yearly.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/soil_0.txt</code></h4>
+        <p>soil_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/standmass_plot_0.txt</code></h4>
+        <p>standmass_plot_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/warm_0.txt</code></h4>
+        <p>warm_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/watr_0.txt</code></h4>
+        <p>watr_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/wntr_0.txt</code></h4>
+        <p>wntr_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/yields.txt</code></h4>
+        <p>yields.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>output/yld_0.txt</code></h4>
+        <p>yld_0.txt is a detailed WEPP plot or yearly text file the engine wrote under output/. The first number to trust is still SEDYIELD in runs/weppout.txt. Open this file only after that check passes.</p>
+        <h4><code>runs/delete.me</code></h4>
+        <p>This is a placeholder the service leaves in the runs folder. It is not a science table. You can ignore it. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/p0.cli</code></h4>
+        <p>This is the climate file the service staged for overland-flow element 0. It is a working copy derived from wepp.cli. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/p0.err</code></h4>
+        <p>This is the error file for element 0. An empty or tiny file after a success means WEPP did not stop on a fatal input error.</p>
+        <h4><code>runs/p0.man</code></h4>
+        <p>This is the management file the service staged for element 0. It is a working copy derived from wepp.rot. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/p0.run</code></h4>
+        <p>This is the run-control file the service wrote for element 0. wepp.exe reads it from the runs folder. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/p0.slp</code></h4>
+        <p>This is the slope file the service staged for element 0. It is a working copy derived from wepp.slp. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/p0.sol</code></h4>
+        <p>This is the soil file the service staged for element 0. It is a working copy derived from wepp.sol. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/weppbat.bat</code></h4>
+        <p>This is a batch file the service writes to launch wepp.exe. You do not edit it. It is a side product of the service. Keep the file beside the other inputs for this run.</p>
+        <h4><code>runs/weppout.txt</code></h4>
+        <p>This is the XML summary the service writes. SEDYIELD, LOSS, RUNOFF, and PRECIP in this file are the numbers the verification test reads. Keep the file beside the other inputs for this run.</p>
+        <h4><code>run_stdout.txt</code></h4>
+        <p>This is console text captured from the service. WEPP may print little here. The XML weppout.txt is the confirmation file. Keep the file beside the other inputs for this run.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once <code>weppout.txt</code> has a version and a yield, you can open the yearly files under <code>output\</code> or change slope length in <code>wepp.slp</code> and <code>wepprun.prj</code>. A channel/watershed run is a different project file. This lesson stops at a verified hillslope CLI.</p>
         <div class="tutorial-nav">
