@@ -1,319 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1232" height="1442" viewBox="0 0 1232 1442">
+<svg xmlns="http://www.w3.org/2000/svg" width="1324" height="1138" viewBox="0 0 1324 1138">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0071e3"/></marker>
     <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b6e4f"/></marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="616.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">SWAT file routing (tutorial_run_20260913)</text>
-  <rect x="16" y="56" width="420" height="1372" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
-<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (282)</text>
-<text x="24.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.pnd</text>
-<text x="24.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.rte</text>
-<text x="24.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.sub</text>
-<text x="24.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.swq</text>
-<text x="24.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.wgn</text>
-<text x="24.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010000.wus</text>
-<text x="24.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.chm</text>
-<text x="24.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.gw</text>
-<text x="24.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.hru</text>
-<text x="24.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.mgt</text>
-<text x="24.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.sdr</text>
-<text x="24.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.sep</text>
-<text x="24.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010001.sol</text>
-<text x="24.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.chm</text>
-<text x="24.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.gw</text>
-<text x="24.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.hru</text>
-<text x="24.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.mgt</text>
-<text x="24.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.sdr</text>
-<text x="24.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.sep</text>
-<text x="24.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010002.sol</text>
-<text x="24.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.chm</text>
-<text x="24.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.gw</text>
-<text x="24.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.hru</text>
-<text x="24.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.mgt</text>
-<text x="24.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.sdr</text>
-<text x="24.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.sep</text>
-<text x="24.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010003.sol</text>
-<text x="24.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.chm</text>
-<text x="24.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.gw</text>
-<text x="24.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.hru</text>
-<text x="24.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.mgt</text>
-<text x="24.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.sdr</text>
-<text x="24.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.sep</text>
-<text x="24.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010004.sol</text>
-<text x="24.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.chm</text>
-<text x="24.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.gw</text>
-<text x="24.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.hru</text>
-<text x="24.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.mgt</text>
-<text x="24.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.sdr</text>
-<text x="24.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.sep</text>
-<text x="24.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000010005.sol</text>
-<text x="24.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.pnd</text>
-<text x="24.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.rte</text>
-<text x="24.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.sub</text>
-<text x="24.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.swq</text>
-<text x="24.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.wgn</text>
-<text x="24.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020000.wus</text>
-<text x="24.0" y="754" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.chm</text>
-<text x="24.0" y="768" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.gw</text>
-<text x="24.0" y="782" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.hru</text>
-<text x="24.0" y="796" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.mgt</text>
-<text x="24.0" y="810" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.sdr</text>
-<text x="24.0" y="824" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.sep</text>
-<text x="24.0" y="838" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020001.sol</text>
-<text x="24.0" y="852" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.chm</text>
-<text x="24.0" y="866" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.gw</text>
-<text x="24.0" y="880" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.hru</text>
-<text x="24.0" y="894" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.mgt</text>
-<text x="24.0" y="908" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.sdr</text>
-<text x="24.0" y="922" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.sep</text>
-<text x="24.0" y="936" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020002.sol</text>
-<text x="24.0" y="950" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.chm</text>
-<text x="24.0" y="964" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.gw</text>
-<text x="24.0" y="978" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.hru</text>
-<text x="24.0" y="992" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.mgt</text>
-<text x="24.0" y="1006" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.sdr</text>
-<text x="24.0" y="1020" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.sep</text>
-<text x="24.0" y="1034" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020003.sol</text>
-<text x="24.0" y="1048" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.chm</text>
-<text x="24.0" y="1062" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.gw</text>
-<text x="24.0" y="1076" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.hru</text>
-<text x="24.0" y="1090" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.mgt</text>
-<text x="24.0" y="1104" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.sdr</text>
-<text x="24.0" y="1118" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.sep</text>
-<text x="24.0" y="1132" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000020004.sol</text>
-<text x="24.0" y="1146" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.pnd</text>
-<text x="24.0" y="1160" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.rte</text>
-<text x="24.0" y="1174" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.sub</text>
-<text x="24.0" y="1188" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.swq</text>
-<text x="24.0" y="1202" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.wgn</text>
-<text x="24.0" y="1216" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030000.wus</text>
-<text x="24.0" y="1230" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.chm</text>
-<text x="24.0" y="1244" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.gw</text>
-<text x="24.0" y="1258" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.hru</text>
-<text x="24.0" y="1272" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.mgt</text>
-<text x="24.0" y="1286" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.sdr</text>
-<text x="24.0" y="1300" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.sep</text>
-<text x="24.0" y="1314" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030001.sol</text>
-<text x="24.0" y="1328" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.chm</text>
-<text x="24.0" y="1342" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.gw</text>
-<text x="24.0" y="1356" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.hru</text>
-<text x="24.0" y="1370" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.mgt</text>
-<text x="24.0" y="1384" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.sdr</text>
-<text x="24.0" y="1398" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.sep</text>
-<text x="160.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030002.sol</text>
-<text x="160.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.chm</text>
-<text x="160.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.gw</text>
-<text x="160.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.hru</text>
-<text x="160.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.mgt</text>
-<text x="160.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.sdr</text>
-<text x="160.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.sep</text>
-<text x="160.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030003.sol</text>
-<text x="160.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.chm</text>
-<text x="160.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.gw</text>
-<text x="160.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.hru</text>
-<text x="160.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.mgt</text>
-<text x="160.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.sdr</text>
-<text x="160.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.sep</text>
-<text x="160.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000030004.sol</text>
-<text x="160.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.pnd</text>
-<text x="160.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.rte</text>
-<text x="160.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.sub</text>
-<text x="160.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.swq</text>
-<text x="160.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.wgn</text>
-<text x="160.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040000.wus</text>
-<text x="160.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.chm</text>
-<text x="160.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.gw</text>
-<text x="160.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.hru</text>
-<text x="160.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.mgt</text>
-<text x="160.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.sdr</text>
-<text x="160.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.sep</text>
-<text x="160.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040001.sol</text>
-<text x="160.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.chm</text>
-<text x="160.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.gw</text>
-<text x="160.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.hru</text>
-<text x="160.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.mgt</text>
-<text x="160.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.sdr</text>
-<text x="160.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.sep</text>
-<text x="160.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040002.sol</text>
-<text x="160.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.chm</text>
-<text x="160.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.gw</text>
-<text x="160.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.hru</text>
-<text x="160.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.mgt</text>
-<text x="160.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.sdr</text>
-<text x="160.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.sep</text>
-<text x="160.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040003.sol</text>
-<text x="160.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.chm</text>
-<text x="160.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.gw</text>
-<text x="160.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.hru</text>
-<text x="160.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.mgt</text>
-<text x="160.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.sdr</text>
-<text x="160.0" y="754" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.sep</text>
-<text x="160.0" y="768" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040004.sol</text>
-<text x="160.0" y="782" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.chm</text>
-<text x="160.0" y="796" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.gw</text>
-<text x="160.0" y="810" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.hru</text>
-<text x="160.0" y="824" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.mgt</text>
-<text x="160.0" y="838" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.sdr</text>
-<text x="160.0" y="852" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.sep</text>
-<text x="160.0" y="866" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000040005.sol</text>
-<text x="160.0" y="880" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.pnd</text>
-<text x="160.0" y="894" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.rte</text>
-<text x="160.0" y="908" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.sub</text>
-<text x="160.0" y="922" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.swq</text>
-<text x="160.0" y="936" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.wgn</text>
-<text x="160.0" y="950" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050000.wus</text>
-<text x="160.0" y="964" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.chm</text>
-<text x="160.0" y="978" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.gw</text>
-<text x="160.0" y="992" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.hru</text>
-<text x="160.0" y="1006" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.mgt</text>
-<text x="160.0" y="1020" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.sdr</text>
-<text x="160.0" y="1034" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.sep</text>
-<text x="160.0" y="1048" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050001.sol</text>
-<text x="160.0" y="1062" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.chm</text>
-<text x="160.0" y="1076" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.gw</text>
-<text x="160.0" y="1090" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.hru</text>
-<text x="160.0" y="1104" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.mgt</text>
-<text x="160.0" y="1118" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.sdr</text>
-<text x="160.0" y="1132" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.sep</text>
-<text x="160.0" y="1146" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050002.sol</text>
-<text x="160.0" y="1160" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.chm</text>
-<text x="160.0" y="1174" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.gw</text>
-<text x="160.0" y="1188" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.hru</text>
-<text x="160.0" y="1202" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.mgt</text>
-<text x="160.0" y="1216" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.sdr</text>
-<text x="160.0" y="1230" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.sep</text>
-<text x="160.0" y="1244" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050003.sol</text>
-<text x="160.0" y="1258" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.chm</text>
-<text x="160.0" y="1272" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.gw</text>
-<text x="160.0" y="1286" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.hru</text>
-<text x="160.0" y="1300" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.mgt</text>
-<text x="160.0" y="1314" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.sdr</text>
-<text x="160.0" y="1328" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.sep</text>
-<text x="160.0" y="1342" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050004.sol</text>
-<text x="160.0" y="1356" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.chm</text>
-<text x="160.0" y="1370" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.gw</text>
-<text x="160.0" y="1384" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.hru</text>
-<text x="160.0" y="1398" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.mgt</text>
-<text x="296.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.sdr</text>
-<text x="296.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.sep</text>
-<text x="296.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050005.sol</text>
-<text x="296.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.chm</text>
-<text x="296.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.gw</text>
-<text x="296.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.hru</text>
-<text x="296.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.mgt</text>
-<text x="296.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.sdr</text>
-<text x="296.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.sep</text>
-<text x="296.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000050006.sol</text>
-<text x="296.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.pnd</text>
-<text x="296.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.rte</text>
-<text x="296.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.sub</text>
-<text x="296.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.swq</text>
-<text x="296.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.wgn</text>
-<text x="296.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060000.wus</text>
-<text x="296.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.chm</text>
-<text x="296.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.gw</text>
-<text x="296.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.hru</text>
-<text x="296.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.mgt</text>
-<text x="296.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.sdr</text>
-<text x="296.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.sep</text>
-<text x="296.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060001.sol</text>
-<text x="296.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.chm</text>
-<text x="296.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.gw</text>
-<text x="296.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.hru</text>
-<text x="296.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.mgt</text>
-<text x="296.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.sdr</text>
-<text x="296.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.sep</text>
-<text x="296.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060002.sol</text>
-<text x="296.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.chm</text>
-<text x="296.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.gw</text>
-<text x="296.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.hru</text>
-<text x="296.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.mgt</text>
-<text x="296.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.sdr</text>
-<text x="296.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.sep</text>
-<text x="296.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060003.sol</text>
-<text x="296.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.chm</text>
-<text x="296.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.gw</text>
-<text x="296.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.hru</text>
-<text x="296.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.mgt</text>
-<text x="296.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.sdr</text>
-<text x="296.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.sep</text>
-<text x="296.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060004.sol</text>
-<text x="296.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.chm</text>
-<text x="296.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.gw</text>
-<text x="296.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.hru</text>
-<text x="296.0" y="754" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.mgt</text>
-<text x="296.0" y="768" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.sdr</text>
-<text x="296.0" y="782" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.sep</text>
-<text x="296.0" y="796" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000060005.sol</text>
-<text x="296.0" y="810" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.pnd</text>
-<text x="296.0" y="824" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.rte</text>
-<text x="296.0" y="838" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.sub</text>
-<text x="296.0" y="852" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.swq</text>
-<text x="296.0" y="866" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.wgn</text>
-<text x="296.0" y="880" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070000.wus</text>
-<text x="296.0" y="894" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.chm</text>
-<text x="296.0" y="908" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.gw</text>
-<text x="296.0" y="922" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.hru</text>
-<text x="296.0" y="936" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.mgt</text>
-<text x="296.0" y="950" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.sdr</text>
-<text x="296.0" y="964" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.sep</text>
-<text x="296.0" y="978" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070001.sol</text>
-<text x="296.0" y="992" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.chm</text>
-<text x="296.0" y="1006" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.gw</text>
-<text x="296.0" y="1020" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.hru</text>
-<text x="296.0" y="1034" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.mgt</text>
-<text x="296.0" y="1048" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.sdr</text>
-<text x="296.0" y="1062" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.sep</text>
-<text x="296.0" y="1076" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">000070002.sol</text>
-<text x="296.0" y="1090" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">ATMO.ATM</text>
-<text x="296.0" y="1104" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">basins.bsn</text>
-<text x="296.0" y="1118" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">basins.wwq</text>
-<text x="296.0" y="1132" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">cst.cst</text>
-<text x="296.0" y="1146" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fert.dat</text>
-<text x="296.0" y="1160" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fig.fig</text>
-<text x="296.0" y="1174" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">file.cio</text>
-<text x="296.0" y="1188" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">hmd.hmd</text>
-<text x="296.0" y="1202" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">hru.dat</text>
-<text x="296.0" y="1216" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">lup.dat</text>
-<text x="296.0" y="1230" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">pcp1.pcp</text>
-<text x="296.0" y="1244" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">pest.dat</text>
-<text x="296.0" y="1258" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">plant.dat</text>
-<text x="296.0" y="1272" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">rch.dat</text>
-<text x="296.0" y="1286" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">rsv.dat</text>
-<text x="296.0" y="1300" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">septwq.dat</text>
-<text x="296.0" y="1314" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">slr.slr</text>
-<text x="296.0" y="1328" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">sub.dat</text>
-<text x="296.0" y="1342" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">till.dat</text>
-<text x="296.0" y="1356" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Tmp1.Tmp</text>
-<text x="296.0" y="1370" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">urban.dat</text>
-<text x="296.0" y="1384" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watout.dat</text>
-<text x="296.0" y="1398" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wnd.wnd</text>
-  <rect x="476" y="76" width="280" height="82" rx="12" fill="#1d1d1f"/>
-<text x="616.0" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
-<text x="616.0" y="120" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">Rev_695_64rel.exe</text>
-<text x="616.0" y="136" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">SWAT.exe</text>
-<text x="616.0" y="152" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">SWATdebug.exe</text>
-  <rect x="796" y="56" width="420" height="294" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
-<text x="808" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (17)</text>
-<text x="804.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">bmp-ri.out</text>
-<text x="804.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">bmp-sedfil.out</text>
-<text x="804.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">chan.deg</text>
-<text x="804.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fin.fin</text>
-<text x="804.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">hyd.out</text>
-<text x="804.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">input.std</text>
-<text x="804.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">monsoon_plt.out</text>
-<text x="804.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.hru</text>
-<text x="804.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.pes</text>
-<text x="804.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.rch</text>
-<text x="804.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.rsv</text>
-<text x="804.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.sed</text>
-<text x="804.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.std</text>
-<text x="804.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output.sub</text>
-<text x="804.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">septic.out</text>
-<text x="804.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">swat.qst</text>
-<text x="804.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">run_stdout.txt</text>
-  <line x1="436" y1="117.0" x2="476" y2="117.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="756" y1="117.0" x2="796" y2="117.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="662.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">SWAT file types (one example each)</text>
+  <rect x="16" y="56" width="460" height="1068" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
+<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (36 types)</text>
+<text x="28" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">file.cio</text>
+<text x="28" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. file.cio</text>
+<text x="28" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fig.fig</text>
+<text x="28" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. fig.fig</text>
+<text x="28" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">basins.bsn</text>
+<text x="28" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. basins.bsn</text>
+<text x="28" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">basins.wwq</text>
+<text x="28" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. basins.wwq</text>
+<text x="28" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.pcp precipitation</text>
+<text x="28" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. pcp1.pcp</text>
+<text x="28" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.tmp temperature</text>
+<text x="28" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. Tmp1.Tmp</text>
+<text x="28" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.slr solar radiation</text>
+<text x="28" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. slr.slr</text>
+<text x="28" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.hmd humidity</text>
+<text x="28" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. hmd.hmd</text>
+<text x="28" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.wnd wind</text>
+<text x="28" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. wnd.wnd</text>
+<text x="28" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.cst forecast</text>
+<text x="28" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. cst.cst</text>
+<text x="28" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">ATMO.ATM</text>
+<text x="28" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. ATMO.ATM</text>
+<text x="28" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">plant.dat</text>
+<text x="28" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. plant.dat</text>
+<text x="28" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">till.dat</text>
+<text x="28" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. till.dat</text>
+<text x="28" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">pest.dat</text>
+<text x="28" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. pest.dat</text>
+<text x="28" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fert.dat</text>
+<text x="28" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. fert.dat</text>
+<text x="28" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">urban.dat</text>
+<text x="28" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. urban.dat</text>
+<text x="28" y="546" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">septwq.dat</text>
+<text x="28" y="558" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. septwq.dat</text>
+<text x="28" y="574" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">hru.dat</text>
+<text x="28" y="586" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. hru.dat</text>
+<text x="28" y="602" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">sub.dat</text>
+<text x="28" y="614" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. sub.dat</text>
+<text x="28" y="630" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">rch.dat</text>
+<text x="28" y="642" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. rch.dat</text>
+<text x="28" y="658" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">rsv.dat</text>
+<text x="28" y="670" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. rsv.dat</text>
+<text x="28" y="686" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">lup.dat</text>
+<text x="28" y="698" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. lup.dat</text>
+<text x="28" y="714" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">watout.dat</text>
+<text x="28" y="726" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. watout.dat</text>
+<text x="28" y="742" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sub subbasin</text>
+<text x="28" y="754" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 7; e.g. 000010000.sub</text>
+<text x="28" y="770" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.rte channel routing</text>
+<text x="28" y="782" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 7; e.g. 000010000.rte</text>
+<text x="28" y="798" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.pnd pond</text>
+<text x="28" y="810" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 7; e.g. 000010000.pnd</text>
+<text x="28" y="826" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.swq stream water quality</text>
+<text x="28" y="838" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 7; e.g. 000010000.swq</text>
+<text x="28" y="854" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.wgn weather generator</text>
+<text x="28" y="866" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 7; e.g. 000010000.wgn</text>
+<text x="28" y="882" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.wus water use</text>
+<text x="28" y="894" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 7; e.g. 000010000.wus</text>
+<text x="28" y="910" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.hru HRU</text>
+<text x="28" y="922" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 31; e.g. 000010001.hru</text>
+<text x="28" y="938" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.mgt management</text>
+<text x="28" y="950" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 31; e.g. 000010001.mgt</text>
+<text x="28" y="966" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sol soil</text>
+<text x="28" y="978" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 31; e.g. 000010001.sol</text>
+<text x="28" y="994" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.chm soil chemistry</text>
+<text x="28" y="1006" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 31; e.g. 000010001.chm</text>
+<text x="28" y="1022" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.gw groundwater</text>
+<text x="28" y="1034" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 31; e.g. 000010001.gw</text>
+<text x="28" y="1050" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sdr tile drain</text>
+<text x="28" y="1062" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 31; e.g. 000010001.sdr</text>
+<text x="28" y="1078" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sep septic</text>
+<text x="28" y="1090" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 31; e.g. 000010001.sep</text>
+  <rect x="512" y="64" width="300" height="108" rx="12" fill="#1d1d1f"/>
+<text x="662.0" y="84" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
+<text x="662.0" y="104" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">Rev_695_64rel.exe</text>
+<text x="662.0" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+<text x="662.0" y="132" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">other SWAT*.exe</text>
+<text x="662.0" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">0 to infinite</text>
+  <rect x="848" y="56" width="460" height="508" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
+<text x="860" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (16 types)</text>
+<text x="860" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.rch</text>
+<text x="860" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.rch</text>
+<text x="860" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.sub</text>
+<text x="860" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.sub</text>
+<text x="860" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.hru</text>
+<text x="860" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.hru</text>
+<text x="860" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.std</text>
+<text x="860" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.std</text>
+<text x="860" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.sed</text>
+<text x="860" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.sed</text>
+<text x="860" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.rsv</text>
+<text x="860" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.rsv</text>
+<text x="860" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output.pes</text>
+<text x="860" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. output.pes</text>
+<text x="860" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">input.std</text>
+<text x="860" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. input.std</text>
+<text x="860" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">chan.deg</text>
+<text x="860" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. chan.deg</text>
+<text x="860" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">hyd.out</text>
+<text x="860" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. hyd.out</text>
+<text x="860" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fin.fin</text>
+<text x="860" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. fin.fin</text>
+<text x="860" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">bmp-*.out</text>
+<text x="860" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 2; e.g. bmp-ri.out</text>
+<text x="860" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">septic.out</text>
+<text x="860" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. septic.out</text>
+<text x="860" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">monsoon_plt.out</text>
+<text x="860" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. monsoon_plt.out</text>
+<text x="860" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">swat.qst</text>
+<text x="860" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. swat.qst</text>
+<text x="860" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">run_stdout.txt</text>
+<text x="860" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. run_stdout.txt</text>
+  <line x1="476" y1="118.0" x2="512" y2="118.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="812" y1="118.0" x2="848" y2="118.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
 </svg>

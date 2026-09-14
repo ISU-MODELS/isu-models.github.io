@@ -1,85 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1232" height="630" viewBox="0 0 1232 630">
+<svg xmlns="http://www.w3.org/2000/svg" width="1324" height="998" viewBox="0 0 1324 998">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0071e3"/></marker>
     <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b6e4f"/></marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="616.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">AnnAGNPS file routing (tutorial_run_20260913)</text>
-  <rect x="16" y="56" width="420" height="490" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
-<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (31)</text>
-<text x="24.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS.csv</text>
-<text x="24.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">annagnps_master.csv</text>
-<text x="24.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">climate/climate_daily.csv</text>
-<text x="24.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">climate/climate_station.csv</text>
-<text x="24.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/AnnAGNPS_Combined_Group_1_Soil_Data.csv</text>
-<text x="24.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/AnnAGNPS_Combined_Group_1_Soil_Layers_Data.csv</text>
-<text x="24.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/AnnAGNPS_Riparian_Buffer_Data_Section_AgBuf.csv</text>
-<text x="24.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/crop_growth.csv</text>
-<text x="24.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/cropdata.csv</text>
-<text x="24.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/fertapp.csv</text>
-<text x="24.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/fertref.csv</text>
-<text x="24.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/hydgeom.csv</text>
-<text x="24.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/manfield.csv</text>
-<text x="24.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/manoper.csv</text>
-<text x="24.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/mansched.csv</text>
-<text x="24.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/non_crop.csv</text>
-<text x="24.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/rocurve.csv</text>
-<text x="24.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/Runoff_Curve_Number_Data_Input_Editor_v5.5_Format.csv</text>
-<text x="24.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/strip_crop.csv</text>
-<text x="24.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">general/tiledat.csv</text>
-<text x="24.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/annaid.csv</text>
-<text x="24.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/globfac.csv</text>
-<text x="24.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/outopts_aa.csv</text>
-<text x="24.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/outopts_global.csv</text>
-<text x="24.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/outopts_tbl.csv</text>
-<text x="24.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">simulation/sim_period.csv</text>
-<text x="24.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watershed/AnnAGNPS_Cell_Data_Section.csv</text>
-<text x="24.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watershed/AnnAGNPS_Ephemeral_Gully_Data_Section.csv</text>
-<text x="24.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watershed/AnnAGNPS_Reach_Data_Section.csv</text>
-<text x="24.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watershed/AnnAGNPS_Wetland_Data_Section.csv</text>
-<text x="24.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">watershed/watershed_data.csv</text>
-  <rect x="476" y="76" width="280" height="80" rx="12" fill="#1d1d1f"/>
-<text x="616.0" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
-<text x="616.0" y="120" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">AnnAGNPS.exe</text>
-  <rect x="796" y="56" width="420" height="560" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
-<text x="808" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (36)</text>
-<text x="804.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS.log</text>
-<text x="804.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS.nfm</text>
-<text x="804.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS.wrn</text>
-<text x="804.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA.csv</text>
-<text x="804.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</text>
-<text x="804.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Organic_Carbon_load_(unit-area).csv</text>
-<text x="804.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Phosphorus_load_(unit-area).csv</text>
-<text x="804.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Sediment_load_(unit-area).csv</text>
-<text x="804.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Sediment_load_by_source_(unit-area).csv</text>
-<text x="804.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_AA_Water_load_(unit-area).csv</text>
-<text x="804.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_dbg.csv</text>
-<text x="804.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_LOG_All.csv</text>
-<text x="804.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_LOG_Execution_Status.csv</text>
-<text x="804.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_LOG_Information.csv</text>
-<text x="804.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_LOG_Warning.csv</text>
-<text x="804.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_TBL_Gaging_Station_Data_Evt.csv</text>
-<text x="804.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">AnnAGNPS_TBL_Gaging_Station_Data_Hyd.csv</text>
-<text x="804.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Attached_OUTLET.csv</text>
-<text x="804.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Soluble_OUTLET.csv</text>
-<text x="804.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Nitrogen_load_UA_RR_Total_OUTLET.csv</text>
-<text x="804.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Attached_OUTLET.csv</text>
-<text x="804.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Soluble_OUTLET.csv</text>
-<text x="804.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Organic_Carbon_load_UA_RR_Total_OUTLET.csv</text>
-<text x="804.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Inorganic_OUTLET.csv</text>
-<text x="804.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Attached_Organic_OUTLET.csv</text>
-<text x="804.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Soluble Inorganic_OUTLET.csv</text>
-<text x="804.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Phosphorus_load_UA_RR_Total_OUTLET.csv</text>
-<text x="804.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv</text>
-<text x="804.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Clay_OUTLET.csv</text>
-<text x="804.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Gully_OUTLET.csv</text>
-<text x="804.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Sand_OUTLET.csv</text>
-<text x="804.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_Silt_OUTLET.csv</text>
-<text x="804.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_Gly_Pnd_OUTLET.csv</text>
-<text x="804.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Sediment_load_UA_RR_Total_SnR_OUTLET.csv</text>
-<text x="804.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">CSV_Output_Files/UA_RR_Output/AnnAGNPS_AA_Water_load_UA_RR_Total_OUTLET.csv</text>
-<text x="804.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">run_stdout.txt</text>
-  <line x1="436" y1="116.0" x2="476" y2="116.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="756" y1="116.0" x2="796" y2="116.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="662.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">AnnAGNPS file types (one example each)</text>
+  <rect x="16" y="56" width="460" height="928" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
+<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (31 types)</text>
+<text x="28" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS.csv</text>
+<text x="28" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. AnnAGNPS.csv</text>
+<text x="28" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">annagnps_master.csv</text>
+<text x="28" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. annagnps_master.csv</text>
+<text x="28" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">climate_daily.csv</text>
+<text x="28" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. climate_daily.csv</text>
+<text x="28" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">climate_station.csv</text>
+<text x="28" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. climate_station.csv</text>
+<text x="28" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">soil data CSV</text>
+<text x="28" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. AnnAGNPS_Combined_Group_1_Soil_Data.csv</text>
+<text x="28" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">soil layers CSV</text>
+<text x="28" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. AnnAGNPS_Combined_Group_1_Soil_Layers_Data.csv</text>
+<text x="28" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">riparian buffer CSV</text>
+<text x="28" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_Riparian_Buffer_Data_Section_AgBuf.csv</text>
+<text x="28" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">crop_growth.csv</text>
+<text x="28" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. crop_growth.csv</text>
+<text x="28" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">cropdata.csv</text>
+<text x="28" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. cropdata.csv</text>
+<text x="28" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fertapp.csv</text>
+<text x="28" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. fertapp.csv</text>
+<text x="28" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fertref.csv</text>
+<text x="28" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. fertref.csv</text>
+<text x="28" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">hydgeom.csv</text>
+<text x="28" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. hydgeom.csv</text>
+<text x="28" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">manfield.csv</text>
+<text x="28" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. manfield.csv</text>
+<text x="28" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">manoper.csv</text>
+<text x="28" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. manoper.csv</text>
+<text x="28" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">mansched.csv</text>
+<text x="28" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. mansched.csv</text>
+<text x="28" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">non_crop.csv</text>
+<text x="28" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. non_crop.csv</text>
+<text x="28" y="546" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">rocurve.csv</text>
+<text x="28" y="558" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. rocurve.csv</text>
+<text x="28" y="574" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">curve number (editor format)</text>
+<text x="28" y="586" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Runoff_Curve_Number_Data_Input_Editor_v5.5_Format.csv</text>
+<text x="28" y="602" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">strip_crop.csv</text>
+<text x="28" y="614" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. strip_crop.csv</text>
+<text x="28" y="630" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">tiledat.csv</text>
+<text x="28" y="642" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. tiledat.csv</text>
+<text x="28" y="658" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">annaid.csv</text>
+<text x="28" y="670" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. annaid.csv</text>
+<text x="28" y="686" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">globfac.csv</text>
+<text x="28" y="698" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. globfac.csv</text>
+<text x="28" y="714" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">outopts_aa.csv</text>
+<text x="28" y="726" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. outopts_aa.csv</text>
+<text x="28" y="742" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">outopts_global.csv</text>
+<text x="28" y="754" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. outopts_global.csv</text>
+<text x="28" y="770" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">outopts_tbl.csv</text>
+<text x="28" y="782" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. outopts_tbl.csv</text>
+<text x="28" y="798" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">sim_period.csv</text>
+<text x="28" y="810" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. sim_period.csv</text>
+<text x="28" y="826" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">cell data CSV</text>
+<text x="28" y="838" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. AnnAGNPS_Cell_Data_Section.csv</text>
+<text x="28" y="854" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">reach data CSV</text>
+<text x="28" y="866" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. AnnAGNPS_Reach_Data_Section.csv</text>
+<text x="28" y="882" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">ephemeral gully CSV</text>
+<text x="28" y="894" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_Ephemeral_Gully_Data_Section.csv</text>
+<text x="28" y="910" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">wetland CSV</text>
+<text x="28" y="922" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_Wetland_Data_Section.csv</text>
+<text x="28" y="938" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">watershed_data.csv</text>
+<text x="28" y="950" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. watershed_data.csv</text>
+  <rect x="512" y="64" width="300" height="80" rx="12" fill="#1d1d1f"/>
+<text x="662.0" y="84" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
+<text x="662.0" y="104" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">AnnAGNPS.exe</text>
+<text x="662.0" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+  <rect x="848" y="56" width="460" height="480" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
+<text x="860" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (15 types)</text>
+<text x="860" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS_AA.csv</text>
+<text x="860" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA.csv</text>
+<text x="860" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA sediment load CSV</text>
+<text x="860" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Sediment_load_(unit-area).csv</text>
+<text x="860" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA sediment by source CSV</text>
+<text x="860" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Sediment_load_by_source_(unit-area).csv</text>
+<text x="860" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA water load CSV</text>
+<text x="860" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Water_load_(unit-area).csv</text>
+<text x="860" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA nitrogen load CSV</text>
+<text x="860" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Nitrogen_load_(unit-area).csv</text>
+<text x="860" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA phosphorus load CSV</text>
+<text x="860" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Phosphorus_load_(unit-area).csv</text>
+<text x="860" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AA organic carbon CSV</text>
+<text x="860" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_AA_Organic_Carbon_load_(unit-area).csv</text>
+<text x="860" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">UA_RR outlet CSVs</text>
+<text x="860" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 18; e.g. AnnAGNPS_AA_Sediment_load_UA_RR_Total_All_OUTLET.csv</text>
+<text x="860" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS.log</text>
+<text x="860" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS.log</text>
+<text x="860" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS.wrn</text>
+<text x="860" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS.wrn</text>
+<text x="860" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS.nfm</text>
+<text x="860" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS.nfm</text>
+<text x="860" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS_dbg.csv</text>
+<text x="860" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. AnnAGNPS_dbg.csv</text>
+<text x="860" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">AnnAGNPS_LOG_*.csv</text>
+<text x="860" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 4; this run 4; e.g. AnnAGNPS_LOG_All.csv</text>
+<text x="860" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">gaging-station TBL CSVs</text>
+<text x="860" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 2; e.g. AnnAGNPS_TBL_Gaging_Station_Data_Hyd.csv</text>
+<text x="860" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">run_stdout.txt</text>
+<text x="860" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. run_stdout.txt</text>
+  <line x1="476" y1="104.0" x2="512" y2="104.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="812" y1="104.0" x2="848" y2="104.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
 </svg>

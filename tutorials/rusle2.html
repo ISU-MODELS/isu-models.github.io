@@ -139,24 +139,29 @@ Copy-Item "C:\Grok\Models\installs\AnnAGNPS\AGNPS\Utility\RITA\Execute\RomeDLL.d
         <p>If you rerun the wrapper, this PNG is rewritten in the run folder and in each tutorial <code>images\</code> home.</p>
 
         <h2 id="io">Model Input and Output</h2>
-        <p>The diagram below is built from the verification folder on this host. Every file name in the picture is a real file from that run. Arrows show what the executable reads and what it writes.</p>
+        <p>Same-type files that only change location or ID are shown once. The count under each name is how few and how many of that type a run can hold. The example name is one file from the verification folder.</p>
         <figure>
             <img src="images/rusle2-io.svg" alt="moses.gdb on the left, RomeCli and RomeDLL in the center, console logs on the right">
-            <figcaption>RomeCli loads RomeDLL, reads a copy of moses.gdb, and writes soil-loss numbers to the console logs we saved. Left: inputs. Center: executable. Right: outputs.</figcaption>
+            <figcaption>Headless RUSLE2 is one database, one CLI, one DLL; many profiles live inside moses.gdb. Left: input types. Center: executable. Right: output types.</figcaption>
         </figure>
         <h3>Executable</h3>
         <h4><code>RomeCli.exe</code></h4>
-        <p>This is the 32-bit command-line wrapper. You pass it the RomeDLL program folder, the path to moses.gdb, and a profile name. It prints SLOPE_SOIL_LOSS when the engine finishes.</p>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>RomeCli.exe</code>.</p>
+        <p>This is the 32-bit command-line wrapper. One copy. You pass it the RomeDLL folder, the path to moses.gdb, and a profile name. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>RomeDLL.dll</code></h4>
-        <p>This is the RUSLE2 science engine. Rusle2.exe is only the window. RomeCli loads this DLL. Copy it beside RomeCli.exe before the first headless call. Keep the file beside the other inputs for this run.</p>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>RomeDLL.dll</code>.</p>
+        <p>This is the RUSLE2 science engine. One DLL beside RomeCli. Rusle2.exe is only the window; this path never starts the GUI. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Input files</h3>
         <h4><code>moses.gdb</code></h4>
-        <p>This is the NRCS database that holds climates, soils, and profiles. The default profile used in the tutorial lives inside this file. Copy it into a fresh folder so you do not lock the lab original.</p>
+        <p class="io-count">How many: exactly 1. This run: 1. Example: <code>moses.gdb</code>.</p>
+        <p>This is the NRCS database of climates, soils, and profiles. One database file. Many profiles live inside it; the tutorial uses profiles\default. Open the example file in the verification folder to see that layout on disk.</p>
         <h3>Output files</h3>
         <h4><code>run_stdout.txt</code></h4>
-        <p>This is the console text from the default-profile call. It must contain SLOPE_SOIL_LOSS and a number. That number is average annual soil loss A in tons per acre per year.</p>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>run_stdout.txt</code>.</p>
+        <p>This is console text from the default-profile call. One file. It must contain SLOPE_SOIL_LOSS, average annual A in tons per acre per year. Open the example file in the verification folder to see that layout on disk.</p>
         <h4><code>sweep_stdout.txt</code></h4>
-        <p>This is the console text from the slope-steepness sweep. Each line set is another SLOPE_SOIL_LOSS after the profile steepness was changed. The plot is built from these numbers.</p>
+        <p class="io-count">How many: 0 to 1. This run: 1. Example: <code>sweep_stdout.txt</code>.</p>
+        <p>This is console text from the slope-steepness sweep. One file. Each SLOPE_SOIL_LOSS after a steepness change feeds the plot. Open the example file in the verification folder to see that layout on disk.</p>
         <h2 id="next-steps">7. After the first success</h2>
         <p>Once RomeCli prints that number, you can set other profile attributes the same way (<code>SLOPE_HORIZ</code> for length, management pointers, and so on) or open the same database in the GUI. Building a new NRCS field office profile is a different lesson. This one stops at a verified headless soil-loss run.</p>
         <div class="tutorial-nav">

@@ -1,175 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1232" height="798" viewBox="0 0 1232 798">
+<svg xmlns="http://www.w3.org/2000/svg" width="1324" height="1026" viewBox="0 0 1324 1026">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0071e3"/></marker>
     <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b6e4f"/></marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="616.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">APEX file routing (tutorial_run_20260913)</text>
-  <rect x="16" y="56" width="420" height="728" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
-<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (143)</text>
-<text x="24.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">114.sol</text>
-<text x="24.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">130.sol</text>
-<text x="24.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">134.OPS</text>
-<text x="24.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">2.OPS</text>
-<text x="24.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">25.WND</text>
-<text x="24.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">5.OPS</text>
-<text x="24.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">81.WP1</text>
-<text x="24.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">A48309.DLY</text>
-<text x="24.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">APEXCONT.DAT</text>
-<text x="24.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">APEXDIM.DAT</text>
-<text x="24.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">APEXFILE.DAT</text>
-<text x="24.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">APEXRUN.DAT</text>
-<text x="24.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">crop.dat</text>
-<text x="24.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fert.dat</text>
-<text x="24.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">HERD.DAT</text>
-<text x="24.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">MLRN.DAT</text>
-<text x="24.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">OPSC.DAT</text>
-<text x="24.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">parms.dat</text>
-<text x="24.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">pest.dat</text>
-<text x="24.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">PRINT.DAT</text>
-<text x="24.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">PSOCOM.DAT</text>
-<text x="24.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">RAINDT.HLY</text>
-<text x="24.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">RFDTCOM.DAT</text>
-<text x="24.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">RFDTLST.DAT</text>
-<text x="24.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">SITE.DAT</text>
-<text x="24.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">SOIL.DAT</text>
-<text x="24.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">SOIL35K.DAT</text>
-<text x="24.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">SUBA.DAT</text>
-<text x="24.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">till.dat</text>
-<text x="24.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TR55.DAT</text>
-<text x="24.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0016.DLY</text>
-<text x="24.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0120.DLY</text>
-<text x="24.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0268.DLY</text>
-<text x="24.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0313.DLY</text>
-<text x="24.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0337.DLY</text>
-<text x="24.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0404.DLY</text>
-<text x="24.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0428.DLY</text>
-<text x="24.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0518.DLY</text>
-<text x="24.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0639.DLY</text>
-<text x="24.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0665.DLY</text>
-<text x="24.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0691.DLY</text>
-<text x="24.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0832.DLY</text>
-<text x="24.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0902.DLY</text>
-<text x="24.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0923.DLY</text>
-<text x="24.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0984.DLY</text>
-<text x="24.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX0996.DLY</text>
-<text x="24.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1017.DLY</text>
-<text x="24.0" y="754" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1042.DLY</text>
-<text x="160.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1043.DLY</text>
-<text x="160.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1048.DLY</text>
-<text x="160.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1063.DLY</text>
-<text x="160.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1138.DLY</text>
-<text x="160.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1246.DLY</text>
-<text x="160.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1250.DLY</text>
-<text x="160.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1348.DLY</text>
-<text x="160.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1429.DLY</text>
-<text x="160.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1596.DLY</text>
-<text x="160.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1772.DLY</text>
-<text x="160.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1800.DLY</text>
-<text x="160.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1875.DLY</text>
-<text x="160.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1889.DLY</text>
-<text x="160.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX1911.DLY</text>
-<text x="160.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2019.DLY</text>
-<text x="160.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2242.DLY</text>
-<text x="160.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2244.DLY</text>
-<text x="160.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2394.DLY</text>
-<text x="160.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2404.DLY</text>
-<text x="160.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2585.DLY</text>
-<text x="160.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2598.DLY</text>
-<text x="160.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2715.DLY</text>
-<text x="160.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2820.DLY</text>
-<text x="160.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX2902.DLY</text>
-<text x="160.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3005.DLY</text>
-<text x="160.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3047.DLY</text>
-<text x="160.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3133.DLY</text>
-<text x="160.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3183.DLY</text>
-<text x="160.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3321.DLY</text>
-<text x="160.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3415.DLY</text>
-<text x="160.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3420.DLY</text>
-<text x="160.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3485.DLY</text>
-<text x="160.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3506.DLY</text>
-<text x="160.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3507.DLY</text>
-<text x="160.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3591.DLY</text>
-<text x="160.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3614.DLY</text>
-<text x="160.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3622.DLY</text>
-<text x="160.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3668.DLY</text>
-<text x="160.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3686.DLY</text>
-<text x="160.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3691.DLY</text>
-<text x="160.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3734.DLY</text>
-<text x="160.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3873.DLY</text>
-<text x="160.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3884.DLY</text>
-<text x="160.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX3992.DLY</text>
-<text x="160.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4093.DLY</text>
-<text x="160.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4137.DLY</text>
-<text x="160.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4182.DLY</text>
-<text x="160.0" y="754" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4278.DLY</text>
-<text x="296.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4517.DLY</text>
-<text x="296.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4605.DLY</text>
-<text x="296.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4705.DLY</text>
-<text x="296.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4792.DLY</text>
-<text x="296.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX4903.DLY</text>
-<text x="296.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5018.DLY</text>
-<text x="296.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5094.DLY</text>
-<text x="296.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5193.DLY</text>
-<text x="296.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5429.DLY</text>
-<text x="296.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5477.DLY</text>
-<text x="296.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5611.DLY</text>
-<text x="296.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5650.DLY</text>
-<text x="296.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5757.DLY</text>
-<text x="296.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5766.DLY</text>
-<text x="296.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5869.DLY</text>
-<text x="296.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX5958.DLY</text>
-<text x="296.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX6210.DLY</text>
-<text x="296.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX6276.DLY</text>
-<text x="296.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX6368.DLY</text>
-<text x="296.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX6636.DLY</text>
-<text x="296.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX6794.DLY</text>
-<text x="296.0" y="390" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX7028.DLY</text>
-<text x="296.0" y="404" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX7300.DLY</text>
-<text x="296.0" y="418" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX7327.DLY</text>
-<text x="296.0" y="432" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX7633.DLY</text>
-<text x="296.0" y="446" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX7983.DLY</text>
-<text x="296.0" y="460" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8274.DLY</text>
-<text x="296.0" y="474" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8415.DLY</text>
-<text x="296.0" y="488" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8446.DLY</text>
-<text x="296.0" y="502" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8623.DLY</text>
-<text x="296.0" y="516" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8646.DLY</text>
-<text x="296.0" y="530" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8861.DLY</text>
-<text x="296.0" y="544" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8862.DLY</text>
-<text x="296.0" y="558" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX8910.DLY</text>
-<text x="296.0" y="572" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9014.DLY</text>
-<text x="296.0" y="586" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9016.DLY</text>
-<text x="296.0" y="600" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9417.DLY</text>
-<text x="296.0" y="614" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9419.DLY</text>
-<text x="296.0" y="628" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9491.DLY</text>
-<text x="296.0" y="642" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9522.DLY</text>
-<text x="296.0" y="656" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9532.DLY</text>
-<text x="296.0" y="670" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">TX9715.DLY</text>
-<text x="296.0" y="684" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">WDLST.DAT</text>
-<text x="296.0" y="698" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.SIT</text>
-<text x="296.0" y="712" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">WINAPEX.SUB</text>
-<text x="296.0" y="726" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">WIND.DAT</text>
-<text x="296.0" y="740" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">WPM1.DAT</text>
-  <rect x="476" y="76" width="280" height="80" rx="12" fill="#1d1d1f"/>
-<text x="616.0" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
-<text x="616.0" y="120" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">apex1501.exe</text>
-<text x="616.0" y="136" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">APSUBLDM.exe</text>
-  <rect x="796" y="56" width="420" height="238" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
-<text x="808" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (13)</text>
-<text x="804.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">00000001.SOT</text>
-<text x="804.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fort.102</text>
-<text x="804.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fort.108</text>
-<text x="804.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fort.112</text>
-<text x="804.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">fort.128</text>
-<text x="804.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.ACY</text>
-<text x="804.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.ASA</text>
-<text x="804.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.AWS</text>
-<text x="804.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.OUT</text>
-<text x="804.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.SCX</text>
-<text x="804.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.SUS</text>
-<text x="804.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">Winapex.WSS</text>
-<text x="804.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">run_stdout.txt</text>
-  <line x1="436" y1="116.0" x2="476" y2="116.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="756" y1="116.0" x2="796" y2="116.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="662.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">APEX file types (one example each)</text>
+  <rect x="16" y="56" width="460" height="956" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
+<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (32 types)</text>
+<text x="28" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">APEXRUN.DAT</text>
+<text x="28" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. APEXRUN.DAT</text>
+<text x="28" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">APEXCONT.DAT</text>
+<text x="28" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. APEXCONT.DAT</text>
+<text x="28" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">APEXDIM.DAT</text>
+<text x="28" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. APEXDIM.DAT</text>
+<text x="28" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">APEXFILE.DAT</text>
+<text x="28" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. APEXFILE.DAT</text>
+<text x="28" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">SITE.DAT</text>
+<text x="28" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. SITE.DAT</text>
+<text x="28" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">SUBA.DAT</text>
+<text x="28" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. SUBA.DAT</text>
+<text x="28" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">site file (.SIT)</text>
+<text x="28" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. Winapex.SIT</text>
+<text x="28" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">subarea file (.sub)</text>
+<text x="28" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. WINAPEX.SUB</text>
+<text x="28" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">WDLST.DAT</text>
+<text x="28" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. WDLST.DAT</text>
+<text x="28" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.DLY daily weather</text>
+<text x="28" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 109; e.g. TX0120.DLY</text>
+<text x="28" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">WPM1.DAT</text>
+<text x="28" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. WPM1.DAT</text>
+<text x="28" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.WP1 monthly weather</text>
+<text x="28" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. 81.WP1</text>
+<text x="28" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">WIND.DAT</text>
+<text x="28" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. WIND.DAT</text>
+<text x="28" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.WND wind record</text>
+<text x="28" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. 25.WND</text>
+<text x="28" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">CROP.DAT</text>
+<text x="28" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. crop.dat</text>
+<text x="28" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">TILL.DAT</text>
+<text x="28" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. till.dat</text>
+<text x="28" y="546" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">PEST.DAT</text>
+<text x="28" y="558" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. pest.dat</text>
+<text x="28" y="574" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">FERT.DAT</text>
+<text x="28" y="586" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. fert.dat</text>
+<text x="28" y="602" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">SOIL.DAT</text>
+<text x="28" y="614" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. SOIL.DAT</text>
+<text x="28" y="630" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">extra soil library DAT</text>
+<text x="28" y="642" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. SOIL35K.DAT</text>
+<text x="28" y="658" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sol soil</text>
+<text x="28" y="670" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 2; e.g. 114.sol</text>
+<text x="28" y="686" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">OPSC.DAT</text>
+<text x="28" y="698" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. OPSC.DAT</text>
+<text x="28" y="714" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.OPS operations</text>
+<text x="28" y="726" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 3; e.g. 2.OPS</text>
+<text x="28" y="742" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">TR55.DAT</text>
+<text x="28" y="754" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. TR55.DAT</text>
+<text x="28" y="770" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">PARMS.DAT</text>
+<text x="28" y="782" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. parms.dat</text>
+<text x="28" y="798" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">MLRN.DAT</text>
+<text x="28" y="810" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. MLRN.DAT</text>
+<text x="28" y="826" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">PRINT.DAT</text>
+<text x="28" y="838" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. PRINT.DAT</text>
+<text x="28" y="854" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">HERD.DAT</text>
+<text x="28" y="866" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. HERD.DAT</text>
+<text x="28" y="882" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">PSOCOM.DAT</text>
+<text x="28" y="894" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. PSOCOM.DAT</text>
+<text x="28" y="910" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">RFDTLST.DAT</text>
+<text x="28" y="922" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. RFDTLST.DAT</text>
+<text x="28" y="938" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">RFDTCOM.DAT</text>
+<text x="28" y="950" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. RFDTCOM.DAT</text>
+<text x="28" y="966" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">RAINDT.HLY</text>
+<text x="28" y="978" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. RAINDT.HLY</text>
+  <rect x="512" y="64" width="300" height="108" rx="12" fill="#1d1d1f"/>
+<text x="662.0" y="84" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
+<text x="662.0" y="104" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">apex1501.exe</text>
+<text x="662.0" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+<text x="662.0" y="132" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">APSUBLDM.exe</text>
+<text x="662.0" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">0 to 1</text>
+  <rect x="848" y="56" width="460" height="340" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
+<text x="860" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (10 types)</text>
+<text x="860" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.AWS</text>
+<text x="860" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.AWS</text>
+<text x="860" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.OUT</text>
+<text x="860" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.OUT</text>
+<text x="860" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.ACY</text>
+<text x="860" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.ACY</text>
+<text x="860" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.ASA</text>
+<text x="860" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.ASA</text>
+<text x="860" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.SUS</text>
+<text x="860" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.SUS</text>
+<text x="860" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.WSS</text>
+<text x="860" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.WSS</text>
+<text x="860" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">Winapex.SCX</text>
+<text x="860" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. Winapex.SCX</text>
+<text x="860" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.SOT soil output</text>
+<text x="860" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. 00000001.SOT</text>
+<text x="860" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">fort.* Fortran units</text>
+<text x="860" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 4; e.g. fort.108</text>
+<text x="860" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">run_stdout.txt</text>
+<text x="860" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. run_stdout.txt</text>
+  <line x1="476" y1="118.0" x2="512" y2="118.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="812" y1="118.0" x2="848" y2="118.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
 </svg>

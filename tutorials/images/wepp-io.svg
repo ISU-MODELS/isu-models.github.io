@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1232" height="420" viewBox="0 0 1232 420">
+<svg xmlns="http://www.w3.org/2000/svg" width="1324" height="690" viewBox="0 0 1324 690">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0071e3"/></marker>
     <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b6e4f"/></marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="616.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">WEPP file routing (tutorial_run_20260913)</text>
-  <rect x="16" y="56" width="420" height="126" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
-<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (5)</text>
-<text x="24.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wepp.cli</text>
-<text x="24.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wepp.rot</text>
-<text x="24.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wepp.slp</text>
-<text x="24.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wepp.sol</text>
-<text x="24.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">wepprun.prj</text>
-  <rect x="476" y="76" width="280" height="82" rx="12" fill="#1d1d1f"/>
-<text x="616.0" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
-<text x="616.0" y="120" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">runs/wepp.exe</text>
-<text x="616.0" y="136" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">wepp.exe</text>
-<text x="616.0" y="152" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">wepphillslopeserv.exe</text>
-  <rect x="796" y="56" width="420" height="350" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
-<text x="808" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (42)</text>
-<text x="804.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/avgloss_daily_plot_0.txt</text>
-<text x="804.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/avgloss_plot_0.txt</text>
-<text x="804.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/avgloss_yearly.txt</text>
-<text x="804.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/biomass_plot_0.txt</text>
-<text x="804.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/buriedresmass_plot_0.txt</text>
-<text x="804.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/cancover_plot_0.txt</text>
-<text x="804.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/canhgt_plot_0.txt</text>
-<text x="804.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/crop_0.txt</text>
-<text x="804.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/deadrootmass_plot_0.txt</text>
-<text x="804.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/evbe_0.txt</text>
-<text x="804.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/finl_0.txt</text>
-<text x="804.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/grph_0.txt</text>
-<text x="804.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/intrcover_plot_0.txt</text>
-<text x="804.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/loss_0.txt</text>
-<text x="804.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/ofe_0.txt</text>
-<text x="804.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/pass_0.txt</text>
-<text x="804.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/plot_0.txt</text>
-<text x="804.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/precip_plot_0.txt</text>
-<text x="804.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/precip_yearly.txt</text>
-<text x="804.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/rescover_daily_plot_0.txt</text>
-<text x="804.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/resmass_plot_0.txt</text>
-<text x="1008.0" y="96" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/resmassadded_daily_plot_0.txt</text>
-<text x="1008.0" y="110" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/rootmass_plot_0.txt</text>
-<text x="1008.0" y="124" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/sed_daily_plot_0.txt</text>
-<text x="1008.0" y="138" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/sed_yearly.txt</text>
-<text x="1008.0" y="152" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/soil_0.txt</text>
-<text x="1008.0" y="166" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/standmass_plot_0.txt</text>
-<text x="1008.0" y="180" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/warm_0.txt</text>
-<text x="1008.0" y="194" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/watr_0.txt</text>
-<text x="1008.0" y="208" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/wntr_0.txt</text>
-<text x="1008.0" y="222" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/yields.txt</text>
-<text x="1008.0" y="236" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">output/yld_0.txt</text>
-<text x="1008.0" y="250" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/delete.me</text>
-<text x="1008.0" y="264" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.cli</text>
-<text x="1008.0" y="278" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.err</text>
-<text x="1008.0" y="292" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.man</text>
-<text x="1008.0" y="306" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.run</text>
-<text x="1008.0" y="320" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.slp</text>
-<text x="1008.0" y="334" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/p0.sol</text>
-<text x="1008.0" y="348" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/weppbat.bat</text>
-<text x="1008.0" y="362" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">runs/weppout.txt</text>
-<text x="1008.0" y="376" font-family="Consolas, Courier New, monospace" font-size="9" fill="#1d1d1f">run_stdout.txt</text>
-  <line x1="436" y1="117.0" x2="476" y2="117.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
-<line x1="756" y1="117.0" x2="796" y2="117.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="662.0" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1d1d1f">WEPP file types (one example each)</text>
+  <rect x="16" y="56" width="460" height="200" rx="10" fill="#e8f1fb" stroke="#1d1d1f"/>
+<text x="28" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Inputs (5 types)</text>
+<text x="28" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">wepprun.prj</text>
+<text x="28" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">exactly 1; this run 1; e.g. wepprun.prj</text>
+<text x="28" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.cli climate</text>
+<text x="28" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. wepp.cli</text>
+<text x="28" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.slp slope</text>
+<text x="28" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. wepp.slp</text>
+<text x="28" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.sol soil</text>
+<text x="28" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. wepp.sol</text>
+<text x="28" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">*.rot / management</text>
+<text x="28" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">1 to infinite; this run 1; e.g. wepp.rot</text>
+  <rect x="512" y="64" width="300" height="108" rx="12" fill="#1d1d1f"/>
+<text x="662.0" y="84" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff">Executable</text>
+<text x="662.0" y="104" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">wepphillslopeserv.exe</text>
+<text x="662.0" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+<text x="662.0" y="132" text-anchor="middle" font-family="Consolas, Courier New, monospace" font-size="11" fill="#fff">wepp.exe</text>
+<text x="662.0" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#d2d2d7">exactly 1</text>
+  <rect x="848" y="56" width="460" height="620" rx="10" fill="#e8f6ee" stroke="#1d1d1f"/>
+<text x="860" y="78" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1d1d1f">Outputs (20 types)</text>
+<text x="860" y="98" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">runs/weppout.txt</text>
+<text x="860" y="110" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. weppout.txt</text>
+<text x="860" y="126" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">runs/weppbat.bat</text>
+<text x="860" y="138" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. weppbat.bat</text>
+<text x="860" y="154" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">runs/pN.* OFE working copies</text>
+<text x="860" y="166" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 6; e.g. p0.cli</text>
+<text x="860" y="182" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">runs/delete.me</text>
+<text x="860" y="194" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. delete.me</text>
+<text x="860" y="210" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/*yearly.txt</text>
+<text x="860" y="222" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 3; e.g. avgloss_yearly.txt</text>
+<text x="860" y="238" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/*plot*.txt</text>
+<text x="860" y="250" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 16; e.g. avgloss_plot_0.txt</text>
+<text x="860" y="266" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/crop_*.txt</text>
+<text x="860" y="278" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. crop_0.txt</text>
+<text x="860" y="294" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/soil_*.txt</text>
+<text x="860" y="306" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. soil_0.txt</text>
+<text x="860" y="322" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/watr_*.txt</text>
+<text x="860" y="334" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. watr_0.txt</text>
+<text x="860" y="350" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/wntr_*.txt</text>
+<text x="860" y="362" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. wntr_0.txt</text>
+<text x="860" y="378" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/yld_*.txt</text>
+<text x="860" y="390" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. yld_0.txt</text>
+<text x="860" y="406" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/pass_*.txt</text>
+<text x="860" y="418" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. pass_0.txt</text>
+<text x="860" y="434" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/grph_*.txt</text>
+<text x="860" y="446" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. grph_0.txt</text>
+<text x="860" y="462" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/evbe_*.txt</text>
+<text x="860" y="474" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. evbe_0.txt</text>
+<text x="860" y="490" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/finl_*.txt</text>
+<text x="860" y="502" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. finl_0.txt</text>
+<text x="860" y="518" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/ofe_*.txt</text>
+<text x="860" y="530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. ofe_0.txt</text>
+<text x="860" y="546" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/loss_*.txt</text>
+<text x="860" y="558" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. loss_0.txt</text>
+<text x="860" y="574" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/warm_*.txt</text>
+<text x="860" y="586" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to infinite; this run 1; e.g. warm_0.txt</text>
+<text x="860" y="602" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">output/yields.txt</text>
+<text x="860" y="614" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. yields.txt</text>
+<text x="860" y="630" font-family="Consolas, Courier New, monospace" font-size="11" fill="#1d1d1f">run_stdout.txt</text>
+<text x="860" y="642" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#424245">0 to 1; this run 1; e.g. run_stdout.txt</text>
+  <line x1="476" y1="118.0" x2="512" y2="118.0" stroke="#0071e3" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="812" y1="118.0" x2="848" y2="118.0" stroke="#0b6e4f" stroke-width="2" marker-end="url(#arrow2)"/>
 </svg>
