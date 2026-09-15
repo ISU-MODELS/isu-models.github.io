@@ -235,6 +235,12 @@ body {
     margin: 8px 0 20px;
 }
 
+.tutorial img[src$="-io.svg"] {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
 .tutorial figcaption {
     font-size: 13px;
     color: #6e6e73;
