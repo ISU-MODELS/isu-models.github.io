@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #1d1d1f;
+    background: #fff;
+}
+
+.portal-page {
+    padding: 120px 20px 80px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.portal-page h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1d1d1f;
+}
+
+.portal-lede {
+    font-size: 18px;
+    color: #6e6e73;
+    margin-bottom: 28px;
+}
+
+.application-form,
+.portal-form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    position: relative;
+}
+
+.portal-page .portal-form {
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.application-form label,
+.portal-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.application-form input[type="text"],
+.application-form input[type="email"],
+.application-form input[type="tel"],
+.application-form textarea,
+.application-form select,
+.portal-form input[type="text"],
+.portal-form input[type="email"],
+.portal-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.file-input {
+    margin-top: 5px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+.application-form button,
+.portal-form button {
+    padding: 12px 24px;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.application-form button:disabled,
+.portal-form button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+.hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+#status {
+    margin-top: 12px;
+}
+
+.sent-notice {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background: #e8f2ff;
+    border-radius: 8px;
+    color: #1d1d1f;
+}
+
+.form-note {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6e6e73;
+}

@@ -4,9 +4,10 @@
  * GitHub Pages cannot run an API or keep a secret. A Cloudflare Worker
  * would need a Cloudflare account; this lab does not use one.
  *
- * Production (modelslab.org): FormSubmit emails rmcgehee@iastate.edu with
- * the PDF attachments. No extra account. Combined files must be ≤ 10MB
- * (FormSubmit's free limit).
+ * Production (modelslab.org): the browser posts the form to FormSubmit,
+ * which delivers the message and PDF attachments to rmcgehee@iastate.edu
+ * in Outlook. No account and no monthly fee. Combined files must be ≤ 10MB
+ * (FormSubmit's free limit). Reply-To is the applicant's email.
  *
  * Local GitHub filing: in ryanpmcg/MODELS-Lab-Applications run
  * `python api/server.py` with GITHUB_TOKEN from `gh auth token`. This
@@ -16,7 +17,6 @@
 (function () {
   const MAX_EACH = 5 * 1024 * 1024;
   const MAX_TOTAL = 10 * 1024 * 1024;
-  const FORMSUBMIT = "https://formsubmit.co/ajax/rmcgehee@iastate.edu";
   const LOCAL_API = "http://127.0.0.1:8787/api/apply";
 
   function $(id) {
@@ -75,7 +75,7 @@
       phone: form.phone.value.trim(),
       message: form.message.value.trim(),
       courses: courses,
-      honeypot: form.website ? form.website.value : "",
+      honeypot: form.elements["_honey"] ? form.elements["_honey"].value : "",
       files: {
         cv: {
           filename: form.cv.files[0].name,
@@ -107,31 +107,19 @@
     throw new Error((json && json.error) || "Local apply API is not running.");
   }
 
-  async function submitToFormSubmit(form, courses) {
-    const data = new FormData(form);
-    data.delete("website");
-    data.append("_subject", "MODELS Lab application: " + (form.name.value || "").trim());
-    data.append("_template", "table");
-    data.append("_captcha", "false");
-    data.append("_honey", form.website ? form.website.value : "");
-    data.append("coursework", courses.join(", "));
-    const res = await fetch(FORMSUBMIT, {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
-    });
-    const json = await res.json().catch(function () {
-      return null;
-    });
-    if (json && json.success) return { ok: true, message: json.message };
-    if (json && /confirm/i.test(String(json.message || ""))) {
-      return {
-        ok: true,
-        message:
-          "First-time setup: check rmcgehee@iastate.edu and confirm FormSubmit, then submit again.",
-      };
+  function prepareOutlookDelivery(form, courses) {
+    var subject = form.elements["_subject"];
+    var coursework = form.elements["coursework"];
+    var reply = form.elements["_replyto"];
+    if (subject) subject.value = "MODELS Lab application: " + form.name.value.trim();
+    if (coursework) coursework.value = courses.join(", ");
+    if (!reply) {
+      reply = document.createElement("input");
+      reply.type = "hidden";
+      reply.name = "_replyto";
+      form.appendChild(reply);
     }
-    throw new Error((json && json.message) || "Error sending application.");
+    reply.value = form.email.value.trim();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -160,7 +148,6 @@
     });
 
     form.addEventListener("submit", async function (event) {
-      event.preventDefault();
       $("cvError").textContent = validatePdf(form.cv.files[0], "CV", MAX_EACH);
       $("tsError").textContent = validatePdf(form.ts.files[0], "Transcript", MAX_EACH);
       $("soiError").textContent = validatePdf(form.soi.files[0], "Statement of Interest", MAX_EACH);
@@ -175,32 +162,35 @@
         $("otherError").textContent ||
         coursesError.textContent
       ) {
+        event.preventDefault();
         return;
       }
-
-      submitBtn.disabled = true;
-      status.style.color = "";
-      status.textContent = "Sending…";
 
       const courses = [];
       checked.forEach(function (box) {
         courses.push(box.value);
       });
 
-      try {
-        if (isLocalHost()) {
+      if (isLocalHost()) {
+        event.preventDefault();
+        submitBtn.disabled = true;
+        status.style.color = "";
+        status.textContent = "Sending…";
+        try {
           await submitToLocalApi(form, courses);
           status.textContent = "Application filed in the private GitHub intake repo.";
-        } else {
-          const sent = await submitToFormSubmit(form, courses);
-          status.textContent = sent.message || "Application sent. Thank you.";
+          form.reset();
+        } catch (err) {
+          status.style.color = "red";
+          status.textContent = err.message || "Network error.";
         }
-        form.reset();
-      } catch (err) {
-        status.style.color = "red";
-        status.textContent = err.message || "Network error.";
+        submitBtn.disabled = false;
+        return;
       }
-      submitBtn.disabled = false;
+
+      prepareOutlookDelivery(form, courses);
+      status.style.color = "";
+      status.textContent = "Sending to rmcgehee@iastate.edu…";
     });
   });
 })();

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact · MODELS Lab</title>
+    <meta name="description" content="Send a message to the MODELS Lab. Mail is delivered to rmcgehee@iastate.edu.">
+    <link rel="stylesheet" href="../styles/portal-form.css">
+    <script src="/scripts/posthog.js"></script>
+</head>
+<body>
+    <div id="menu-placeholder"></div>
+
+    <main class="portal-page">
+        <h1>Contact</h1>
+        <p class="portal-lede">Write the lab directly. The message is delivered to rmcgehee@iastate.edu.</p>
+        <p id="sentNotice" class="sent-notice" hidden>Submitted. It is addressed to rmcgehee@iastate.edu. The first message from this site asks that inbox to confirm FormSubmit; after confirmation, messages arrive in Outlook.</p>
+        <form id="contactForm" class="portal-form" action="https://formsubmit.co/rmcgehee@iastate.edu" method="POST">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="_subject" value="MODELS Lab message">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://modelslab.org/pages/contact.html?sent=1">
+            <div class="form-group">
+                <label for="contact-name">Name *</label>
+                <input id="contact-name" type="text" name="name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="contact-email">Email *</label>
+                <input id="contact-email" type="email" name="email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="contact-subject">Subject *</label>
+                <input id="contact-subject" type="text" name="subject" required maxlength="180">
+            </div>
+            <div class="form-group">
+                <label for="contact-message">Message *</label>
+                <textarea id="contact-message" name="message" rows="8" required></textarea>
+            </div>
+            <button type="submit">Send message</button>
+            <p class="form-note">Reply in Outlook goes back to the email address above.</p>
+        </form>
+    </main>
+
+    <script>
+        fetch('../components/menu.html')
+            .then(function (response) { return response.text(); })
+            .then(function (data) { document.getElementById('menu-placeholder').innerHTML = data; });
+    </script>
+    <script src="/scripts/mail.js"></script>
+</body>
+</html>

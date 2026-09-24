@@ -6,18 +6,7 @@
     <title>Apply · MODELS Lab</title>
     <meta name="description" content="Apply to the MODELS Lab at Iowa State University Agricultural and Biosystems Engineering.">
     <link rel="stylesheet" href="../styles/letter-page.css">
-    <style>
-        .application-form { max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 8px; position: relative; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        .file-input { margin-top: 5px; }
-        .error { color: red; font-size: 0.9em; }
-        button { padding: 12px 24px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:disabled { background: #999; cursor: not-allowed; }
-        .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
-        #status { margin-top: 12px; }
-    </style>
+    <link rel="stylesheet" href="../styles/portal-form.css">
     <!-- PostHog Analytics -->
     <script src="/scripts/posthog.js"></script>
 </head>
@@ -33,11 +22,14 @@
 
     <section id="application" class="application-form">
         <h2>Application Portal</h2>
-        <form id="applyForm" enctype="multipart/form-data">
-            <div class="hp" aria-hidden="true">
-                <label for="website">Website</label>
-                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-            </div>
+        <p id="sentNotice" class="sent-notice" hidden>Submitted. The application is addressed to rmcgehee@iastate.edu. The first message from this site asks that inbox to confirm FormSubmit; after confirmation, applications arrive in Outlook with the PDFs attached.</p>
+        <form id="applyForm" action="https://formsubmit.co/rmcgehee@iastate.edu" method="POST" enctype="multipart/form-data">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="_subject" value="MODELS Lab application">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://modelslab.org/pages/apply.html?sent=1#application">
+            <input type="hidden" name="coursework" value="">
             <div class="form-group">
                 <label>Name *</label>
                 <input type="text" name="name" required>
@@ -142,6 +134,7 @@
             </div>
             <button type="submit" id="submitBtn">Submit Application</button>
             <p id="status"></p>
+            <p class="form-note">The message and PDFs are delivered to rmcgehee@iastate.edu. Reply in Outlook goes back to the email address above.</p>
         </form>
     </section>
 
@@ -150,6 +143,7 @@
             .then(r => r.text())
             .then(d => document.getElementById('menu-placeholder').innerHTML = d);
     </script>
+    <script src="/scripts/mail.js"></script>
     <script src="/scripts/apply.js"></script>
 </body>
 </html>
