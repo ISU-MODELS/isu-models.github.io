@@ -200,7 +200,7 @@
       $("cvError").textContent = validatePdf(form.cv.files[0], "CV", MAX_EACH);
       $("tsError").textContent = validatePdf(form.ts.files[0], "Transcript", MAX_EACH);
       $("soiError").textContent = validatePdf(form.soi.files[0], "Statement of Interest", MAX_EACH);
-      const checked = form.querySelectorAll('input[name="courses"]:checked');
+      const checked = form.querySelectorAll("input.course-box:checked");
       coursesError.textContent = checked.length ? "" : "Select at least one coursework item.";
       const combined = totalSizeError(form);
       if (combined) $("otherError").textContent = combined;
@@ -216,8 +216,12 @@
         $("codeError").textContent
       ) {
         event.preventDefault();
+        status.style.color = "red";
+        status.textContent = "Application was not submitted.";
         return;
       }
+      status.style.color = "";
+      status.textContent = "";
       if (codeField) codeField.value = codeParsed.links.join("\n");
 
       const courses = [];
