@@ -32,8 +32,8 @@
                         <a href="https://science.nasa.gov/researchers/solicitations/roses-2025/" rel="noopener noreferrer" target="_blank">NASA ROSES 2025</a>
                         <a href="https://wepp.cloud/" rel="noopener noreferrer" target="_blank">WEPPCloud</a>
                     </div>
-                    <div class="project-parts">
-                        <h4>Student work</h4>
+                    <details class="project-parts">
+                        <summary>Student work <span class="part-count">2</span></summary>
                         <ul>
                             <li id="xwepp-ateeq">
                                 <a href="/pages/team.html#muntaha-ateeq">Muntaha Ateeq</a>
@@ -46,7 +46,7 @@
                                 <span class="part-title">GPU Acceleration of the Water Erosion Prediction Project</span>
                             </li>
                         </ul>
-                    </div>
+                    </details>
                 </article>
 
                 <article class="project-card">
@@ -55,8 +55,8 @@
                     <p class="project-meta">Cooperative agreement NR243A750008C001 · 2023–2026</p>
                     <p>Building Understanding and Capacity for the Use of Climate Projections in Conservation Planning and Implementation. The agreement gives NRCS a working basis for climate forecasts and projections in conservation design: cover-crop timing, ENSO-informed snow and streamflow analogs, climate-enhanced topographic wetness, and agricultural waste-management climate inputs.</p>
                     <p class="project-role">ISU role: PI (McGehee), with NRCS Science &amp; Technology.</p>
-                    <div class="project-parts">
-                        <h4>Student work</h4>
+                    <details class="project-parts">
+                        <summary>Student work <span class="part-count">6</span></summary>
                         <ul>
                             <li id="cpf-shah">
                                 <a href="/pages/team.html#bhuwan-shah">Bhuwan Shah</a>
@@ -89,7 +89,7 @@
                                 <span class="part-title">A Scalable Framework for Climate-Resilient Conservation in Iowa</span>
                             </li>
                         </ul>
-                    </div>
+                    </details>
                 </article>
 
                 <article class="project-card">
@@ -119,8 +119,8 @@
                     <h3>IMAgE</h3>
                     <p class="project-meta">In progress · 2025</p>
                     <p>Inferred Management for Agriculture and the Environment is a library and matching database for agricultural management read from imagery. It is not yet public.</p>
-                    <div class="project-parts">
-                        <h4>Student work</h4>
+                    <details class="project-parts">
+                        <summary>Student work <span class="part-count">6</span></summary>
                         <ul>
                             <li id="image-chowdhury">
                                 <a href="/pages/team.html#dwijaraj-chowdhury">Dwijaraj Chowdhury</a>
@@ -153,7 +153,7 @@
                                 <span class="part-title">Nuisance Object Detection via YOLO in Agricultural Settings</span>
                             </li>
                         </ul>
-                    </div>
+                    </details>
                 </article>
 
             </div>
@@ -165,6 +165,19 @@
         </section>
     </main>
 
+    <script>
+        function openHashedStudentWork() {
+            var id = window.location.hash.replace(/^#/, "");
+            if (!id) return;
+            var target = document.getElementById(id);
+            if (!target) return;
+            var details = target.closest("details");
+            if (details) details.open = true;
+            target.scrollIntoView();
+        }
+        openHashedStudentWork();
+        window.addEventListener("hashchange", openHashedStudentWork);
+    </script>
     <script>
         fetch('../components/menu.html')
             .then(response => response.text())

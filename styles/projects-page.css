@@ -157,18 +157,45 @@ body {
     border-top: 1px solid #e8e8ed;
 }
 
-.project-parts h4 {
+.project-parts summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #6e6e73;
-    margin-bottom: 12px;
+    list-style: none;
+}
+
+.project-parts summary::-webkit-details-marker {
+    display: none;
+}
+
+.project-parts summary::after {
+    content: "+";
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+
+.project-parts[open] summary::after {
+    content: "\2212";
+}
+
+.part-count {
+    margin-left: 8px;
+    letter-spacing: 0;
+    font-weight: 600;
 }
 
 .project-parts ul {
     list-style: none;
-    margin: 0;
+    margin: 12px 0 0;
     padding: 0;
     width: 100%;
 }
