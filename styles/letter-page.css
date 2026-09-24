@@ -52,6 +52,10 @@ body {
     background-image: url('../backgrounds/software.png');
 }
 
+.portal-section-A {
+    background-image: linear-gradient(rgba(8, 22, 48, 0.28), rgba(8, 22, 48, 0.28)), url('../backgrounds/portal.png');
+}
+
 .section-A h1 {
     font-size: 64px;
     font-weight: 600;

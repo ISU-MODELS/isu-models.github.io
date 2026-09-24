@@ -23,6 +23,54 @@
     return document.getElementById(id);
   }
 
+  const CODE_HOST_ERROR =
+    "Code samples must be links on GitHub, GitLab, Bitbucket, Codeberg, SourceHut, or Azure DevOps.";
+
+  function codeHostOk(hostname) {
+    let host = String(hostname || "").toLowerCase().replace(/\.$/, "");
+    if (host.indexOf("www.") === 0) host = host.slice(4);
+    if (host === "github.io" || host.endsWith(".github.io")) return false;
+    if (host === "github.com" || host.endsWith(".github.com")) return true;
+    if (host === "githubusercontent.com" || host.endsWith(".githubusercontent.com")) return true;
+    const exact = [
+      "gitlab.com",
+      "bitbucket.org",
+      "codeberg.org",
+      "sr.ht",
+      "git.sr.ht",
+      "dev.azure.com",
+      "sourceforge.net",
+    ];
+    if (exact.indexOf(host) >= 0) return true;
+    return host.endsWith(".visualstudio.com");
+  }
+
+  function parseCodeSamples(text) {
+    const parts = String(text || "")
+      .split(/\s+/)
+      .map(function (part) { return part.trim(); })
+      .filter(Boolean);
+    if (!parts.length) return { ok: true, links: [] };
+    if (parts.length > 10) return { ok: false, error: "Provide at most 10 code sample links." };
+    const links = [];
+    for (let i = 0; i < parts.length; i += 1) {
+      let raw = parts[i];
+      if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)) raw = "https://" + raw;
+      let url;
+      try {
+        url = new URL(raw);
+      } catch (err) {
+        return { ok: false, error: CODE_HOST_ERROR };
+      }
+      if (url.protocol !== "https:" && url.protocol !== "http:") {
+        return { ok: false, error: CODE_HOST_ERROR };
+      }
+      if (!codeHostOk(url.hostname)) return { ok: false, error: CODE_HOST_ERROR };
+      links.push(url.toString());
+    }
+    return { ok: true, links: links };
+  }
+
   function isLocalHost() {
     const host = window.location.hostname;
     return host === "localhost" || host === "127.0.0.1";
@@ -66,7 +114,7 @@
     return "";
   }
 
-  async function submitToLocalApi(form, courses) {
+  async function submitToLocalApi(form, courses, codeSamples) {
     const otherFiles = [];
     for (let i = 0; i < form.other.files.length; i += 1) otherFiles.push(form.other.files[i]);
     const payload = {
@@ -75,6 +123,7 @@
       phone: form.phone.value.trim(),
       message: form.message.value.trim(),
       courses: courses,
+      code_samples: codeSamples,
       honeypot: form.elements["_honey"] ? form.elements["_honey"].value : "",
       files: {
         cv: {
@@ -155,16 +204,21 @@
       coursesError.textContent = checked.length ? "" : "Select at least one coursework item.";
       const combined = totalSizeError(form);
       if (combined) $("otherError").textContent = combined;
+      const codeField = $("codeSamples");
+      const codeParsed = parseCodeSamples(codeField ? codeField.value : "");
+      $("codeError").textContent = codeParsed.ok ? "" : codeParsed.error;
       if (
         $("cvError").textContent ||
         $("tsError").textContent ||
         $("soiError").textContent ||
         $("otherError").textContent ||
-        coursesError.textContent
+        coursesError.textContent ||
+        $("codeError").textContent
       ) {
         event.preventDefault();
         return;
       }
+      if (codeField) codeField.value = codeParsed.links.join("\n");
 
       const courses = [];
       checked.forEach(function (box) {
@@ -177,7 +231,7 @@
         status.style.color = "";
         status.textContent = "Sending…";
         try {
-          await submitToLocalApi(form, courses);
+          await submitToLocalApi(form, courses, codeParsed.links);
           status.textContent = "Application filed in the private GitHub intake repo.";
           form.reset();
         } catch (err) {
