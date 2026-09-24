@@ -100,3 +100,29 @@ body {
 .team-member .social-links a:hover {
     color: #0071e3;
 }
+
+.section-lede {
+    font-size: 18px;
+    color: #6e6e73;
+    max-width: 640px;
+    margin: -16px auto 36px;
+}
+
+.team-member {
+    scroll-margin-top: 88px;
+}
+
+.member-work {
+    margin-top: 8px;
+}
+
+.member-work a {
+    color: #0071e3;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.member-work a:hover,
+.member-work a:focus-visible {
+    text-decoration: underline;
+}
