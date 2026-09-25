@@ -33,11 +33,11 @@ body {
 }
 
 .o-section-A {
-    background-image: url('../backgrounds/optimization.png');
+    background-image: linear-gradient(rgba(8, 22, 48, 0.28), rgba(8, 22, 48, 0.28)), url('../backgrounds/optimization.png');
 }
 
 .d-section-A {
-    background-image: url('../backgrounds/development.png');
+    background-image: linear-gradient(rgba(8, 22, 48, 0.28), rgba(8, 22, 48, 0.28)), url('../backgrounds/development.png');
 }
 
 .e-section-A {
