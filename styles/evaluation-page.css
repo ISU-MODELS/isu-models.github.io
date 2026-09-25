@@ -87,6 +87,7 @@ html {
 }
 
 .catalog-card {
+    scroll-margin-top: 88px;
     border: 1px solid #e8e8ed;
     background: #f5f5f7;
     border-radius: 14px;

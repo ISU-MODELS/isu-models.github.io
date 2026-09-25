@@ -172,7 +172,7 @@ body {
 .project-parts summary {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 12px;
     cursor: pointer;
     font-size: 12px;
@@ -188,6 +188,7 @@ body {
 }
 
 .project-parts summary::after {
+    margin-left: auto;
     content: "+";
     font-size: 18px;
     line-height: 1;

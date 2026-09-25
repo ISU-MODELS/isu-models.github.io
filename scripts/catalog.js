@@ -38,6 +38,15 @@
     return (list || []).indexOf(value) !== -1;
   }
 
+  function itemId(kind, title) {
+    const slug = String(title || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    const prefix = kind === "product" ? "product" : kind === "publication" ? "publication" : kind;
+    return prefix + "-" + slug;
+  }
+
   function card(item) {
     const el = document.createElement("article");
     el.className = "catalog-card";
@@ -131,7 +140,9 @@
             list.appendChild(empty);
           } else {
             shown.forEach(function (item) {
-              list.appendChild(card(item));
+              const node = card(item);
+              node.id = itemId(kind, item.title);
+              list.appendChild(node);
             });
           }
           count.textContent = shown.length + " of " + items.length + " " + kind + (items.length === 1 ? "" : "s");
@@ -152,6 +163,9 @@
           });
         }
         render();
+        const hashId = (window.location.hash || "").replace(/^#/, "");
+        const hashed = hashId && document.getElementById(hashId);
+        if (hashed) hashed.scrollIntoView({ block: "center" });
       })
       .catch(function () {
         count.textContent = "Catalog could not be loaded.";
